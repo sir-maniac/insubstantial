@@ -33,6 +33,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 import javax.swing.*;
@@ -1964,11 +1965,26 @@ public abstract class SubstanceLookAndFeel extends BasicLookAndFeel {
 	 *         successfully, <code>false</code> otherwise.
 	 * @see #setSkin(SubstanceSkin)
 	 */
-	private static boolean setSkin(SubstanceSkin newSkin,
-			boolean toUpdateWindows) {
+	private static boolean setSkin(final SubstanceSkin newSkin,
+			final boolean toUpdateWindows) {
 		if (!SwingUtilities.isEventDispatchThread()) {
-			throw new IllegalStateException(
-					"This method must be called on the Event Dispatch Thread");
+            final boolean[] returnValue = new boolean[1];
+            try {
+                SwingUtilities.invokeAndWait(new Runnable() {
+                    @Override
+                    public void run() {
+                        returnValue[0] = setSkin(newSkin, toUpdateWindows);
+                    }
+                });
+            } catch (InvocationTargetException ite) {
+                if (ite.getCause() instanceof RuntimeException) {
+                    throw (RuntimeException) ite.getCause();
+                } else if (ite.getCause() instanceof Error) {
+                    throw (Error) ite.getCause();
+                }
+                
+            } catch (InterruptedException ignore) {}
+            return returnValue[0];
 		}
 
 		if (!newSkin.isValid())

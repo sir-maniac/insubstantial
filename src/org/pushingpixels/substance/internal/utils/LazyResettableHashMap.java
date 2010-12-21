@@ -29,9 +29,14 @@
  */
 package org.pushingpixels.substance.internal.utils;
 
-import java.util.*;
+//import net.jcip.annotations.GuardedBy;
 
-import javax.swing.SwingUtilities;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+//import javax.swing.SwingUtilities;
 
 /**
  * Lazily initialized hash map for caching images. Note that this class is
@@ -42,14 +47,20 @@ import javax.swing.SwingUtilities;
  *            Class for the stored values.
  */
 public class LazyResettableHashMap<T> {
+
+    private static final Object staticLock = new Object();
+    private final Object instanceLock = new Object();
+
 	/**
 	 * List of all existing maps.
 	 */
+    //@GuardedBy("staticLock")
 	private static List<LazyResettableHashMap<?>> all;
 
 	/**
 	 * The delegate cache.
 	 */
+    //@GuardedBy("instanceLock")
 	private Map<HashMapKey, T> cache;
 
 	/**
@@ -65,18 +76,22 @@ public class LazyResettableHashMap<T> {
 	 */
 	public LazyResettableHashMap(String displayName) {
 		this.displayName = displayName;
-		if (all == null) {
-			all = new LinkedList<LazyResettableHashMap<?>>();
-		}
-		all.add(this);
+        synchronized (staticLock) {
+            if (all == null) {
+                all = new LinkedList<LazyResettableHashMap<?>>();
+            }
+            all.add(this);
+        }
 	}
 
 	/**
 	 * Creates the delegate cache if necessary.
 	 */
 	private void createIfNecessary() {
-		if (this.cache == null)
-			this.cache = new SoftHashMap<HashMapKey, T>();
+        synchronized (instanceLock) {
+            if (this.cache == null)
+                this.cache = new SoftHashMap<HashMapKey, T>();
+        }
 	}
 
 	/**
@@ -88,11 +103,13 @@ public class LazyResettableHashMap<T> {
 	 *            Pair value.
 	 */
 	public void put(HashMapKey key, T entry) {
-		if (!SwingUtilities.isEventDispatchThread())
-			throw new IllegalArgumentException(
-					"Called outside Event Dispatch Thread");
-		this.createIfNecessary();
-		this.cache.put(key, entry);
+//        if (!SwingUtilities.isEventDispatchThread())
+//            throw new IllegalArgumentException(
+//                    "Called outside Event Dispatch Thread");
+        synchronized (instanceLock) {
+            this.createIfNecessary();
+    		this.cache.put(key, entry);
+        }
 	}
 
 	/**
@@ -103,9 +120,11 @@ public class LazyResettableHashMap<T> {
 	 * @return Registered value or <code>null</code> if none.
 	 */
 	public T get(HashMapKey key) {
-		if (this.cache == null)
-			return null;
-		return this.cache.get(key);
+        synchronized (instanceLock) {
+            if (this.cache == null)
+                return null;
+            return this.cache.get(key);
+        }
 	}
 
 	/**
@@ -117,9 +136,11 @@ public class LazyResettableHashMap<T> {
 	 *         <code>false</code> otherwise.
 	 */
 	public boolean containsKey(HashMapKey key) {
-		if (this.cache == null)
-			return false;
-		return this.cache.containsKey(key);
+        synchronized (instanceLock) {
+            if (this.cache == null)
+                return false;
+            return this.cache.containsKey(key);
+        }
 	}
 
 	/**
@@ -128,21 +149,30 @@ public class LazyResettableHashMap<T> {
 	 * @return The number of key-value pairs of this hash map.
 	 */
 	public int size() {
-		if (this.cache == null)
-			return 0;
-		return this.cache.size();
+        synchronized (instanceLock) {
+            if (this.cache == null)
+                return 0;
+            return this.cache.size();
+        }
 	}
 
 	/**
 	 * Resets all existing hash maps.
 	 */
 	public static void reset() {
-		if (all != null) {
-			for (LazyResettableHashMap<?> map : all) {
-				if (map.cache != null)
-					map.cache.clear();
-			}
-		}
+        synchronized (staticLock) {
+            if (all != null) {
+                for (LazyResettableHashMap<?> map : all) {
+                    // these fields are appropriately locked, the inspection is missing it
+                    synchronized(map.instanceLock) {
+                        //noinspection FieldAccessNotGuarded
+                        if (map.cache != null)
+                            //noinspection FieldAccessNotGuarded
+                            map.cache.clear();
+                    }
+                }
+            }
+        }
 	}
 
 	/**
@@ -151,30 +181,32 @@ public class LazyResettableHashMap<T> {
 	 * @return Statistical information of the existing hash maps.
 	 */
 	public static List<String> getStats() {
-		if (all != null) {
-			List<String> result = new LinkedList<String>();
+        synchronized (staticLock) {
+            if (all != null) {
+                List<String> result = new LinkedList<String>();
 
-			Map<String, Integer> mapCounter = new TreeMap<String, Integer>();
-			Map<String, Integer> entryCounter = new TreeMap<String, Integer>();
+                Map<String, Integer> mapCounter = new TreeMap<String, Integer>();
+                Map<String, Integer> entryCounter = new TreeMap<String, Integer>();
 
-			for (LazyResettableHashMap<?> map : all) {
-				String key = map.displayName;
-				if (!mapCounter.containsKey(key)) {
-					mapCounter.put(key, 0);
-					entryCounter.put(key, 0);
-				}
-				mapCounter.put(key, mapCounter.get(key) + 1);
-				entryCounter.put(key, entryCounter.get(key) + map.size());
-			}
+                for (LazyResettableHashMap<?> map : all) {
+                    String key = map.displayName;
+                    if (!mapCounter.containsKey(key)) {
+                        mapCounter.put(key, 0);
+                        entryCounter.put(key, 0);
+                    }
+                    mapCounter.put(key, mapCounter.get(key) + 1);
+                    entryCounter.put(key, entryCounter.get(key) + map.size());
+                }
 
-			for (Map.Entry<String, Integer> entry : mapCounter.entrySet()) {
-				String key = entry.getKey();
-				result.add(entry.getValue() + " " + key + " with "
-						+ entryCounter.get(key) + " entries total");
-			}
+                for (Map.Entry<String, Integer> entry : mapCounter.entrySet()) {
+                    String key = entry.getKey();
+                    result.add(entry.getValue() + " " + key + " with "
+                            + entryCounter.get(key) + " entries total");
+                }
 
-			return result;
-		}
-		return null;
+                return result;
+            }
+    		return null;
+        }
 	}
 }
