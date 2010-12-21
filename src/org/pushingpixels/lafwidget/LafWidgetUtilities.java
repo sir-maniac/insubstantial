@@ -279,14 +279,20 @@ public class LafWidgetUtilities {
 		if (comp instanceof JComponent) {
 			JComponent jcomp = (JComponent) comp;
 			if (dbSnapshot.containsKey(comp)) {
-				jcomp.setDoubleBuffered(dbSnapshot.get(comp));
+                // the key may exist, but may be set to null (lovely boxing quirk)
+                // treat null as false, since that is the default
+                Boolean buffered = dbSnapshot.get(comp);
+				jcomp.setDoubleBuffered(buffered == null ? false : buffered);
 				jcomp.putClientProperty(LafWidgetUtilities.PREVIEW_MODE, null);
 			} else {
 				// this can happen in case the application has
 				// renderers (combos, ...). Take the property from the parent
 				Component parent = comp.getParent();
-				if (parent instanceof JComponent) {
-					jcomp.setDoubleBuffered(dbSnapshot.get(parent));
+				if (parent instanceof JComponent && dbSnapshot.containsKey(parent)) {
+                    // the key may exist, but may be set to null (lovely boxing quirk)
+                    // treat null as false, since that is the default
+                    Boolean buffered = dbSnapshot.get(parent);
+                    jcomp.setDoubleBuffered(buffered == null ? false : buffered);
 					jcomp.putClientProperty(LafWidgetUtilities.PREVIEW_MODE,
 							null);
 				}
