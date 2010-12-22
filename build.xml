@@ -163,11 +163,11 @@
 	<!-- Augment tasks definition -->
 	<property name="augment-class-path" value="${substance.lib.dir}/build/laf-widget.jar;${substance.lib.dir}/trident.jar;${substance.lib.dir}/build/asm-all-2.2.2.jar" />
 
-	<taskdef name="delegate-augment" classname="org.pushingpixels.lafwidget.ant.AugmentTask" classpath="${augment-class-path}" />
-	<taskdef name="delegate-update-augment" classname="org.pushingpixels.lafwidget.ant.AugmentUpdateTask" classpath="${augment-class-path}" />
-	<taskdef name="laf-augment" classname="org.pushingpixels.lafwidget.ant.AugmentMainTask" classpath="${augment-class-path}" />
-	<taskdef name="icon-ghosting-augment" classname="org.pushingpixels.lafwidget.ant.AugmentIconGhostingTask" classpath="${augment-class-path}" />
-	<taskdef name="container-ghosting-augment" classname="org.pushingpixels.lafwidget.ant.AugmentContainerGhostingTask" classpath="${augment-class-path}" />
+       <taskdef name="delegate-augment" classname="org.pushingpixels.lafwidget.ant.AugmentTask" classpath="${augment-class-path}" />
+       <taskdef name="delegate-update-augment" classname="org.pushingpixels.lafwidget.ant.AugmentUpdateTask" classpath="${augment-class-path}" />
+       <taskdef name="laf-augment" classname="org.pushingpixels.lafwidget.ant.AugmentMainTask" classpath="${augment-class-path}" />
+       <taskdef name="icon-ghosting-augment" classname="org.pushingpixels.lafwidget.ant.AugmentIconGhostingTask" classpath="${augment-class-path}" />
+       <taskdef name="container-ghosting-augment" classname="org.pushingpixels.lafwidget.ant.AugmentContainerGhostingTask" classpath="${augment-class-path}" />
 
 	<target name="augmentation" description="inject additional behavior in UI delegates">
 		<!-- Explode laf-plugin and laf-widget -->

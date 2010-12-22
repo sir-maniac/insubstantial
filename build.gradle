@@ -1,0 +1,86 @@
+apply plugin: 'java'
+
+version = "6.1-insubstantial"
+release  = "internal"
+
+sourceCompatibility = "1.6"
+targetCompatibility = "1.6"
+
+configurations {
+    testCompile { extendsFrom compile }
+    toolsCompile { extendsFrom testCompile }
+}
+
+sourceSets {
+    main
+    test
+    tools {
+        compileClasspath = sourceSets.main.classes + sourceSets.test.classes + configurations.toolsCompile
+    }
+}
+
+dependencies {
+    compile files('lib/trident.jar', 'lib/build/laf-plugin.jar', 'lib/build/laf-widget.jar')
+    testCompile fileTree(dir: 'lib/build', include: '*.jar')
+    toolsCompile files('lib/test/fest-swing-1.2.jar')
+}
+
+
+task augmentation(dependsOn: classes) << {
+    // Explode laf-plugin and laf-widget
+    copy {
+        from zipTree('lib/build/laf-plugin.jar')
+        into sourceSets.main.classesDir
+    }
+    copy {
+        from zipTree('lib/build/laf-widget.jar')
+        into sourceSets.main.classesDir
+    }
+
+    augmentClassPath = configurations.toolsCompile.asPath
+
+    ant.taskdef(name: 'delegate-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentTask", classpath: augmentClassPath)
+    ant.taskdef(name: 'delegate-update-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentUpdateTask", classpath: augmentClassPath)
+    ant.taskdef(name: 'laf-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentMainTask", classpath: augmentClassPath)
+    ant.taskdef(name: 'icon-ghosting-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentIconGhostingTask", classpath: augmentClassPath)
+    ant.taskdef(name: 'container-ghosting-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentContainerGhostingTask", classpath: augmentClassPath)
+
+    verboseAugmentation = false
+
+    //LAF augmentation 
+    //ant.'laf-augment'(verbose: verboseAugmentaiton, mainlafclassname:"org.pushingpixels.substance.api.SubstanceLookAndFeel") {
+    //    classpathset(dir:sourceSets.main.classesDir)
+    //    delegate(name:"ViewportUI")
+    //}
+
+    // Delegate augmentation
+    ant.'delegate-update-augment'(verbose: verboseAugmentation, pattern: ".*UI\u002Eclass") {
+        classpathset(dir: sourceSets.main.classesDir)
+    }
+
+    ant.'delegate-augment'(verbose: verboseAugmentation, pattern: ".*UI\u002Eclass") {
+        classpathset(dir: sourceSets.main.classesDir)
+    }
+
+    // Icon ghosting augmentation
+    ant.'icon-ghosting-augment'(verbose: verboseAugmentation) {
+        classpathset(dir: sourceSets.main.classesDir)
+        iconghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceButtonUI", methodName: "paintIcon")
+        iconghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceToggleButtonUI", methodName: "paintIcon")
+    }
+
+    // Container ghosting augmentation
+    ant.'container-ghosting-augment'(verbose: verboseAugmentation) {
+        classpathset(dir: sourceSets.main.classesDir)
+        containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceDesktopPaneUI", toInjectAfterOriginal: "true")
+        containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceMenuBarUI", toInjectAfterOriginal: "true")
+        containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceMenuUI", toInjectAfterOriginal: "true")
+        containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstancePanelUI", toInjectAfterOriginal: "true")
+        containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceScrollBarUI", toInjectAfterOriginal: "true")
+        containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceToolBarUI", toInjectAfterOriginal: "true")
+    }
+
+}
+// insert augmentation just before jar creation
+jar.dependsOn << augmentation
+
