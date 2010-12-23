@@ -8,6 +8,9 @@ timeStamp = new Date().format("MMMM d, yyyy HH:mm:ss z")
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
+distsDirName = "../drop"
+libsDirName = distsDir
+
 configurations {
     testCompile { extendsFrom compile }
     toolsCompile { extendsFrom compile }
@@ -89,9 +92,9 @@ task augmentation(dependsOn: classes) {
 jar {
     dependsOn augmentation
     dependsOn toolsClasses
-    
+
     exclude 'org/pushingpixels/lafwidget/ant/**'
-    
+
     from zipTree('lib/build/laf-plugin.jar')
     from zipTree('lib/build/laf-widget.jar')
 
@@ -110,7 +113,7 @@ task liteJar(type: Jar) {
     dependsOn toolsClasses
 
     appendix = 'lite'
-    
+
     from sourceSets.main.classes
     exclude 'org/pushingpixels/substance/internal/contrib/randelshofer/**'
     exclude 'org/pushingpixels/substance/internal/contrib/xoetrope/**'
@@ -131,7 +134,7 @@ task liteJar(type: Jar) {
 
 task testJar(type: Jar) {
     appendix = 'tst'
-    
+
     from sourceSets.test.classes
 
     manifest {
@@ -140,6 +143,21 @@ task testJar(type: Jar) {
             "Substance-BuildStamp": timeStamp,
             "Main-Class": "test.Check",
             "Class-Path": "substance.jar ../lib/trident.jar ../lib/build/forms-1.2.0.jar ../lib/build/swingx.jar ../lib/build/substance-swingx.jar"
+        )
+    }
+}
+
+task testLiteJar(type: Jar) {
+    appendix = 'tst-lite'
+    
+    from sourceSets.test.classes
+
+    manifest {
+        attributes(
+            "Substance-Version": versionKey,
+            "Substance-BuildStamp": timeStamp,
+            "Main-Class": "test.Check",
+            "Class-Path": "substance-lite.jar ../lib/trident.jar ../lib/build/forms-1.2.0.jar ../lib/build/swingx.jar ../lib/build/substance-swingx.jar"
         )
     }
 }
@@ -154,10 +172,23 @@ task toolsJar(type: Jar) {
             "Substance-BuildStamp": timeStamp
         )
     }
+//    the annotation factory class doesnt exist, ignore it?
+//    doLast {
+//        ant.apt(srcdir:sourceSets.tools.java.srcDirs.iterator().next(), classpath:"$libsDir/$archiveName", factory:"tools.apt.", compile:false)
+//    }
 }
 
+task distroJar(type: Jar) {
+    appendix = 'all'
+    from(projectDir)
+    include "lib/**" 
+    include "src/**"
+    include "gradle.properties"
+    include "build.gradle"
+    exclude "**/*.vsd"
+}
 
-allSubstanceJars = [toolsJar, liteJar, testJar]
+allSubstanceJars = [toolsJar, liteJar, testJar, testLiteJar, distroJar]
 
 uploadArchives.dependsOn << allSubstanceJars
 assemble.dependsOn << allSubstanceJars
