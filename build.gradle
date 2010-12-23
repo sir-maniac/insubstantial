@@ -85,13 +85,13 @@ task augmentation(dependsOn: classes) {
         }
     }
 }
-// insert augmentation just before jar creation
-//jar.dependsOn << augmentation << toolsClasses
 
 jar {
     dependsOn augmentation
     dependsOn toolsClasses
+    
     exclude 'org/pushingpixels/lafwidget/ant/**'
+    
     from zipTree('lib/build/laf-plugin.jar')
     from zipTree('lib/build/laf-widget.jar')
 
@@ -106,7 +106,12 @@ jar {
 }
 
 task liteJar(type: Jar) {
+    dependsOn augmentation
+    dependsOn toolsClasses
+
     appendix = 'lite'
+    
+    from sourceSets.main.classes
     exclude 'org/pushingpixels/substance/internal/contrib/randelshofer/**'
     exclude 'org/pushingpixels/substance/internal/contrib/xoetrope/**'
     exclude 'org/pushingpixels/substance/internal/ui/SubstanceColorChooserUI*'
