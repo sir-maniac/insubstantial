@@ -11,6 +11,10 @@ targetCompatibility = 1.6
 distsDirName = "../drop"
 libsDirName = distsDir
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '0.9.2'
+}
+
 configurations {
     testCompile { extendsFrom compile }
     toolsCompile { extendsFrom compile }
