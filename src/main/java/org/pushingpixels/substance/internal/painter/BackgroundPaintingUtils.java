@@ -119,10 +119,11 @@ public class BackgroundPaintingUtils {
 					.paintOverlays(graphics, c, skin, decorationType);
 		} else {
 			// fill the area with solid color
+			// doing null checks on getParent() to address the case of table cell renderers (no parent)
 			Color backgr = SubstanceColorUtilities
-					.getBackgroundFillColor(((c instanceof JTextComponent) || (c instanceof JSpinner)) ? c
-							.getParent()
-							: c);
+					.getBackgroundFillColor((((c instanceof JTextComponent) || (c instanceof JSpinner)) && c.getParent() != null )
+                            ? c.getParent()
+                            : c);
 			graphics.setColor(backgr);
 			graphics.fillRect(0, 0, c.getWidth(), c.getHeight());
 
