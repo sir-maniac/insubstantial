@@ -1,8 +1,8 @@
 apply plugin: 'java'
 
-version = "6.1-insubstantial"
-versionKey = "6.1-insubstantial-invincible"
-release = "internal"
+version = "6.2"
+versionKey = "6.2-invincible"
+release = "dev"
 timeStamp = new Date().format("MMMM d, yyyy HH:mm:ss z")
 
 sourceCompatibility = 1.6
