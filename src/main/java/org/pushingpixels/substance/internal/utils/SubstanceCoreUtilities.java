@@ -76,6 +76,9 @@ public class SubstanceCoreUtilities {
 
 	public static final String TEXT_COMPONENT_AWARE = "substancelaf.internal.textComponentAware";
 
+    public static final boolean reallyThrow = !"I like to violate Swing's EDT rule".equals(System.getProperty("insubstantial.suppressThreadingCheck"));
+    public static final boolean reallyPrint = !"Don't tell me when I'm bad".equals(System.getProperty("insubstantial.suppressThreadingLogging"));
+
 	public static interface TextComponentAware<T> {
 		public JTextComponent getTextComponent(T t);
 	}
@@ -1898,7 +1901,7 @@ public class SubstanceCoreUtilities {
 	 * @return Parameter value.
 	 */
 	public static String getVmParameter(String parameterName) {
-		String paramValue = null;
+		String paramValue;
 		try {
 			paramValue = System.getProperty(parameterName);
 			return paramValue;
@@ -1907,6 +1910,15 @@ public class SubstanceCoreUtilities {
 			return null;
 		}
 	}
+
+    public static boolean reallyPrintThreadingExceptions() {
+        return reallyPrint;
+    }
+
+    public static boolean reallyThrowThreadingExceptions() {
+        return reallyThrow;
+    }
+
 
 	/**
 	 * Tests UI threading violations on creating the specified component.
@@ -1917,12 +1929,16 @@ public class SubstanceCoreUtilities {
 	 *             If the component is created off Event Dispatch Thread.
 	 */
 	public static void testComponentCreationThreadingViolation(Component comp) {
-        //if (!SwingUtilities.isEventDispatchThread()) {
-        //    UiThreadingViolationException uiThreadingViolationError = new UiThreadingViolationException(
-        //            "Component creation must be done on Event Dispatch Thread");
-        //    uiThreadingViolationError.printStackTrace(System.err);
-        //    throw uiThreadingViolationError;
-        //}
+		if (!SwingUtilities.isEventDispatchThread()) {
+			UiThreadingViolationException uiThreadingViolationError = new UiThreadingViolationException(
+					"Component creation must be done on Event Dispatch Thread");
+            if (reallyPrintThreadingExceptions()) {
+                uiThreadingViolationError.printStackTrace(System.err);
+            }
+            if (reallyThrowThreadingExceptions()) {
+			    throw uiThreadingViolationError;
+            }
+		}
 	}
 
 	/**
@@ -1935,12 +1951,16 @@ public class SubstanceCoreUtilities {
 	 *             If the component is changing state off Event Dispatch Thread.
 	 */
 	public static void testComponentStateChangeThreadingViolation(Component comp) {
-        //if (!SwingUtilities.isEventDispatchThread()) {
-        //    UiThreadingViolationException uiThreadingViolationError = new UiThreadingViolationException(
-        //            "Component state change must be done on Event Dispatch Thread");
-        //    //uiThreadingViolationError.printStackTrace(System.err);
-        //    //throw uiThreadingViolationError;
-        //}
+		if (!SwingUtilities.isEventDispatchThread()) {
+			UiThreadingViolationException uiThreadingViolationError = new UiThreadingViolationException(
+					"Component state change must be done on Event Dispatch Thread");
+            if (reallyPrintThreadingExceptions()) {
+                uiThreadingViolationError.printStackTrace(System.err);
+            }
+            if (reallyThrowThreadingExceptions()) {
+			    throw uiThreadingViolationError;
+            }
+		}
 	}
 
 	/**
@@ -1952,12 +1972,16 @@ public class SubstanceCoreUtilities {
 	 *             If the window is closed off Event Dispatch Thread.
 	 */
 	public static void testWindowCloseThreadingViolation(Window w) {
-        //if (!SwingUtilities.isEventDispatchThread()) {
-        //    UiThreadingViolationException uiThreadingViolationError = new UiThreadingViolationException(
-        //            "Window close must be done on Event Dispatch Thread");
-        //    uiThreadingViolationError.printStackTrace(System.err);
-        //    throw uiThreadingViolationError;
-        //}
+		if (!SwingUtilities.isEventDispatchThread()) {
+			UiThreadingViolationException uiThreadingViolationError = new UiThreadingViolationException(
+					"Window close must be done on Event Dispatch Thread");
+            if (reallyPrintThreadingExceptions()) {
+                uiThreadingViolationError.printStackTrace(System.err);
+            }
+            if (reallyThrowThreadingExceptions()) {
+			    throw uiThreadingViolationError;
+            }
+        }
 	}
 
 	public static void traceSubstanceApiUsage(Component comp, String message) {
@@ -2014,9 +2038,9 @@ public class SubstanceCoreUtilities {
 						(double) height / (double) ih);
 				// Calculate scaled image dimensions
 				// adjusting scale factor to nearest "good" value
-				int adjw = 0;
-				int adjh = 0;
-				double scaleMeasure = 1; // 0 - best (no) scale, 1 - impossibly
+				int adjw;
+				int adjh;
+				double scaleMeasure; // 0 - best (no) scale, 1 - impossibly
 				// bad
 				if (scaleFactor >= 2) {
 					// Need to enlarge image more than twice
