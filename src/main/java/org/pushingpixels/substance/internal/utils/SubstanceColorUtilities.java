@@ -678,12 +678,14 @@ public class SubstanceColorUtilities {
 		if ((component instanceof JCheckBox)
 				|| (component instanceof JRadioButton)
 				|| (component instanceof JSlider)) {
-			component = component.getParent();
+			// null checks on getParent() table/list/combo renderers
+			component = component.getParent() != null ? component.getParent() : component;
 		} else {
 			// Fix for 325 - respect the opacity setting of the text
 			// component
-			if (component instanceof JTextComponent && !component.isOpaque())
-				component = component.getParent();
+			if (component instanceof JTextComponent && !component.isOpaque()) 
+			// null checks on getParent() table/list/combo renderers
+				component = component.getParent() != null ? component.getParent() : component;				
 		}
 
 		Color backgr = component.getBackground();
