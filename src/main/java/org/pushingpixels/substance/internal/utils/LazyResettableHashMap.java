@@ -29,14 +29,12 @@
  */
 package org.pushingpixels.substance.internal.utils;
 
-//import net.jcip.annotations.GuardedBy;
+import net.jcip.annotations.GuardedBy;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
-//import javax.swing.SwingUtilities;
 
 /**
  * Lazily initialized hash map for caching images. Note that this class is
@@ -54,13 +52,13 @@ public class LazyResettableHashMap<T> {
 	/**
 	 * List of all existing maps.
 	 */
-    //@GuardedBy("staticLock")
+    @GuardedBy("staticLock")
 	private static List<LazyResettableHashMap<?>> all;
 
 	/**
 	 * The delegate cache.
 	 */
-    //@GuardedBy("instanceLock")
+    @GuardedBy("instanceLock")
 	private Map<HashMapKey, T> cache;
 
 	/**
@@ -103,9 +101,6 @@ public class LazyResettableHashMap<T> {
 	 *            Pair value.
 	 */
 	public void put(HashMapKey key, T entry) {
-//        if (!SwingUtilities.isEventDispatchThread())
-//            throw new IllegalArgumentException(
-//                    "Called outside Event Dispatch Thread");
         synchronized (instanceLock) {
             this.createIfNecessary();
     		this.cache.put(key, entry);
@@ -163,7 +158,7 @@ public class LazyResettableHashMap<T> {
         synchronized (staticLock) {
             if (all != null) {
                 for (LazyResettableHashMap<?> map : all) {
-                    // these fields are appropriately locked, the inspection is missing it
+                    // this is too locked!
                     synchronized(map.instanceLock) {
                         //noinspection FieldAccessNotGuarded
                         if (map.cache != null)
