@@ -415,7 +415,8 @@ public class SubstanceTableUI extends BasicTableUI implements
 	protected void installListeners() {
 		super.installListeners();
 		this.substancePropertyChangeListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (SubstanceLookAndFeel.WATERMARK_VISIBLE.equals(evt
 						.getPropertyName())) {
 					SubstanceTableUI.this.table
@@ -503,7 +504,8 @@ public class SubstanceTableUI extends BasicTableUI implements
 
 				if ("font".equals(evt.getPropertyName())) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							// fix for bug 341
 							if (table == null)
 								return;
@@ -571,13 +573,17 @@ public class SubstanceTableUI extends BasicTableUI implements
 					TableCellEditor oldEditor = (TableCellEditor) evt
 							.getOldValue();
 					if (oldEditor != null) {
-						table.getEditorComponent().removeMouseListener(
-								substanceFadeRolloverListener);
-					}
+                        if (table.getEditorComponent() != null) {
+                            table.getEditorComponent().removeMouseListener(
+							    	substanceFadeRolloverListener);
+                        }
+                    }
 					if (newEditor != null) {
-						table.getEditorComponent().addMouseListener(
-								substanceFadeRolloverListener);
-					}
+                        if (table.getEditorComponent() != null) {
+                            table.getEditorComponent().addMouseListener(
+								    substanceFadeRolloverListener);
+                        }
+                    }
 				}
 			}
 		};
@@ -1509,7 +1515,8 @@ public class SubstanceTableUI extends BasicTableUI implements
 		 */
 		private void repaintCell() {
 			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					if (SubstanceTableUI.this.table == null) {
 						// may happen if the LAF was switched in the meantime
 						return;
@@ -1580,7 +1587,8 @@ public class SubstanceTableUI extends BasicTableUI implements
 		 */
 		private void repaintRow() {
 			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					if (SubstanceTableUI.this.table == null) {
 						// may happen if the LAF was switched in the meantime
 						return;
@@ -1667,7 +1675,8 @@ public class SubstanceTableUI extends BasicTableUI implements
 		 */
 		private void repaintColumn() {
 			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					if (SubstanceTableUI.this.table == null) {
 						// may happen if the LAF was switched in the meantime
 						return;
@@ -1822,7 +1831,8 @@ public class SubstanceTableUI extends BasicTableUI implements
 		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
 		 * event.ListSelectionEvent)
 		 */
-		@SuppressWarnings("unchecked")
+		@Override
+        @SuppressWarnings("unchecked")
 		public void valueChanged(final ListSelectionEvent e) {
 			// fix for issue 478 - no animations when sorter has changed
 			List<? extends SortKey> sortKeys = (table.getRowSorter() == null) ? null
@@ -1850,10 +1860,12 @@ public class SubstanceTableUI extends BasicTableUI implements
 		 * javax.swing.event.TableModelListener#tableChanged(javax.swing.event
 		 * .TableModelEvent)
 		 */
-		public void tableChanged(final TableModelEvent e) {
+		@Override
+        public void tableChanged(final TableModelEvent e) {
 			// fix for defect 291 - tracking changes to the table.
 			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					// fix for defect 350 - font might have been
 					// switched in the middle of update
 					if (table == null)
@@ -1893,19 +1905,24 @@ public class SubstanceTableUI extends BasicTableUI implements
 	 */
 	private class RolloverFadeListener implements MouseListener,
 			MouseMotionListener {
-		public void mouseClicked(MouseEvent e) {
+		@Override
+        public void mouseClicked(MouseEvent e) {
 		}
 
-		public void mouseEntered(MouseEvent e) {
+		@Override
+        public void mouseEntered(MouseEvent e) {
 		}
 
-		public void mousePressed(MouseEvent e) {
+		@Override
+        public void mousePressed(MouseEvent e) {
 		}
 
-		public void mouseReleased(MouseEvent e) {
+		@Override
+        public void mouseReleased(MouseEvent e) {
 		}
 
-		public void mouseExited(MouseEvent e) {
+		@Override
+        public void mouseExited(MouseEvent e) {
 			// if (SubstanceCoreUtilities.toBleedWatermark(list))
 			// return;
 
@@ -1920,18 +1937,20 @@ public class SubstanceTableUI extends BasicTableUI implements
 			// be changing the rollover indication if the mouse is still
 			// over the table
 			Point mouseLoc = MouseInfo.getPointerInfo().getLocation();
-			Window windowAncestor = SwingUtilities.getWindowAncestor(table);
-			SwingUtilities.convertPointFromScreen(mouseLoc, windowAncestor);
-			Component deepest = SwingUtilities.getDeepestComponentAt(
-					windowAncestor, mouseLoc.x, mouseLoc.y);
+            if (mouseLoc != null) {
+                Window windowAncestor = SwingUtilities.getWindowAncestor(table);
+                SwingUtilities.convertPointFromScreen(mouseLoc, windowAncestor);
+                Component deepest = SwingUtilities.getDeepestComponentAt(
+                        windowAncestor, mouseLoc.x, mouseLoc.y);
 
-			while (deepest != null) {
-				if (deepest == table) {
-					// still in table
-					return;
-				}
-				deepest = deepest.getParent();
-			}
+                while (deepest != null) {
+                    if (deepest == table) {
+                        // still in table
+                        return;
+                    }
+                    deepest = deepest.getParent();
+                }
+            }
 
 			fadeOutAllRollovers();
 			this.fadeOutTableHeader();
@@ -1939,14 +1958,16 @@ public class SubstanceTableUI extends BasicTableUI implements
 			rolledOverColumn = -1;
 		}
 
-		public void mouseMoved(MouseEvent e) {
+		@Override
+        public void mouseMoved(MouseEvent e) {
 			if (!SubstanceTableUI.this.table.isEnabled())
 				return;
 			handleMouseMove(e.getPoint());
 			this.handleMoveForHeader(e);
 		}
 
-		public void mouseDragged(MouseEvent e) {
+		@Override
+        public void mouseDragged(MouseEvent e) {
 			if (!SubstanceTableUI.this.table.isEnabled())
 				return;
 			handleMouseMove(e.getPoint());
@@ -2232,7 +2253,7 @@ public class SubstanceTableUI extends BasicTableUI implements
 							continue;
 						}
 						Object currValue = this.table.getValueAt(i, j);
-						boolean isSame = false;
+						boolean isSame;
 						if (oldValue == null) {
 							isSame = (currValue == null);
 						} else {
@@ -2351,7 +2372,7 @@ public class SubstanceTableUI extends BasicTableUI implements
 			int column = cellIndex.column;
 			TableCellId cellId = this.getId(row, column);
 			boolean isRollover = rolledOverIndices.contains(cellId);
-			boolean isSelected = false;
+			boolean isSelected;
 			boolean hasSelectionAnimations = (this.updateInfo != null) ? this.updateInfo.hasSelectionAnimations
 					: this._hasSelectionAnimations();
 			if (hasSelectionAnimations
