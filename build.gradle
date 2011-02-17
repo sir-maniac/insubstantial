@@ -1,0 +1,24 @@
+apply plugin: 'java'
+
+version = "6.2-SNAPSHOT"
+versionKey = "6.2-invincible_SNAPSHOT"
+release = "internal"
+timeStamp = new Date().format("MMMM d, yyyy HH:mm:ss z")
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '0.9.2'
+}
+
+jar {
+  manifest {
+    attributes(
+      "Laf-Plugin-Version": versionKey,
+      "Laf-Plugin-BuildStamp": timeStamp
+    )
+  }
+}
+
+
