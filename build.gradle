@@ -1,5 +1,7 @@
 apply plugin: 'java'
+apply plugin: 'maven'
 
+group = "com.github.insubstantial.halberd"
 version = "6.2-SNAPSHOT"
 versionKey = "6.2-invincible_SNAPSHOT"
 release = "internal"
@@ -17,16 +19,72 @@ repositories {
 }
 
 dependencies {
-  compile 'com.google.android:android:2.3.1', 'org.eclipse.swt.win32.win32:x86:3.3.0-v3346'
+  compile group: 'com.google.android', name:'android', version:'2.3.1', transitive: true
+  compile group: 'org.eclipse.swt.win32.win32', name:'x86', version:'3.3.0-v3346', transitive: true
 }
 
 jar {
   manifest {
     attributes(
-      "Laf-Widget-Version": versionKey,
-      "Laf-Widget-BuildStamp": timeStamp
+      "Trident-Version": version,
+      "Trident-VersionName":versionKey,
+      "Trident-BuildStamp": timeStamp
     )
   }
 }
 
+task sourceJar(type: Jar) {
+  from sourceSets.main.java
+  from sourceSets.main.resources
+  classifier = 'src'
+}
+
+task javadocJar(type: Jar) {
+  from javadoc.destinationDir
+  classifier = 'javadoc'
+}
+
+artifacts {
+  archives sourceJar
+  archives javadocJar
+}
+
+configure(install.repositories.mavenInstaller) {
+  pom.project {
+    modelVersion '4.0.0'
+    packaging 'jar'
+    name "halberd"
+    description "A fork of @kirilcool's trident project"
+    url "http://insubstantial.github.com/halberd"
+    licenses {
+      license {
+        name 'BSD License'
+        url 'http://www.opensource.org/licenses/bsd-license.php'
+        distribution 'repo'
+      }
+    }
+    scm {
+      connection 'scm:git:git@github.com:Insubstantial/halberd.git'
+      developerConnection 'scm:git:git@github.com:Insubstantial/halberd.git'
+      url 'scm:git:git@github.com:Insubstantial/halberd.git'
+    }
+    developers {
+      developer {
+        name 'Kirill Grouchnikov'
+        email 'kirillcool@yahoo.com'
+        roles {
+          role 'author'
+          role 'developer'
+        }
+      }
+      developer {
+        name 'Danno Ferrin'
+        email 'danno.ferrin@shemnon.com'
+        roles {
+          role 'maintainer'
+        }
+      }
+    }
+  }
+}
 
