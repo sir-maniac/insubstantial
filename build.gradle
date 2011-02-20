@@ -1,5 +1,7 @@
 apply plugin: 'java'
+apply plugin: 'maven'
 
+group = "com.github.insubstantial.plafwidget"
 version = "6.2-SNAPSHOT"
 versionKey = "6.2-invincible_SNAPSHOT"
 release = "internal"
@@ -13,20 +15,83 @@ task wrapper(type: Wrapper) {
 }
 
 repositories {
+  mavenRepo urls: 'file://localhost/' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
   mavenCentral()
 }
 
 dependencies {
-  compile files('lib/trident.jar'), 'asm:asm-all:2.2.3', 'org.apache.ant:ant:1.7.0'
+//  compile 'com.github.insubstantial.halberd:halberd:6.2-SNAPSHOT', 'asm:asm-all:2.2.3', 'org.apache.ant:ant:1.7.0'
+  compile fileTree(dir: 'lib', includes: ['*.jar'])
 }
 
 jar {
   manifest {
     attributes(
-      "Laf-Widget-Version": versionKey,
+      "Laf-Widget-Version": version,
+      "Laf-Widget-VersionName": versionKey,
       "Laf-Widget-BuildStamp": timeStamp
     )
   }
 }
 
+task sourceJar(type: Jar) {
+  from sourceSets.main.java
+  from sourceSets.main.resources
+  classifier = 'src'
+}
 
+task javadocJar(type: Jar) {
+  from javadoc.destinationDir
+  classifier = 'javadoc'
+}
+
+artifacts {
+  archives sourceJar
+  archives javadocJar
+}
+
+configure(install.repositories.mavenInstaller) {
+  pom.project {
+    modelVersion '4.0.0'
+    packaging 'jar'
+    name "plaf widget"
+    description "A fork of @kirilcool's laf-widget project"
+    url "http://insubstantial.github.com/plafwidget"
+    licenses {
+      license {
+        name 'The BSD License'
+        url 'http://www.opensource.org/licenses/bsd-license.php'
+        distribution 'repo'
+        comments 'Covers ASM, BlogOfBug, JibX, LafWidget, and Looks contributions'
+      }
+      license {
+        name 'CC BY-SA 2.5'
+        url 'http://creativecommons.org/licenses/by-sa/2.5/'
+        distribution 'repo'
+        comments 'Covers the TangoIcons'
+      }
+    }
+    scm {
+      connection 'scm:git:git@github.com:Insubstantial/plafwidget.git'
+      developerConnection 'scm:git:git@github.com:Insubstantial/plafwidget.git'
+      url 'scm:git:git@github.com:Insubstantial/plafwidget.git'
+    }
+    developers {
+      developer {
+        name 'Kirill Grouchnikov'
+        email 'kirillcool@yahoo.com'
+        roles {
+          role 'author'
+          role 'developer'
+        }
+      }
+      developer {
+        name 'Danno Ferrin'
+        email 'danno.ferrin@shemnon.com'
+        roles {
+          role 'maintainer'
+        }
+      }
+    }
+  }
+}
