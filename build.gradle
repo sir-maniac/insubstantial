@@ -29,12 +29,14 @@ sourceSets {
 
 
 repositories {
-  mavenRepo urls: 'file://localhost/' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+  mavenRepo urls: new File(System.getProperty('user.home'), '.m2/repository').toURI().toString()
   mavenCentral()
 }
 
 dependencies {
   compile fileTree(dir: 'lib', includes: ['*.jar'])
+  compile fileTree(dir: 'lib/build', includes: ['*.jar'])
+  testCompile fileTree(dir: 'lib/test', includes: ['*.jar'])
   compile  module('net.jcip:jcip-annotations:1.0') {
     transitive = false
   }
