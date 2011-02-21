@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 
-group = "com.github.insubstantial.peacock"
+group = "com.github.insubstantial"
 version = "6.2-SNAPSHOT"
 versionKey = "6.2-invincible_SNAPSHOT"
 release = "internal"
@@ -15,26 +15,25 @@ task wrapper(type: Wrapper) {
 }
 
 repositories {
-  mavenRepo urls: new File(System.getProperty('user.home'), '.m2/repository').toURI().toString()
+  mavenRepo name: 'sonatype staging', urls: 'https://oss.sonatype.org/content/groups/staging'
   mavenCentral()
+  mavenRepo urls: new File(System.getProperty('user.home'), '.m2/repository').toURI().toString()
 }
 
 dependencies {
-//  compile 'com.github.insubstantial.halberd:halberd:6.2-SNAPSHOT'
-//  compile files('lib/svnkit.jar') // unknown version of svnkit
-//  compile files('lib/batik-all.jar') // batik 1.7.  No maven deployments
-//  testCompile files('lib/js.jar') // ??? is this some old ver or rhino?  is it even needed?
-//  testCompile files('lib/pdf-transcoder.jar') // ??? is this some old ver or rhino?  is it even needed?
-//  testCompile group: 'com.jgoodies', name:'forms', version:'1.2.0'
-//  testCompile 'junit:junit:4.3.1'
-//  testCompile 'org.easytesting:fest-assert:1.2'
-//  testCompile 'org.easytesting:fest-reflect:1.2'
-//  testCompile 'org.easytesting:fest-swing:1.2.1'
-//  testCompile 'org.easytesting:fest-swing-junit:1.2.1'
-//  testCompile 'org.easytesting:fest-swing-junit-4.3.1:1.2.1'
-//  testCompile files('lib/test/debug-1.0.jar')
-  compile fileTree(dir: 'lib', includes: ['*.jar'])
-  testCompile fileTree(dir: 'lib/test', includes: ['*.jar'])
+  compile group:'com.github.insubstantial', name:'halberd', version:version
+  compile files('lib/svnkit.jar') // unknown version of svnkit
+  compile files('lib/batik-all.jar') // batik 1.7.  No maven deployments (?)
+  testCompile group: 'com.jgoodies', name: 'forms', version: '1.2.0'
+  testCompile group:'junit', name:'junit:4.3.1'
+  testCompile group:'org.easytesting', name:'fest-assert', version:'1.2'
+  testCompile group:'org.easytesting', name:'fest-reflect', version:'1.2'
+  testCompile group:'org.easytesting', name:'fest-swing', version:'1.2.1'
+  testCompile group:'org.easytesting', name:'fest-swing-junit', version:'1.2.1'
+  testCompile group:'org.easytesting', name:'fest-swing-junit-4.3.1', version:'1.2.1'
+  testCompile files('lib/js.jar') // ??? is this some old ver or rhino?  is it even needed?
+  testCompile files('lib/pdf-transcoder.jar') // ??? is this some old ver or rhino?  is it even needed?
+  testCompile files('lib/test/debug-1.0.jar')
 }
 
 test {
@@ -70,39 +69,55 @@ artifacts {
   archives javadocJar
 }
 
-configure(install.repositories.mavenInstaller) {
-  pom.project {
-    modelVersion '4.0.0'
-    packaging 'jar'
-    name "peacock"
-    description "A fork of @kirilcool's flamingo project"
-    url "http://insubstantial.github.com/peacock"
-    licenses {
-      license {
-        name 'The BSD License'
-        url 'http://www.opensource.org/licenses/bsd-license.php'
-        distribution 'repo'
+uploadArchives {
+  try {
+    def x = [deployUsername, deployPassword]
+  } catch (Exception e) {
+    deployUsername = 'unset'
+    deployPassword = ''
+  }
+  repositories {
+    mavenDeployer {
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication userName: deployUsername, password: deployPassword
       }
-    }
-    scm {
-      connection 'scm:git:git@github.com:Insubstantial/peacock.git'
-      developerConnection 'scm:git:git@github.com:Insubstantial/peacock.git'
-      url 'scm:git:git@github.com:Insubstantial/peacock.git'
-    }
-    developers {
-      developer {
-        name 'Kirill Grouchnikov'
-        email 'kirillcool@yahoo.com'
-        roles {
-          role 'author'
-          role 'developer'
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication userName: deployUsername, password: deployPassword
+      }
+      pom.project {
+        modelVersion '4.0.0'
+        packaging 'jar'
+        name "peacock"
+        description "A fork of @kirilcool's flamingo project"
+        url "http://insubstantial.github.com/peacock"
+        licenses {
+          license {
+            name 'The BSD License'
+            url 'http://www.opensource.org/licenses/bsd-license.php'
+            distribution 'repo'
+          }
         }
-      }
-      developer {
-        name 'Danno Ferrin'
-        email 'danno.ferrin@shemnon.com'
-        roles {
-          role 'maintainer'
+        scm {
+          connection 'scm:git:git@github.com:Insubstantial/peacock.git'
+          developerConnection 'scm:git:git@github.com:Insubstantial/peacock.git'
+          url 'scm:git:git@github.com:Insubstantial/peacock.git'
+        }
+        developers {
+          developer {
+            name 'Kirill Grouchnikov'
+            email 'kirillcool@yahoo.com'
+            roles {
+              role 'author'
+              role 'developer'
+            }
+          }
+          developer {
+            name 'Danno Ferrin'
+            email 'danno.ferrin@shemnon.com'
+            roles {
+              role 'maintainer'
+            }
+          }
         }
       }
     }
