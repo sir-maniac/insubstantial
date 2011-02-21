@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 
-group = "com.github.insubstantial.insubstantial"
+group = "com.github.insubstantial"
 version = "6.2-SNAPSHOT"
 versionKey = "6.2-invincible_SNAPSHOT"
 release = "internal"
@@ -11,50 +11,48 @@ sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '0.9.2'
+  gradleVersion = '0.9.2'
 }
 
 configurations {
-    testCompile { extendsFrom compile }
-    toolsCompile { extendsFrom compile }
+  testCompile { extendsFrom compile }
+  toolsCompile { extendsFrom compile }
 }
 
 sourceSets {
-    main
-    test
-    tools {
-        compileClasspath = sourceSets.main.classes + sourceSets.test.classes + configurations.toolsCompile + configurations.testCompile
-    }
+  main
+  test
+  tools {
+    compileClasspath = sourceSets.main.classes + sourceSets.test.classes + configurations.toolsCompile + configurations.testCompile
+  }
 }
 
 
 repositories {
-  mavenRepo urls: new File(System.getProperty('user.home'), '.m2/repository').toURI().toString()
+  mavenRepo name: 'sonatype staging', urls: 'https://oss.sonatype.org/content/groups/staging'
   mavenCentral()
+  mavenRepo urls: new File(System.getProperty('user.home'), '.m2/repository').toURI().toString()
 }
 
 dependencies {
-  compile fileTree(dir: 'lib', includes: ['*.jar'])
-  compile fileTree(dir: 'lib/build', includes: ['*.jar'])
-  testCompile fileTree(dir: 'lib/test', includes: ['*.jar'])
-  compile  module('net.jcip:jcip-annotations:1.0') {
+  compile module('net.jcip:jcip-annotations:1.0') {
     transitive = false
   }
 
-//    compile 'com.github.insubstantial.halberd:halberd:6.2-SNAPSHOT'
-//    compile 'com.github.insubstantial.plafwidget:plafwidget:6.2-SNAPSHOT'
-//    compile 'com.github.insubstantial.plafplugin:plafplugin:6.2-SNAPSHOT'
-//    testCompile 'com.jgoodies:forms:1.2.0'
-//    testCompile 'org.swinglabs:swingx:1.6.1'
-//    toolsCompile 'org.easytesting:fest-swing:1.2'
-//    toolsCompile 'asm:asm-all:2.2.3'
+  compile group:'com.github.insubstantial', name:'halberd', version:version
+  compile group:'com.github.insubstantial', name:'plafwidget', version:version
+  compile group:'com.github.insubstantial', name:'plafplugin', version:version
+  testCompile group:'com.jgoodies', name:'forms', version:'1.2.0'
+  testCompile group:'org.swinglabs', name:'swingx', version:'1.6.1'
+  toolsCompile group:'org.easytesting', name:'fest-swing', version:'1.2'
+  toolsCompile group:'asm', name:'asm-all', version:'2.2.3'
 }
 
 task augmentation(dependsOn: classes) {
-    description = "Performs code augmentaiton for the laf-plugin and laf-widget libraries on the substance jar classes"
+  description = "Performs code augmentaiton for the laf-plugin and laf-widget libraries on the substance jar classes"
 
-    doLast {
-        // Explode laf-plugin and laf-widget
+  doLast {
+    // Explode laf-plugin and laf-widget
 //        copy {
 //            from zipTree('lib/build/laf-plugin.jar')
 //            into sourceSets.main.classesDir
@@ -64,134 +62,134 @@ task augmentation(dependsOn: classes) {
 //            into sourceSets.main.classesDir
 //        }
 
-        augmentClassPath = configurations.toolsCompile.asPath
+    augmentClassPath = configurations.toolsCompile.asPath
 
-        ant.taskdef(name: 'delegate-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentTask", classpath: augmentClassPath)
-        ant.taskdef(name: 'delegate-update-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentUpdateTask", classpath: augmentClassPath)
-        ant.taskdef(name: 'laf-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentMainTask", classpath: augmentClassPath)
-        ant.taskdef(name: 'icon-ghosting-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentIconGhostingTask", classpath: augmentClassPath)
-        ant.taskdef(name: 'container-ghosting-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentContainerGhostingTask", classpath: augmentClassPath)
+    ant.taskdef(name: 'delegate-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentTask", classpath: augmentClassPath)
+    ant.taskdef(name: 'delegate-update-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentUpdateTask", classpath: augmentClassPath)
+    ant.taskdef(name: 'laf-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentMainTask", classpath: augmentClassPath)
+    ant.taskdef(name: 'icon-ghosting-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentIconGhostingTask", classpath: augmentClassPath)
+    ant.taskdef(name: 'container-ghosting-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentContainerGhostingTask", classpath: augmentClassPath)
 
-        verboseAugmentation = false
+    verboseAugmentation = false
 
-        //LAF augmentation 
-        //ant.'laf-augment'(verbose: verboseAugmentaiton, mainlafclassname:"org.pushingpixels.substance.api.SubstanceLookAndFeel") {
-        //    classpathset(dir:sourceSets.main.classesDir)
-        //    delegate(name:"ViewportUI")
-        //}
+    //LAF augmentation
+    //ant.'laf-augment'(verbose: verboseAugmentaiton, mainlafclassname:"org.pushingpixels.substance.api.SubstanceLookAndFeel") {
+    //    classpathset(dir:sourceSets.main.classesDir)
+    //    delegate(name:"ViewportUI")
+    //}
 
-        // Delegate augmentation
-        ant.'delegate-update-augment'(verbose: verboseAugmentation, pattern: ".*UI\u002Eclass") {
-            classpathset(dir: sourceSets.main.classesDir)
-        }
-
-        ant.'delegate-augment'(verbose: verboseAugmentation, pattern: ".*UI\u002Eclass") {
-            classpathset(dir: sourceSets.main.classesDir)
-        }
-
-        // Icon ghosting augmentation
-        ant.'icon-ghosting-augment'(verbose: verboseAugmentation) {
-            classpathset(dir: sourceSets.main.classesDir)
-            iconghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceButtonUI", methodName: "paintIcon")
-            iconghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceToggleButtonUI", methodName: "paintIcon")
-        }
-
-        // Container ghosting augmentation
-        ant.'container-ghosting-augment'(verbose: verboseAugmentation) {
-            classpathset(dir: sourceSets.main.classesDir)
-            containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceDesktopPaneUI", toInjectAfterOriginal: "true")
-            containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceMenuBarUI", toInjectAfterOriginal: "true")
-            containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceMenuUI", toInjectAfterOriginal: "true")
-            containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstancePanelUI", toInjectAfterOriginal: "true")
-            containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceScrollBarUI", toInjectAfterOriginal: "true")
-            containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceToolBarUI", toInjectAfterOriginal: "true")
-        }
+    // Delegate augmentation
+    ant.'delegate-update-augment'(verbose: verboseAugmentation, pattern: ".*UI\u002Eclass") {
+      classpathset(dir: sourceSets.main.classesDir)
     }
+
+    ant.'delegate-augment'(verbose: verboseAugmentation, pattern: ".*UI\u002Eclass") {
+      classpathset(dir: sourceSets.main.classesDir)
+    }
+
+    // Icon ghosting augmentation
+    ant.'icon-ghosting-augment'(verbose: verboseAugmentation) {
+      classpathset(dir: sourceSets.main.classesDir)
+      iconghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceButtonUI", methodName: "paintIcon")
+      iconghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceToggleButtonUI", methodName: "paintIcon")
+    }
+
+    // Container ghosting augmentation
+    ant.'container-ghosting-augment'(verbose: verboseAugmentation) {
+      classpathset(dir: sourceSets.main.classesDir)
+      containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceDesktopPaneUI", toInjectAfterOriginal: "true")
+      containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceMenuBarUI", toInjectAfterOriginal: "true")
+      containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceMenuUI", toInjectAfterOriginal: "true")
+      containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstancePanelUI", toInjectAfterOriginal: "true")
+      containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceScrollBarUI", toInjectAfterOriginal: "true")
+      containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceToolBarUI", toInjectAfterOriginal: "true")
+    }
+  }
 }
 
 jar {
-    dependsOn augmentation
-    dependsOn toolsClasses
+  dependsOn augmentation
+  dependsOn toolsClasses
 
-    exclude 'org/pushingpixels/lafwidget/ant/**'
+  exclude 'org/pushingpixels/lafwidget/ant/**'
 
-    from zipTree('lib/build/laf-plugin.jar')
-    from zipTree('lib/build/laf-widget.jar')
+  from zipTree('lib/build/laf-plugin.jar')
+  from zipTree('lib/build/laf-widget.jar')
 
-    manifest {
-        attributes(
-            "Substance-Distribution": "Full",
-            "Substance-Version": versionKey,
-            "Substance-BuildStamp": timeStamp
-        )
-    }
+  manifest {
+    attributes(
+      "Substance-Distribution": "Full",
+      "Substance-Version": versionKey,
+      "Substance-BuildStamp": timeStamp
+    )
+  }
 
 }
 
 task liteJar(type: Jar) {
-    dependsOn augmentation
-    dependsOn toolsClasses
+  dependsOn augmentation
+  dependsOn toolsClasses
 
-    classifier = 'lite'
+  classifier = 'lite'
 
-    from sourceSets.main.classes
-    exclude 'org/pushingpixels/substance/internal/contrib/randelshofer/**'
-    exclude 'org/pushingpixels/substance/internal/contrib/xoetrope/**'
-    exclude 'org/pushingpixels/substance/internal/ui/SubstanceColorChooserUI*'
-    exclude 'org/pushingpixels/lafwidget/ant/**'
+  from sourceSets.main.classes
+  exclude 'org/pushingpixels/substance/internal/contrib/randelshofer/**'
+  exclude 'org/pushingpixels/substance/internal/contrib/xoetrope/**'
+  exclude 'org/pushingpixels/substance/internal/ui/SubstanceColorChooserUI*'
+  exclude 'org/pushingpixels/lafwidget/ant/**'
 
-    from zipTree('lib/build/laf-plugin.jar')
-    from zipTree('lib/build/laf-widget.jar')
+  from zipTree('lib/build/laf-plugin.jar')
+  from zipTree('lib/build/laf-widget.jar')
 
-    manifest {
-        attributes(
-            "Substance-Distribution": "Lite",
-            "Substance-Version": versionKey,
-            "Substance-BuildStamp": timeStamp
-        )
-    }
+  manifest {
+    attributes(
+      "Substance-Distribution": "Lite",
+      "Substance-Version": versionKey,
+      "Substance-BuildStamp": timeStamp
+    )
+  }
 }
 
 task testJar(type: Jar) {
-    classifier = 'tst'
+  classifier = 'tst'
 
-    from sourceSets.test.classes
+  from sourceSets.test.classes
 
-    manifest {
-        attributes(
-            "Substance-Version": versionKey,
-            "Substance-BuildStamp": timeStamp,
-            "Main-Class": "test.Check",
-            "Class-Path": "substance.jar ../lib/trident.jar ../lib/build/forms-1.2.0.jar ../lib/build/swingx.jar ../lib/build/substance-swingx.jar"
-        )
-    }
+  manifest {
+    attributes(
+      "Substance-Version": versionKey,
+      "Substance-BuildStamp": timeStamp,
+      "Main-Class": "test.Check",
+      "Class-Path": "substance.jar ../lib/trident.jar ../lib/build/forms-1.2.0.jar ../lib/build/swingx.jar ../lib/build/substance-swingx.jar"
+    )
+  }
 }
 
 task testLiteJar(type: Jar) {
-    classifier = 'tst-lite'
-    
-    from sourceSets.test.classes
+  classifier = 'tst-lite'
 
-    manifest {
-        attributes(
-            "Substance-Version": versionKey,
-            "Substance-BuildStamp": timeStamp,
-            "Main-Class": "test.Check",
-            "Class-Path": "substance-lite.jar ../lib/trident.jar ../lib/build/forms-1.2.0.jar ../lib/build/swingx.jar ../lib/build/substance-swingx.jar"
-        )
-    }
+  from sourceSets.test.classes
+
+  manifest {
+    attributes(
+      "Substance-Version": versionKey,
+      "Substance-BuildStamp": timeStamp,
+      "Main-Class": "test.Check",
+      "Class-Path": "substance-lite.jar ../lib/trident.jar ../lib/build/forms-1.2.0.jar ../lib/build/swingx.jar ../lib/build/substance-swingx.jar"
+    )
+  }
 }
 
 
 task toolsJar(type: Jar) {
-    classifier = 'tools'
-    from sourceSets.tools.classes
-    manifest {
-        attributes(
-            "Substance-Version": versionKey,
-            "Substance-BuildStamp": timeStamp
-        )
-    }
+  classifier = 'tools'
+  from sourceSets.tools.classes
+  manifest {
+    attributes(
+      "Substance-Version": versionKey,
+      "Substance-BuildStamp": timeStamp
+    )
+  }
 //    the annotation factory class doesn't exist, ignore it?
 //    doLast {
 //        ant.apt(srcdir:sourceSets.tools.java.srcDirs.iterator().next(), classpath:"$libsDir/$archiveName", factory:"tools.apt.", compile:false)
@@ -199,14 +197,14 @@ task toolsJar(type: Jar) {
 }
 
 task distroJar(type: Jar) {
-    dependsOn toolsJar, liteJar, testJar, testLiteJar, jar
-    classifier = 'all'
-    from(projectDir)
-    include "lib/**" 
-    include "src/**"
-    include "gradle.properties"
-    include "build.gradle"
-    exclude "**/*.vsd"
+  dependsOn toolsJar, liteJar, testJar, testLiteJar, jar
+  classifier = 'all'
+  from(projectDir)
+  include "lib/**"
+  include "src/**"
+  include "gradle.properties"
+  include "build.gradle"
+  exclude "**/*.vsd"
 }
 
 //allSubstanceJars = [toolsJar, liteJar, testJar, testLiteJar, distroJar]
@@ -232,52 +230,67 @@ artifacts {
   archives liteJar
 }
 
-configure(install.repositories.mavenInstaller) {
-  pom.project {
-    modelVersion '4.0.0'
-    packaging 'jar'
-    name "halberd"
-    description "A fork of @kirilcool's substance project"
-    url "http://insubstantial.github.com/insubstantial"
-    licenses {
-      license {
-        name 'BSD License'
-        url 'http://www.opensource.org/licenses/bsd-license.php'
-        distribution 'repo'
-        comments "Does not cover the Xoetrope Color Wheel"
+uploadArchives {
+  try {
+    def x = [deployUsername, deployPassword]
+  } catch (Exception e) {
+    deployUsername = 'unset'
+    deployPassword = ''
+  }
+  repositories {
+    mavenDeployer {
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication userName: deployUsername, password: deployPassword
       }
-      license {
-        name 'Mozilla Public License 1.1'
-        url 'http://www.opensource.org/licenses/mozilla1.1'
-        distribution 'repo'
-        comments "Covers the Xoetrope Color Wheel"
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication userName: deployUsername, password: deployPassword
       }
-    }
-    scm {
-      connection 'scm:git:git@github.com:Insubstantial/halberd.git'
-      developerConnection 'scm:git:git@github.com:Insubstantial/halberd.git'
-      url 'scm:git:git@github.com:Insubstantial/halberd.git'
-    }
-    developers {
-      developer {
-        name 'Kirill Grouchnikov'
-        email 'kirillcool@yahoo.com'
-        roles {
-          role 'author'
-          role 'developer'
+      pom.project {
+        modelVersion '4.0.0'
+        packaging 'jar'
+        name "halberd"
+        description "A fork of @kirilcool's substance project"
+        url "http://insubstantial.github.com/insubstantial"
+        licenses {
+          license {
+            name 'BSD License'
+            url 'http://www.opensource.org/licenses/bsd-license.php'
+            distribution 'repo'
+            comments "Does not cover the Xoetrope Color Wheel"
+          }
+          license {
+            name 'Mozilla Public License 1.1'
+            url 'http://www.opensource.org/licenses/mozilla1.1'
+            distribution 'repo'
+            comments "Covers the Xoetrope Color Wheel"
+          }
         }
-      }
-      developer {
-        name 'Danno Ferrin'
-        email 'danno.ferrin@shemnon.com'
-        roles {
-          role 'maintainer'
+        scm {
+          connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+          developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+          url 'scm:git:git@github.com:Insubstantial/insubsntantial.git'
+        }
+        developers {
+          developer {
+            name 'Kirill Grouchnikov'
+            email 'kirillcool@yahoo.com'
+            roles {
+              role 'author'
+              role 'developer'
+            }
+          }
+          developer {
+            name 'Danno Ferrin'
+            email 'danno.ferrin@shemnon.com'
+            roles {
+              role 'maintainer'
+            }
+          }
         }
       }
     }
   }
 }
-
 
 
     
