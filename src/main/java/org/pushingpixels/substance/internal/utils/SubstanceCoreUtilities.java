@@ -75,9 +75,9 @@ public class SubstanceCoreUtilities {
 	public static final String IS_COVERED_BY_LIGHTWEIGHT_POPUPS = "substancelaf.internal.paint.isCoveredByLightweightPopups";
 
 	public static final String TEXT_COMPONENT_AWARE = "substancelaf.internal.textComponentAware";
-
-    public static final boolean reallyThrow = !"I like to violate Swing's EDT rule".equals(System.getProperty("insubstantial.suppressThreadingCheck"));
-    public static final boolean reallyPrint = !"Don't tell me when I'm bad".equals(System.getProperty("insubstantial.suppressThreadingLogging"));
+(
+    public static final boolean reallyThrow = Boolean.valueOf(System.getProperty("insubstantial.checkEDT", "false"));
+    public static final boolean reallyPrint = Boolean.valueOf(System.getProperty("insubstantial.logEDT", "true"));
 
 	public static interface TextComponentAware<T> {
 		public JTextComponent getTextComponent(T t);
