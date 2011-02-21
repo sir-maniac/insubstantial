@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 
-group = "com.github.insubstantial.plafwidget"
+group = "com.github.insubstantial"
 version = "6.2-SNAPSHOT"
 versionKey = "6.2-invincible_SNAPSHOT"
 release = "internal"
@@ -15,13 +15,15 @@ task wrapper(type: Wrapper) {
 }
 
 repositories {
-  mavenRepo urls: new File(System.getProperty('user.home'), '.m2/repository').toURI().toString()
+  mavenRepo name: 'sonatype staging', urls: 'https://oss.sonatype.org/content/groups/staging'
   mavenCentral()
+  mavenRepo urls: new File(System.getProperty('user.home'), '.m2/repository').toURI().toString()
 }
 
 dependencies {
-//  compile 'com.github.insubstantial.halberd:halberd:6.2-SNAPSHOT', 'asm:asm-all:2.2.3', 'org.apache.ant:ant:1.7.0'
-  compile fileTree(dir: 'lib', includes: ['*.jar'])
+  compile group:'com.github.insubstantial', name:'halberd', version:version
+  compile group:'asm', name:'asm-all', version:'2.2.3'
+  compile group:'org.apache.ant', name:'ant', version:'1.7.0'
 }
 
 jar {
@@ -50,46 +52,62 @@ artifacts {
   archives javadocJar
 }
 
-configure(install.repositories.mavenInstaller) {
-  pom.project {
-    modelVersion '4.0.0'
-    packaging 'jar'
-    name "plaf widget"
-    description "A fork of @kirilcool's laf-widget project"
-    url "http://insubstantial.github.com/plafwidget"
-    licenses {
-      license {
-        name 'The BSD License'
-        url 'http://www.opensource.org/licenses/bsd-license.php'
-        distribution 'repo'
-        comments 'Covers ASM, BlogOfBug, JibX, LafWidget, and Looks contributions'
+uploadArchives {
+  try {
+    def x = [deployUsername, deployPassword]
+  } catch (Exception e) {
+    deployUsername = 'unset'
+    deployPassword = ''
+  }
+  repositories {
+    mavenDeployer {
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication userName: deployUsername, password: deployPassword
       }
-      license {
-        name 'CC BY-SA 2.5'
-        url 'http://creativecommons.org/licenses/by-sa/2.5/'
-        distribution 'repo'
-        comments 'Covers the TangoIcons'
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication userName: deployUsername, password: deployPassword
       }
-    }
-    scm {
-      connection 'scm:git:git@github.com:Insubstantial/plafwidget.git'
-      developerConnection 'scm:git:git@github.com:Insubstantial/plafwidget.git'
-      url 'scm:git:git@github.com:Insubstantial/plafwidget.git'
-    }
-    developers {
-      developer {
-        name 'Kirill Grouchnikov'
-        email 'kirillcool@yahoo.com'
-        roles {
-          role 'author'
-          role 'developer'
+      pom.project {
+        modelVersion '4.0.0'
+        packaging 'jar'
+        name "plaf widget"
+        description "A fork of @kirilcool's laf-widget project"
+        url "http://insubstantial.github.com/plafwidget"
+        licenses {
+          license {
+            name 'The BSD License'
+            url 'http://www.opensource.org/licenses/bsd-license.php'
+            distribution 'repo'
+            comments 'Covers ASM, BlogOfBug, JibX, LafWidget, and Looks contributions'
+          }
+          license {
+            name 'CC BY-SA 2.5'
+            url 'http://creativecommons.org/licenses/by-sa/2.5/'
+            distribution 'repo'
+            comments 'Covers the TangoIcons'
+          }
         }
-      }
-      developer {
-        name 'Danno Ferrin'
-        email 'danno.ferrin@shemnon.com'
-        roles {
-          role 'maintainer'
+        scm {
+          connection 'scm:git:git@github.com:Insubstantial/plafwidget.git'
+          developerConnection 'scm:git:git@github.com:Insubstantial/plafwidget.git'
+          url 'scm:git:git@github.com:Insubstantial/plafwidget.git'
+        }
+        developers {
+          developer {
+            name 'Kirill Grouchnikov'
+            email 'kirillcool@yahoo.com'
+            roles {
+              role 'author'
+              role 'developer'
+            }
+          }
+          developer {
+            name 'Danno Ferrin'
+            email 'danno.ferrin@shemnon.com'
+            roles {
+              role 'maintainer'
+            }
+          }
         }
       }
     }
