@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 
-group = "com.github.insubstantial.plafplugin"
+group = "com.github.insubstantial"
 version = "6.2-SNAPSHOT"
 versionKey = "6.2-invincible_SNAPSHOT"
 release = "internal"
@@ -40,46 +40,62 @@ artifacts {
   archives javadocJar
 }
 
-configure(install.repositories.mavenInstaller) {
-  pom.project {
-    modelVersion '4.0.0'
-    packaging 'jar'
-    name "plaf plugin"
-    description "A fork of @kirilcool's laf-plugin project"
-    url "http://insubstantial.github.com/plafplugin"
-    licenses {
-      license {
-        name 'The BSD License'
-        url 'http://www.opensource.org/licenses/bsd-license.php'
-        distribution 'repo'
-        comments 'Covers LafPlugin'
+uploadArchives {
+  try {
+    def x = [deployUsername, deployPassword]
+  } catch (Exception e) {
+    deployUsername = 'unset'
+    deployPassword = ''
+  }
+  repositories {
+    mavenDeployer {
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication userName: deployUsername, password: deployPassword
       }
-      license {
-        name 'The zlib/libpng License'
-        url 'http://www.opensource.org/licenses/zlib-license'
-        distribution 'repo'
-        comments 'Covers the XMLElement and XMLParseException classes'
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication userName: deployUsername, password: deployPassword
       }
-    }
-    scm {
-      connection 'scm:git:git@github.com:Insubstantial/plafplugin.git'
-      developerConnection 'scm:git:git@github.com:Insubstantial/plafplugin.git'
-      url 'scm:git:git@github.com:Insubstantial/plafplugin.git'
-    }
-    developers {
-      developer {
-        name 'Kirill Grouchnikov'
-        email 'kirillcool@yahoo.com'
-        roles {
-          role 'author'
-          role 'developer'
+      pom.project {
+        modelVersion '4.0.0'
+        packaging 'jar'
+        name "plaf plugin"
+        description "A fork of @kirilcool's laf-plugin project"
+        url "http://insubstantial.github.com/plafplugin"
+        licenses {
+          license {
+            name 'The BSD License'
+            url 'http://www.opensource.org/licenses/bsd-license.php'
+            distribution 'repo'
+            comments 'Covers LafPlugin'
+          }
+          license {
+            name 'The zlib/libpng License'
+            url 'http://www.opensource.org/licenses/zlib-license'
+            distribution 'repo'
+            comments 'Covers the XMLElement and XMLParseException classes'
+          }
         }
-      }
-      developer {
-        name 'Danno Ferrin'
-        email 'danno.ferrin@shemnon.com'
-        roles {
-          role 'maintainer'
+        scm {
+          connection 'scm:git:git@github.com:Insubstantial/plafplugin.git'
+          developerConnection 'scm:git:git@github.com:Insubstantial/plafplugin.git'
+          url 'scm:git:git@github.com:Insubstantial/plafplugin.git'
+        }
+        developers {
+          developer {
+            name 'Kirill Grouchnikov'
+            email 'kirillcool@yahoo.com'
+            roles {
+              role 'author'
+              role 'developer'
+            }
+          }
+          developer {
+            name 'Danno Ferrin'
+            email 'danno.ferrin@shemnon.com'
+            roles {
+              role 'maintainer'
+            }
+          }
         }
       }
     }
