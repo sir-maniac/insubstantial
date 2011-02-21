@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 
-group = "com.github.insubstantial.halberd"
+group = "com.github.insubstantial"
 version = "6.2-SNAPSHOT"
 versionKey = "6.2-invincible_SNAPSHOT"
 release = "internal"
@@ -15,19 +15,21 @@ task wrapper(type: Wrapper) {
 }
 
 repositories {
+  mavenRepo name: 'sonatype staging', urls: 'https://oss.sonatype.org/content/groups/staging'
   mavenCentral()
+  mavenRepo urls: new File(System.getProperty('user.home'), '.m2/repository').toURI().toString()
 }
 
 dependencies {
-  compile group: 'com.google.android', name:'android', version:'2.3.1', transitive: true
-  compile group: 'org.eclipse.swt.win32.win32', name:'x86', version:'3.3.0-v3346', transitive: true
+  compile group: 'com.google.android', name: 'android', version: '2.3.1', transitive: false
+  compile group: 'org.eclipse.swt.win32.win32', name: 'x86', version: '3.3.0-v3346', transitive: false
 }
 
 jar {
   manifest {
     attributes(
       "Trident-Version": version,
-      "Trident-VersionName":versionKey,
+      "Trident-VersionName": versionKey,
       "Trident-BuildStamp": timeStamp
     )
   }
@@ -49,40 +51,60 @@ artifacts {
   archives javadocJar
 }
 
-configure(install.repositories.mavenInstaller) {
-  pom.project {
-    modelVersion '4.0.0'
-    packaging 'jar'
-    name "halberd"
-    description "A fork of @kirilcool's trident project"
-    url "http://insubstantial.github.com/halberd"
-    licenses {
-      license {
-        name 'BSD License'
-        url 'http://www.opensource.org/licenses/bsd-license.php'
-        distribution 'repo'
+uploadArchives {
+  try {
+    def x = [deployUsername, deployPassword]
+  } catch (Exception e) {
+    deployUsername = 'unset'
+    deployPassword = ''
+  }
+  repositories {
+    mavenDeployer {
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication userName: deployUsername, password: deployPassword
       }
-    }
-    scm {
-      connection 'scm:git:git@github.com:Insubstantial/halberd.git'
-      developerConnection 'scm:git:git@github.com:Insubstantial/halberd.git'
-      url 'scm:git:git@github.com:Insubstantial/halberd.git'
-    }
-    developers {
-      developer {
-        name 'Kirill Grouchnikov'
-        email 'kirillcool@yahoo.com'
-        roles {
-          role 'author'
-          role 'developer'
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication userName: deployUsername, password: deployPassword
+      }
+      pom.project {
+        modelVersion '4.0.0'
+        packaging 'jar'
+        name "halberd"
+        description "A fork of @kirilcool's trident project"
+        url "http://insubstantial.github.com/halberd"
+        licenses {
+          license {
+            name 'BSD License'
+            url 'http://www.opensource.org/licenses/bsd-license.php'
+            distribution 'repo'
+          }
+        }
+        scm {
+          connection 'scm:git:git@github.com:Insubstantial/halberd.git'
+          developerConnection 'scm:git:git@github.com:Insubstantial/halberd.git'
+          url 'scm:git:git@github.com:Insubstantial/halberd.git'
+        }
+        developers {
+          developer {
+            name 'Kirill Grouchnikov'
+            email 'kirillcool@yahoo.com'
+            roles {
+              role 'author'
+              role 'developer'
+            }
+          }
+          developer {
+            name 'Danno Ferrin'
+            email 'danno.ferrin@shemnon.com'
+            roles {
+              role 'maintainer'
+            }
+          }
         }
       }
-      developer {
-        name 'Danno Ferrin'
-        email 'danno.ferrin@shemnon.com'
-        roles {
-          role 'maintainer'
-        }
+      // deal with a gradle bug where transitive=false is not passed into the generated POM
+      pom.whenConfigured {pom ->
+        pom.dependencies.each {dep -> dep.optional = true }
       }
     }
   }
