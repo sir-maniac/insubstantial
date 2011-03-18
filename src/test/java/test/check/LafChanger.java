@@ -52,9 +52,11 @@ public class LafChanger implements ActionListener {
 		this.lafClassName = lafClassName;
 	}
 
-	public void actionPerformed(ActionEvent e) {
+	@Override
+    public void actionPerformed(ActionEvent e) {
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				boolean was_wm_decorated = !frame.isUndecorated();
 
 				try {

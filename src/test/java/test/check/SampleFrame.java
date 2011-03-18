@@ -74,11 +74,13 @@ public class SampleFrame extends JFrame {
 			this.model.add("Texas Christian University [Horned Frogs]");
 		}
 
-		public Object getElementAt(int index) {
+		@Override
+        public Object getElementAt(int index) {
 			return this.model.get(index);
 		}
 
-		public int getSize() {
+		@Override
+        public int getSize() {
 			return this.model.size();
 		}
 	}
@@ -123,9 +125,11 @@ public class SampleFrame extends JFrame {
 		final JButton add1 = new JButton("add");
 		final JButton add2 = new JButton("add");
 		add1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						mainPanel.add(b1);
 						mainPanel.add(b2);
 						mainPanel.add(b3);
@@ -136,9 +140,11 @@ public class SampleFrame extends JFrame {
 			}
 		});
 		add2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						mainPanel2.add(b4);
 						mainPanel2.add(b5);
 						mainPanel2.add(b6);
@@ -153,7 +159,8 @@ public class SampleFrame extends JFrame {
 
 		final JCheckBox cb = new JCheckBox("border layout");
 		cb.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				if (cb.isSelected()) {
 					mainPanel.setLayout(new BorderLayout());
 					mainPanel2.setLayout(new BorderLayout());
@@ -192,7 +199,8 @@ public class SampleFrame extends JFrame {
 
 		JButton showHide = new JButton("Toggle");
 		showHide.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				b1.setVisible(cb1.isSelected());
 				b2.setVisible(cb2.isSelected());
 				b3.setVisible(cb3.isSelected());
@@ -220,7 +228,8 @@ public class SampleFrame extends JFrame {
 		JPasswordField pf2 = new JPasswordField("aaaaaaaaa");
 
 		PasswordStrengthChecker psc = new PasswordStrengthChecker() {
-			public PasswordStrength getStrength(char[] password) {
+			@Override
+            public PasswordStrength getStrength(char[] password) {
 				if (password == null)
 					return PasswordStrength.WEAK;
 				int length = password.length;
@@ -231,7 +240,8 @@ public class SampleFrame extends JFrame {
 				return PasswordStrength.STRONG;
 			}
 
-			public String getDescription(PasswordStrength strength) {
+			@Override
+            public String getDescription(PasswordStrength strength) {
 				if (strength == PasswordStrength.WEAK)
 					return "<html>This password is <b>way</b> too weak</html>";
 				if (strength == PasswordStrength.MEDIUM)
@@ -272,7 +282,8 @@ public class SampleFrame extends JFrame {
 		cancel.setEnabled(false);
 		JButton ok = new JButton("OK");
 		ok.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				TabOverviewDialog.getOverviewDialog(tabbed).setVisible(true);
 			}
 		});

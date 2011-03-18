@@ -67,9 +67,11 @@ public class SampleFrame2 extends JFrame {
 
 		final JButton add = new JButton("add");
 		add.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						mainPanel.add(b1, BorderLayout.WEST);
 						mainPanel.add(b2, BorderLayout.CENTER);
 						mainPanel.add(b3, BorderLayout.EAST);
@@ -87,7 +89,8 @@ public class SampleFrame2 extends JFrame {
 
 		final JCheckBox cb = new JCheckBox("border layout");
 		cb.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				if (cb.isSelected()) {
 					mainPanel.setLayout(new BorderLayout());
 					mainPanel2.setLayout(new BorderLayout());
@@ -126,7 +129,8 @@ public class SampleFrame2 extends JFrame {
 
 		JButton showHide = new JButton("Toggle");
 		showHide.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				b1.setVisible(cb1.isSelected());
 				b2.setVisible(cb2.isSelected());
 				b3.setVisible(cb3.isSelected());
@@ -146,7 +150,8 @@ public class SampleFrame2 extends JFrame {
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				new SampleFrame2().setVisible(true);
 			}
 		});

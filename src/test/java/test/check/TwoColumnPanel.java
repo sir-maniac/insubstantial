@@ -118,10 +118,12 @@ public class TwoColumnPanel extends JPanel {
 			this.minimumRightWidth = 0;
 		}
 
-		public void addLayoutComponent(String name, Component comp) {
+		@Override
+        public void addLayoutComponent(String name, Component comp) {
 		}
 
-		public void layoutContainer(Container parent) {
+		@Override
+        public void layoutContainer(Container parent) {
 			Insets insets = parent.getInsets();
 			int y = this.horizontalSpacing + insets.top;
 			int leftPref = this.getPreferredLeftWidth();
@@ -159,11 +161,13 @@ public class TwoColumnPanel extends JPanel {
 			}
 		}
 
-		public Dimension minimumLayoutSize(Container parent) {
+		@Override
+        public Dimension minimumLayoutSize(Container parent) {
 			return this.preferredLayoutSize(parent);
 		}
 
-		public Dimension preferredLayoutSize(Container parent) {
+		@Override
+        public Dimension preferredLayoutSize(Container parent) {
 			int width = 3 * this.verticalSpacing + this.getPreferredLeftWidth()
 					+ this.getPreferredRightWidth();
 			int height = this.horizontalSpacing;
@@ -179,7 +183,8 @@ public class TwoColumnPanel extends JPanel {
 			return new Dimension(width, height);
 		}
 
-		public void removeLayoutComponent(Component comp) {
+		@Override
+        public void removeLayoutComponent(Component comp) {
 		}
 
 		private int getPreferredLeftWidth() {

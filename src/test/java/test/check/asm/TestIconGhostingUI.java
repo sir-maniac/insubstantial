@@ -45,7 +45,8 @@ public class TestIconGhostingUI extends BasicButtonUI {
 		super.paintIcon(g, c, iconRect);
 	}
 
-	protected void paintIcon(Graphics g, JComponent c, Rectangle iconRect) {
+	@Override
+    protected void paintIcon(Graphics g, JComponent c, Rectangle iconRect) {
 		c.putClientProperty("icon.bounds", new Rectangle(iconRect));
 		Graphics2D graphics = (Graphics2D) g.create();
 		GhostPaintingUtils.paintGhostIcon(graphics, (AbstractButton) c, iconRect);

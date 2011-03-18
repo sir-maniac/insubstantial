@@ -24,11 +24,13 @@ public class TestGhostListenerUI extends BasicButtonUI {
 		super.installListeners(b);
 	}
 
-	protected void installListeners(final AbstractButton b) {
+	@Override
+    protected void installListeners(final AbstractButton b) {
 		this.__icon__installListeners(b);
 
 		this.ghostPropertyListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (AbstractButton.MODEL_CHANGED_PROPERTY.equals(evt
 						.getPropertyName())) {
 					if (ghostModelChangeListener != null)

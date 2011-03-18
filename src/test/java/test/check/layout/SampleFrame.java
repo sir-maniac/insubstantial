@@ -57,9 +57,11 @@ public class SampleFrame extends JFrame {
 
 		final JButton add = new JButton("add");
 		add.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						mainPanel.add(b1, BorderLayout.WEST);
 						mainPanel.add(b2, BorderLayout.CENTER);
 						mainPanel.add(b3, BorderLayout.EAST);
@@ -75,7 +77,8 @@ public class SampleFrame extends JFrame {
 
 		final JCheckBox cb1 = new JCheckBox("1");
 		cb1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				b1.setVisible(!b1.isVisible());
 				mainPanel.revalidate();
 			}
@@ -84,7 +87,8 @@ public class SampleFrame extends JFrame {
 
 		final JCheckBox cb2 = new JCheckBox("2");
 		cb2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				b2.setVisible(!b2.isVisible());
 				mainPanel.revalidate();
 			}
@@ -93,7 +97,8 @@ public class SampleFrame extends JFrame {
 
 		final JCheckBox cb3 = new JCheckBox("3");
 		cb3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				b3.setVisible(!b3.isVisible());
 				mainPanel.revalidate();
 			}
@@ -102,7 +107,8 @@ public class SampleFrame extends JFrame {
 
 		final JCheckBox cb13 = new JCheckBox("13");
 		cb13.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				b1.setVisible(!b1.isVisible());
 				b3.setVisible(!b3.isVisible());
 				mainPanel.revalidate();
@@ -117,7 +123,8 @@ public class SampleFrame extends JFrame {
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				new SampleFrame().setVisible(true);
 			}
 		});

@@ -41,7 +41,8 @@ public class TestContainerGhostingBeforeUI extends BasicButtonUI {
 		super.update(g, c);
 	}
 
-	public void update(Graphics g, JComponent c) {
+	@Override
+    public void update(Graphics g, JComponent c) {
 		GhostPaintingUtils.paintGhostImages(c, g);
 		this.__container_update(g, c);
 	}
