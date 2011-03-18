@@ -219,15 +219,12 @@ public class BasicFlowBandControlPanelUI extends AbstractBandControlPanelUI {
 							+ (maxHeight - height) / 2, prefSize.width, height);
 				}
 				flowComponent.putClientProperty(
-						AbstractBandControlPanelUI.TOP_ROW, Boolean
-								.valueOf(rowIndex == 0));
+						AbstractBandControlPanelUI.TOP_ROW, rowIndex == 0);
 				flowComponent.putClientProperty(
-						AbstractBandControlPanelUI.MID_ROW, Boolean
-								.valueOf((rowIndex > 0)
-										&& (rowIndex < (rowCount - 1))));
+						AbstractBandControlPanelUI.MID_ROW, (rowIndex > 0)
+                                && (rowIndex < (rowCount - 1)));
 				flowComponent.putClientProperty(
-						AbstractBandControlPanelUI.BOTTOM_ROW, Boolean
-								.valueOf(rowIndex == (rowCount - 1)));
+						AbstractBandControlPanelUI.BOTTOM_ROW, rowIndex == (rowCount - 1));
 				if (ltr) {
 					x += (prefSize.width + gap);
 				} else {

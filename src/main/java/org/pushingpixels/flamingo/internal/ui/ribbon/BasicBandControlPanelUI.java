@@ -362,15 +362,12 @@ public class BasicBandControlPanelUI extends AbstractBandControlPanelUI {
 						currColumn.add(coreComp);
 
 						coreComp.putClientProperty(
-								AbstractBandControlPanelUI.TOP_ROW, Boolean
-										.valueOf(rowIndex == 0));
+								AbstractBandControlPanelUI.TOP_ROW, rowIndex == 0);
 						coreComp.putClientProperty(
-								AbstractBandControlPanelUI.MID_ROW, Boolean
-										.valueOf((rowIndex > 0)
-												&& (rowIndex < 2)));
+								AbstractBandControlPanelUI.MID_ROW, (rowIndex > 0)
+                                        && (rowIndex < 2));
 						coreComp.putClientProperty(
-								AbstractBandControlPanelUI.BOTTOM_ROW, Boolean
-										.valueOf(rowIndex == 2));
+								AbstractBandControlPanelUI.BOTTOM_ROW, rowIndex == 2);
 
 						// scan the components in this column and make them to
 						// have the same width as the widest component in this
@@ -511,12 +508,9 @@ public class BasicBandControlPanelUI extends AbstractBandControlPanelUI {
 										+ buttonTop, medWidth, buttonBottom
 										- buttonTop);
 							}
-							mediumButton.putClientProperty(TOP_ROW, Boolean
-									.valueOf(index3 == 0));
-							mediumButton.putClientProperty(MID_ROW, Boolean
-									.valueOf(index3 == 1));
-							mediumButton.putClientProperty(BOTTOM_ROW, Boolean
-									.valueOf(index3 == 2));
+							mediumButton.putClientProperty(TOP_ROW, index3 == 0);
+							mediumButton.putClientProperty(MID_ROW, index3 == 1);
+							mediumButton.putClientProperty(BOTTOM_ROW, index3 == 2);
 
 							index3++;
 							if (index3 == 3) {
@@ -571,12 +565,9 @@ public class BasicBandControlPanelUI extends AbstractBandControlPanelUI {
 										+ buttonTop, lowWidth, buttonBottom
 										- buttonTop);
 							}
-							smallButton.putClientProperty(TOP_ROW, Boolean
-									.valueOf(index3 == 0));
-							smallButton.putClientProperty(MID_ROW, Boolean
-									.valueOf(index3 == 1));
-							smallButton.putClientProperty(BOTTOM_ROW, Boolean
-									.valueOf(index3 == 2));
+							smallButton.putClientProperty(TOP_ROW, index3 == 0);
+							smallButton.putClientProperty(MID_ROW, index3 == 1);
+							smallButton.putClientProperty(BOTTOM_ROW, index3 == 2);
 
 							index3++;
 							if (index3 == 3) {

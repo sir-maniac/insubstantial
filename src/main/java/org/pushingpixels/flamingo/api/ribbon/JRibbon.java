@@ -360,7 +360,7 @@ public class JRibbon extends JComponent {
 		group.setRibbon(this);
 
 		this.contextualTaskGroups.add(group);
-		this.groupVisibilityMap.put(group, Boolean.valueOf(false));
+		this.groupVisibilityMap.put(group, false);
 
 		this.fireStateChanged();
 	}
@@ -588,7 +588,7 @@ public class JRibbon extends JComponent {
 	 */
 	public synchronized void setVisible(RibbonContextualTaskGroup group,
 			boolean isVisible) {
-		this.groupVisibilityMap.put(group, Boolean.valueOf(isVisible));
+		this.groupVisibilityMap.put(group, isVisible);
 
 		// special handling of selected tab
 		if (!isVisible) {

@@ -180,12 +180,12 @@ public class SvgBatikResizableIcon extends SvgBatikIcon implements
 		this.addGVTTreeRendererListener(new GVTTreeRendererAdapter() {
 			@Override
 			public void gvtRenderingCompleted(GVTTreeRendererEvent e) {
-				fireAsyncCompleted(Boolean.valueOf(true));
+				fireAsyncCompleted(true);
 			}
 
 			@Override
 			public void gvtRenderingFailed(GVTTreeRendererEvent arg0) {
-				fireAsyncCompleted(Boolean.valueOf(false));
+				fireAsyncCompleted(false);
 			}
 		});
 	}
@@ -231,7 +231,7 @@ public class SvgBatikResizableIcon extends SvgBatikIcon implements
 	protected boolean renderGVTTree(int renderWidth, int renderHeight) {
 		boolean cached = super.renderGVTTree(renderWidth, renderHeight);
 		if (cached) {
-			this.fireAsyncCompleted(Boolean.valueOf(true));
+			this.fireAsyncCompleted(true);
 		}
 		return cached;
 	}
