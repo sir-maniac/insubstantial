@@ -79,8 +79,7 @@ public class ColorizationFactor extends JFrame {
             public void stateChanged(ChangeEvent e) {
 				double val = colorizationSlider.getValue() / 100.0;
 				panel.putClientProperty(
-						SubstanceLookAndFeel.COLORIZATION_FACTOR, new Double(
-								val));
+						SubstanceLookAndFeel.COLORIZATION_FACTOR, val);
 				panel.repaint();
 			}
 		});

@@ -154,7 +154,7 @@ public class DefaultGnomeFontPolicy implements FontPolicy {
 		Object value = Toolkit.getDefaultToolkit().getDesktopProperty(
 				"gnome.Xft/DPI");
 		if (value instanceof Integer) {
-			dpi = ((Integer) value).intValue() / 1024;
+			dpi = (Integer) value / 1024;
 			if (dpi == -1) {
 				dpi = 96;
 			}

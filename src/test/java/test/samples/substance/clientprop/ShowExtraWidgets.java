@@ -79,11 +79,11 @@ public class ShowExtraWidgets extends JFrame {
 						// based on the checkbox selection status, set the
 						// property
 						UIManager.put(SubstanceLookAndFeel.SHOW_EXTRA_WIDGETS,
-								Boolean.valueOf(showExtraWidgets.isSelected()));
+                                showExtraWidgets.isSelected());
 						readOnlyTextField
 								.putClientProperty(LafWidget.HAS_LOCK_ICON,
-										Boolean.valueOf(showExtraWidgets
-												.isSelected()));
+                                        showExtraWidgets
+                                                .isSelected());
 						SwingUtilities
 								.updateComponentTreeUI(ShowExtraWidgets.this);
 					}

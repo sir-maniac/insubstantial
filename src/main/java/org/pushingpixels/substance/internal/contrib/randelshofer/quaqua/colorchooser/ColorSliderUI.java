@@ -386,9 +386,8 @@ public class ColorSliderUI extends BasicSliderUI implements TransitionAwareUI {
 			}
 			if (slider.getClientProperty("ColorComponentIndex") != null) {
 				colorTrackImageProducer
-						.setColorComponentIndex(((Integer) slider
-								.getClientProperty("ColorComponentIndex"))
-								.intValue());
+						.setColorComponentIndex((Integer) slider
+                                .getClientProperty("ColorComponentIndex"));
 			}
 			colorTrackImageProducer.generateColorTrack();
 			colorTrackImage = slider.createImage(colorTrackImageProducer);
@@ -507,8 +506,8 @@ public class ColorSliderUI extends BasicSliderUI implements TransitionAwareUI {
 				}
 			} else if (propertyName.equals("ColorComponentIndex")) {
 				if (colorTrackImageProducer != null && e.getNewValue() != null) {
-					colorTrackImageProducer.setColorComponentIndex(((Integer) e
-							.getNewValue()).intValue());
+					colorTrackImageProducer.setColorComponentIndex((Integer) e
+                            .getNewValue());
 					if (colorTrackImageProducer.needsGeneration()) {
 						slider.repaint();
 					}
@@ -516,7 +515,7 @@ public class ColorSliderUI extends BasicSliderUI implements TransitionAwareUI {
 			} else if (propertyName.equals("ColorComponentChange")) {
 				Integer value = (Integer) e.getNewValue();
 				if (value != null && colorTrackImageProducer != null) {
-					colorTrackImageProducer.componentChanged(value.intValue());
+					colorTrackImageProducer.componentChanged(value);
 					if (colorTrackImageProducer.needsGeneration()) {
 						slider.repaint();
 					}
@@ -525,7 +524,7 @@ public class ColorSliderUI extends BasicSliderUI implements TransitionAwareUI {
 				Integer value = (Integer) slider
 						.getClientProperty("ColorComponentChange");
 				if (value != null && colorTrackImageProducer != null) {
-					colorTrackImageProducer.componentChanged(value.intValue());
+					colorTrackImageProducer.componentChanged(value);
 					if (colorTrackImageProducer.needsGeneration()) {
 						slider.repaint();
 					}

@@ -77,9 +77,8 @@ public class WatermarkVisible extends JFrame {
 						// based on checkbox selection, mark the list to
 						// show the watermark
 						jlist.putClientProperty(
-								SubstanceLookAndFeel.WATERMARK_VISIBLE, Boolean
-										.valueOf(isListWatermarkVisible
-												.isSelected()));
+								SubstanceLookAndFeel.WATERMARK_VISIBLE, isListWatermarkVisible
+                                .isSelected());
 						repaint();
 					}
 				});
@@ -105,9 +104,8 @@ public class WatermarkVisible extends JFrame {
 						// based on checkbox selection, mark the panel to
 						// show the watermark
 						colorPanel.putClientProperty(
-								SubstanceLookAndFeel.WATERMARK_VISIBLE, Boolean
-										.valueOf(isPanelWatermarkVisible
-												.isSelected()));
+								SubstanceLookAndFeel.WATERMARK_VISIBLE, isPanelWatermarkVisible
+                                .isSelected());
 						repaint();
 					}
 				});

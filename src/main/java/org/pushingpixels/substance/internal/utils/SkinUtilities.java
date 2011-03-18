@@ -304,7 +304,7 @@ public class SkinUtilities {
 				regularMarginBorder,
 
 				"DesktopIcon.width",
-				new Integer(140),
+                140,
 
 				"Desktop.background",
 				new ColorUIResource(new Color(0x0, true)),
@@ -718,10 +718,10 @@ public class SkinUtilities {
 				new BorderUIResource(new SubstanceBorder()),
 
 				"ProgressBar.cycleTime",
-				new Integer(1000),
+                1000,
 
 				"ProgressBar.repaintInterval",
-				new Integer(50),
+                50,
 
 				"ProgressBar.horizontalSize",
 				new DimensionUIResource(146,
@@ -798,9 +798,8 @@ public class SkinUtilities {
 						false),
 
 				"ScrollBar.width",
-				new Integer(
-						SubstanceSizeUtils.getScrollBarWidth(SubstanceSizeUtils
-								.getControlFontSize())),
+                SubstanceSizeUtils.getScrollBarWidth(SubstanceSizeUtils
+                        .getControlFontSize()),
 
 				"ScrollBar.minimumThumbSize",
 				new DimensionUIResource(
@@ -958,7 +957,7 @@ public class SkinUtilities {
 								mainEnabledScheme.getLightColor(), 0.5)),
 
 				"TabbedPane.tabRunOverlay",
-				new Integer(0),
+                0,
 
 				"Table.background",
 				SubstanceColorUtilities.getDefaultBackgroundColor(false, skin,
@@ -1189,7 +1188,7 @@ public class SkinUtilities {
 
 				"Tree.hash", lineColorDefault,
 
-				"Tree.rowHeight", new Integer(0),
+				"Tree.rowHeight", 0,
 
 				"Tree.selectionBorderColor", lineColor,
 

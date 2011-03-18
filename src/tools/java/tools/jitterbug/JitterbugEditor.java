@@ -285,7 +285,7 @@ public class JitterbugEditor extends JFrame implements ClipboardOwner {
 						boolean isModified = (Boolean) evt.getNewValue();
 						getRootPane().putClientProperty(
 								SubstanceLookAndFeel.WINDOW_MODIFIED,
-								Boolean.valueOf(isModified));
+                                isModified);
 
 						// update the main frame title
 						updateMainWindowTitle(isModified);

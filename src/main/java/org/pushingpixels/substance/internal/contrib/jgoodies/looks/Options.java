@@ -218,7 +218,7 @@ public final class Options {
 	 */
 	public static void setUseSystemFonts(boolean useSystemFonts) {
 		UIManager
-				.put(USE_SYSTEM_FONTS_APP_KEY, Boolean.valueOf(useSystemFonts));
+				.put(USE_SYSTEM_FONTS_APP_KEY, useSystemFonts);
 	}
 
 	/**
@@ -304,7 +304,7 @@ public final class Options {
 	 * @see #getUseNarrowButtons()
 	 */
 	public static void setUseNarrowButtons(boolean b) {
-		UIManager.put(USE_NARROW_BUTTONS_KEY, Boolean.valueOf(b));
+		UIManager.put(USE_NARROW_BUTTONS_KEY, b);
 	}
 
 	/**
@@ -318,7 +318,7 @@ public final class Options {
 	public static boolean isTabIconsEnabled() {
 		return TAB_ICONS_ENABLED_SYSTEM_VALUE == null ? !Boolean.FALSE
 				.equals(UIManager.get(TAB_ICONS_ENABLED_KEY))
-				: TAB_ICONS_ENABLED_SYSTEM_VALUE.booleanValue();
+				: TAB_ICONS_ENABLED_SYSTEM_VALUE;
 	}
 
 	/**
@@ -329,7 +329,7 @@ public final class Options {
 	 * @see #isTabIconsEnabled()
 	 */
 	public static void setTabIconsEnabled(boolean b) {
-		UIManager.put(TAB_ICONS_ENABLED_KEY, Boolean.valueOf(b));
+		UIManager.put(TAB_ICONS_ENABLED_KEY, b);
 	}
 
 	/**
@@ -364,7 +364,7 @@ public final class Options {
 	 */
 	public static boolean isPopupDropShadowEnabled() {
 		if (POPUP_DROP_SHADOW_ENABLED_SYSTEM_VALUE != null)
-			return POPUP_DROP_SHADOW_ENABLED_SYSTEM_VALUE.booleanValue();
+			return POPUP_DROP_SHADOW_ENABLED_SYSTEM_VALUE;
 
 		Object value = UIManager.get(POPUP_DROP_SHADOW_ENABLED_KEY);
 		return value == null ? isPopupDropShadowEnabledDefault() : Boolean.TRUE
@@ -387,7 +387,7 @@ public final class Options {
 	 * @see #isPopupDropShadowEnabled()
 	 */
 	public static void setPopupDropShadowEnabled(boolean b) {
-		UIManager.put(POPUP_DROP_SHADOW_ENABLED_KEY, Boolean.valueOf(b));
+		UIManager.put(POPUP_DROP_SHADOW_ENABLED_KEY, b);
 	}
 
 	/**

@@ -121,7 +121,7 @@ public class BasePlugin implements LafComponentPlugin {
 		return new UIDefaults.ProxyLazyValue(
 				"org.pushingpixels.substance.internal.contrib.randelshofer.quaqua.QuaquaIconFactory",
 				"createButtonStateIcon", new Object[] { location,
-						new Integer(states) });
+                        states});
 	}
 
 	protected Object makeBufferedImage(String location) {
@@ -211,11 +211,11 @@ public class BasePlugin implements LafComponentPlugin {
 					"ColorChooser.swatchesSwatchSize",
 					new DimensionUIResource(5, 5),
 					"ColorChooser.resetMnemonic",
-					new Integer(-1),
+                    -1,
 					"ColorChooser.crayonsImage",
 					makeImage(commonDir + "big_crayons.png"),
 					"ColorChooser.textSliderGap",
-					new Integer(0),
+                    0,
 					"ColorChooser.colorPalettesIcon",
 					makeButtonStateIcon(commonDir + "palette.png", 1),
 					"ColorChooser.colorSlidersIcon",
@@ -277,31 +277,31 @@ public class BasePlugin implements LafComponentPlugin {
 					// Hot spot of the magnifier cursor
 					"ColorChooser.colorPickerHotSpot",
 					new UIDefaults.ProxyLazyValue("java.awt.Point",
-							new Object[] { new Integer(29), new Integer(29) }),
+							new Object[] {29, 29}),
 					// Pick point relative to hot spot
 					"ColorChooser.colorPickerPickOffset",
 					new UIDefaults.ProxyLazyValue("java.awt.Point",
-							new Object[] { new Integer(-13), new Integer(-13) }),
+							new Object[] {-13, -13}),
 					// Rectangle used for drawing the mask of the magnifying
 					// glass
 					"ColorChooser.colorPickerGlassRect",
 					new UIDefaults.ProxyLazyValue("java.awt.Rectangle",
-							new Object[] { new Integer(3), new Integer(3),
-									new Integer(26), new Integer(26) }),
+							new Object[] {3, 3,
+                                    26, 26}),
 					// Capture rectangle. Width and height must be equal sized
 					// and must be odd.
 					// The position of the capture rectangle is relative to the
 					// hot spot.
 					"ColorChooser.colorPickerCaptureRect",
 					new UIDefaults.ProxyLazyValue("java.awt.Rectangle",
-							new Object[] { new Integer(-15), new Integer(-15),
-									new Integer(5), new Integer(5) }),
+							new Object[] {-15, -15,
+                                    5, 5}),
 					// Zoomed (magnified) capture image. Width and height must
 					// be a multiple of the capture rectangles size.
 					"ColorChooser.colorPickerZoomRect",
 					new UIDefaults.ProxyLazyValue("java.awt.Rectangle",
-							new Object[] { new Integer(4), new Integer(4),
-									new Integer(25), new Integer(25) }),
+							new Object[] {4, 4,
+                                    25, 25}),
 
 			// // Localization support
 			// "Labels",

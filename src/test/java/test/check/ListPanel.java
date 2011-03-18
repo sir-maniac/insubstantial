@@ -240,9 +240,9 @@ public class ListPanel extends ControllablePanel {
 			@Override
             public void actionPerformed(ActionEvent e) {
 				list.putClientProperty(SubstanceLookAndFeel.WATERMARK_VISIBLE,
-						Boolean.valueOf(watermarkBleed.isSelected()));
+                        watermarkBleed.isSelected());
 				jsp.putClientProperty(SubstanceLookAndFeel.WATERMARK_VISIBLE,
-						Boolean.valueOf(watermarkBleed.isSelected()));
+                        watermarkBleed.isSelected());
 				list.repaint();
 			}
 		});

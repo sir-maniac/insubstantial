@@ -147,7 +147,7 @@ public class QuaquaUtilities extends BasicGraphicsUtils implements SwingConstant
             Boolean value = (Boolean) ((JComponent) c).getClientProperty("Frame.active");
             // Unfortunately, the value is not always reliable.
             // Therefore we can only do a short circuit, if the value is true.
-            if (value != null && value.booleanValue()) {
+            if (value != null && value) {
                 return true;
                 //return value.booleanValue();
             }
@@ -189,7 +189,7 @@ public class QuaquaUtilities extends BasicGraphicsUtils implements SwingConstant
         // In case the activation property is true, we fix the value of the
         // client property, so that we can do a short circuit next time.
         if (isOnActiveWindow && (c instanceof JComponent)) {
-            ((JComponent) c).putClientProperty("Frame.active", new Boolean(isOnActiveWindow));
+            ((JComponent) c).putClientProperty("Frame.active", isOnActiveWindow);
         }
         return isOnActiveWindow;
     }
@@ -293,10 +293,10 @@ public class QuaquaUtilities extends BasicGraphicsUtils implements SwingConstant
     }
     
     public static int getLeftSideBearing(Font f, String string) {
-        return ((Integer) Methods.invokeStatic(
+        return (Integer) Methods.invokeStatic(
                 "com.sun.java.swing.SwingUtilities2", "getLeftSideBearing",
-                new Class[] {Font.class, String.class}, new Object[] {f, string},
-                new Integer(0))).intValue();
+                new Class[]{Font.class, String.class}, new Object[]{f, string},
+                new Integer(0));
     }
     
     /**

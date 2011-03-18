@@ -379,7 +379,7 @@ public class ControlPanelFactory {
 			@Override
             public void actionPerformed(ActionEvent e) {
 				toolbar.putClientProperty(SubstanceLookAndFeel.FLAT_PROPERTY,
-						Boolean.valueOf(isToolbarFlat.isSelected()));
+                        isToolbarFlat.isSelected());
 				toolbar.repaint();
 			}
 		});

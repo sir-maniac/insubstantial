@@ -363,7 +363,7 @@ public class SubstanceColorSchemeBundle {
 		Float registered = this.stateHighlightSchemeAlphaMap
 				.get(componentState);
 		if (registered != null)
-			return registered.floatValue();
+			return registered;
 
 		return -1.0f;
 	}
@@ -380,7 +380,7 @@ public class SubstanceColorSchemeBundle {
 	public float getAlpha(Component comp, ComponentState componentState) {
 		Float registered = this.stateAlphaMap.get(componentState);
 		if (registered != null)
-			return registered.floatValue();
+			return registered;
 
 		return -1.0f;
 	}

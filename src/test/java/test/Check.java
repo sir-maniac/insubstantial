@@ -772,7 +772,7 @@ public class Check extends JFrame {
 		JToggleButton buttonFormatCenter = new JToggleButton(getIcon(size
 				+ "/format-justify-center"));
 		buttonFormatCenter.putClientProperty(
-				SubstanceLookAndFeel.CORNER_RADIUS, Float.valueOf(5.0f));
+				SubstanceLookAndFeel.CORNER_RADIUS, 5.0f);
 		innerToolbar.add(buttonFormatCenter);
 		JToggleButton buttonFormatLeft = new JToggleButton(getIcon(size
 				+ "/format-justify-left"));
@@ -783,7 +783,7 @@ public class Check extends JFrame {
 		JToggleButton buttonFormatFill = new JToggleButton(getIcon(size
 				+ "/format-justify-fill"));
 		buttonFormatFill.putClientProperty(SubstanceLookAndFeel.CORNER_RADIUS,
-				Float.valueOf(0.0f));
+                0.0f);
 		innerToolbar.add(buttonFormatFill);
 
 		toolBar.add(innerToolbar);
@@ -803,19 +803,19 @@ public class Check extends JFrame {
 			buttonStyleBold.putClientProperty(
 					SubstanceLookAndFeel.BUTTON_OPEN_SIDE_PROPERTY, rightSide);
 			buttonStyleBold.putClientProperty(
-					SubstanceLookAndFeel.CORNER_RADIUS, Float.valueOf(3.0f));
+					SubstanceLookAndFeel.CORNER_RADIUS, 3.0f);
 
 			final JToggleButton buttonStyleItalic = new JToggleButton(
 					getIcon(size + "/format-text-italic"));
 			buttonStyleItalic.putClientProperty(
-					SubstanceLookAndFeel.CORNER_RADIUS, Float.valueOf(0.0f));
+					SubstanceLookAndFeel.CORNER_RADIUS, 0.0f);
 			buttonStyleItalic.putClientProperty(
 					SubstanceLookAndFeel.BUTTON_OPEN_SIDE_PROPERTY, rightSide);
 
 			final JToggleButton buttonStyleUnderline = new JToggleButton(
 					getIcon(size + "/format-text-underline"));
 			buttonStyleUnderline.putClientProperty(
-					SubstanceLookAndFeel.CORNER_RADIUS, Float.valueOf(0.0f));
+					SubstanceLookAndFeel.CORNER_RADIUS, 0.0f);
 			buttonStyleUnderline.putClientProperty(
 					SubstanceLookAndFeel.BUTTON_OPEN_SIDE_PROPERTY, rightSide);
 
@@ -825,7 +825,7 @@ public class Check extends JFrame {
 					SubstanceLookAndFeel.BUTTON_SIDE_PROPERTY, EnumSet
 							.of(Side.LEFT));
 			buttonStyleStrikethrough.putClientProperty(
-					SubstanceLookAndFeel.CORNER_RADIUS, Float.valueOf(3.0f));
+					SubstanceLookAndFeel.CORNER_RADIUS, 3.0f);
 			buttonStyleBold.setSelected(true);
 
 			innerPanel.add(buttonStyleBold);

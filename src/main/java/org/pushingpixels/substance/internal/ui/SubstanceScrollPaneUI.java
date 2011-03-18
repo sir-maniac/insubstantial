@@ -189,7 +189,7 @@ public class SubstanceScrollPaneUI extends BasicScrollPaneUI {
 						((JComponent) view).setOpaque(!toBleed);
 				}
 				if ("layoutManager".equals(evt.getPropertyName())) {
-					if (((Boolean) evt.getNewValue()).booleanValue()) {
+					if ((Boolean) evt.getNewValue()) {
 						ScrollPaneLayout currLayout = (ScrollPaneLayout) c
 								.getLayout();
 						if (!(currLayout instanceof AdjustedLayout)) {

@@ -248,7 +248,7 @@ public class Methods {
         try {
             Method method =  obj.getClass().getMethod(methodName,  new Class[0]);
             Object result = method.invoke(obj, new Object[0]);
-            return ((Integer) result).intValue();
+            return (Integer) result;
         } catch (NoSuchMethodException e) {
             return defaultValue;
         } catch (IllegalAccessException e) {
@@ -269,7 +269,7 @@ public class Methods {
         try {
             Method method =  obj.getClass().getMethod(methodName,  new Class[0]);
             Object result = method.invoke(obj, new Object[0]);
-            return ((Long) result).longValue();
+            return (Long) result;
         } catch (NoSuchMethodException e) {
             return defaultValue;
         } catch (IllegalAccessException e) {
@@ -290,7 +290,7 @@ public class Methods {
         try {
             Method method =  obj.getClass().getMethod(methodName,  new Class[0]);
             Object result = method.invoke(obj, new Object[0]);
-            return ((Boolean) result).booleanValue();
+            return (Boolean) result;
         } catch (NoSuchMethodException e) {
             return defaultValue;
         } catch (IllegalAccessException e) {
@@ -332,7 +332,7 @@ public class Methods {
         try {
             Method method =  clazz.getMethod(methodName,  new Class[0]);
             Object result = method.invoke(null, new Object[0]);
-            return ((Boolean) result).booleanValue();
+            return (Boolean) result;
         } catch (NoSuchMethodException e) {
             return defaultValue;
         } catch (IllegalAccessException e) {
@@ -351,7 +351,7 @@ public class Methods {
     throws NoSuchMethodException {
         try {
             Method method =  obj.getClass().getMethod(methodName,  new Class[] { Boolean.TYPE} );
-            return method.invoke(obj, new Object[] { new Boolean(newValue)});
+            return method.invoke(obj, new Object[] {newValue});
         } catch (IllegalAccessException e) {
             throw new NoSuchMethodException(methodName+" is not accessible");
         } catch (InvocationTargetException e) {
@@ -369,7 +369,7 @@ public class Methods {
     throws NoSuchMethodException {
         try {
             Method method =  obj.getClass().getMethod(methodName,  new Class[] { Integer.TYPE} );
-            return method.invoke(obj, new Object[] { new Integer(newValue)});
+            return method.invoke(obj, new Object[] {newValue});
         } catch (IllegalAccessException e) {
             throw new NoSuchMethodException(methodName+" is not accessible");
         } catch (InvocationTargetException e) {
@@ -387,7 +387,7 @@ public class Methods {
     throws NoSuchMethodException {
         try {
             Method method =  obj.getClass().getMethod(methodName,  new Class[] { Float.TYPE} );
-            return method.invoke(obj, new Object[] { new Float(newValue)});
+            return method.invoke(obj, new Object[] {newValue});
         } catch (IllegalAccessException e) {
             throw new NoSuchMethodException(methodName+" is not accessible");
         } catch (InvocationTargetException e) {

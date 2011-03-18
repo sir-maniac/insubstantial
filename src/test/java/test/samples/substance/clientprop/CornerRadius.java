@@ -62,15 +62,13 @@ public class CornerRadius extends JFrame {
 
 		JToggleButton button1 = new JToggleButton("radius 5");
 		// set corner radius to 5 pixels
-		button1.putClientProperty(SubstanceLookAndFeel.CORNER_RADIUS, Float
-				.valueOf(5.0f));
+		button1.putClientProperty(SubstanceLookAndFeel.CORNER_RADIUS, 5.0f);
 		button1.setSelected(true);
 		toolBar.add(button1);
 
 		JToggleButton button2 = new JToggleButton("radius 0");
 		// set corner radius to 0 pixels (perfect rectangle)
-		button2.putClientProperty(SubstanceLookAndFeel.CORNER_RADIUS, Float
-				.valueOf(0.0f));
+		button2.putClientProperty(SubstanceLookAndFeel.CORNER_RADIUS, 0.0f);
 		button2.setSelected(true);
 		toolBar.add(button2);
 

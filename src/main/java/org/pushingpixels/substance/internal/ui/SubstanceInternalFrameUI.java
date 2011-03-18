@@ -223,7 +223,7 @@ public class SubstanceInternalFrameUI extends BasicInternalFrameUI {
 	void setWindowModified(boolean isWindowModified) {
 		titlePane.getCloseButton().putClientProperty(
 				SubstanceLookAndFeel.WINDOW_MODIFIED,
-				Boolean.valueOf(isWindowModified));
+                isWindowModified);
 
 		SubstanceDesktopIconUI desktopIconUi = (SubstanceDesktopIconUI) this.frame
 				.getDesktopIcon().getUI();

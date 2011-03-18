@@ -330,8 +330,8 @@ public final class Fonts {
 	 */
 	public static Boolean canDisplayLocalizedText(Font font, Locale locale) {
 		if (localeHasLocalizedDisplayLanguage(locale)) {
-			return Boolean.valueOf(canDisplayLocalizedDisplayLanguage(font,
-					locale));
+			return canDisplayLocalizedDisplayLanguage(font,
+                    locale);
 		}
 		String fontName = font.getName();
 		String language = locale.getLanguage();

@@ -184,10 +184,10 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 			for (int i = 0; i < rows; i++) {
 				this.data[i][0] = "cell " + i + ":" + 0;
 				this.data[i][1] = "predef";
-				this.data[i][2] = new Boolean(i % 2 == 0);
-				this.data[i][3] = new Byte((byte) i);
-				this.data[i][4] = new Float(i);
-				this.data[i][5] = new Double(i);
+				this.data[i][2] = i % 2 == 0;
+				this.data[i][3] = (byte) i;
+				this.data[i][4] = (float) i;
+				this.data[i][5] = (double) i;
 				this.data[i][6] = "cell " + i + ":" + 6;
 
 				Calendar cal = Calendar.getInstance();
@@ -339,7 +339,7 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 
 		JLabel instructional = new JLabel("Every odd row is editable");
 		instructional.putClientProperty(
-				SubstanceLookAndFeel.COLORIZATION_FACTOR, Double.valueOf(1.0));
+				SubstanceLookAndFeel.COLORIZATION_FACTOR, 1.0);
 		this.add(instructional, BorderLayout.NORTH);
 
 		// create a looping animation to change the label foreground
@@ -492,11 +492,9 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 			@Override
             public void actionPerformed(ActionEvent e) {
 				TablePanel.this.table.putClientProperty(
-						SubstanceLookAndFeel.WATERMARK_VISIBLE, Boolean
-								.valueOf(watermarkBleed.isSelected()));
+						SubstanceLookAndFeel.WATERMARK_VISIBLE, watermarkBleed.isSelected());
 				tableScrollpane.putClientProperty(
-						SubstanceLookAndFeel.WATERMARK_VISIBLE, Boolean
-								.valueOf(watermarkBleed.isSelected()));
+						SubstanceLookAndFeel.WATERMARK_VISIBLE, watermarkBleed.isSelected());
 				tableScrollpane.repaint();
 			}
 		});

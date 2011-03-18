@@ -420,9 +420,9 @@ public class FileTreePanel extends ControllablePanel implements Deferrable {
 			@Override
             public void actionPerformed(ActionEvent e) {
 				tree.putClientProperty(SubstanceLookAndFeel.WATERMARK_VISIBLE,
-						Boolean.valueOf(watermarkBleed.isSelected()));
+                        watermarkBleed.isSelected());
 				jsp.putClientProperty(SubstanceLookAndFeel.WATERMARK_VISIBLE,
-						Boolean.valueOf(watermarkBleed.isSelected()));
+                        watermarkBleed.isSelected());
 				tree.repaint();
 			}
 		});

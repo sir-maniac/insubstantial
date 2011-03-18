@@ -97,8 +97,7 @@ public class SubstanceDefaultTableCellRenderer extends DefaultTableCellRenderer 
 			}
 			SubstanceStripingUtils.applyStripedBackground(table, row, this);
 
-			this.setSelected(((value != null) && ((Boolean) value)
-					.booleanValue()));
+			this.setSelected(((value != null) && (Boolean) value));
 			this.setEnabled(table.isEnabled());
 
 			TableUI tableUI = table.getUI();

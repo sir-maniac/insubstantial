@@ -230,7 +230,7 @@ public class DesktopPanel extends ControllablePanel {
                     public void actionPerformed(ActionEvent e) {
 						jif.getRootPane().putClientProperty(
 								SubstanceLookAndFeel.WINDOW_MODIFIED,
-								Boolean.valueOf(isModified.isSelected()));
+                                isModified.isSelected());
 					}
 				});
 				buttons.add(isModified);

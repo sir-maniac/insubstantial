@@ -1111,8 +1111,7 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
             public void stateChanged(ChangeEvent e) {
 				double val = colorizationSlider.getValue() / 100.0;
 				ColorizedControlsPanel.this.putClientProperty(
-						SubstanceLookAndFeel.COLORIZATION_FACTOR, new Double(
-								val));
+						SubstanceLookAndFeel.COLORIZATION_FACTOR, val);
 				tabbed.repaint();
 			}
 		});

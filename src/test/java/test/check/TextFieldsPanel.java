@@ -259,7 +259,7 @@ public class TextFieldsPanel extends JPanel implements Deferrable {
 
 		JPasswordField jpfTwoEchoChar = new JPasswordField("password", 10);
 		jpfTwoEchoChar.putClientProperty(
-				SubstanceLookAndFeel.PASSWORD_ECHO_PER_CHAR, new Integer(2));
+				SubstanceLookAndFeel.PASSWORD_ECHO_PER_CHAR, 2);
 		builder.append("Two echo chars", new JLabel());
 		builder.append(new JLabel(), jpfTwoEchoChar);
 

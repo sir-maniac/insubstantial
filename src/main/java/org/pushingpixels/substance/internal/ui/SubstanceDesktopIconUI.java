@@ -302,6 +302,6 @@ public class SubstanceDesktopIconUI extends BasicDesktopIconUI {
 	void setWindowModified(boolean isWindowModified) {
 		((SubstanceInternalFrameTitlePane) this.iconPane).getCloseButton()
 				.putClientProperty(SubstanceLookAndFeel.WINDOW_MODIFIED,
-						Boolean.valueOf(isWindowModified));
+                        isWindowModified);
 	}
 }
