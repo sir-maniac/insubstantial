@@ -62,6 +62,7 @@ public class ImageBorder extends AbstractBorder{
      * @param width The width
      * @param height The height
      */
+    @Override
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
         if (!paintBorder){
             return;
@@ -85,6 +86,7 @@ public class ImageBorder extends AbstractBorder{
    * @param c The component to which the border will be applied
    * @return The insets of the border 
    */
+  @Override
   public Insets getBorderInsets(Component c) {
     return borderRenderer.getImageInsets();
   }
@@ -96,6 +98,7 @@ public class ImageBorder extends AbstractBorder{
    * @param i A pre-created insets object
    * @return The insets of the border 
    */
+  @Override
   public Insets getBorderInsets(Component c, Insets i){
       Insets imageInsets = borderRenderer.getImageInsets();
       i.top = imageInsets.top;

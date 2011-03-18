@@ -53,7 +53,8 @@ public class AutoScrollWidget extends LafWidgetAdapter<JScrollPane> {
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#requiresCustomLafSupport()
 	 */
-	public boolean requiresCustomLafSupport() {
+	@Override
+    public boolean requiresCustomLafSupport() {
 		return false;
 	}
 
@@ -82,7 +83,8 @@ public class AutoScrollWidget extends LafWidgetAdapter<JScrollPane> {
 	@Override
 	public void installListeners() {
 		this.propertyChangeListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (LafWidget.AUTO_SCROLL.equals(evt.getPropertyName())) {
 					AutoScrollActivator.setAutoScrollEnabled(jcomp,
 							LafWidgetUtilities.hasAutoScroll(jcomp));

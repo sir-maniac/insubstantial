@@ -273,7 +273,8 @@ public class GhostingListener {
 	 */
 	public void registerListeners() {
 		this.modelListener = new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
+			@Override
+            public void stateChanged(ChangeEvent e) {
 				if (AnimationConfigurationManager.getInstance()
 						.isAnimationAllowed(
 								AnimationFacet.GHOSTING_ICON_ROLLOVER, comp)) {

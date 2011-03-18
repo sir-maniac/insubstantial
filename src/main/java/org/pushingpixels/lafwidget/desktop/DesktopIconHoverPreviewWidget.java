@@ -161,7 +161,8 @@ public class DesktopIconHoverPreviewWidget extends
 	@Override
 	public void installListeners() {
 		this.internalFramePropertyListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if ("ancestor".equals(evt.getPropertyName())) {
 					updateSnapshot(jcomp.getInternalFrame());
 				}
@@ -323,7 +324,8 @@ public class DesktopIconHoverPreviewWidget extends
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#requiresCustomLafSupport()
 	 */
-	public boolean requiresCustomLafSupport() {
+	@Override
+    public boolean requiresCustomLafSupport() {
 		return false;
 	}
 }

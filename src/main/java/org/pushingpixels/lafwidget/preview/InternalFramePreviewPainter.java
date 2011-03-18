@@ -83,7 +83,8 @@ public class InternalFramePreviewPainter extends DefaultPreviewPainter {
 		}
 	}
 
-	public void previewComponent(Container parent, Component component,
+	@Override
+    public void previewComponent(Container parent, Component component,
 			int componentIndex, Graphics g, int x, int y, int w, int h) {
 		BufferedImage preview = (BufferedImage) snapshots.get(component);
 		if (preview != null) {
@@ -91,7 +92,8 @@ public class InternalFramePreviewPainter extends DefaultPreviewPainter {
 		}
 	}
 
-	public Dimension getPreviewWindowDimension(Container parent,
+	@Override
+    public Dimension getPreviewWindowDimension(Container parent,
 			Component component, int componentIndex) {
 		return new Dimension(UIManager.getInt("DesktopIcon.width"), UIManager
 				.getInt("DesktopIcon.width"));

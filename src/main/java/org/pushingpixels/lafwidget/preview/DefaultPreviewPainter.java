@@ -49,7 +49,8 @@ public class DefaultPreviewPainter extends PreviewPainter {
 	 * @see org.pushingpixels.lafwidget.PreviewPainter#hasPreview(java.awt.Container,
 	 *      java.awt.Component, int)
 	 */
-	public boolean hasPreview(Container parent, Component component,
+	@Override
+    public boolean hasPreview(Container parent, Component component,
 			int componentIndex) {
 		return (component != null);
 	}
@@ -60,7 +61,8 @@ public class DefaultPreviewPainter extends PreviewPainter {
 	 * @see org.pushingpixels.lafwidget.preview.PreviewPainter#previewComponent(java.awt.Container,
 	 *      java.awt.Component, int, java.awt.Graphics, int, int, int, int)
 	 */
-	public void previewComponent(Container parent, Component component,
+	@Override
+    public void previewComponent(Container parent, Component component,
 			int componentIndex, Graphics g, int x, int y, int w, int h) {
 		if (component == null)
 			return;
@@ -98,7 +100,8 @@ public class DefaultPreviewPainter extends PreviewPainter {
 	 * @see org.pushingpixels.lafwidget.PreviewPainter#hasPreviewWindow(java.awt.Container,
 	 *      java.awt.Component, int)
 	 */
-	public boolean hasPreviewWindow(Container parent, Component component,
+	@Override
+    public boolean hasPreviewWindow(Container parent, Component component,
 			int componentIndex) {
 		return true;
 	}
@@ -109,7 +112,8 @@ public class DefaultPreviewPainter extends PreviewPainter {
 	 * @see org.pushingpixels.lafwidget.preview.PreviewPainter#getPreviewWindowDimension(java.awt.Container,
 	 *      java.awt.Component, int)
 	 */
-	public Dimension getPreviewWindowDimension(Container parent,
+	@Override
+    public Dimension getPreviewWindowDimension(Container parent,
 			Component component, int componentIndex) {
 		Dimension superResult = super.getPreviewWindowDimension(parent,
 				component, componentIndex);

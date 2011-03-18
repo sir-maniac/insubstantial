@@ -53,7 +53,8 @@ public class SelectOnEscapeWidget extends LafWidgetAdapter<JTextComponent> {
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#requiresCustomLafSupport()
 	 */
-	public boolean requiresCustomLafSupport() {
+	@Override
+    public boolean requiresCustomLafSupport() {
 		return false;
 	}
 
@@ -76,9 +77,11 @@ public class SelectOnEscapeWidget extends LafWidgetAdapter<JTextComponent> {
 
 		this.jcomp.getActionMap().put("flipTextSelection",
 				new AbstractAction() {
-					public void actionPerformed(ActionEvent e) {
+					@Override
+                    public void actionPerformed(ActionEvent e) {
 						SwingUtilities.invokeLater(new Runnable() {
-							public void run() {
+							@Override
+                            public void run() {
 								int selectionLength = jcomp.getSelectionEnd()
 										- jcomp.getSelectionStart();
 								if (selectionLength == 0) {

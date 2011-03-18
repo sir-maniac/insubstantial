@@ -68,7 +68,8 @@ public class ScrollPaneSelectorWidget extends LafWidgetAdapter<JScrollPane> {
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#requiresCustomLafSupport()
 	 */
-	public boolean requiresCustomLafSupport() {
+	@Override
+    public boolean requiresCustomLafSupport() {
 		return false;
 	}
 
@@ -114,7 +115,8 @@ public class ScrollPaneSelectorWidget extends LafWidgetAdapter<JScrollPane> {
 			 * java.awt.event.HierarchyListener#hierarchyChanged(java.awt.event
 			 * .HierarchyEvent)
 			 */
-			public void hierarchyChanged(HierarchyEvent e) {
+			@Override
+            public void hierarchyChanged(HierarchyEvent e) {
 				if (jcomp.getParent() instanceof ComboPopup) {
 					if (scrollPaneSelector != null) {
 						scrollPaneSelector.uninstallFromScrollPane();
@@ -126,7 +128,8 @@ public class ScrollPaneSelectorWidget extends LafWidgetAdapter<JScrollPane> {
 		this.jcomp.addHierarchyListener(this.hierarchyListener);
 
 		this.propertyChangeListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (LafWidget.COMPONENT_PREVIEW_PAINTER.equals(evt
 						.getPropertyName())) {
 					PreviewPainter pPainter = LafWidgetUtilities2

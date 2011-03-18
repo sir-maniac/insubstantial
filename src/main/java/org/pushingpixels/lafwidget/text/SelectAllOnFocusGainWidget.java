@@ -54,7 +54,8 @@ public class SelectAllOnFocusGainWidget extends
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#requiresCustomLafSupport()
 	 */
-	public boolean requiresCustomLafSupport() {
+	@Override
+    public boolean requiresCustomLafSupport() {
 		return false;
 	}
 
@@ -69,7 +70,8 @@ public class SelectAllOnFocusGainWidget extends
 			@Override
 			public void focusGained(FocusEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						if (LafWidgetUtilities
 								.hasTextFocusSelectAllProperty(jcomp)
 								&& jcomp.isEditable())

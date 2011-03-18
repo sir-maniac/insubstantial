@@ -224,7 +224,8 @@ public class TabPreviewThread extends TrackableThread {
 						for (int i = 0; i < tabCount; i++) {
 							final int index = i;
 							SwingUtilities.invokeLater(new Runnable() {
-								public void run() {
+								@Override
+                                public void run() {
 									getSingleTabPreviewImage(jtp,
 											previewPainter, nextPreviewInfo,
 											index);
@@ -233,7 +234,8 @@ public class TabPreviewThread extends TrackableThread {
 						}
 					} else {
 						SwingUtilities.invokeLater(new Runnable() {
-							public void run() {
+							@Override
+                            public void run() {
 								getSingleTabPreviewImage(jtp, previewPainter,
 										nextPreviewInfo,
 										nextPreviewInfo.tabIndexToPreview);
@@ -312,7 +314,8 @@ public class TabPreviewThread extends TrackableThread {
 
 		if (previewInfo.previewCallback != null) {
 			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					previewInfo.previewCallback.offer(tabPane, tabIndex,
 							previewImage);
 				}
@@ -346,7 +349,8 @@ public class TabPreviewThread extends TrackableThread {
 	 */
 	public void cancelTabPreviewRequests(final Object initiator) {
 		DeltaMatcher matcher = new DeltaMatcher() {
-			public boolean matches(Deltable deltable) {
+			@Override
+            public boolean matches(Deltable deltable) {
 				TabPreviewInfo currInfo = (TabPreviewInfo) deltable;
 				return (currInfo.initiator == initiator);
 			}

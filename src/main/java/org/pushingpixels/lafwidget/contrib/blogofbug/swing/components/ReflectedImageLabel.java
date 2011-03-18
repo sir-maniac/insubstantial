@@ -213,6 +213,7 @@ public class ReflectedImageLabel extends JLabel implements RichComponent{
      * @param alphaLevel The alpha level of the object
      * @see RichComponent
      */
+    @Override
     public void setAlpha(float alphaLevel){
         alphaComposite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER,alphaLevel);
     }
@@ -232,6 +233,7 @@ public class ReflectedImageLabel extends JLabel implements RichComponent{
      * Overrides the default getPreferedSize() which has been controlled by the created image and adds 50% onto the height to allow for the reflection.
      * @return The prefered dimensions of the component
      */
+    @Override
     public Dimension getPreferredSize() {
         Dimension d = super.getPreferredSize();
         d.height = (int) ((double) d.height * 1.5);
@@ -244,6 +246,7 @@ public class ReflectedImageLabel extends JLabel implements RichComponent{
      * 
      * @param graphics The graphics context
      */
+    @Override
     public void paintComponent(Graphics graphics) {
         // Don't paint if I'm off screen
         if ((getX() + getWidth() < 0) && (getY() + getHeight() < 0)) {
@@ -302,6 +305,7 @@ public class ReflectedImageLabel extends JLabel implements RichComponent{
      *
      * @param image         The URL of the image
      */
+    @Override
     public void setRichImage(URL image) {
         setRichImage(ImageUtilities.loadCompatibleImage(image.toString()));
     }
@@ -311,6 +315,7 @@ public class ReflectedImageLabel extends JLabel implements RichComponent{
      * @param image See interface definition
      * @see RichComponent
      */
+    @Override
     public void setRichImage(File image) {
         try {
             setRichImage(image.toURL());
@@ -324,6 +329,7 @@ public class ReflectedImageLabel extends JLabel implements RichComponent{
      * @param image See interface definition
      * @see RichComponent
      */
+    @Override
     public void setRichImage(Image image) {
         setImage(image);
     }
@@ -332,6 +338,7 @@ public class ReflectedImageLabel extends JLabel implements RichComponent{
      * See interface definition
      * @see RichComponent
      */
+    @Override
     public void prePaintImage() {
         //I do all my pre-rendering earlier...
     }
@@ -341,6 +348,7 @@ public class ReflectedImageLabel extends JLabel implements RichComponent{
      * @param text See interface definition
      * @see RichComponent
      */
+    @Override
     public void setRichText(String text) {
         setLabel(text);
     }
@@ -350,6 +358,7 @@ public class ReflectedImageLabel extends JLabel implements RichComponent{
      * @return See interface definition
      * @see RichComponent
      */
+    @Override
     public String getRichText() {
         return this.text;
     }

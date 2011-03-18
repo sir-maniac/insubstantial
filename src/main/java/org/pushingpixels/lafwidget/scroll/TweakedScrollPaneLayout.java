@@ -304,7 +304,8 @@ public class TweakedScrollPaneLayout extends ScrollPaneLayout {
 		}
 	}
 
-	public void layoutContainer(Container parent) {
+	@Override
+    public void layoutContainer(Container parent) {
 		superlayoutContainer(parent);
 		boolean isLeftToRight = parent.getComponentOrientation()
 				.isLeftToRight();

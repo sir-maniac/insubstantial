@@ -98,7 +98,8 @@ class TransferableTreeNode implements Transferable {
 		this.setNodeWasExpanded(wasExpanded);
 	}
 
-	public boolean isDataFlavorSupported(DataFlavor flavor) {
+	@Override
+    public boolean isDataFlavorSupported(DataFlavor flavor) {
 		DataFlavor[] flavors = TransferableTreeNode.getSupportedDataFlavors();
 		for (int i = 0; i < flavors.length; i++) {
 			if (flavor.equals(flavors[i]))
@@ -107,7 +108,8 @@ class TransferableTreeNode implements Transferable {
 		return false;
 	}
 
-	public Object getTransferData(DataFlavor flavor)
+	@Override
+    public Object getTransferData(DataFlavor flavor)
 			throws UnsupportedFlavorException, IOException {
 		if (flavor.equals(TransferableTreeNode.javaJVMLocalObjectFlavor)) {
 			return this;
@@ -117,7 +119,8 @@ class TransferableTreeNode implements Transferable {
 			throw new UnsupportedFlavorException(flavor);
 	}
 
-	public DataFlavor[] getTransferDataFlavors() {
+	@Override
+    public DataFlavor[] getTransferDataFlavors() {
 		return TransferableTreeNode.getSupportedDataFlavors();
 	}
 

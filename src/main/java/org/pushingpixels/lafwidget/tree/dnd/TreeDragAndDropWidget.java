@@ -91,7 +91,8 @@ public class TreeDragAndDropWidget extends LafWidgetAdapter<JTree> {
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#requiresCustomLafSupport()
 	 */
-	public boolean requiresCustomLafSupport() {
+	@Override
+    public boolean requiresCustomLafSupport() {
 		return false;
 	}
 
@@ -105,7 +106,8 @@ public class TreeDragAndDropWidget extends LafWidgetAdapter<JTree> {
 		this.listeners = new EventListenerList();
 
 		this.propertyChangeListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (LafWidget.TREE_AUTO_DND_SUPPORT.equals(evt
 						.getPropertyName())) {
 					Object oldValue = evt.getOldValue();
@@ -155,7 +157,8 @@ public class TreeDragAndDropWidget extends LafWidgetAdapter<JTree> {
 		}
 
 		this.cellRendererChangeListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				String name = evt.getPropertyName();
 
 				if (name.equals(JTree.CELL_RENDERER_PROPERTY)) {
@@ -233,7 +236,8 @@ public class TreeDragAndDropWidget extends LafWidgetAdapter<JTree> {
 	 * Internal class that implements DragGestureListener.
 	 */
 	class TreeDragGestureListener implements DragGestureListener {
-		public void dragGestureRecognized(DragGestureEvent dge) {
+		@Override
+        public void dragGestureRecognized(DragGestureEvent dge) {
 			// If tree is disabled then discard drag from it
 			if (!TreeDragAndDropWidget.this.jcomp.isEnabled())
 				return;
@@ -298,28 +302,34 @@ public class TreeDragAndDropWidget extends LafWidgetAdapter<JTree> {
 	 * Internal class that implements DragSourceListener.
 	 */
 	class TreeDragSourceListener implements DragSourceListener {
-		public void dragExit(DragSourceEvent dse) {
+		@Override
+        public void dragExit(DragSourceEvent dse) {
 			// dropNode = null;
 			// rendererProxy.setDropNode( null );
 			// tree.repaint();
 		}
 
-		public void dropActionChanged(DragSourceDragEvent dsde) {
+		@Override
+        public void dropActionChanged(DragSourceDragEvent dsde) {
 		}
 
-		public void dragOver(DragSourceDragEvent dsde) {
+		@Override
+        public void dragOver(DragSourceDragEvent dsde) {
 		}
 
-		public void dragEnter(DragSourceDragEvent dsde) {
+		@Override
+        public void dragEnter(DragSourceDragEvent dsde) {
 		}
 
-		public void dragDropEnd(DragSourceDropEvent dsde) {
+		@Override
+        public void dragDropEnd(DragSourceDropEvent dsde) {
 			TreeDragAndDropWidget.this.resetDragAndDrop();
 		}
 	}
 
 	class TreeDropTargetListener implements DropTargetListener {
-		public void drop(DropTargetDropEvent dtde) {
+		@Override
+        public void drop(DropTargetDropEvent dtde) {
 			TreePath dropPath = TreeDragAndDropWidget.this.jcomp
 					.getClosestPathForLocation(dtde.getLocation().x, dtde
 							.getLocation().y);
@@ -516,13 +526,15 @@ public class TreeDragAndDropWidget extends LafWidgetAdapter<JTree> {
 			return copy;
 		}
 
-		public void dragExit(DropTargetEvent dte) {
+		@Override
+        public void dragExit(DropTargetEvent dte) {
 			TreeDragAndDropWidget.this.dropNode = null;
 			TreeDragAndDropWidget.this.rendererProxy.setDropNode(null);
 			TreeDragAndDropWidget.this.jcomp.repaint();
 		}
 
-		public void dropActionChanged(DropTargetDragEvent dtde) {
+		@Override
+        public void dropActionChanged(DropTargetDragEvent dtde) {
 		}
 
 		private Transferable getTransferable(DropTargetDragEvent dtde) {
@@ -547,7 +559,8 @@ public class TreeDragAndDropWidget extends LafWidgetAdapter<JTree> {
 		/** This node to avoid too many invocations to dragOver */
 		private TreeNode lastDragOverNode = null;
 
-		public void dragOver(DropTargetDragEvent dtde) {
+		@Override
+        public void dragOver(DropTargetDragEvent dtde) {
 			if (!TreeDragAndDropWidget.this.jcomp.isEnabled()) {
 				dtde.rejectDrag();
 				return;
@@ -633,7 +646,8 @@ public class TreeDragAndDropWidget extends LafWidgetAdapter<JTree> {
 			TreeDragAndDropWidget.this.jcomp.repaint();
 		}
 
-		public void dragEnter(DropTargetDragEvent dtde) {
+		@Override
+        public void dragEnter(DropTargetDragEvent dtde) {
 			this.dragOver(dtde);
 			// dtde.acceptDrag(DnDConstants.ACTION_COPY_OR_MOVE );
 		}

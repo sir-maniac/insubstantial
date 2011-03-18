@@ -69,7 +69,8 @@ public class AugmentIconGhostingTask extends Task {
 	 * 
 	 * @see org.apache.tools.ant.Task#init()
 	 */
-	public void init() throws BuildException {
+	@Override
+    public void init() throws BuildException {
 		super.init();
 		this.m_fileSet = new ArrayList<FileSet>();
 		this.m_delegatesToUpdate = new ArrayList<IconGhostingType>();
@@ -112,7 +113,8 @@ public class AugmentIconGhostingTask extends Task {
 	 * 
 	 * @see org.apache.tools.ant.Task#execute()
 	 */
-	public void execute() throws BuildException {
+	@Override
+    public void execute() throws BuildException {
 		try {
 			// System.out.println(this.m_verbose + ", " + this.m_pattern);
 			//			

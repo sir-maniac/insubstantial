@@ -63,6 +63,7 @@ public class ImageLabel extends JLabel{
      * Paints the label scaling the image to the appropriate size 
      * @param graphics The graphics context
      */
+    @Override
     public void paintComponent(Graphics graphics) {
         Image image = this.imageIcon.getImage();
         ImageObserver observer = imageIcon.getImageObserver();

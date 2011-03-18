@@ -324,7 +324,8 @@ public class DeltaQueue {
 		dq.dump();
 
 		dq.removeMatching(new DeltaMatcher() {
-			public boolean matches(Deltable deltable) {
+			@Override
+            public boolean matches(Deltable deltable) {
 				return ((DeltableTest) deltable).id < 30;
 			}
 		});

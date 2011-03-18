@@ -190,6 +190,7 @@ public class JCarouselMenu extends GradientPanel implements ListSelectionListene
      * Removes a component from the menu
      * @param component The component to remove
      */
+    @Override
     public void remove(Component component) {
         carousel.remove(component);
         MenuItem menuItem = menuMap.remove(component);
@@ -318,6 +319,7 @@ public class JCarouselMenu extends GradientPanel implements ListSelectionListene
      * Return the preferred size of the component
      * @return The prefered dimensions of the component
      */
+    @Override
     public Dimension getPreferredSize() {
         Dimension size = super.getPreferredSize();
         size.width /= 2;
@@ -330,6 +332,7 @@ public class JCarouselMenu extends GradientPanel implements ListSelectionListene
      * @see javax.swing.event.ChangeListener#stateChanged(javax.swing.event.ChangeEvent)
      * @param e The state changed event
      */
+    @Override
     public void stateChanged(ChangeEvent e) {
         // Check if the scroll bar is at the top or at the bottom
         // Note: It's a trick, I don't know if this is the best/correct way to handle that
@@ -347,6 +350,7 @@ public class JCarouselMenu extends GradientPanel implements ListSelectionListene
      * that item
      * @param listSelectionEvent The list selection change event
      */
+    @Override
     public void valueChanged(ListSelectionEvent listSelectionEvent) {
         MenuItem item = (MenuItem) menu.getSelectedValue();
         if (item==null){
@@ -375,6 +379,7 @@ public class JCarouselMenu extends GradientPanel implements ListSelectionListene
      * Look to see if an item in the list is double clicked, and launch the action if it is
      * @param mouseEvent The mouse event
      */
+    @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         if (mouseEvent.getClickCount()==2){
             processAction();
@@ -385,30 +390,35 @@ public class JCarouselMenu extends GradientPanel implements ListSelectionListene
      * Don't Care *
      * @param mouseEvent The mouse event
      */
+    @Override
     public void mousePressed(MouseEvent mouseEvent) {    }
     
     /**
      * Don't Care *
      * @param mouseEvent The mouse event
      */
+    @Override
     public void mouseReleased(MouseEvent mouseEvent) {}
     
     /**
      * Don't Care *
      * @param mouseEvent The mouse event
      */
+    @Override
     public void mouseEntered(MouseEvent mouseEvent) {}
     
     /**
      * Don't Care *
      * @param mouseEvent The mouse event
      */
+    @Override
     public void mouseExited(MouseEvent mouseEvent) {}
     
     /**
      * Don't Care *
      * @param keyEvent The key event
      */
+    @Override
     public void keyTyped(KeyEvent keyEvent) {    }
     
     /**
@@ -416,6 +426,7 @@ public class JCarouselMenu extends GradientPanel implements ListSelectionListene
      * trigger a change on release of the key
      * @param keyEvent The key event
      */
+    @Override
     public void keyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getKeyCode()){
             case KeyEvent.VK_ENTER:
@@ -462,6 +473,7 @@ public class JCarouselMenu extends GradientPanel implements ListSelectionListene
      * calculated when the key was first pressed.
      * @param keyEvent The key event
      */
+    @Override
     public void keyReleased(KeyEvent keyEvent) {
         if (lastSelection!=-1){
             menu.setSelectedIndex(lastSelection);
@@ -474,6 +486,7 @@ public class JCarouselMenu extends GradientPanel implements ListSelectionListene
      * Moves the selected menu up or down when the mouse wheel scrolls
      * @param mouseWheelEvent The mouse wheel event
      */
+    @Override
     public void mouseWheelMoved(MouseWheelEvent mouseWheelEvent) {
         if (mouseWheelEvent.getScrollType() == MouseWheelEvent.WHEEL_UNIT_SCROLL) {
             int amount = mouseWheelEvent.getWheelRotation();
@@ -495,6 +508,7 @@ public class JCarouselMenu extends GradientPanel implements ListSelectionListene
             
             final int indexToSelect = lastSelection;
             SwingUtilities.invokeLater(new Runnable() {
+                @Override
                 public void run() {
                     menu.setSelectedIndex(indexToSelect);
                     menu.ensureIndexIsVisible(indexToSelect);
@@ -555,6 +569,7 @@ public class JCarouselMenu extends GradientPanel implements ListSelectionListene
          * @param cellHasFocus Does the cell have the focus
          * @return The object to use to stamp the list item
          */
+        @Override
         public Component getListCellRendererComponent(JList jList, Object object, int i, boolean isSelected, boolean cellHasFocus) {
             MenuItem item = (MenuItem) object;
             setText(item.label);
@@ -575,6 +590,7 @@ public class JCarouselMenu extends GradientPanel implements ListSelectionListene
          * Our image border can paint a center as well as a surround. Call paint center if we want it to do this. 
          * @param g The graphcis context
          */
+        @Override
         public void paintComponent(Graphics g){
             imageBorder.paintCenter((Graphics2D)g,this);
             super.paintComponent(g);
@@ -584,6 +600,7 @@ public class JCarouselMenu extends GradientPanel implements ListSelectionListene
          * I want it to be wider than it needs to be
          * @return The desired width of the cell
          */
+        @Override
         public Dimension getPreferredSize() {
             Dimension d = super.getPreferredSize();
             d.width+=20;
@@ -678,6 +695,7 @@ public class JCarouselMenu extends GradientPanel implements ListSelectionListene
          * Paint the component
          * @param g The graphics context
          */
+        @Override
         public void paintComponent(Graphics g){
             if (doPaint) {
                 Icon icon = this.getIcon();
@@ -713,6 +731,7 @@ public class JCarouselMenu extends GradientPanel implements ListSelectionListene
          * Listens for a mouse click and scroll up or down in the menu when it gets one
          * @param mouseEvent The mouse event
          */
+        @Override
         public void mouseClicked(MouseEvent mouseEvent) {
             if (!doPaint){
                 return;
@@ -737,6 +756,7 @@ public class JCarouselMenu extends GradientPanel implements ListSelectionListene
          * Don't care
          * @param mouseEvent The mouse event
          */
+        @Override
         public void mousePressed(MouseEvent mouseEvent) {
         }
 
@@ -744,6 +764,7 @@ public class JCarouselMenu extends GradientPanel implements ListSelectionListene
          * Don't care
          * @param mouseEvent The mouse event
          */
+        @Override
         public void mouseReleased(MouseEvent mouseEvent) {
         }
 
@@ -751,6 +772,7 @@ public class JCarouselMenu extends GradientPanel implements ListSelectionListene
          * Don't care
          * @param mouseEvent The mouse event
          */
+        @Override
         public void mouseEntered(MouseEvent mouseEvent) {
         }
 
@@ -758,6 +780,7 @@ public class JCarouselMenu extends GradientPanel implements ListSelectionListene
          * Don't care
          * @param mouseEvent The mouse event
          */
+        @Override
         public void mouseExited(MouseEvent mouseEvent) {
         }
         

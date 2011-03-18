@@ -63,7 +63,8 @@ class DnDBorderFactory {
 				this.plusIcon = new ImageIcon(iconURL);
 		}
 
-		public void paintBorder(Component c, Graphics g, int x, int y,
+		@Override
+        public void paintBorder(Component c, Graphics g, int x, int y,
 				int width, int height) {
 			int yh = y + height - 1;
 			if (this.plusIcon != null) {
@@ -74,11 +75,13 @@ class DnDBorderFactory {
 			g.drawLine(x + 24, yh, x + 48, yh);
 		}
 
-		public Insets getBorderInsets(Component c) {
+		@Override
+        public Insets getBorderInsets(Component c) {
 			return DropAllowedBorder.insets;
 		}
 
-		public boolean isBorderOpaque() {
+		@Override
+        public boolean isBorderOpaque() {
 			return false;
 		}
 	}
@@ -92,16 +95,19 @@ class DnDBorderFactory {
 	class OffsetBorder implements Border {
 		private Insets insets = new Insets(5, 0, 0, 0);
 
-		public void paintBorder(Component c, Graphics g, int x, int y,
+		@Override
+        public void paintBorder(Component c, Graphics g, int x, int y,
 				int width, int height) {
 			// empty
 		}
 
-		public Insets getBorderInsets(Component c) {
+		@Override
+        public Insets getBorderInsets(Component c) {
 			return this.insets;
 		}
 
-		public boolean isBorderOpaque() {
+		@Override
+        public boolean isBorderOpaque() {
 			return false;
 		}
 
@@ -127,7 +133,8 @@ class DnDBorderFactory {
 				this.plusIcon = new ImageIcon(iconURL);
 		}
 
-		public void paintBorder(Component c, Graphics g, int x, int y,
+		@Override
+        public void paintBorder(Component c, Graphics g, int x, int y,
 				int width, int height) {
 			if (this.plusIcon != null) {
 				this.plusIcon.paintIcon(c, g, x, y);
@@ -136,11 +143,13 @@ class DnDBorderFactory {
 			// g.drawRect( x, y, width-1, height-1 );
 		}
 
-		public Insets getBorderInsets(Component c) {
+		@Override
+        public Insets getBorderInsets(Component c) {
 			return this.insets;
 		}
 
-		public boolean isBorderOpaque() {
+		@Override
+        public boolean isBorderOpaque() {
 			return false;
 		}
 

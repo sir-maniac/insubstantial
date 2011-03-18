@@ -71,6 +71,7 @@ public class LAFAdapter {
         /**UI can change at any point, so we need to listen for these
          * events. This property fires AFTER the UI change.
          */
+        @Override
         public void propertyChange(PropertyChangeEvent evt) {
             JComponent c=(JComponent)evt.getSource();
             // Remove old listeners that was installed when createUI was called
@@ -169,6 +170,7 @@ public class LAFAdapter {
             this.enable=enable;
         }
         
+        @Override
         public void run() {
             if (!EventQueue.isDispatchThread())
                 throw new IllegalStateException("This must be run on the EDT");
@@ -224,6 +226,7 @@ public class LAFAdapter {
      * class. This fires from UIManager after a LAF change.
      */
     private static class ReinitListener implements PropertyChangeListener {
+        @Override
         public void propertyChange(PropertyChangeEvent evt) {
             if ("lookAndFeel".equals(evt.getPropertyName())) {
                 // The look and feel was changed so we need to re-insert

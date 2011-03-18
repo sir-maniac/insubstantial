@@ -93,7 +93,8 @@ public class AutoScrollActivator {
 		iconPopupMenu.setOpaque(false);
 		JLabel iconLabel = new JLabel(getAutoScrollIcon());
 		iconLabel.addMouseWheelListener(new MouseWheelListener() {
-			public void mouseWheelMoved(MouseWheelEvent e) {
+			@Override
+            public void mouseWheelMoved(MouseWheelEvent e) {
 				deactivateAutoScroll();
 			}
 		});
@@ -118,7 +119,8 @@ public class AutoScrollActivator {
 			((JComponent) parent).setBorder(null);
 		}
 		ActionListener actionListener = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				JViewport viewport = scrollPane.getViewport();
 				Component view = viewport.getView();
 				if (view == null) {
@@ -155,7 +157,8 @@ public class AutoScrollActivator {
 		autoScrollProperties.timer = new Timer(50, actionListener);
 		autoScrollProperties.timer.start();
 		autoScrollProperties.toolkitListener = new AWTEventListener() {
-			public void eventDispatched(AWTEvent e) {
+			@Override
+            public void eventDispatched(AWTEvent e) {
 				int eventID = e.getID();
 				switch (eventID) {
 				case MouseEvent.MOUSE_MOVED:

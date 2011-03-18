@@ -49,7 +49,8 @@ public class DefaultTabPreviewPainter extends TabPreviewPainter {
 	 * @see org.pushingpixels.lafwidget.tabbed.TabPreviewPainter#hasPreview(javax.swing.JTabbedPane,
 	 *      int)
 	 */
-	public boolean hasPreview(JTabbedPane tabPane, int tabIndex) {
+	@Override
+    public boolean hasPreview(JTabbedPane tabPane, int tabIndex) {
 		return (tabPane.getComponentAt(tabIndex) != null);
 	}
 
@@ -59,7 +60,8 @@ public class DefaultTabPreviewPainter extends TabPreviewPainter {
 	 * @see org.pushingpixels.lafwidget.tabbed.TabPreviewPainter#isSensitiveToEvents(javax.swing.JTabbedPane,
 	 *      int)
 	 */
-	public boolean isSensitiveToEvents(JTabbedPane tabPane, int tabIndex) {
+	@Override
+    public boolean isSensitiveToEvents(JTabbedPane tabPane, int tabIndex) {
 		return tabPane.isEnabledAt(tabIndex);
 	}
 
@@ -69,7 +71,8 @@ public class DefaultTabPreviewPainter extends TabPreviewPainter {
 	 * @see org.pushingpixels.lafwidget.tabbed.TabPreviewPainter#previewTab(javax.swing.JTabbedPane,
 	 *      int, java.awt.Graphics, int, int, int, int)
 	 */
-	public void previewTab(JTabbedPane tabPane, int tabIndex, Graphics g,
+	@Override
+    public void previewTab(JTabbedPane tabPane, int tabIndex, Graphics g,
 			int x, int y, int w, int h) {
 		Component tabComponent = tabPane.getComponentAt(tabIndex);
 		if (tabComponent == null)
@@ -120,7 +123,8 @@ public class DefaultTabPreviewPainter extends TabPreviewPainter {
 	 * @see org.pushingpixels.lafwidget.tabbed.TabPreviewPainter#hasPreviewWindow(javax.swing.JTabbedPane,
 	 *      int)
 	 */
-	public boolean hasPreviewWindow(JTabbedPane tabPane, int tabIndex) {
+	@Override
+    public boolean hasPreviewWindow(JTabbedPane tabPane, int tabIndex) {
 		return true;
 	}
 
@@ -129,7 +133,8 @@ public class DefaultTabPreviewPainter extends TabPreviewPainter {
 	 * 
 	 * @see org.pushingpixels.lafwidget.tabbed.TabPreviewPainter#hasOverviewDialog(javax.swing.JTabbedPane)
 	 */
-	public boolean hasOverviewDialog(JTabbedPane tabPane) {
+	@Override
+    public boolean hasOverviewDialog(JTabbedPane tabPane) {
 		return true;
 	}
 }

@@ -57,6 +57,7 @@ public class GradientPanel extends JPanel implements ComponentListener{
      * Set the background to a single color
      * @param color The color for a solid background
      */
+    @Override
     public void setBackground(Color color){
         this.start = color;
         this.end = color;
@@ -78,6 +79,7 @@ public class GradientPanel extends JPanel implements ComponentListener{
      * paints the gradient.
      * @param graphics The graphics context
      */
+    @Override
     public void paintComponent(Graphics graphics) {
         if (start == end){
             super.paintComponent(graphics);
@@ -122,6 +124,7 @@ public class GradientPanel extends JPanel implements ComponentListener{
      * Recalculates the gradient when it's resized
      * @param componentEvent The event object
      */
+    @Override
     public void componentResized(ComponentEvent componentEvent) {
         makeGradient();
     }
@@ -130,6 +133,7 @@ public class GradientPanel extends JPanel implements ComponentListener{
      * Ignored
      * @param componentEvent The component event
      */
+    @Override
     public void componentShown(ComponentEvent componentEvent) {
         makeGradient();
     }
@@ -138,12 +142,14 @@ public class GradientPanel extends JPanel implements ComponentListener{
      * Not used *
      * @param componentEvent The event
      */
+    @Override
     public void componentMoved(ComponentEvent componentEvent){}
 
     /**
      * Not used *
      * @param componentEvent The event
      */
+    @Override
     public void componentHidden(ComponentEvent componentEvent){}
 
 }

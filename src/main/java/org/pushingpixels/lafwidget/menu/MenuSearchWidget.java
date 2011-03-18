@@ -123,9 +123,11 @@ public class MenuSearchWidget extends LafWidgetAdapter<JMenuBar> implements
 			// state of the toggle button, the search field and result buttons
 			// will be set visible or invisible.
 			this.searchButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+				@Override
+                public void actionPerformed(ActionEvent e) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							boolean toShow = SearchPanel.this.searchButton
 									.isSelected();
 							SearchPanel.this.searchStringField
@@ -148,7 +150,8 @@ public class MenuSearchWidget extends LafWidgetAdapter<JMenuBar> implements
 				public void mousePressed(MouseEvent e) {
 					if ((e.getModifiers() & InputEvent.CTRL_MASK) != 0) {
 						SwingUtilities.invokeLater(new Runnable() {
-							public void run() {
+							@Override
+                            public void run() {
 								SearchPanel.this.removeAll();
 								SearchPanel.this.repaint();
 								jcomp.revalidate();
@@ -170,7 +173,8 @@ public class MenuSearchWidget extends LafWidgetAdapter<JMenuBar> implements
 			// on theme change and layout manager).
 			this.resultButtons = new HashMap<Integer, JButton>();
 			this.searchStringField.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+				@Override
+                public void actionPerformed(ActionEvent e) {
 					String searchString = SearchPanel.this.searchStringField
 							.getText().toLowerCase();
 					// See if there is at least one non-white space character.
@@ -332,7 +336,8 @@ public class MenuSearchWidget extends LafWidgetAdapter<JMenuBar> implements
 		 * 
 		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 		 */
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			// start opening the menus
 			MenuElement[] menuElements = this.searchResult.menuElements;
 			MenuSelectionManager.defaultManager().setSelectedPath(menuElements);
@@ -697,13 +702,15 @@ public class MenuSearchWidget extends LafWidgetAdapter<JMenuBar> implements
 		super.installListeners();
 
 		this.propertyListener = new PropertyChangeListener() {
-			public void propertyChange(final PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(final PropertyChangeEvent evt) {
 				if ("componentOrientation".equals(evt.getPropertyName())) {
 					// final SearchPanel sp = (SearchPanel)
 					// NewMenuSearchWidget.panels
 					// .get(NewMenuSearchWidget.this.jcomp);
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							if (searchPanel != null) {
 								searchPanel
 										.applyComponentOrientation((ComponentOrientation) evt
@@ -715,7 +722,8 @@ public class MenuSearchWidget extends LafWidgetAdapter<JMenuBar> implements
 				}
 				if ("locale".equals(evt.getPropertyName())) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							reset();
 						}
 					});
@@ -736,7 +744,8 @@ public class MenuSearchWidget extends LafWidgetAdapter<JMenuBar> implements
 		this.propertyListener = null;
 	}
 
-	public void reset() {
+	@Override
+    public void reset() {
 		LafWidgetSupport support = LafWidgetRepository.getRepository()
 				.getLafSupport();
 		// SearchPanel searchPanel = (SearchPanel) NewMenuSearchWidget.panels
@@ -800,7 +809,8 @@ public class MenuSearchWidget extends LafWidgetAdapter<JMenuBar> implements
 		 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String,
 		 *      java.awt.Component)
 		 */
-		public void addLayoutComponent(String name, Component c) {
+		@Override
+        public void addLayoutComponent(String name, Component c) {
 		}
 
 		/*
@@ -808,7 +818,8 @@ public class MenuSearchWidget extends LafWidgetAdapter<JMenuBar> implements
 		 * 
 		 * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
 		 */
-		public void removeLayoutComponent(Component c) {
+		@Override
+        public void removeLayoutComponent(Component c) {
 		}
 
 		/*
@@ -816,7 +827,8 @@ public class MenuSearchWidget extends LafWidgetAdapter<JMenuBar> implements
 		 * 
 		 * @see java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
 		 */
-		public Dimension preferredLayoutSize(Container c) {
+		@Override
+        public Dimension preferredLayoutSize(Container c) {
 			if (this.searchPanel.searchButton.isSelected())
 				return c.getSize();
 			int buttonSize = LafWidgetRepository.getRepository()
@@ -829,7 +841,8 @@ public class MenuSearchWidget extends LafWidgetAdapter<JMenuBar> implements
 		 * 
 		 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
 		 */
-		public Dimension minimumLayoutSize(Container c) {
+		@Override
+        public Dimension minimumLayoutSize(Container c) {
 			// enough for the search icon
 			int buttonSize = LafWidgetRepository.getRepository()
 					.getLafSupport().getLookupButtonSize();
@@ -841,7 +854,8 @@ public class MenuSearchWidget extends LafWidgetAdapter<JMenuBar> implements
 		 * 
 		 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
 		 */
-		public void layoutContainer(Container c) {
+		@Override
+        public void layoutContainer(Container c) {
 			int height = c.getHeight();
 			int width = c.getWidth();
 
@@ -928,7 +942,8 @@ public class MenuSearchWidget extends LafWidgetAdapter<JMenuBar> implements
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#requiresCustomLafSupport()
 	 */
-	public boolean requiresCustomLafSupport() {
+	@Override
+    public boolean requiresCustomLafSupport() {
 		return false;
 	}
 }

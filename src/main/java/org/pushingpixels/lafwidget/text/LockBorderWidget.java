@@ -67,7 +67,8 @@ public class LockBorderWidget extends LafWidgetAdapter {
 	@Override
 	public void installListeners() {
 		this.propertyChangeListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				// fix for defect 5 - infinite event chain.
 				if ("border".equals(evt.getPropertyName()))
 					return;
@@ -75,7 +76,8 @@ public class LockBorderWidget extends LafWidgetAdapter {
 						.getPropertyName()))
 					return;
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						// fix for defect 7 - not removing lock border
 						// on LAF switch
 						if (isUninstalling)
@@ -159,7 +161,8 @@ public class LockBorderWidget extends LafWidgetAdapter {
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#requiresCustomLafSupport()
 	 */
-	public boolean requiresCustomLafSupport() {
+	@Override
+    public boolean requiresCustomLafSupport() {
 		return false;
 	}
 

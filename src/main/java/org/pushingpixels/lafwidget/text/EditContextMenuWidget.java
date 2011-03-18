@@ -63,7 +63,8 @@ public class EditContextMenuWidget extends LafWidgetAdapter<JTextComponent> {
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#requiresCustomLafSupport()
 	 */
-	public boolean requiresCustomLafSupport() {
+	@Override
+    public boolean requiresCustomLafSupport() {
 		return false;
 	}
 
@@ -146,7 +147,8 @@ public class EditContextMenuWidget extends LafWidgetAdapter<JTextComponent> {
 		 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent
 		 * )
 		 */
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			jcomp.paste();
 		}
 
@@ -193,7 +195,8 @@ public class EditContextMenuWidget extends LafWidgetAdapter<JTextComponent> {
 		 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent
 		 * )
 		 */
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			jcomp.selectAll();
 		}
 
@@ -235,7 +238,8 @@ public class EditContextMenuWidget extends LafWidgetAdapter<JTextComponent> {
 		 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent
 		 * )
 		 */
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			jcomp.replaceSelection(null);
 		}
 
@@ -274,7 +278,8 @@ public class EditContextMenuWidget extends LafWidgetAdapter<JTextComponent> {
 		 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent
 		 * )
 		 */
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			jcomp.cut();
 		}
 
@@ -313,7 +318,8 @@ public class EditContextMenuWidget extends LafWidgetAdapter<JTextComponent> {
 		 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent
 		 * )
 		 */
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			jcomp.copy();
 		}
 

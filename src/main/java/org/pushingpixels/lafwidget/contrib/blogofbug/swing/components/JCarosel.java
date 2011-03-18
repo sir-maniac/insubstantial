@@ -138,7 +138,8 @@ public class JCarosel extends GradientPanel implements MouseListener,
 	 *            The component to add to the carousel
 	 * @return The component
 	 */
-	public Component add(Component component) {
+	@Override
+    public Component add(Component component) {
 		add("", component);
 		component.setForeground(Color.WHITE);
 		component.setBackground(Color.BLACK);
@@ -168,7 +169,8 @@ public class JCarosel extends GradientPanel implements MouseListener,
 	 * @param component
 	 *            The component to remove
 	 */
-	public void remove(Component component) {
+	@Override
+    public void remove(Component component) {
 		super.remove(component);
 		if (getComponentCount() > 0) {
 			bringToFront(getComponent(0));
@@ -246,10 +248,12 @@ public class JCarosel extends GradientPanel implements MouseListener,
 	 * @param mouseEvent
 	 *            Brings the component clicked on by the mouse to the front
 	 */
-	public void mouseClicked(final MouseEvent mouseEvent) {
+	@Override
+    public void mouseClicked(final MouseEvent mouseEvent) {
 		if (mouseEvent.getClickCount() == 1) {
 			SwingBugUtilities.invokeAfter(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					bringToFront((Component) mouseEvent.getSource());
 				}
 			}, spinStartDelay);
@@ -348,7 +352,8 @@ public class JCarosel extends GradientPanel implements MouseListener,
 	 * @param mouseEvent
 	 *            Ignored
 	 */
-	public void mousePressed(MouseEvent mouseEvent) {
+	@Override
+    public void mousePressed(MouseEvent mouseEvent) {
 	}
 
 	/**
@@ -357,7 +362,8 @@ public class JCarosel extends GradientPanel implements MouseListener,
 	 * @param mouseEvent
 	 *            Ignored
 	 */
-	public void mouseReleased(MouseEvent mouseEvent) {
+	@Override
+    public void mouseReleased(MouseEvent mouseEvent) {
 	}
 
 	/**
@@ -366,7 +372,8 @@ public class JCarosel extends GradientPanel implements MouseListener,
 	 * @param mouseEvent
 	 *            Ignored
 	 */
-	public void mouseEntered(MouseEvent mouseEvent) {
+	@Override
+    public void mouseEntered(MouseEvent mouseEvent) {
 	}
 
 	/**
@@ -375,7 +382,8 @@ public class JCarosel extends GradientPanel implements MouseListener,
 	 * @param mouseEvent
 	 *            Ignored
 	 */
-	public void mouseExited(MouseEvent mouseEvent) {
+	@Override
+    public void mouseExited(MouseEvent mouseEvent) {
 	}
 
 	/**
@@ -388,7 +396,8 @@ public class JCarosel extends GradientPanel implements MouseListener,
 	 * @param mouseWheelEvent
 	 *            The event object
 	 */
-	public void mouseWheelMoved(MouseWheelEvent mouseWheelEvent) {
+	@Override
+    public void mouseWheelMoved(MouseWheelEvent mouseWheelEvent) {
 
 		if (mouseWheelEvent.getScrollType() == MouseWheelEvent.WHEEL_UNIT_SCROLL) {
 			int amount = mouseWheelEvent.getWheelRotation();

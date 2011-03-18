@@ -110,7 +110,8 @@ public class TabPagerWidget extends LafWidgetAdapter<JTabbedPane> implements
 
 		this.jcomp.getActionMap().put("tabSwitcherForward",
 				new AbstractAction() {
-					public void actionPerformed(ActionEvent e) {
+					@Override
+                    public void actionPerformed(ActionEvent e) {
 						// fix for issue 323 in Substance - don't show pager on
 						// tabbed
 						// panes with no preview painter
@@ -126,7 +127,8 @@ public class TabPagerWidget extends LafWidgetAdapter<JTabbedPane> implements
 
 		this.jcomp.getActionMap().put("tabSwitcherBackward",
 				new AbstractAction() {
-					public void actionPerformed(ActionEvent e) {
+					@Override
+                    public void actionPerformed(ActionEvent e) {
 						// fix for issue 323 in Substance - don't show pager on
 						// tabbed panes with no preview painter
 						TabPreviewPainter tpp = LafWidgetUtilities2
@@ -140,9 +142,11 @@ public class TabPagerWidget extends LafWidgetAdapter<JTabbedPane> implements
 				});
 
 		this.jcomp.getActionMap().put("tabSwitcherClose", new AbstractAction() {
-			public void actionPerformed(final ActionEvent e) {
+			@Override
+            public void actionPerformed(final ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						// fix for issue 323 in Substance - don't show pager on
 						// tabbed panes with no preview painter
 						TabPreviewPainter tpp = LafWidgetUtilities2
@@ -166,7 +170,8 @@ public class TabPagerWidget extends LafWidgetAdapter<JTabbedPane> implements
 		});
 
 		this.jcomp.getActionMap().put("tabSwitcherHide", new AbstractAction() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				TabPagerManager te = TabPagerManager.getPager();
 				if (te.isVisible()) {
 					te.hide();
@@ -264,7 +269,8 @@ public class TabPagerWidget extends LafWidgetAdapter<JTabbedPane> implements
 			public void mouseClicked(MouseEvent e) {
 				if ((e.getModifiers() & InputEvent.CTRL_MASK) != 0) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							TabPagerManager te = TabPagerManager.getPager();
 							int index = te.hide();
 							if (index >= 0)
@@ -320,7 +326,8 @@ public class TabPagerWidget extends LafWidgetAdapter<JTabbedPane> implements
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#requiresCustomLafSupport()
 	 */
-	public boolean requiresCustomLafSupport() {
+	@Override
+    public boolean requiresCustomLafSupport() {
 		return false;
 	}
 
@@ -329,7 +336,8 @@ public class TabPagerWidget extends LafWidgetAdapter<JTabbedPane> implements
 	 * 
 	 * @see org.pushingpixels.lafwidget.Resettable#reset()
 	 */
-	public void reset() {
+	@Override
+    public void reset() {
 		TabPagerManager.reset();
 	}
 }

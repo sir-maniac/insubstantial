@@ -114,6 +114,7 @@ public class CaroselLayout implements LayoutManager,ActionListener{
      * @param name The name of the component, ignored.
      * @param comp The component being added
      */
+    @Override
     public void addLayoutComponent(String name, Component comp) {
         components.addLast(comp);
         recalculateCarosel();
@@ -123,6 +124,7 @@ public class CaroselLayout implements LayoutManager,ActionListener{
      * Remove the component
      * @param comp The component being removed
      */
+    @Override
     public void removeLayoutComponent(Component comp) {
         components.remove(comp);
         recalculateCarosel();
@@ -205,6 +207,7 @@ public class CaroselLayout implements LayoutManager,ActionListener{
      * @param parent The container interested in the layout size
      * @return The minimum size of the layout. See above.
      */
+    @Override
     public Dimension minimumLayoutSize(Container parent) {
         return preferredLayoutSize(parent);
     }
@@ -214,6 +217,7 @@ public class CaroselLayout implements LayoutManager,ActionListener{
      * @param parent The container for the layout
      * @return The prefered size of the layout
      */
+    @Override
     public Dimension preferredLayoutSize(Container parent) {
         Dimension dim = new Dimension(0, 0);
         // get widest preferred width for left && right
@@ -315,6 +319,7 @@ public class CaroselLayout implements LayoutManager,ActionListener{
      * scaling on
      * @param target The container currently being laid out
      */
+    @Override
     public void layoutContainer(Container target) {
         //Let's make a local copy of components to avoid concurrent modification
         //which could happen if someone adds something to the layout outside
@@ -466,6 +471,7 @@ public class CaroselLayout implements LayoutManager,ActionListener{
      *
      * @param actionEvent the action event, although this will always be the timer
      */
+    @Override
     public void actionPerformed(ActionEvent actionEvent) {
         if (animationTimer==null){
             return;

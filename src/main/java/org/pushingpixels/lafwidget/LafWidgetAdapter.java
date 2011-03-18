@@ -48,7 +48,8 @@ public abstract class LafWidgetAdapter<T extends JComponent> implements
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#setComponent(javax.swing.JComponent)
 	 */
-	public void setComponent(T jcomp) {
+	@Override
+    public void setComponent(T jcomp) {
 		this.jcomp = jcomp;
 	}
 
@@ -57,7 +58,8 @@ public abstract class LafWidgetAdapter<T extends JComponent> implements
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#installUI()
 	 */
-	public void installUI() {
+	@Override
+    public void installUI() {
 	}
 
 	/*
@@ -65,7 +67,8 @@ public abstract class LafWidgetAdapter<T extends JComponent> implements
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#installComponents()
 	 */
-	public void installComponents() {
+	@Override
+    public void installComponents() {
 	}
 
 	/*
@@ -73,7 +76,8 @@ public abstract class LafWidgetAdapter<T extends JComponent> implements
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#installDefaults()
 	 */
-	public void installDefaults() {
+	@Override
+    public void installDefaults() {
 	}
 
 	/*
@@ -81,7 +85,8 @@ public abstract class LafWidgetAdapter<T extends JComponent> implements
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#installListeners()
 	 */
-	public void installListeners() {
+	@Override
+    public void installListeners() {
 	}
 
 	/*
@@ -89,7 +94,8 @@ public abstract class LafWidgetAdapter<T extends JComponent> implements
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#uninstallUI()
 	 */
-	public void uninstallUI() {
+	@Override
+    public void uninstallUI() {
 	}
 
 	/*
@@ -97,7 +103,8 @@ public abstract class LafWidgetAdapter<T extends JComponent> implements
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#uninstallComponents()
 	 */
-	public void uninstallComponents() {
+	@Override
+    public void uninstallComponents() {
 	}
 
 	/*
@@ -105,7 +112,8 @@ public abstract class LafWidgetAdapter<T extends JComponent> implements
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#uninstallDefaults()
 	 */
-	public void uninstallDefaults() {
+	@Override
+    public void uninstallDefaults() {
 	}
 
 	/*
@@ -113,6 +121,7 @@ public abstract class LafWidgetAdapter<T extends JComponent> implements
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#uninstallListeners()
 	 */
-	public void uninstallListeners() {
+	@Override
+    public void uninstallListeners() {
 	}
 }

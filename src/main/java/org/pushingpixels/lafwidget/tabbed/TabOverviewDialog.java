@@ -136,7 +136,8 @@ public class TabOverviewDialog extends JDialog {
 			}
 
 			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					TabOverviewDialog.this.dispose();
 					TabOverviewDialog.this.tabPane
 							.setSelectedIndex(TabPreviewMouseHandler.this.index);
@@ -234,7 +235,8 @@ public class TabOverviewDialog extends JDialog {
 				 * org.pushingpixels
 				 * .lafwidget.tabbed.TabPreviewThread.TabPreviewInfo)
 				 */
-				public void start(JTabbedPane tabPane, int tabCount,
+				@Override
+                public void start(JTabbedPane tabPane, int tabCount,
 						TabPreviewInfo tabPreviewInfo) {
 					// Check if need to reallocate the preview controls.
 					boolean isSame = (previewControls != null)
@@ -309,7 +311,8 @@ public class TabOverviewDialog extends JDialog {
 				 * TabPreviewCallback#offer(javax.swing.JTabbedPane, int,
 				 * java.awt.image.BufferedImage)
 				 */
-				public void offer(JTabbedPane tabPane, int tabIndex,
+				@Override
+                public void offer(JTabbedPane tabPane, int tabIndex,
 						BufferedImage componentSnap) {
 					int width = componentSnap.getWidth() + 4;
 					int height = componentSnap.getHeight() + 4;
@@ -438,7 +441,8 @@ public class TabOverviewDialog extends JDialog {
 			/**
 			 * Sets up the component for stamping
 			 */
-			public Component getListCellRendererComponent(JList jList,
+			@Override
+            public Component getListCellRendererComponent(JList jList,
 					Object object, int i, boolean isSelected,
 					boolean cellHasFocus) {
 				JCarouselMenu.MenuItem item = (JCarouselMenu.MenuItem) object;
@@ -478,7 +482,8 @@ public class TabOverviewDialog extends JDialog {
 				 * org.pushingpixels
 				 * .lafwidget.tabbed.TabPreviewThread.TabPreviewInfo)
 				 */
-				public void start(JTabbedPane tabPane, int tabCount,
+				@Override
+                public void start(JTabbedPane tabPane, int tabCount,
 						TabPreviewInfo tabPreviewInfo) {
 					// Check if need to reallocate the preview controls.
 					boolean isSame = (previewControls != null)
@@ -552,7 +557,8 @@ public class TabOverviewDialog extends JDialog {
 				 * TabPreviewCallback#offer(javax.swing.JTabbedPane, int,
 				 * java.awt.image.BufferedImage)
 				 */
-				public void offer(JTabbedPane tabPane, int tabIndex,
+				@Override
+                public void offer(JTabbedPane tabPane, int tabIndex,
 						BufferedImage componentSnap) {
 					int width = componentSnap.getWidth() + 4;
 					int height = componentSnap.getHeight() + 4;
@@ -718,7 +724,8 @@ public class TabOverviewDialog extends JDialog {
 				 * org.pushingpixels
 				 * .lafwidget.tabbed.TabPreviewThread.TabPreviewInfo)
 				 */
-				public void start(JTabbedPane tabPane, int tabCount,
+				@Override
+                public void start(JTabbedPane tabPane, int tabCount,
 						TabPreviewInfo tabPreviewInfo) {
 					colCount = (int) Math.sqrt(tabCount);
 					if (colCount * colCount < tabCount)
@@ -781,7 +788,8 @@ public class TabOverviewDialog extends JDialog {
 				 * TabPreviewCallback#offer(javax.swing.JTabbedPane, int,
 				 * java.awt.image.BufferedImage)
 				 */
-				public void offer(JTabbedPane tabPane, int tabIndex,
+				@Override
+                public void offer(JTabbedPane tabPane, int tabIndex,
 						BufferedImage componentSnap) {
 					TabGridOverviewPanel.this.previewControls[tabIndex]
 							.setPreviewImage(componentSnap, true);
@@ -813,7 +821,8 @@ public class TabOverviewDialog extends JDialog {
 			 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String,
 			 * java.awt.Component)
 			 */
-			public void addLayoutComponent(String name, Component comp) {
+			@Override
+            public void addLayoutComponent(String name, Component comp) {
 			}
 
 			/*
@@ -822,7 +831,8 @@ public class TabOverviewDialog extends JDialog {
 			 * @see
 			 * java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
 			 */
-			public void removeLayoutComponent(Component comp) {
+			@Override
+            public void removeLayoutComponent(Component comp) {
 			}
 
 			/*
@@ -830,7 +840,8 @@ public class TabOverviewDialog extends JDialog {
 			 * 
 			 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
 			 */
-			public void layoutContainer(Container parent) {
+			@Override
+            public void layoutContainer(Container parent) {
 				// int width = parent.getWidth();
 				// int height = parent.getHeight();
 				//
@@ -857,7 +868,8 @@ public class TabOverviewDialog extends JDialog {
 			 * 
 			 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
 			 */
-			public Dimension minimumLayoutSize(Container parent) {
+			@Override
+            public Dimension minimumLayoutSize(Container parent) {
 				return parent.getSize();
 			}
 
@@ -867,7 +879,8 @@ public class TabOverviewDialog extends JDialog {
 			 * @see
 			 * java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
 			 */
-			public Dimension preferredLayoutSize(Container parent) {
+			@Override
+            public Dimension preferredLayoutSize(Container parent) {
 				return this.minimumLayoutSize(parent);
 			}
 		}
@@ -1109,10 +1122,12 @@ public class TabOverviewDialog extends JDialog {
 		this.setResizable(false);
 
 		this.lafSwitchListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if ("lookAndFeel".equals(evt.getPropertyName())) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							SwingUtilities
 									.updateComponentTreeUI(TabOverviewDialog.this);
 						}
@@ -1199,7 +1214,8 @@ public class TabOverviewDialog extends JDialog {
 		// make sure that the tab overview dialog is disposed when
 		// it loses focus
 		final PropertyChangeListener activeWindowListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if ("activeWindow".equals(evt.getPropertyName())) {
 					if (overviewDialog == evt.getOldValue()) {
 						if (previewPainter.toDisposeOverviewOnFocusLoss()) {

@@ -58,7 +58,8 @@ public class GhostAnimationWidget extends LafWidgetAdapter<AbstractButton> {
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#requiresCustomLafSupport()
 	 */
-	public boolean requiresCustomLafSupport() {
+	@Override
+    public boolean requiresCustomLafSupport() {
 		return false;
 	}
 
@@ -80,7 +81,8 @@ public class GhostAnimationWidget extends LafWidgetAdapter<AbstractButton> {
 	@Override
 	public void installListeners() {
 		this.ghostPropertyListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (AbstractButton.MODEL_CHANGED_PROPERTY.equals(evt
 						.getPropertyName())) {
 					if (ghostModelChangeListener != null)

@@ -122,7 +122,8 @@ public class TabOverviewDialogWidget extends LafWidgetAdapter<JTabbedPane> {
 	@Override
 	public void installListeners() {
 		this.propertyListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				LafWidgetSupport lafSupport = LafWidgetRepository
 						.getRepository().getLafSupport();
 
@@ -168,7 +169,8 @@ public class TabOverviewDialogWidget extends LafWidgetAdapter<JTabbedPane> {
 						|| "componentOrientation".equals(evt.getPropertyName())
 						|| "tabAreaInsets".equals(evt.getPropertyName())) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							if (TabOverviewDialogWidget.this.overviewButton
 									.getParent() == TabOverviewDialogWidget.this.jcomp)
 								TabOverviewDialogWidget.this.overviewButton
@@ -226,7 +228,8 @@ public class TabOverviewDialogWidget extends LafWidgetAdapter<JTabbedPane> {
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#requiresCustomLafSupport()
 	 */
-	public boolean requiresCustomLafSupport() {
+	@Override
+    public boolean requiresCustomLafSupport() {
 		return false;
 	}
 }

@@ -70,7 +70,8 @@ public class PasswordStrengthCheckerWidget extends
 		 * 
 		 * @see javax.swing.border.Border#isBorderOpaque()
 		 */
-		public boolean isBorderOpaque() {
+		@Override
+        public boolean isBorderOpaque() {
 			return true;
 		}
 
@@ -79,7 +80,8 @@ public class PasswordStrengthCheckerWidget extends
 		 * 
 		 * @see javax.swing.border.Border#getBorderInsets(java.awt.Component)
 		 */
-		public Insets getBorderInsets(Component c) {
+		@Override
+        public Insets getBorderInsets(Component c) {
 			JPasswordField jpf = (JPasswordField) c;
 			if (LafWidgetUtilities2.getPasswordStrengthChecker(jpf) == null) {
 				return new Insets(0, 0, 0, 0);
@@ -99,7 +101,8 @@ public class PasswordStrengthCheckerWidget extends
 		 * @see javax.swing.border.Border#paintBorder(java.awt.Component,
 		 *      java.awt.Graphics, int, int, int, int)
 		 */
-		public void paintBorder(Component c, Graphics g, int x, int y,
+		@Override
+        public void paintBorder(Component c, Graphics g, int x, int y,
 				int width, int height) {
 			JPasswordField jpf = (JPasswordField) c;
 			PasswordStrengthChecker passwordStrengthChecker = LafWidgetUtilities2
@@ -132,7 +135,8 @@ public class PasswordStrengthCheckerWidget extends
 	@Override
 	public void installListeners() {
 		this.strengthCheckerListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (LafWidget.PASSWORD_STRENGTH_CHECKER.equals(evt
 						.getPropertyName())) {
 					Object newValue = evt.getNewValue();
@@ -191,7 +195,8 @@ public class PasswordStrengthCheckerWidget extends
 	 * 
 	 * @see org.pushingpixels.lafwidget.LafWidget#requiresCustomLafSupport()
 	 */
-	public boolean requiresCustomLafSupport() {
+	@Override
+    public boolean requiresCustomLafSupport() {
 		return false;
 	}
 }

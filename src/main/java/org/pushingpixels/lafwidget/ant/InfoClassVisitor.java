@@ -65,7 +65,8 @@ public class InfoClassVisitor extends EmptyVisitor implements Opcodes {
 	 *      java.lang.String, java.lang.String, java.lang.String,
 	 *      java.lang.String[])
 	 */
-	public MethodVisitor visitMethod(final int access, final String name,
+	@Override
+    public MethodVisitor visitMethod(final int access, final String name,
 			final String desc, final String signature, final String[] exceptions) {
 		this.methods.add(name);
 		return this;
@@ -78,7 +79,8 @@ public class InfoClassVisitor extends EmptyVisitor implements Opcodes {
 	 *      java.lang.String, java.lang.String, java.lang.String,
 	 *      java.lang.Object)
 	 */
-	public FieldVisitor visitField(int access, String name, String desc,
+	@Override
+    public FieldVisitor visitField(int access, String name, String desc,
 			String signature, Object value) {
 		this.fields.add(name);
 		return this;

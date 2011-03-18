@@ -68,7 +68,8 @@ public class LockBorder implements Border, UIResource {
 	 * 
 	 * @see javax.swing.border.Border#getBorderInsets(java.awt.Component)
 	 */
-	public Insets getBorderInsets(Component c) {
+	@Override
+    public Insets getBorderInsets(Component c) {
 		LafWidgetSupport lafSupport = LafWidgetRepository.getRepository()
 				.getLafSupport();
 		Icon lockIcon = lafSupport.getLockIcon(c);
@@ -94,7 +95,8 @@ public class LockBorder implements Border, UIResource {
 	 * 
 	 * @see javax.swing.border.Border#isBorderOpaque()
 	 */
-	public boolean isBorderOpaque() {
+	@Override
+    public boolean isBorderOpaque() {
 		return this.originalBorder.isBorderOpaque();
 	}
 
@@ -108,7 +110,8 @@ public class LockBorder implements Border, UIResource {
 	 * @see javax.swing.border.Border#paintBorder(java.awt.Component,
 	 * java.awt.Graphics, int, int, int, int)
 	 */
-	public void paintBorder(Component c, Graphics g, int x, int y, int width,
+	@Override
+    public void paintBorder(Component c, Graphics g, int x, int y, int width,
 			int height) {
 		this.originalBorder.paintBorder(c, g, x, y, width, height);
 		LafWidgetSupport lafSupport = LafWidgetRepository.getRepository()

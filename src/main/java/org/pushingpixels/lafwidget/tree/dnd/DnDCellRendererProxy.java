@@ -70,7 +70,8 @@ class DnDCellRendererProxy extends Component implements TreeCellRenderer {
 		return this.originalTreeCellRenderer;
 	}
 
-	public Component getTreeCellRendererComponent(JTree tree, Object value,
+	@Override
+    public Component getTreeCellRendererComponent(JTree tree, Object value,
 			boolean selected, boolean expanded, boolean leaf, int row,
 			boolean hasFocus) {
 		Component c = this.originalTreeCellRenderer

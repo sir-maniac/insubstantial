@@ -167,7 +167,8 @@ public class ScrollPaneSelector extends JComponent {
 		thePopupMenu.setLayout(new BorderLayout());
 		thePopupMenu.add(this, BorderLayout.CENTER);
 		propertyChangeListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (theScrollPane == null)
 					return;
 				if ("componentOrientation".equals(evt.getPropertyName())) {
@@ -189,7 +190,8 @@ public class ScrollPaneSelector extends JComponent {
 			}
 		};
 		thePopupMenu.addPropertyChangeListener(new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if ("visible".equals(evt.getPropertyName())) {
 					if (!thePopupMenu.isVisible()) {
 						setCursor(Cursor

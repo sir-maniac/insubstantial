@@ -44,6 +44,7 @@ public class OffsetCaroselLayout extends CaroselLayout{
      * @param scale The scale (applied to size) of the image, that is, how far from the observer is it
      * @return True if it should be hidden, false if it should not
      */
+    @Override
     protected boolean shouldHide(Component comp, double angle, double scale){
         //Quick test where it's visible
 
@@ -77,6 +78,7 @@ public class OffsetCaroselLayout extends CaroselLayout{
      * @param widestComponent The widest component
      * @return The size (in a bounding box) of the carousel
      */
+    @Override
     protected Dimension getCarouselRadius(Container target, Insets insets, int width, int height, int widestComponent){
         width = target.getSize().width - (insets.left + insets.right+(widestComponent/2));;
         height = (int) (height/2.5);
@@ -92,6 +94,7 @@ public class OffsetCaroselLayout extends CaroselLayout{
      * @param widest width of the container
      * @return A point representing the new center
      */
+    @Override
     protected Point calculateCenter(Insets insets, int width, int height, int widest) {
         return new Point(0,((height-insets.bottom)/2)+widest/3);
     }
@@ -100,6 +103,7 @@ public class OffsetCaroselLayout extends CaroselLayout{
      * Over-rides the normal setFrontMostComponent to move the selected component to 3 o'clock instead of 6 o'clock
      * @param component The component to move to the 'front'
      */
+    @Override
     public void setFrontMostComponent(Component component) {
         setTarget(-getPosition(component).getTargetAngle()+ (Math.PI /2));        
     }

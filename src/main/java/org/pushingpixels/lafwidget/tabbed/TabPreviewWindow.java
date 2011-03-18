@@ -162,7 +162,8 @@ public class TabPreviewWindow extends JWindow implements ActionListener {
 			 * org.pushingpixels
 			 * .lafwidget.tabbed.TabPreviewThread.TabPreviewInfo)
 			 */
-			public void start(JTabbedPane tabPane, int tabCount,
+			@Override
+            public void start(JTabbedPane tabPane, int tabCount,
 					TabPreviewInfo tabPreviewInfo) {
 				// Nothing to do since the callback was registered
 				// for a specific tab.
@@ -175,7 +176,8 @@ public class TabPreviewWindow extends JWindow implements ActionListener {
 			 * TabPreviewCallback #offer(javax.swing.JTabbedPane, int,
 			 * java.awt.image.BufferedImage)
 			 */
-			public void offer(JTabbedPane tabPane, int tabIndex,
+			@Override
+            public void offer(JTabbedPane tabPane, int tabIndex,
 					BufferedImage componentSnap) {
 				if (currTabPreviewInfo == null) {
 					// has since been cancelled
@@ -236,7 +238,8 @@ public class TabPreviewWindow extends JWindow implements ActionListener {
 	 * @see
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
-	public void actionPerformed(ActionEvent e) {
+	@Override
+    public void actionPerformed(ActionEvent e) {
 		if (currTabPreviewInfo == null)
 			return;
 

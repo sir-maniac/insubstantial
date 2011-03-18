@@ -71,7 +71,8 @@ public class TabOverviewButton extends JButton implements UIResource {
 				"TabbedPane.overviewButtonTooltip"));
 
 		this.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				TabOverviewDialog.getOverviewDialog(tabPane).setVisible(true);
 			}
 		});
@@ -82,7 +83,8 @@ public class TabOverviewButton extends JButton implements UIResource {
 	 *
 	 * @see java.awt.Component#setBounds(int, int, int, int)
 	 */
-	public void setBounds(int x, int y, int width, int height) {
+	@Override
+    public void setBounds(int x, int y, int width, int height) {
 		if (Boolean.TRUE.equals(this
 				.getClientProperty(TabOverviewButton.OWN_BOUNDS)))
 			super.setBounds(x, y, width, height);

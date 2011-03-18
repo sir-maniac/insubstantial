@@ -144,7 +144,8 @@ public class TabPagerManager {
 		 * #start(javax.swing.JTabbedPane, int,
 		 * org.pushingpixels.lafwidget.tabbed.TabPreviewThread.TabPreviewInfo)
 		 */
-		public void start(JTabbedPane tabPane, int tabCount,
+		@Override
+        public void start(JTabbedPane tabPane, int tabCount,
 				TabPreviewInfo tabPreviewInfo) {
 			// Nothing to do since the callback was registered
 			// for a specific tab.
@@ -157,7 +158,8 @@ public class TabPagerManager {
 		 * org.pushingpixels.lafwidget.tabbed.TabPreviewThread.TabPreviewCallback
 		 * #offer(javax.swing.JTabbedPane, int, java.awt.image.BufferedImage)
 		 */
-		public void offer(JTabbedPane tabPane, int tabIndex,
+		@Override
+        public void offer(JTabbedPane tabPane, int tabIndex,
 				BufferedImage componentSnap) {
 			if (TabPagerManager.this.currTabbedPane != tabPane) {
 				// has since been cancelled
@@ -217,7 +219,8 @@ public class TabPagerManager {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						// fix for issue 177 in Substance (disallowing selection
 						// of disabled tabs).
 						TabPreviewPainter tpp = LafWidgetUtilities2
@@ -246,7 +249,8 @@ public class TabPagerManager {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						// fix for issue 177 in Substance (disallowing selection
 						// of disabled tabs).
 						TabPreviewPainter tpp = LafWidgetUtilities2
@@ -273,7 +277,8 @@ public class TabPagerManager {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						// fix for issue 177 in Substance (disallowing selection
 						// of disabled tabs).
 						TabPreviewPainter tpp = LafWidgetUtilities2

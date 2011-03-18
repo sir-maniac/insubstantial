@@ -40,6 +40,7 @@ public class SwingBugUtilities {
      */
     public static void invokeAfter(final Runnable execute, int after){
         Timer timer = new Timer(after,new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 execute.run();
             }
