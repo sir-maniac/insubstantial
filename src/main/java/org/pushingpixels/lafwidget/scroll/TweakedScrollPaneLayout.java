@@ -318,8 +318,8 @@ public class TweakedScrollPaneLayout extends ScrollPaneLayout {
 				&& ((hsb == null) || ((hsb != null) && (!hsb.isVisible())));
 		if (onlyVsb) {
 			Rectangle vsbBounds = vsb.getBounds();
-			int delta = (hsb == null) ? ((Integer) (UIManager
-					.get("ScrollBar.width"))).intValue() : hsb
+			int delta = (hsb == null) ? (Integer) (UIManager
+                    .get("ScrollBar.width")) : hsb
 					.getPreferredSize().height;
 			vsbBounds.height -= delta;
 			vsb.setBounds(vsbBounds);
@@ -337,8 +337,8 @@ public class TweakedScrollPaneLayout extends ScrollPaneLayout {
 				&& ((vsb == null) || ((vsb != null) && (!vsb.isVisible())));
 		if (onlyHsb) {
 			Rectangle hsbBounds = hsb.getBounds();
-			int delta = (vsb == null) ? ((Integer) (UIManager
-					.get("ScrollBar.width"))).intValue() : vsb
+			int delta = (vsb == null) ? (Integer) (UIManager
+                    .get("ScrollBar.width")) : vsb
 					.getPreferredSize().width;
 			hsbBounds.width -= delta;
 			if (!isLeftToRight) {

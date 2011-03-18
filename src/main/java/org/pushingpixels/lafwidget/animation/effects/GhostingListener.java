@@ -264,7 +264,7 @@ public class GhostingListener {
 				}
 			}
 		} finally {
-			this.prevStateMap.put(animationFacet, Boolean.valueOf(newState));
+			this.prevStateMap.put(animationFacet, newState);
 		}
 	}
 

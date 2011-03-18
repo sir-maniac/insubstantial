@@ -210,8 +210,7 @@ public class MenuSearchWidget extends LafWidgetAdapter<JMenuBar> implements
 						// only enabled items.
 						resultButton.setEnabled(searchResult.isEnabled());
 						SearchPanel.this.add(resultButton);
-						SearchPanel.this.resultButtons.put(new Integer(
-								count + 1), resultButton);
+						SearchPanel.this.resultButtons.put(count + 1, resultButton);
 						resultButton.setToolTipText("<html><body><b>"
 								+ searchResult.toString()
 								+ "</b><br>"

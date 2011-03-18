@@ -250,7 +250,7 @@ public class LafWidgetUtilities {
 			// System.out.println(jcomp.getClass().getSimpleName() + ":"
 			// + jcomp.hashCode());
 			// }
-			dbSnapshot.put(jcomp, Boolean.valueOf(jcomp.isDoubleBuffered()));
+			dbSnapshot.put(jcomp, jcomp.isDoubleBuffered());
 			jcomp.setDoubleBuffered(false);
 			jcomp.putClientProperty(LafWidgetUtilities.PREVIEW_MODE,
 					Boolean.TRUE);

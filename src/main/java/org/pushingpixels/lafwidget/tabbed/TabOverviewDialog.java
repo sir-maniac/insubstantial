@@ -1193,8 +1193,8 @@ public class TabOverviewDialog extends JDialog {
 		String title = previewPainter.toUpdatePeriodically(tabPane) ? MessageFormat
 				.format(LafWidgetUtilities.getResourceBundle(tabPane)
 						.getString("TabbedPane.overviewDialogTitleRefresh"),
-						new Object[] { new Integer(previewPainter
-								.getUpdateCycle(tabPane) / 1000) })
+						new Object[] {previewPainter
+                                .getUpdateCycle(tabPane) / 1000})
 				: LafWidgetUtilities.getResourceBundle(tabPane).getString(
 						"TabbedPane.overviewDialogTitle");
 		JFrame frameForModality = previewPainter.getModalOwner(tabPane);

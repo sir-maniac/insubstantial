@@ -114,10 +114,10 @@ public class TreeDragAndDropWidget extends LafWidgetAdapter<JTree> {
 					Object newValue = evt.getNewValue();
 					boolean hadDnd = false;
 					if (oldValue instanceof Boolean)
-						hadDnd = ((Boolean) oldValue).booleanValue();
+						hadDnd = (Boolean) oldValue;
 					boolean hasDnd = false;
 					if (newValue instanceof Boolean)
-						hasDnd = ((Boolean) newValue).booleanValue();
+						hasDnd = (Boolean) newValue;
 
 					if (!hadDnd && hasDnd
 							&& TreeDragAndDropWidget.this.jcomp.isEnabled()) {
@@ -129,10 +129,8 @@ public class TreeDragAndDropWidget extends LafWidgetAdapter<JTree> {
 				}
 
 				if ("enabled".equals(evt.getPropertyName())) {
-					boolean wasEnabled = ((Boolean) evt.getOldValue())
-							.booleanValue();
-					boolean isEnabled = ((Boolean) evt.getNewValue())
-							.booleanValue();
+					boolean wasEnabled = (Boolean) evt.getOldValue();
+					boolean isEnabled = (Boolean) evt.getNewValue();
 					if (!wasEnabled && isEnabled) {
 						if (LafWidgetUtilities
 								.hasAutomaticDnDSupport(TreeDragAndDropWidget.this.jcomp))
