@@ -199,7 +199,7 @@ public class HTMLChooser extends AbstractColorChooserPanel implements UIResource
             updateRecursion++;
             if (ccModel.isWebSaveOnly()) {
                 Color c = getColorFromModel();
-                if (! HTMLColorSliderModel.isWebSave(c.getRGB())) {
+                if (c == null || ! HTMLColorSliderModel.isWebSave(c.getRGB())) {
                     webSaveCheckBox.setSelected(false);
                 }
             }

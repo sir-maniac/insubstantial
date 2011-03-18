@@ -171,6 +171,7 @@ public class ColorPalettesChooser extends AbstractColorChooserPanel implements U
         Color color;
         try {
             color = getColorFromModel();
+            if (color == null) return;
         } catch (NullPointerException e) {
             return;
         }

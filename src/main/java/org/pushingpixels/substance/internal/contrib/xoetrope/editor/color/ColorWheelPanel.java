@@ -879,10 +879,15 @@ public class ColorWheelPanel extends AbstractColorChooserPanel implements
 	public void updateChooser() {
 		if (hasChooser) {
 			Color selected = getColorFromModel();
-			ModelColor selectedModelColor = new ModelColor(selected.getRed(),
-					selected.getGreen(), selected.getBlue());
-			setSelectedColors(new ModelColor[] { selectedModelColor });
-			setColor(selected);
+            if (selected == null) {
+                setSelectedColors(new ModelColor[0]);
+                setColor(null);
+            } else {
+                ModelColor selectedModelColor = new ModelColor(selected.getRed(),
+                        selected.getGreen(), selected.getBlue());
+                setSelectedColors(new ModelColor[] { selectedModelColor });
+                setColor(selected);
+            }
 		}
 	}
 
