@@ -130,7 +130,8 @@ public class SmallCheckRibbon extends BasicCheckRibbon {
 		JDialog.setDefaultLookAndFeelDecorated(true);
 
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new OfficeBlue2007Skin());
 
 				SmallCheckRibbon c = new SmallCheckRibbon();

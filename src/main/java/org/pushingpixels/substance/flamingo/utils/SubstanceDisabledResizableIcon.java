@@ -74,7 +74,8 @@ public class SubstanceDisabledResizableIcon implements ResizableIcon {
 	 * 
 	 * @see javax.swing.Icon#getIconHeight()
 	 */
-	public int getIconHeight() {
+	@Override
+    public int getIconHeight() {
 		return delegate.getIconHeight();
 	}
 
@@ -83,7 +84,8 @@ public class SubstanceDisabledResizableIcon implements ResizableIcon {
 	 * 
 	 * @see javax.swing.Icon#getIconWidth()
 	 */
-	public int getIconWidth() {
+	@Override
+    public int getIconWidth() {
 		return delegate.getIconWidth();
 	}
 
@@ -93,7 +95,8 @@ public class SubstanceDisabledResizableIcon implements ResizableIcon {
 	 * @see org.jvnet.flamingo.common.icon.ResizableIcon#setDimension(java.awt
 	 * .Dimension )
 	 */
-	public void setDimension(Dimension newDimension) {
+	@Override
+    public void setDimension(Dimension newDimension) {
 		delegate.setDimension(newDimension);
 	}
 

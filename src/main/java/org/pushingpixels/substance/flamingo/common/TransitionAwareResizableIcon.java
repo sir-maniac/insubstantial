@@ -254,20 +254,24 @@ public class TransitionAwareResizableIcon implements ResizableIcon {
 	 * @see javax.swing.Icon#paintIcon(java.awt.Component, java.awt.Graphics,
 	 * int, int)
 	 */
-	public void paintIcon(Component c, Graphics g, int x, int y) {
+	@Override
+    public void paintIcon(Component c, Graphics g, int x, int y) {
 		this.getIconToPaint().paintIcon(c, g, x, y);
 	}
 
-	public void setDimension(Dimension newDimension) {
+	@Override
+    public void setDimension(Dimension newDimension) {
 		this.width = newDimension.width;
 		this.height = newDimension.height;
 	}
 
-	public int getIconHeight() {
+	@Override
+    public int getIconHeight() {
 		return this.height;
 	}
 
-	public int getIconWidth() {
+	@Override
+    public int getIconWidth() {
 		return this.width;
 	}
 }

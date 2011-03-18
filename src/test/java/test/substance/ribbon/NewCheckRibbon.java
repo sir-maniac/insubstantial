@@ -72,9 +72,11 @@ public class NewCheckRibbon extends BasicCheckRibbon {
 
 		final JCheckBox useThemedDefaultIconsCheckBox = new JCheckBox("use");
 		useThemedDefaultIconsCheckBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						UIManager
 								.put(
 										SubstanceLookAndFeel.USE_THEMED_DEFAULT_ICONS,
@@ -93,7 +95,8 @@ public class NewCheckRibbon extends BasicCheckRibbon {
 		final JCheckBox heapPanel = new JCheckBox("show");
 		heapPanel.setSelected(false);
 		heapPanel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SubstanceLookAndFeel.setWidgetVisible(getRootPane(), heapPanel
 						.isSelected(),
 						SubstanceWidgetType.TITLE_PANE_HEAP_STATUS);
@@ -177,7 +180,8 @@ public class NewCheckRibbon extends BasicCheckRibbon {
 		JDialog.setDefaultLookAndFeelDecorated(true);
 
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new OfficeBlack2007Skin());
 				NewCheckRibbon c = new NewCheckRibbon();
 				c.configureRibbon();

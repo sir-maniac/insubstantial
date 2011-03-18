@@ -59,7 +59,8 @@ public class SubstanceSvnBrowser extends SvnBreadCrumbTest {
 	public static void main(String... args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlueSteelSkin());
 				SubstanceSvnBrowser test = new SubstanceSvnBrowser();
 				test.setSize(500, 420);

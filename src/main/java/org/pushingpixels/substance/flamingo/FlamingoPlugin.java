@@ -66,7 +66,8 @@ public class FlamingoPlugin implements LafComponentPlugin {
 	 * org.pushingpixels.lafplugin.LafComponentPlugin#getDefaults(java.lang.
 	 * Object)
 	 */
-	public Object[] getDefaults(Object mSkin) {
+	@Override
+    public Object[] getDefaults(Object mSkin) {
 		String UI_COMMON_CLASSNAME_PREFIX = "org.pushingpixels.substance.flamingo.common.ui.Substance";
 
 		String UI_RIBBON_CLASSNAME_PREFIX = "org.pushingpixels.substance.flamingo.ribbon.ui.Substance";
@@ -203,7 +204,8 @@ public class FlamingoPlugin implements LafComponentPlugin {
 	 * 
 	 * @see org.pushingpixels.lafplugin.LafComponentPlugin#uninitialize()
 	 */
-	public void uninitialize() {
+	@Override
+    public void uninitialize() {
 	}
 
 	/*
@@ -211,6 +213,7 @@ public class FlamingoPlugin implements LafComponentPlugin {
 	 * 
 	 * @see org.pushingpixels.lafplugin.LafComponentPlugin#initialize()
 	 */
-	public void initialize() {
+	@Override
+    public void initialize() {
 	}
 }
