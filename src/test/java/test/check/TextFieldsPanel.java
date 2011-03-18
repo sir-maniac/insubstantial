@@ -231,7 +231,8 @@ public class TextFieldsPanel extends JPanel implements Deferrable {
 			jpfStrengthChecker.putClientProperty(
 					LafWidget.PASSWORD_STRENGTH_CHECKER,
 					new PasswordStrengthChecker() {
-						public PasswordStrength getStrength(char[] password) {
+						@Override
+                        public PasswordStrength getStrength(char[] password) {
 							if (password == null)
 								return PasswordStrength.WEAK;
 							int length = password.length;
@@ -242,7 +243,8 @@ public class TextFieldsPanel extends JPanel implements Deferrable {
 							return PasswordStrength.STRONG;
 						}
 
-						public String getDescription(PasswordStrength strength) {
+						@Override
+                        public String getDescription(PasswordStrength strength) {
 							if (strength == PasswordStrength.WEAK)
 								return "<html>This password is <b>way</b> too weak</html>";
 							if (strength == PasswordStrength.MEDIUM)

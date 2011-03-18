@@ -43,7 +43,8 @@ public class MyPasswordStrengthChecker implements PasswordStrengthChecker {
 	 * 
 	 * @see org.pushingpixels.lafwidget.text.PasswordStrengthChecker#getStrength(char[])
 	 */
-	public PasswordStrength getStrength(char[] password) {
+	@Override
+    public PasswordStrength getStrength(char[] password) {
 		if (password == null)
 			return PasswordStrength.WEAK;
 		int length = password.length;
@@ -59,7 +60,8 @@ public class MyPasswordStrengthChecker implements PasswordStrengthChecker {
 	 * 
 	 * @see org.pushingpixels.lafwidget.text.PasswordStrengthChecker#getDescription(org.pushingpixels.lafwidget.utils.LafConstants.PasswordStrength)
 	 */
-	public String getDescription(PasswordStrength strength) {
+	@Override
+    public String getDescription(PasswordStrength strength) {
 		if (strength == PasswordStrength.WEAK)
 			return "<html>This password is <b>way</b> too weak</html>";
 		if (strength == PasswordStrength.MEDIUM)

@@ -79,7 +79,8 @@ public class PasswordStrengthCheckerProperty extends JFrame {
 				if (hasPasswordStrengthChecker.isSelected()) {
 					jpf.putClientProperty(LafWidget.PASSWORD_STRENGTH_CHECKER,
 							new PasswordStrengthChecker() {
-								public PasswordStrength getStrength(
+								@Override
+                                public PasswordStrength getStrength(
 										char[] password) {
 									if (password == null)
 										return PasswordStrength.WEAK;
@@ -91,7 +92,8 @@ public class PasswordStrengthCheckerProperty extends JFrame {
 									return PasswordStrength.STRONG;
 								}
 
-								public String getDescription(
+								@Override
+                                public String getDescription(
 										PasswordStrength strength) {
 									if (strength == PasswordStrength.WEAK)
 										return "<html>This password is <b>way</b> too weak</html>";

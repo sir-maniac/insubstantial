@@ -143,7 +143,8 @@ public class BasePlugin implements LafComponentPlugin {
 	 * org.pushingpixels.lafplugin.LafComponentPlugin#getDefaults(java.lang.
 	 * Object)
 	 */
-	public Object[] getDefaults(Object mSkin) {
+	@Override
+    public Object[] getDefaults(Object mSkin) {
 		if (this.hasQuaquaColorChooser) {
 			ResourceBundle bundle = ResourceBundle
 					.getBundle("org.pushingpixels.substance.internal.contrib.randelshofer.quaqua.Labels");
@@ -364,7 +365,8 @@ public class BasePlugin implements LafComponentPlugin {
 	 * 
 	 * @see org.pushingpixels.lafplugin.LafPlugin#uninitialize()
 	 */
-	public void uninitialize() {
+	@Override
+    public void uninitialize() {
 	}
 
 	/*
@@ -372,6 +374,7 @@ public class BasePlugin implements LafComponentPlugin {
 	 * 
 	 * @see org.pushingpixels.lafplugin.LafPlugin#initialize()
 	 */
-	public void initialize() {
+	@Override
+    public void initialize() {
 	}
 }
