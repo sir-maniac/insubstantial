@@ -45,7 +45,8 @@ public class TestCommandButtonsRichTooltips extends TestCommandButtons {
 	protected JPanel getButtonPanel() {
 		JPanel result = super.getButtonPanel();
 		apply(result, new Command() {
-			public void apply(JCommandButton button) {
+			@Override
+            public void apply(JCommandButton button) {
 				RichTooltip actionRichTooltip = new RichTooltip();
 				actionRichTooltip.setTitle(resourceBundle
 						.getString("Tooltip.textActionTitle"));
@@ -117,7 +118,8 @@ public class TestCommandButtonsRichTooltips extends TestCommandButtons {
 	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				try {
 					UIManager.setLookAndFeel(new MetalLookAndFeel());
 				} catch (Exception e) {

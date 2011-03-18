@@ -32,7 +32,8 @@ public class IcoViewer extends JFrame {
 			@Override
 			public void breadcrumbPathEvent(BreadcrumbPathEvent event) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						final List<BreadcrumbItem<File>> newPath = bar
 								.getModel().getItems();
 						System.out.println("New path is ");
@@ -121,13 +122,15 @@ public class IcoViewer extends JFrame {
 		this.iconSizeSlider.setValue(initialSize);
 		this.currIconSize = initialSize;
 		this.iconSizeSlider.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
+			@Override
+            public void stateChanged(ChangeEvent e) {
 				if (!iconSizeSlider.getModel().getValueIsAdjusting()) {
 					int newValue = iconSizeSlider.getValue();
 					if (newValue != currIconSize) {
 						currIconSize = newValue;
 						SwingUtilities.invokeLater(new Runnable() {
-							public void run() {
+							@Override
+                            public void run() {
 								fileViewPanel.setIconDimension(currIconSize);
 								invalidate();
 								doLayout();

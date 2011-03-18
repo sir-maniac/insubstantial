@@ -50,7 +50,8 @@ public class TestCommandButtonsAutoRepeat extends TestCommandButtons {
 					@Override
 					public void run() {
 						apply(TestCommandButtonsAutoRepeat.this, new Command() {
-							public void apply(JCommandButton button) {
+							@Override
+                            public void apply(JCommandButton button) {
 								button.setAutoRepeatAction(autoRepeatActionMode
 										.isSelected());
 							};
@@ -68,7 +69,8 @@ public class TestCommandButtonsAutoRepeat extends TestCommandButtons {
 					@Override
 					public void run() {
 						apply(TestCommandButtonsAutoRepeat.this, new Command() {
-							public void apply(JCommandButton button) {
+							@Override
+                            public void apply(JCommandButton button) {
 								button
 										.setFireActionOnRollover(actionOnRolloverMode
 												.isSelected());
@@ -107,7 +109,8 @@ public class TestCommandButtonsAutoRepeat extends TestCommandButtons {
 	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				TestCommandButtonsAutoRepeat frame = new TestCommandButtonsAutoRepeat();
 				frame.setSize(800, 400);
 				frame.setLocationRelativeTo(null);

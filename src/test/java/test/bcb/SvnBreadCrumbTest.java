@@ -100,7 +100,8 @@ public class SvnBreadCrumbTest extends JFrame {
 		this.bar = new BreadcrumbSvnSelector();
 		this.bar.setThrowsExceptions(true);
 		this.bar.addExceptionHandler(new BreadcrumbBarExceptionHandler() {
-			public void onException(Throwable t) {
+			@Override
+            public void onException(Throwable t) {
 				MessageListDialog.showMessageDialog(SvnBreadCrumbTest.this,
 						"Error", t);
 			}
@@ -130,9 +131,11 @@ public class SvnBreadCrumbTest extends JFrame {
 			}
 		});
 		svnCombo.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
+			@Override
+            public void itemStateChanged(ItemEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						SvnRepoInfo selected = (SvnRepoInfo) svnCombo
 								.getSelectedItem();
 						setCursor(Cursor
@@ -150,7 +153,8 @@ public class SvnBreadCrumbTest extends JFrame {
 			@Override
 			public void breadcrumbPathEvent(BreadcrumbPathEvent event) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						final List<BreadcrumbItem<String>> newPath = bar
 								.getModel().getItems();
 						System.out.println("New path is ");
@@ -219,9 +223,11 @@ public class SvnBreadCrumbTest extends JFrame {
 						JMenuItem showContents = new JMenuItem(
 								"Show file contents");
 						showContents.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
+							@Override
+                            public void actionPerformed(ActionEvent e) {
 								SwingUtilities.invokeLater(new Runnable() {
-									public void run() {
+									@Override
+                                    public void run() {
 										SwingWorker<InputStream, Void> worker = new SwingWorker<InputStream, Void>() {
 											@Override
 											protected InputStream doInBackground()
@@ -306,7 +312,8 @@ public class SvnBreadCrumbTest extends JFrame {
 		} catch (SecurityException e) {
 		}
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SvnBreadCrumbTest test = new SvnBreadCrumbTest();
 				test.setSize(700, 400);
 				test.setLocation(300, 100);

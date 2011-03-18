@@ -54,7 +54,8 @@ public class QuickStylesPanel extends JCommandButtonPanel {
 						finalIcon);
 				jrb.setName("Group " + groupIndex + ", index " + i);
 				jrb.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+					@Override
+                    public void actionPerformed(ActionEvent e) {
 						System.out.println("Invoked action on " + deco);
 					}
 				});

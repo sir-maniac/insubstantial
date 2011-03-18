@@ -49,11 +49,13 @@ public class SvgBatchConverter {
 				transcoder.setJavaToImplementResizableIconInterface(false);
 				transcoder.setJavaPackageName(args[1]);
 				transcoder.setListener(new TranscoderListener() {
-					public Writer getWriter() {
+					@Override
+                    public Writer getWriter() {
 						return pw;
 					}
 
-					public void finished() {
+					@Override
+                    public void finished() {
 						latch.countDown();
 					}
 				});

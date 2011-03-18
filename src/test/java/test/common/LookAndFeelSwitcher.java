@@ -43,9 +43,11 @@ public class LookAndFeelSwitcher {
 		}
 
 		result.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
+			@Override
+            public void itemStateChanged(ItemEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						boolean wasDecoratedByOS = !frame.isUndecorated();
 						try {
 							LookAndFeelInfoObj selected = (LookAndFeelInfoObj) result

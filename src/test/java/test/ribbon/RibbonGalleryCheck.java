@@ -149,7 +149,8 @@ public class RibbonGalleryCheck extends JRibbonFrame {
 	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				RibbonGalleryCheck c = new RibbonGalleryCheck();
 				Rectangle r = GraphicsEnvironment.getLocalGraphicsEnvironment()
 						.getMaximumWindowBounds();

@@ -112,7 +112,8 @@ public class JTreeAdapterBreadCrumbTest extends JFrame {
 		 * 
 		 * @see javax.swing.tree.TreeNode#children()
 		 */
-		public Enumeration<?> children() {
+		@Override
+        public Enumeration<?> children() {
 			final int elementCount = this.children.length;
 			return new Enumeration<File>() {
 				int count = 0;
@@ -122,7 +123,8 @@ public class JTreeAdapterBreadCrumbTest extends JFrame {
 				 * 
 				 * @see java.util.Enumeration#hasMoreElements()
 				 */
-				public boolean hasMoreElements() {
+				@Override
+                public boolean hasMoreElements() {
 					return this.count < elementCount;
 				}
 
@@ -131,7 +133,8 @@ public class JTreeAdapterBreadCrumbTest extends JFrame {
 				 * 
 				 * @see java.util.Enumeration#nextElement()
 				 */
-				public File nextElement() {
+				@Override
+                public File nextElement() {
 					if (this.count < elementCount) {
 						return FileTreeNode.this.children[this.count++];
 					}
@@ -146,7 +149,8 @@ public class JTreeAdapterBreadCrumbTest extends JFrame {
 		 * 
 		 * @see javax.swing.tree.TreeNode#getAllowsChildren()
 		 */
-		public boolean getAllowsChildren() {
+		@Override
+        public boolean getAllowsChildren() {
 			return true;
 		}
 
@@ -155,7 +159,8 @@ public class JTreeAdapterBreadCrumbTest extends JFrame {
 		 * 
 		 * @see javax.swing.tree.TreeNode#getChildAt(int)
 		 */
-		public TreeNode getChildAt(int childIndex) {
+		@Override
+        public TreeNode getChildAt(int childIndex) {
 			return new FileTreeNode(this.children[childIndex],
 					this.parent == null, this);
 		}
@@ -165,7 +170,8 @@ public class JTreeAdapterBreadCrumbTest extends JFrame {
 		 * 
 		 * @see javax.swing.tree.TreeNode#getChildCount()
 		 */
-		public int getChildCount() {
+		@Override
+        public int getChildCount() {
 			return this.children.length;
 		}
 
@@ -174,7 +180,8 @@ public class JTreeAdapterBreadCrumbTest extends JFrame {
 		 * 
 		 * @see javax.swing.tree.TreeNode#getIndex(javax.swing.tree.TreeNode)
 		 */
-		public int getIndex(TreeNode node) {
+		@Override
+        public int getIndex(TreeNode node) {
 			FileTreeNode ftn = (FileTreeNode) node;
 			for (int i = 0; i < this.children.length; i++) {
 				if (ftn.file.equals(this.children[i]))
@@ -188,7 +195,8 @@ public class JTreeAdapterBreadCrumbTest extends JFrame {
 		 * 
 		 * @see javax.swing.tree.TreeNode#getParent()
 		 */
-		public TreeNode getParent() {
+		@Override
+        public TreeNode getParent() {
 			return this.parent;
 		}
 
@@ -197,7 +205,8 @@ public class JTreeAdapterBreadCrumbTest extends JFrame {
 		 * 
 		 * @see javax.swing.tree.TreeNode#isLeaf()
 		 */
-		public boolean isLeaf() {
+		@Override
+        public boolean isLeaf() {
 			boolean isNotFolder = (this.file != null) && (this.file.isFile());
 			return (this.getChildCount() == 0) && isNotFolder;
 		}
@@ -210,7 +219,8 @@ public class JTreeAdapterBreadCrumbTest extends JFrame {
 			this.setOpaque(true);
 		}
 
-		public Component getListCellRendererComponent(JList list, Object value,
+		@Override
+        public Component getListCellRendererComponent(JList list, Object value,
 				int index, boolean isSelected, boolean cellHasFocus) {
 			File file = (File) value;
 			this
@@ -236,7 +246,8 @@ public class JTreeAdapterBreadCrumbTest extends JFrame {
 
 		public void sort() {
 			Collections.sort(files, new Comparator<File>() {
-				public int compare(File o1, File o2) {
+				@Override
+                public int compare(File o1, File o2) {
 					if (o1.isDirectory() && (!o2.isDirectory()))
 						return -1;
 					if (o2.isDirectory() && (!o1.isDirectory()))
@@ -247,11 +258,13 @@ public class JTreeAdapterBreadCrumbTest extends JFrame {
 			});
 		}
 
-		public Object getElementAt(int index) {
+		@Override
+        public Object getElementAt(int index) {
 			return files.get(index);
 		}
 
-		public int getSize() {
+		@Override
+        public int getSize() {
 			return files.size();
 		}
 	}
@@ -264,7 +277,8 @@ public class JTreeAdapterBreadCrumbTest extends JFrame {
 			this.setOpaque(true);
 		}
 
-		public Component getListCellRendererComponent(JList list, Object value,
+		@Override
+        public Component getListCellRendererComponent(JList list, Object value,
 				int index, boolean isSelected, boolean cellHasFocus) {
 			BreadcrumbItem<File>[] path = (BreadcrumbItem<File>[]) value;
 			if (path.length > 0) {
@@ -363,7 +377,8 @@ public class JTreeAdapterBreadCrumbTest extends JFrame {
 			@Override
 			public void breadcrumbPathEvent(BreadcrumbPathEvent event) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						final List<BreadcrumbItem<Object>> newPath = bar
 								.getModel().getItems();
 						System.out.println("New path is ");
@@ -425,7 +440,8 @@ public class JTreeAdapterBreadCrumbTest extends JFrame {
 	 */
 	public static void main(String... args) {
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				JTreeAdapterBreadCrumbTest test = new JTreeAdapterBreadCrumbTest();
 				test.setSize(700, 400);
 				test.setLocation(300, 100);

@@ -33,13 +33,15 @@ public class RibbonBandExpandActionListenerTestCase extends
 	int count2;
 
 	private class ExpandActionListener1 implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			count1++;
 		}
 	}
 
 	private class ExpandActionListener2 implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			count2++;
 		}
 	}

@@ -49,7 +49,8 @@ public class TestCommandButtonsNoIcon extends TestCommandButtons {
 				.getString("Paste.text"));
 		result.setExtraText(resourceBundle.getString("Paste.textExtra"));
 		result.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				System.out.println(stamp() + ": Main paste");
 			}
 		});
@@ -72,7 +73,8 @@ public class TestCommandButtonsNoIcon extends TestCommandButtons {
 		result.setDisplayState(state);
 		result.setFlat(false);
 		result.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				System.out.println(stamp() + ": Cut");
 			}
 		});
@@ -91,7 +93,8 @@ public class TestCommandButtonsNoIcon extends TestCommandButtons {
 		result.setDisplayState(state);
 		result.setFlat(false);
 		result.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				System.out.println(stamp() + ": Copy");
 			}
 		});
@@ -123,7 +126,8 @@ public class TestCommandButtonsNoIcon extends TestCommandButtons {
 					@Override
 					public void run() {
 						apply(TestCommandButtonsNoIcon.this, new Command() {
-							public void apply(JCommandButton button) {
+							@Override
+                            public void apply(JCommandButton button) {
 								button.setIcon(noIcon.isSelected() ? null
 										: new edit_paste());
 							};
@@ -164,7 +168,8 @@ public class TestCommandButtonsNoIcon extends TestCommandButtons {
 	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				try {
 					UIManager.setLookAndFeel(new MetalLookAndFeel());
 				} catch (Exception e) {

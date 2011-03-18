@@ -159,7 +159,8 @@ public class SvgFileViewPanel extends JPanel {
 							"Click to generate Java2D class");
 					svgButton.setActionRichTooltip(richTooltip);
 					svgButton.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
+						@Override
+                        public void actionPerformed(ActionEvent e) {
 							try {
 								System.out.println(name);
 								String svgClassName = name.substring(0, name
@@ -242,7 +243,8 @@ public class SvgFileViewPanel extends JPanel {
 		 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String,
 		 * java.awt.Component)
 		 */
-		public void addLayoutComponent(String name, Component comp) {
+		@Override
+        public void addLayoutComponent(String name, Component comp) {
 		}
 
 		/*
@@ -250,7 +252,8 @@ public class SvgFileViewPanel extends JPanel {
 		 * 
 		 * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
 		 */
-		public void removeLayoutComponent(Component comp) {
+		@Override
+        public void removeLayoutComponent(Component comp) {
 		}
 
 		/*
@@ -258,7 +261,8 @@ public class SvgFileViewPanel extends JPanel {
 		 * 
 		 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
 		 */
-		public void layoutContainer(Container parent) {
+		@Override
+        public void layoutContainer(Container parent) {
 			Insets bInsets = SvgFileViewPanel.this.getInsets();
 			int left = bInsets.left + STRUT;
 			int right = bInsets.right + STRUT;
@@ -292,7 +296,8 @@ public class SvgFileViewPanel extends JPanel {
 		 * 
 		 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
 		 */
-		public Dimension minimumLayoutSize(Container parent) {
+		@Override
+        public Dimension minimumLayoutSize(Container parent) {
 			return this.preferredLayoutSize(parent);
 		}
 
@@ -301,7 +306,8 @@ public class SvgFileViewPanel extends JPanel {
 		 * 
 		 * @see java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
 		 */
-		public Dimension preferredLayoutSize(Container parent) {
+		@Override
+        public Dimension preferredLayoutSize(Container parent) {
 			if (allButtons.size() == 0)
 				return new Dimension(0, 0);
 			// go over all groups and see how many rows each one needs

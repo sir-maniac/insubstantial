@@ -55,7 +55,8 @@ public class TestCommandToggleButtonsNoText extends TestCommandToggleButtons {
 				new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY),
 						null)));
 		mainButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				System.out.println(stamp() + ": Main selection");
 			}
 		});
@@ -77,7 +78,8 @@ public class TestCommandToggleButtonsNoText extends TestCommandToggleButtons {
 					public void run() {
 						apply(TestCommandToggleButtonsNoText.this,
 								new Command() {
-									public void apply(
+									@Override
+                                    public void apply(
 											JCommandToggleButton button) {
 										button
 												.setText(noText.isSelected() ? null
@@ -124,7 +126,8 @@ public class TestCommandToggleButtonsNoText extends TestCommandToggleButtons {
 	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				try {
 					UIManager.setLookAndFeel(new MetalLookAndFeel());
 				} catch (Exception e) {

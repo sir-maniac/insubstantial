@@ -64,7 +64,8 @@ public class FileExplorerStates extends JFrame {
 			@Override
 			public void breadcrumbPathEvent(BreadcrumbPathEvent event) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						final List<BreadcrumbItem<File>> newPath = bar
 								.getModel().getItems();
 						if (newPath.size() > 0) {

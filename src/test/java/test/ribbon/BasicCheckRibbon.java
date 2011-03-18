@@ -105,7 +105,8 @@ public class BasicCheckRibbon extends JRibbonFrame {
 							finalIcon);
 					jrb.setName("Group " + groupIndex + ", index " + i);
 					jrb.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
+						@Override
+                        public void actionPerformed(ActionEvent e) {
 							System.out.println("Invoked action on " + index);
 						}
 					});
@@ -123,7 +124,8 @@ public class BasicCheckRibbon extends JRibbonFrame {
 	}
 
 	private class ExpandActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			JOptionPane.showMessageDialog(BasicCheckRibbon.this,
 					"Expand button clicked");
 		}
@@ -563,7 +565,8 @@ public class BasicCheckRibbon extends JRibbonFrame {
 		JCommandButton mainButton = new JCommandButton(resourceBundle
 				.getString("Paste.text"), new edit_paste());
 		mainButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				System.out.println("Pasted!");
 			}
 		});
@@ -772,7 +775,8 @@ public class BasicCheckRibbon extends JRibbonFrame {
 				jrb.getActionModel().setSelected(true);
 			jrb.setName("Style " + i);
 			jrb.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+				@Override
+                public void actionPerformed(ActionEvent e) {
 					System.out.println("Invoked action on " + index);
 				}
 			});
@@ -798,7 +802,8 @@ public class BasicCheckRibbon extends JRibbonFrame {
 				JRibbonBand.BIG_FIXED_LANDSCAPE, RibbonElementPriority.TOP);
 		quickStylesBand.setRibbonGalleryPopupCallback("Styles",
 				new JRibbonBand.RibbonGalleryPopupCallback() {
-					public void popupToBeShown(JCommandPopupMenu menu) {
+					@Override
+                    public void popupToBeShown(JCommandPopupMenu menu) {
 						JCommandMenuButton saveSelectionButton = new JCommandMenuButton(
 								resourceBundle
 										.getString("Format.menuSaveSelection.text"),
@@ -1965,7 +1970,8 @@ public class BasicCheckRibbon extends JRibbonFrame {
 		} catch (Exception exc) {
 		}
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				final BasicCheckRibbon c = new BasicCheckRibbon();
 				c.configureRibbon();
 				c.applyComponentOrientation(ComponentOrientation

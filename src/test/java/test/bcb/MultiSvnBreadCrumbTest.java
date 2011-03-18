@@ -59,11 +59,13 @@ public class MultiSvnBreadCrumbTest extends JFrame {
 			Collections.sort(entries);
 		}
 
-		public Object getElementAt(int index) {
+		@Override
+        public Object getElementAt(int index) {
 			return entries.get(index);
 		}
 
-		public int getSize() {
+		@Override
+        public int getSize() {
 			return entries.size();
 		}
 	}
@@ -83,7 +85,8 @@ public class MultiSvnBreadCrumbTest extends JFrame {
 						"anonymous"));
 		this.bar.setThrowsExceptions(true);
 		this.bar.addExceptionHandler(new BreadcrumbBarExceptionHandler() {
-			public void onException(Throwable t) {
+			@Override
+            public void onException(Throwable t) {
 				MessageListDialog.showMessageDialog(
 						MultiSvnBreadCrumbTest.this, "Error", t);
 			}
@@ -93,7 +96,8 @@ public class MultiSvnBreadCrumbTest extends JFrame {
 			@Override
 			public void breadcrumbPathEvent(BreadcrumbPathEvent event) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						final List<BreadcrumbItem<String>> newPath = bar
 								.getModel().getItems();
 						System.out.println("New path is ");
@@ -166,7 +170,8 @@ public class MultiSvnBreadCrumbTest extends JFrame {
 		} catch (SecurityException e) {
 		}
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				MultiSvnBreadCrumbTest test = new MultiSvnBreadCrumbTest();
 				test.setSize(550, 385);
 				test.setLocationRelativeTo(null);

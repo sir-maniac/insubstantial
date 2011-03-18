@@ -59,7 +59,8 @@ public class RibbonMinimizedTestCase extends TestCase {
 							finalIcon);
 					jrb.setName("Group " + groupIndex + ", index " + i);
 					jrb.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
+						@Override
+                        public void actionPerformed(ActionEvent e) {
 							System.out.println("Invoked action on " + index);
 						}
 					});
@@ -80,7 +81,8 @@ public class RibbonMinimizedTestCase extends TestCase {
 		JCommandButton mainButton = new JCommandButton("Paste",
 				new edit_paste());
 		mainButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				System.out.println("Pasted!");
 			}
 		});

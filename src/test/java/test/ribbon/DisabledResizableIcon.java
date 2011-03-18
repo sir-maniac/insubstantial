@@ -54,16 +54,19 @@ public class DisabledResizableIcon implements ResizableIcon {
 		this.currHeight = startHeight;
 	}
 
-	public void setDimension(Dimension newDimension) {
+	@Override
+    public void setDimension(Dimension newDimension) {
 		this.currWidth = newDimension.width;
 		this.currHeight = newDimension.height;
 	}
 
-	public int getIconHeight() {
+	@Override
+    public int getIconHeight() {
 		return this.currHeight;
 	}
 
-	public int getIconWidth() {
+	@Override
+    public int getIconWidth() {
 		return this.currWidth;
 	}
 
@@ -79,7 +82,8 @@ public class DisabledResizableIcon implements ResizableIcon {
 		this.currWidth = width;
 	}
 
-	public void paintIcon(Component c, Graphics g, int x, int y) {
+	@Override
+    public void paintIcon(Component c, Graphics g, int x, int y) {
 		Graphics2D graphics = (Graphics2D) g.create();
 		graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);

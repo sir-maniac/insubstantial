@@ -37,7 +37,8 @@ public class SVGZBatikTestApplication extends JFrame {
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JButton size16 = new JButton("size16");
 		size16.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				// panel.iconButton.getIcon().setDimension(new Dimension(16,
 				// 16));
 				panel.iconButton.updateCustomDimension(16);
@@ -48,7 +49,8 @@ public class SVGZBatikTestApplication extends JFrame {
 		});
 		JButton size32 = new JButton("size32");
 		size32.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				panel.iconButton.updateCustomDimension(32);
 				panel.doLayout();
 				panel.iconButton.doLayout();
@@ -57,7 +59,8 @@ public class SVGZBatikTestApplication extends JFrame {
 		});
 		JButton size256 = new JButton("size256");
 		size256.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				// panel.iconButton.getIcon()
 				// .setDimension(new Dimension(128, 128));
 				panel.iconButton.updateCustomDimension(256);
@@ -94,24 +97,29 @@ public class SVGZBatikTestApplication extends JFrame {
 		}
 
 		private class SvgIconPanelLayout implements LayoutManager {
-			public void addLayoutComponent(String name, Component comp) {
+			@Override
+            public void addLayoutComponent(String name, Component comp) {
 			}
 
-			public void removeLayoutComponent(Component comp) {
+			@Override
+            public void removeLayoutComponent(Component comp) {
 			}
 
-			public void layoutContainer(Container parent) {
+			@Override
+            public void layoutContainer(Container parent) {
 				if (iconButton != null)
 					iconButton.setBounds(0, 0,
 							iconButton.getPreferredSize().width, iconButton
 									.getPreferredSize().height);
 			}
 
-			public Dimension minimumLayoutSize(Container parent) {
+			@Override
+            public Dimension minimumLayoutSize(Container parent) {
 				return this.preferredLayoutSize(parent);
 			}
 
-			public Dimension preferredLayoutSize(Container parent) {
+			@Override
+            public Dimension preferredLayoutSize(Container parent) {
 				if (iconButton != null)
 					return iconButton.getPreferredSize();
 				else

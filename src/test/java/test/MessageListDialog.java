@@ -72,9 +72,11 @@ public final class MessageListDialog extends JDialog {
 		JScrollPane mesScrollPane = new JScrollPane(messageList);
 		JButton closeButton = new JButton("Close");
 		closeButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						dispose();
 						if (toExitOnDispose)
 							System.exit(0);

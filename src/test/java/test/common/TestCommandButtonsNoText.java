@@ -53,7 +53,8 @@ public class TestCommandButtonsNoText extends TestCommandButtons {
 				new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY),
 						null)));
 		result.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				System.out.println(stamp() + ": Main paste");
 			}
 		});
@@ -74,7 +75,8 @@ public class TestCommandButtonsNoText extends TestCommandButtons {
 		result.setDisplayState(state);
 		result.setFlat(false);
 		result.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				System.out.println(stamp() + ": Cut");
 			}
 		});
@@ -91,7 +93,8 @@ public class TestCommandButtonsNoText extends TestCommandButtons {
 		result.setDisplayState(state);
 		result.setFlat(false);
 		result.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				System.out.println(stamp() + ": Copy");
 			}
 		});
@@ -121,7 +124,8 @@ public class TestCommandButtonsNoText extends TestCommandButtons {
 					@Override
 					public void run() {
 						apply(TestCommandButtonsNoText.this, new Command() {
-							public void apply(JCommandButton button) {
+							@Override
+                            public void apply(JCommandButton button) {
 								button.setText(noText.isSelected() ? null
 										: "New caption");
 								button.setExtraText(noText.isSelected() ? null
@@ -164,7 +168,8 @@ public class TestCommandButtonsNoText extends TestCommandButtons {
 	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				try {
 					UIManager.setLookAndFeel(new MetalLookAndFeel());
 				} catch (Exception e) {

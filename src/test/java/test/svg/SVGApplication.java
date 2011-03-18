@@ -71,7 +71,8 @@ public class SVGApplication {
 
 		// Set the button action.
 		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {
+			@Override
+            public void actionPerformed(ActionEvent ae) {
 				JFileChooser fc = new JFileChooser(lastDir);
 				int choice = fc.showOpenDialog(panel);
 				if (choice == JFileChooser.APPROVE_OPTION) {
@@ -96,11 +97,13 @@ public class SVGApplication {
 						transcoder
 								.setJavaToImplementResizableIconInterface(true);
 						transcoder.setListener(new TranscoderListener() {
-							public Writer getWriter() {
+							@Override
+                            public Writer getWriter() {
 								return pw;
 							}
 
-							public void finished() {
+							@Override
+                            public void finished() {
 								JOptionPane.showMessageDialog(null, "Finished");
 							}
 						});

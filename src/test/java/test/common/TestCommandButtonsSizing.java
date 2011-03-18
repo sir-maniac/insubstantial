@@ -55,7 +55,8 @@ public class TestCommandButtonsSizing extends JPanel {
 					.values()) {
 				this.model.add(new Mapping(state.getDisplayName() + " + "
 						+ commandButtonKind.name(), new Creator() {
-					public JComponent create(int fontSize) {
+					@Override
+                    public JComponent create(int fontSize) {
 						return createActionOnlyButton("Sample", state,
 								commandButtonKind, fontSize);
 					}
@@ -64,11 +65,13 @@ public class TestCommandButtonsSizing extends JPanel {
 		}
 
 		final JList list = new JList(new AbstractListModel() {
-			public Object getElementAt(int index) {
+			@Override
+            public Object getElementAt(int index) {
 				return model.get(index);
 			}
 
-			public int getSize() {
+			@Override
+            public int getSize() {
 				return model.size();
 			}
 		});
@@ -89,9 +92,11 @@ public class TestCommandButtonsSizing extends JPanel {
 
 		list.getSelectionModel().addListSelectionListener(
 				new ListSelectionListener() {
-					public void valueChanged(ListSelectionEvent e) {
+					@Override
+                    public void valueChanged(ListSelectionEvent e) {
 						SwingUtilities.invokeLater(new Runnable() {
-							public void run() {
+							@Override
+                            public void run() {
 								if (central != null)
 									remove(central);
 								central = null;
@@ -137,7 +142,8 @@ public class TestCommandButtonsSizing extends JPanel {
 		// mainButton.setMnemonic('P');
 		mainButton.setExtraText("Extra for " + text.toLowerCase());
 		mainButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				System.out.println("Action invoked");
 			}
 		});
@@ -163,7 +169,8 @@ public class TestCommandButtonsSizing extends JPanel {
 	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				JFrame frame = new JFrame("Testing command button fonts");
 				frame.setSize(800, 600);
 				frame.add(new TestCommandButtonsSizing());

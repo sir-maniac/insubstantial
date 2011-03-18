@@ -166,7 +166,8 @@ public class RibbonGalleryTestCase extends TestCase {
 
 								final int fSel = sel;
 								SwingUtilities.invokeAndWait(new Runnable() {
-									public void run() {
+									@Override
+                                    public void run() {
 										// System.out.println(toClick.getText()
 										// + " selection is "
 										// + toClick.getActionModel()

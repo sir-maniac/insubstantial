@@ -50,7 +50,8 @@ public class TestCommandToggleButtonsNoIcon extends TestCommandToggleButtons {
 		mainButton
 				.setExtraText(resourceBundle.getString("SelectAll.textExtra"));
 		mainButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				System.out.println(stamp() + ": Main selection");
 			}
 		});
@@ -72,7 +73,8 @@ public class TestCommandToggleButtonsNoIcon extends TestCommandToggleButtons {
 					public void run() {
 						apply(TestCommandToggleButtonsNoIcon.this,
 								new Command() {
-									public void apply(
+									@Override
+                                    public void apply(
 											JCommandToggleButton button) {
 										button
 												.setIcon(noIcon.isSelected() ? null
@@ -115,7 +117,8 @@ public class TestCommandToggleButtonsNoIcon extends TestCommandToggleButtons {
 	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				try {
 					UIManager.setLookAndFeel(new MetalLookAndFeel());
 				} catch (Exception e) {

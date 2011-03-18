@@ -122,7 +122,8 @@ public class TestCommandToggleButtons extends JFrame {
 		mainButton
 				.setExtraText(resourceBundle.getString("SelectAll.textExtra"));
 		mainButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				System.out.println(stamp()
 						+ ": button activated, selection state is "
 						+ mainButton.getActionModel().isSelected());
@@ -317,7 +318,8 @@ public class TestCommandToggleButtons extends JFrame {
 				"net.beeger.squareness.SquarenessLookAndFeel");
 
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				try {
 					UIManager.setLookAndFeel(new MetalLookAndFeel());
 				} catch (Exception e) {

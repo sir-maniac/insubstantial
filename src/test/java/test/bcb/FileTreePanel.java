@@ -142,7 +142,8 @@ public class FileTreePanel extends JPanel {
 		 * 
 		 * @see javax.swing.tree.TreeNode#children()
 		 */
-		public Enumeration<?> children() {
+		@Override
+        public Enumeration<?> children() {
 			final int elementCount = this.children.length;
 			return new Enumeration<File>() {
 				int count = 0;
@@ -152,7 +153,8 @@ public class FileTreePanel extends JPanel {
 				 * 
 				 * @see java.util.Enumeration#hasMoreElements()
 				 */
-				public boolean hasMoreElements() {
+				@Override
+                public boolean hasMoreElements() {
 					return this.count < elementCount;
 				}
 
@@ -161,7 +163,8 @@ public class FileTreePanel extends JPanel {
 				 * 
 				 * @see java.util.Enumeration#nextElement()
 				 */
-				public File nextElement() {
+				@Override
+                public File nextElement() {
 					if (this.count < elementCount) {
 						return FileTreeNode.this.children[this.count++];
 					}
@@ -176,7 +179,8 @@ public class FileTreePanel extends JPanel {
 		 * 
 		 * @see javax.swing.tree.TreeNode#getAllowsChildren()
 		 */
-		public boolean getAllowsChildren() {
+		@Override
+        public boolean getAllowsChildren() {
 			return true;
 		}
 
@@ -185,7 +189,8 @@ public class FileTreePanel extends JPanel {
 		 * 
 		 * @see javax.swing.tree.TreeNode#getChildAt(int)
 		 */
-		public TreeNode getChildAt(int childIndex) {
+		@Override
+        public TreeNode getChildAt(int childIndex) {
 			return new FileTreeNode(this.children[childIndex],
 					this.parent == null, this);
 		}
@@ -195,7 +200,8 @@ public class FileTreePanel extends JPanel {
 		 * 
 		 * @see javax.swing.tree.TreeNode#getChildCount()
 		 */
-		public int getChildCount() {
+		@Override
+        public int getChildCount() {
 			return this.children.length;
 		}
 
@@ -204,7 +210,8 @@ public class FileTreePanel extends JPanel {
 		 * 
 		 * @see javax.swing.tree.TreeNode#getIndex(javax.swing.tree.TreeNode)
 		 */
-		public int getIndex(TreeNode node) {
+		@Override
+        public int getIndex(TreeNode node) {
 			FileTreeNode ftn = (FileTreeNode) node;
 			for (int i = 0; i < this.children.length; i++) {
 				if (ftn.file.equals(this.children[i]))
@@ -218,7 +225,8 @@ public class FileTreePanel extends JPanel {
 		 * 
 		 * @see javax.swing.tree.TreeNode#getParent()
 		 */
-		public TreeNode getParent() {
+		@Override
+        public TreeNode getParent() {
 			return this.parent;
 		}
 
@@ -227,7 +235,8 @@ public class FileTreePanel extends JPanel {
 		 * 
 		 * @see javax.swing.tree.TreeNode#isLeaf()
 		 */
-		public boolean isLeaf() {
+		@Override
+        public boolean isLeaf() {
 			return (this.getChildCount() == 0);
 		}
 	}
@@ -261,7 +270,8 @@ public class FileTreePanel extends JPanel {
 	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				JFrame frame = new JFrame("File tree");
 				frame.setSize(500, 400);
 				frame.setLocationRelativeTo(null);

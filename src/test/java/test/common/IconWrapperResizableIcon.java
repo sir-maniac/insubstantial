@@ -70,7 +70,8 @@ public class IconWrapperResizableIcon implements ResizableIcon {
 	 * 
 	 * @see org.jvnet.flamingo.common.ResizableIcon#setDimension(java.awt.Dimension)
 	 */
-	public void setDimension(Dimension dim) {
+	@Override
+    public void setDimension(Dimension dim) {
 	}
 
 	/*

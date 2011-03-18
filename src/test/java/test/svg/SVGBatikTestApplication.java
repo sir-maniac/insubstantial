@@ -37,7 +37,8 @@ public class SVGBatikTestApplication extends JFrame {
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JButton size16 = new JButton("size16");
 		size16.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				panel.iconButton.updateCustomDimension(16);
 				panel.doLayout();
 				panel.iconButton.doLayout();
@@ -46,7 +47,8 @@ public class SVGBatikTestApplication extends JFrame {
 		});
 		JButton size32 = new JButton("size32");
 		size32.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				panel.iconButton.updateCustomDimension(32);
 				panel.doLayout();
 				panel.iconButton.doLayout();
@@ -55,7 +57,8 @@ public class SVGBatikTestApplication extends JFrame {
 		});
 		JButton size128 = new JButton("size128");
 		size128.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				panel.iconButton.updateCustomDimension(128);
 				panel.doLayout();
 				panel.iconButton.doLayout();
@@ -90,24 +93,29 @@ public class SVGBatikTestApplication extends JFrame {
 		}
 
 		private class SvgIconPanelLayout implements LayoutManager {
-			public void addLayoutComponent(String name, Component comp) {
+			@Override
+            public void addLayoutComponent(String name, Component comp) {
 			}
 
-			public void removeLayoutComponent(Component comp) {
+			@Override
+            public void removeLayoutComponent(Component comp) {
 			}
 
-			public void layoutContainer(Container parent) {
+			@Override
+            public void layoutContainer(Container parent) {
 				if (iconButton != null)
 					iconButton.setBounds(0, 0,
 							iconButton.getPreferredSize().width, iconButton
 									.getPreferredSize().height);
 			}
 
-			public Dimension minimumLayoutSize(Container parent) {
+			@Override
+            public Dimension minimumLayoutSize(Container parent) {
 				return this.preferredLayoutSize(parent);
 			}
 
-			public Dimension preferredLayoutSize(Container parent) {
+			@Override
+            public Dimension preferredLayoutSize(Container parent) {
 				if (iconButton != null)
 					return iconButton.getPreferredSize();
 				else

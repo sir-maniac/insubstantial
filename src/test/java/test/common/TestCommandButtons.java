@@ -222,7 +222,8 @@ public class TestCommandButtons extends JFrame {
 		copyButton.setDisplayState(state);
 		copyButton.setFlat(false);
 		copyButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				System.out.println(stamp() + ": Copy");
 			}
 		});
@@ -240,7 +241,8 @@ public class TestCommandButtons extends JFrame {
 		cutButton.setDisplayState(state);
 		cutButton.setFlat(false);
 		cutButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				System.out.println(stamp() + ": Cut");
 			}
 		});
@@ -255,7 +257,8 @@ public class TestCommandButtons extends JFrame {
 						null)));
 		mainButton.setExtraText(resourceBundle.getString("Paste.textExtra"));
 		mainButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				System.out.println(stamp() + ": Main paste");
 			}
 		});
@@ -483,7 +486,8 @@ public class TestCommandButtons extends JFrame {
 				"net.beeger.squareness.SquarenessLookAndFeel");
 
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				try {
 					UIManager.setLookAndFeel(new MetalLookAndFeel());
 				} catch (Exception e) {
