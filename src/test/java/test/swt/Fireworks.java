@@ -184,7 +184,8 @@ public class Fireworks extends Canvas {
 				if (!firstVolleyInitiated) {
 					firstVolleyInitiated = true;
 					Display.getDefault().asyncExec(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							final int width = Fireworks.this.getBounds().width;
 							final int height = Fireworks.this.getBounds().height;
 							new Thread() {
