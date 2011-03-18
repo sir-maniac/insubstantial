@@ -110,7 +110,8 @@ public class AndroidPropertyInterpolators implements PropertyInterpolatorSource 
 	}
 
 	static class PointInterpolator implements PropertyInterpolator<Point> {
-		public Point interpolate(Point from, Point to, float timelinePosition) {
+		@Override
+        public Point interpolate(Point from, Point to, float timelinePosition) {
 			int x = from.x + (int) (timelinePosition * (to.x - from.x));
 			int y = from.y + (int) (timelinePosition * (to.y - from.y));
 			return new Point(x, y);
@@ -123,7 +124,8 @@ public class AndroidPropertyInterpolators implements PropertyInterpolatorSource 
 	}
 
 	static class RectInterpolator implements PropertyInterpolator<Rect> {
-		public Rect interpolate(Rect from, Rect to, float timelinePosition) {
+		@Override
+        public Rect interpolate(Rect from, Rect to, float timelinePosition) {
 			int left = from.left
 					+ (int) (timelinePosition * (to.left - from.left));
 			int top = from.top + (int) (timelinePosition * (to.top - from.top));
@@ -141,7 +143,8 @@ public class AndroidPropertyInterpolators implements PropertyInterpolatorSource 
 	}
 
 	static class RectFInterpolator implements PropertyInterpolator<RectF> {
-		public RectF interpolate(RectF from, RectF to, float timelinePosition) {
+		@Override
+        public RectF interpolate(RectF from, RectF to, float timelinePosition) {
 			float left = from.left
 					+ (int) (timelinePosition * (to.left - from.left));
 			float top = from.top

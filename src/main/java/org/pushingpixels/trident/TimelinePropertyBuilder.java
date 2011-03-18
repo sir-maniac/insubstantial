@@ -68,7 +68,8 @@ public class TimelinePropertyBuilder<T> {
 			setterMethod = getSetter(obj, fieldName);
 		}
 
-		public void set(Object obj, String fieldName, T value) {
+		@Override
+        public void set(Object obj, String fieldName, T value) {
 			try {
 				setterMethod.invoke(obj, value);
 			} catch (Throwable t) {
@@ -89,7 +90,8 @@ public class TimelinePropertyBuilder<T> {
 			getterMethod = getGetter(obj, fieldName);
 		}
 
-		public T get(Object obj, String fieldName) {
+		@Override
+        public T get(Object obj, String fieldName) {
 			try {
 				return (T) getterMethod.invoke(obj);
 			} catch (Throwable t) {

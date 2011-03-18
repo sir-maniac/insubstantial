@@ -109,7 +109,8 @@ public class AWTPropertyInterpolators implements PropertyInterpolatorSource {
 	}
 
 	static class PointInterpolator implements PropertyInterpolator<Point> {
-		public Point interpolate(Point from, Point to, float timelinePosition) {
+		@Override
+        public Point interpolate(Point from, Point to, float timelinePosition) {
 			int x = from.x + (int) (timelinePosition * (to.x - from.x));
 			int y = from.y + (int) (timelinePosition * (to.y - from.y));
 			return new Point(x, y);
@@ -123,7 +124,8 @@ public class AWTPropertyInterpolators implements PropertyInterpolatorSource {
 
 	static class RectangleInterpolator implements
 			PropertyInterpolator<Rectangle> {
-		public Rectangle interpolate(Rectangle from, Rectangle to,
+		@Override
+        public Rectangle interpolate(Rectangle from, Rectangle to,
 				float timelinePosition) {
 			int x = from.x + (int) (timelinePosition * (to.x - from.x));
 			int y = from.y + (int) (timelinePosition * (to.y - from.y));
@@ -142,7 +144,8 @@ public class AWTPropertyInterpolators implements PropertyInterpolatorSource {
 
 	static class DimensionInterpolator implements
 			PropertyInterpolator<Dimension> {
-		public Dimension interpolate(Dimension from, Dimension to,
+		@Override
+        public Dimension interpolate(Dimension from, Dimension to,
 				float timelinePosition) {
 			int w = from.width
 					+ (int) (timelinePosition * (to.width - from.width));
@@ -151,7 +154,8 @@ public class AWTPropertyInterpolators implements PropertyInterpolatorSource {
 			return new Dimension(w, h);
 		}
 
-		public Class getBasePropertyClass() {
+		@Override
+        public Class getBasePropertyClass() {
 			return Dimension.class;
 		}
 	}

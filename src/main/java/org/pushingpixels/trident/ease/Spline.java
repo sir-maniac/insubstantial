@@ -152,7 +152,8 @@ public class Spline implements TimelineEase {
 	 *            Fraction of time in a given time interval.
 	 * @return interpolated fraction between 0 and 1
 	 */
-	public float map(float lengthFraction) {
+	@Override
+    public float map(float lengthFraction) {
 		// REMIND: speed this up with binary search
 		float interpolatedT = 1.0f;
 		float prevT = 0.0f;

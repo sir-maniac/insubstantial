@@ -516,7 +516,8 @@ class TimelineEngine {
 				if (shouldRunOnUIThread && (timeline.uiToolkitHandler != null)) {
 					timeline.uiToolkitHandler.runOnUIThread(
 							timeline.mainObject, new Runnable() {
-								public void run() {
+								@Override
+                                public void run() {
 									timeline.callback.onTimelineStateChanged(
 											oldState, newState,
 											durationFraction, timelinePosition);
@@ -547,7 +548,8 @@ class TimelineEngine {
 				if (shouldRunOnUIThread && (timeline.uiToolkitHandler != null)) {
 					timeline.uiToolkitHandler.runOnUIThread(
 							timeline.mainObject, new Runnable() {
-								public void run() {
+								@Override
+                                public void run() {
 									// System.err.println("Timeline @"
 									// + timeline.hashCode());
 									timeline.callback.onTimelinePulse(

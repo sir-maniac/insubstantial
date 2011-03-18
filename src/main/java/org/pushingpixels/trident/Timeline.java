@@ -203,7 +203,8 @@ public class Timeline implements TimelineScenario.TimelineScenarioActor {
 						&& (Timeline.this.uiToolkitHandler != null)) {
 					Timeline.this.uiToolkitHandler.runOnUIThread(mainObject,
 							new Runnable() {
-								public void run() {
+								@Override
+                                public void run() {
 									callback.onTimelineStateChanged(oldState,
 											newState, durationFraction,
 											timelinePosition);
@@ -237,7 +238,8 @@ public class Timeline implements TimelineScenario.TimelineScenarioActor {
 						&& (Timeline.this.uiToolkitHandler != null)) {
 					Timeline.this.uiToolkitHandler.runOnUIThread(mainObject,
 							new Runnable() {
-								public void run() {
+								@Override
+                                public void run() {
 									if (Timeline.this.getState() == TimelineState.CANCELLED)
 										return;
 									// System.err.println("Timeline @"
@@ -364,7 +366,8 @@ public class Timeline implements TimelineScenario.TimelineScenarioActor {
 				.from(from).to(to));
 	}
 
-	public void play() {
+	@Override
+    public void play() {
 		this.playSkipping(0);
 	}
 
