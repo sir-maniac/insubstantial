@@ -78,7 +78,8 @@ public class SubstanceSkinRibbonGallery {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						SwingUtilities.invokeLater(new Runnable() {
-							public void run() {
+							@Override
+                            public void run() {
 								SubstanceLookAndFeel.setSkin(skin);
 							}
 						});

@@ -97,15 +97,18 @@ public class SubstanceRibbonTaskToggleButtonUI extends
 		super.installDefaults();
 		this.commandButton.setOpaque(false);
 		this.commandButton.setBorder(new Border() {
-			public Insets getBorderInsets(Component c) {
+			@Override
+            public Insets getBorderInsets(Component c) {
 				return new Insets(0, 12, 0, 12);
 			}
 
-			public boolean isBorderOpaque() {
+			@Override
+            public boolean isBorderOpaque() {
 				return false;
 			}
 
-			public void paintBorder(Component c, Graphics g, int x, int y,
+			@Override
+            public void paintBorder(Component c, Graphics g, int x, int y,
 					int width, int height) {
 			}
 		});

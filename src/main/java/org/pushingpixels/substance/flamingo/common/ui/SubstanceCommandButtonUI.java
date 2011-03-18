@@ -183,7 +183,8 @@ public class SubstanceCommandButtonUI extends BasicCommandButtonUI implements
 		this.substanceVisualStateTracker.installListeners(this.commandButton);
 
 		this.substancePropertyListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if ("actionModel".equals(evt.getPropertyName())) {
 					if (substanceModelChangeListener != null)
 						substanceModelChangeListener.unregisterListeners();

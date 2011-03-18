@@ -137,7 +137,8 @@ public class SubstanceCommandToggleMenuButtonUI extends
 				ComponentStateFacet.ROLLOVER) > 0.0f);
 	}
 
-	protected Color getForegroundColor(ModelStateInfo modelStateInfo) {
+	@Override
+    protected Color getForegroundColor(ModelStateInfo modelStateInfo) {
 		Color fgColor = this.commandButton.getForeground();
 		if (fgColor instanceof UIResource) {
 			float buttonAlpha = SubstanceColorSchemeUtilities.getAlpha(

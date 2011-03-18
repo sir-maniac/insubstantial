@@ -161,7 +161,8 @@ public class SubstanceCommandToggleButtonUI extends BasicCommandToggleButtonUI
 		this.substanceVisualStateTracker.installListeners(this.commandButton);
 
 		this.substancePropertyListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (AbstractButton.MODEL_CHANGED_PROPERTY.equals(evt
 						.getPropertyName())) {
 					if (substanceModelChangeListener != null)

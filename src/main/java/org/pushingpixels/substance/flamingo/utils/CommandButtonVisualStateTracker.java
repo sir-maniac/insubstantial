@@ -54,7 +54,8 @@ public class CommandButtonVisualStateTracker {
 
 	public void installListeners(final AbstractCommandButton b) {
 		this.substancePropertyListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if ("actionModel".equals(evt.getPropertyName())) {
 					// action model has been changed
 					actionStateTransitionTracker.setModel(b.getActionModel());
