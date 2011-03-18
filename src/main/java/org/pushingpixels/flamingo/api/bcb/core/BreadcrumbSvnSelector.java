@@ -298,7 +298,8 @@ public class BreadcrumbSvnSelector extends JBreadcrumbBar<String> {
 			}
 		}
 		Collections.sort(result, new Comparator<StringValuePair<String>>() {
-			public int compare(StringValuePair<String> o1,
+			@Override
+            public int compare(StringValuePair<String> o1,
 					StringValuePair<String> o2) {
 				return o1.getKey().compareTo(o2.getKey());
 			}
@@ -333,7 +334,8 @@ public class BreadcrumbSvnSelector extends JBreadcrumbBar<String> {
 			}
 		}
 		Collections.sort(result, new Comparator<StringValuePair<String>>() {
-			public int compare(StringValuePair<String> o1,
+			@Override
+            public int compare(StringValuePair<String> o1,
 					StringValuePair<String> o2) {
 				return o1.getKey().compareTo(o2.getKey());
 			}

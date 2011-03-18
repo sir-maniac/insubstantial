@@ -241,7 +241,8 @@ public class BasicCommandButtonListener implements MouseListener,
 	 * 
 	 * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
 	 */
-	public void mouseExited(MouseEvent e) {
+	@Override
+    public void mouseExited(MouseEvent e) {
 		AbstractCommandButton b = (AbstractCommandButton) e.getSource();
 		ButtonModel actionModel = b.getActionModel();
 		PopupButtonModel popupModel = (b instanceof JCommandButton) ? ((JCommandButton) b)
@@ -262,7 +263,8 @@ public class BasicCommandButtonListener implements MouseListener,
 	 * javax.swing.event.ChangeListener#stateChanged(javax.swing.event.ChangeEvent
 	 * )
 	 */
-	public void stateChanged(ChangeEvent e) {
+	@Override
+    public void stateChanged(ChangeEvent e) {
 		AbstractCommandButton b = (AbstractCommandButton) e.getSource();
 		b.repaint();
 	}
@@ -321,7 +323,8 @@ public class BasicCommandButtonListener implements MouseListener,
 		 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent
 		 * )
 		 */
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			ButtonModel model = button.getActionModel();
 			model.setArmed(true);
 			model.setPressed(true);
@@ -375,7 +378,8 @@ public class BasicCommandButtonListener implements MouseListener,
 		 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent
 		 * )
 		 */
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			ButtonModel model = button.getActionModel();
 			model.setPressed(false);
 			model.setArmed(false);

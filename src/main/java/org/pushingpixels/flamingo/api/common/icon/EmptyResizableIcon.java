@@ -75,7 +75,8 @@ public class EmptyResizableIcon implements ResizableIcon {
 	 * org.jvnet.flamingo.common.icon.ResizableIcon#setDimension(java.awt.Dimension
 	 * )
 	 */
-	public void setDimension(Dimension newDimension) {
+	@Override
+    public void setDimension(Dimension newDimension) {
 		this.width = newDimension.width;
 		this.height = newDimension.height;
 	}
@@ -85,7 +86,8 @@ public class EmptyResizableIcon implements ResizableIcon {
 	 * 
 	 * @see javax.swing.Icon#getIconHeight()
 	 */
-	public int getIconHeight() {
+	@Override
+    public int getIconHeight() {
 		return this.height;
 	}
 
@@ -94,7 +96,8 @@ public class EmptyResizableIcon implements ResizableIcon {
 	 * 
 	 * @see javax.swing.Icon#getIconWidth()
 	 */
-	public int getIconWidth() {
+	@Override
+    public int getIconWidth() {
 		return this.width;
 	}
 
@@ -104,6 +107,7 @@ public class EmptyResizableIcon implements ResizableIcon {
 	 * @see javax.swing.Icon#paintIcon(java.awt.Component, java.awt.Graphics,
 	 * int, int)
 	 */
-	public void paintIcon(Component c, Graphics g, int x, int y) {
+	@Override
+    public void paintIcon(Component c, Graphics g, int x, int y) {
 	}
 }

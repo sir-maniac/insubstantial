@@ -276,7 +276,8 @@ public abstract class AbstractFileViewPanel<T> extends JCommandButtonPanel {
 					if (icon instanceof AsynchronousLoading) {
 						((AsynchronousLoading) icon)
 								.addAsynchronousLoadListener(new AsynchronousLoadListener() {
-									public void completed(boolean success) {
+									@Override
+                                    public void completed(boolean success) {
 										synchronized (AbstractFileViewPanel.this) {
 											if (loadedSet
 													.contains(commandButton))

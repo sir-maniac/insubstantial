@@ -113,7 +113,8 @@ public class DecoratedResizableIcon implements ResizableIcon,
 	 * 
 	 * @see javax.swing.Icon#getIconHeight()
 	 */
-	public int getIconHeight() {
+	@Override
+    public int getIconHeight() {
 		return this.delegate.getIconHeight();
 	}
 
@@ -122,7 +123,8 @@ public class DecoratedResizableIcon implements ResizableIcon,
 	 * 
 	 * @see javax.swing.Icon#getIconWidth()
 	 */
-	public int getIconWidth() {
+	@Override
+    public int getIconWidth() {
 		return this.delegate.getIconWidth();
 	}
 
@@ -132,7 +134,8 @@ public class DecoratedResizableIcon implements ResizableIcon,
 	 * @see javax.swing.Icon#paintIcon(java.awt.Component, java.awt.Graphics,
 	 * int, int)
 	 */
-	public void paintIcon(Component c, Graphics g, int x, int y) {
+	@Override
+    public void paintIcon(Component c, Graphics g, int x, int y) {
 		this.delegate.paintIcon(c, g, x, y);
 		for (IconDecorator decorator : this.decorators) {
 			decorator.paintIconDecoration(c, g, x, y, this.delegate
@@ -147,7 +150,8 @@ public class DecoratedResizableIcon implements ResizableIcon,
 	 * org.jvnet.flamingo.common.icon.ResizableIcon#setDimension(java.awt.Dimension
 	 * )
 	 */
-	public void setDimension(Dimension newDimension) {
+	@Override
+    public void setDimension(Dimension newDimension) {
 		this.delegate.setDimension(newDimension);
 	}
 

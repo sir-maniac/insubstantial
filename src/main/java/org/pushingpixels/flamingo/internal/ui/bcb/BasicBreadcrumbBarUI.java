@@ -338,7 +338,8 @@ public class BasicBreadcrumbBarUI extends BreadcrumbBarUI {
 		 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String,
 		 * java.awt.Component)
 		 */
-		public void addLayoutComponent(String name, Component c) {
+		@Override
+        public void addLayoutComponent(String name, Component c) {
 		}
 
 		/*
@@ -346,7 +347,8 @@ public class BasicBreadcrumbBarUI extends BreadcrumbBarUI {
 		 * 
 		 * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
 		 */
-		public void removeLayoutComponent(Component c) {
+		@Override
+        public void removeLayoutComponent(Component c) {
 		}
 
 		/*
@@ -354,7 +356,8 @@ public class BasicBreadcrumbBarUI extends BreadcrumbBarUI {
 		 * 
 		 * @see java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
 		 */
-		public Dimension preferredLayoutSize(Container c) {
+		@Override
+        public Dimension preferredLayoutSize(Container c) {
 			// The height of breadcrumb bar is
 			// computed based on the preferred height of a command
 			// button in MEDIUM state.
@@ -370,7 +373,8 @@ public class BasicBreadcrumbBarUI extends BreadcrumbBarUI {
 		 * 
 		 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
 		 */
-		public Dimension minimumLayoutSize(Container c) {
+		@Override
+        public Dimension minimumLayoutSize(Container c) {
 			int buttonHeight = dummy.getPreferredSize().height;
 
 			return new Dimension(10, buttonHeight);
@@ -381,7 +385,8 @@ public class BasicBreadcrumbBarUI extends BreadcrumbBarUI {
 		 * 
 		 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
 		 */
-		public void layoutContainer(Container c) {
+		@Override
+        public void layoutContainer(Container c) {
 			int width = c.getWidth();
 			int height = c.getHeight();
 			scrollerPanel.setBounds(0, 0, width, height);
@@ -562,7 +567,8 @@ public class BasicBreadcrumbBarUI extends BreadcrumbBarUI {
 								@Override
 								public void actionPerformed(ActionEvent e) {
 									SwingUtilities.invokeLater(new Runnable() {
-										public void run() {
+										@Override
+                                        public void run() {
 											if (bi == null)
 												return;
 

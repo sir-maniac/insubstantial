@@ -174,7 +174,8 @@ public class BasicBandControlPanelUI extends AbstractBandControlPanelUI {
 		 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String,
 		 * java.awt.Component)
 		 */
-		public void addLayoutComponent(String name, Component c) {
+		@Override
+        public void addLayoutComponent(String name, Component c) {
 		}
 
 		/*
@@ -182,7 +183,8 @@ public class BasicBandControlPanelUI extends AbstractBandControlPanelUI {
 		 * 
 		 * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
 		 */
-		public void removeLayoutComponent(Component c) {
+		@Override
+        public void removeLayoutComponent(Component c) {
 		}
 
 		/*
@@ -190,7 +192,8 @@ public class BasicBandControlPanelUI extends AbstractBandControlPanelUI {
 		 * 
 		 * @see java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
 		 */
-		public Dimension preferredLayoutSize(Container c) {
+		@Override
+        public Dimension preferredLayoutSize(Container c) {
 			// The height of ribbon band control panel is
 			// computed based on the preferred height of a command
 			// button in BIG state.
@@ -220,7 +223,8 @@ public class BasicBandControlPanelUI extends AbstractBandControlPanelUI {
 		 * 
 		 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
 		 */
-		public Dimension minimumLayoutSize(Container c) {
+		@Override
+        public Dimension minimumLayoutSize(Container c) {
 			return this.preferredLayoutSize(c);
 		}
 
@@ -229,7 +233,8 @@ public class BasicBandControlPanelUI extends AbstractBandControlPanelUI {
 		 * 
 		 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
 		 */
-		public void layoutContainer(Container c) {
+		@Override
+        public void layoutContainer(Container c) {
 			// System.out.println("Control panel real = " + c.getHeight());
 
 			AbstractRibbonBand ribbonBand = ((JBandControlPanel) c)

@@ -782,7 +782,8 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 	 * 
 	 * @see javax.swing.Scrollable#getPreferredScrollableViewportSize()
 	 */
-	public Dimension getPreferredScrollableViewportSize() {
+	@Override
+    public Dimension getPreferredScrollableViewportSize() {
 		return this.getPreferredSize();
 	}
 
@@ -793,7 +794,8 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 	 * javax.swing.Scrollable#getScrollableBlockIncrement(java.awt.Rectangle,
 	 * int, int)
 	 */
-	public int getScrollableBlockIncrement(Rectangle visibleRect,
+	@Override
+    public int getScrollableBlockIncrement(Rectangle visibleRect,
 			int orientation, int direction) {
 		return 30;
 	}
@@ -803,7 +805,8 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 	 * 
 	 * @see javax.swing.Scrollable#getScrollableTracksViewportHeight()
 	 */
-	public boolean getScrollableTracksViewportHeight() {
+	@Override
+    public boolean getScrollableTracksViewportHeight() {
 		return (this.layoutKind == LayoutKind.COLUMN_FILL);
 	}
 
@@ -812,7 +815,8 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 	 * 
 	 * @see javax.swing.Scrollable#getScrollableTracksViewportWidth()
 	 */
-	public boolean getScrollableTracksViewportWidth() {
+	@Override
+    public boolean getScrollableTracksViewportWidth() {
 		return (this.layoutKind == LayoutKind.ROW_FILL);
 	}
 
@@ -823,7 +827,8 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 	 * javax.swing.Scrollable#getScrollableUnitIncrement(java.awt.Rectangle,
 	 * int, int)
 	 */
-	public int getScrollableUnitIncrement(Rectangle visibleRect,
+	@Override
+    public int getScrollableUnitIncrement(Rectangle visibleRect,
 			int orientation, int direction) {
 		return 10;
 	}

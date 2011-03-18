@@ -557,12 +557,14 @@ public abstract class AbstractCommandButton extends
 	 * @author Kirill Grouchnikov
 	 */
 	class ActionHandler implements ActionListener, ChangeListener {
-		public void stateChanged(ChangeEvent e) {
+		@Override
+        public void stateChanged(ChangeEvent e) {
 			fireStateChanged();
 			repaint();
 		}
 
-		public void actionPerformed(ActionEvent event) {
+		@Override
+        public void actionPerformed(ActionEvent event) {
 			fireActionPerformed(event);
 		}
 	}

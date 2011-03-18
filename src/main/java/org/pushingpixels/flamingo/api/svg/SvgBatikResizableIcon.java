@@ -197,7 +197,8 @@ public class SvgBatikResizableIcon extends SvgBatikIcon implements
 	 * org.jvnet.flamingo.common.icon.ResizableIcon#setDimension(java.awt.Dimension
 	 * )
 	 */
-	public void setDimension(Dimension dim) {
+	@Override
+    public void setDimension(Dimension dim) {
 		this.setPreferredSize(dim);
 	}
 
@@ -208,7 +209,8 @@ public class SvgBatikResizableIcon extends SvgBatikIcon implements
 	 * org.jvnet.flamingo.common.AsynchronousLoading#addAsynchronousLoadListener
 	 * (org.jvnet.flamingo.common.AsynchronousLoadListener)
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
+    @SuppressWarnings("unchecked")
 	public void addAsynchronousLoadListener(AsynchronousLoadListener l) {
 		listenerList.add(AsynchronousLoadListener.class, l);
 	}
@@ -220,7 +222,8 @@ public class SvgBatikResizableIcon extends SvgBatikIcon implements
 	 * org.jvnet.flamingo.common.AsynchronousLoading#removeAsynchronousLoadListener
 	 * (org.jvnet.flamingo.common.AsynchronousLoadListener)
 	 */
-	public void removeAsynchronousLoadListener(AsynchronousLoadListener l) {
+	@Override
+    public void removeAsynchronousLoadListener(AsynchronousLoadListener l) {
 		listenerList.remove(AsynchronousLoadListener.class, l);
 	}
 
@@ -255,7 +258,8 @@ public class SvgBatikResizableIcon extends SvgBatikIcon implements
 	 * Dispatcher for GVT tree rendering completion.
 	 */
 	static Dispatcher asyncCompletedDispatcher = new Dispatcher() {
-		public void dispatch(Object listener, Object event) {
+		@Override
+        public void dispatch(Object listener, Object event) {
 			((AsynchronousLoadListener) listener).completed((Boolean) event);
 		}
 	};

@@ -646,7 +646,8 @@ public class BasicRibbonUI extends RibbonUI {
 		 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String,
 		 * java.awt.Component)
 		 */
-		public void addLayoutComponent(String name, Component c) {
+		@Override
+        public void addLayoutComponent(String name, Component c) {
 		}
 
 		/*
@@ -654,7 +655,8 @@ public class BasicRibbonUI extends RibbonUI {
 		 * 
 		 * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
 		 */
-		public void removeLayoutComponent(Component c) {
+		@Override
+        public void removeLayoutComponent(Component c) {
 		}
 
 		/*
@@ -662,7 +664,8 @@ public class BasicRibbonUI extends RibbonUI {
 		 * 
 		 * @see java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
 		 */
-		public Dimension preferredLayoutSize(Container c) {
+		@Override
+        public Dimension preferredLayoutSize(Container c) {
 			Insets ins = c.getInsets();
 			int maxPrefBandHeight = 0;
 			boolean isRibbonMinimized = ribbon.isMinimized();
@@ -694,7 +697,8 @@ public class BasicRibbonUI extends RibbonUI {
 		 * 
 		 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
 		 */
-		public Dimension minimumLayoutSize(Container c) {
+		@Override
+        public Dimension minimumLayoutSize(Container c) {
 			// go over all ribbon bands and sum the width
 			// of ribbon buttons (of collapsed state)
 			Insets ins = c.getInsets();
@@ -736,7 +740,8 @@ public class BasicRibbonUI extends RibbonUI {
 		 * 
 		 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
 		 */
-		public void layoutContainer(Container c) {
+		@Override
+        public void layoutContainer(Container c) {
 			// System.out.println("Ribbon real = " + c.getHeight());
 
 			Insets ins = c.getInsets();
@@ -872,7 +877,8 @@ public class BasicRibbonUI extends RibbonUI {
 		 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String,
 		 * java.awt.Component)
 		 */
-		public void addLayoutComponent(String name, Component c) {
+		@Override
+        public void addLayoutComponent(String name, Component c) {
 		}
 
 		/*
@@ -880,7 +886,8 @@ public class BasicRibbonUI extends RibbonUI {
 		 * 
 		 * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
 		 */
-		public void removeLayoutComponent(Component c) {
+		@Override
+        public void removeLayoutComponent(Component c) {
 		}
 
 		/*
@@ -888,7 +895,8 @@ public class BasicRibbonUI extends RibbonUI {
 		 * 
 		 * @see java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
 		 */
-		public Dimension preferredLayoutSize(Container c) {
+		@Override
+        public Dimension preferredLayoutSize(Container c) {
 			Insets ins = c.getInsets();
 			int pw = 0;
 			int gap = getBandGap();
@@ -905,7 +913,8 @@ public class BasicRibbonUI extends RibbonUI {
 		 * 
 		 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
 		 */
-		public Dimension minimumLayoutSize(Container c) {
+		@Override
+        public Dimension minimumLayoutSize(Container c) {
 			return this.preferredLayoutSize(c);
 		}
 
@@ -914,7 +923,8 @@ public class BasicRibbonUI extends RibbonUI {
 		 * 
 		 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
 		 */
-		public void layoutContainer(Container c) {
+		@Override
+        public void layoutContainer(Container c) {
 			Insets ins = c.getInsets();
 			int gap = getBandGap();
 
@@ -1228,7 +1238,8 @@ public class BasicRibbonUI extends RibbonUI {
 		 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String,
 		 * java.awt.Component)
 		 */
-		public void addLayoutComponent(String name, Component c) {
+		@Override
+        public void addLayoutComponent(String name, Component c) {
 		}
 
 		/*
@@ -1236,7 +1247,8 @@ public class BasicRibbonUI extends RibbonUI {
 		 * 
 		 * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
 		 */
-		public void removeLayoutComponent(Component c) {
+		@Override
+        public void removeLayoutComponent(Component c) {
 		}
 
 		/*
@@ -1244,7 +1256,8 @@ public class BasicRibbonUI extends RibbonUI {
 		 * 
 		 * @see java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
 		 */
-		public Dimension preferredLayoutSize(Container c) {
+		@Override
+        public Dimension preferredLayoutSize(Container c) {
 			// Insets ins = c.getInsets();
 			int maxPrefBandHeight = 0;
 			if (ribbon.getTaskCount() > 0) {
@@ -1266,7 +1279,8 @@ public class BasicRibbonUI extends RibbonUI {
 		 * 
 		 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
 		 */
-		public Dimension minimumLayoutSize(Container c) {
+		@Override
+        public Dimension minimumLayoutSize(Container c) {
 			// go over all ribbon bands and sum the width
 			// of ribbon buttons (of collapsed state)
 			// Insets ins = c.getInsets();
@@ -1310,7 +1324,8 @@ public class BasicRibbonUI extends RibbonUI {
 		 * 
 		 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
 		 */
-		public void layoutContainer(Container c) {
+		@Override
+        public void layoutContainer(Container c) {
 			// System.err.println("Layout of band host panel " + c.getWidth() +
 			// ":" + c.getHeight());
 			int bandGap = getBandGap();
@@ -1622,7 +1637,8 @@ public class BasicRibbonUI extends RibbonUI {
 		 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String,
 		 * java.awt.Component)
 		 */
-		public void addLayoutComponent(String name, Component c) {
+		@Override
+        public void addLayoutComponent(String name, Component c) {
 		}
 
 		/*
@@ -1630,7 +1646,8 @@ public class BasicRibbonUI extends RibbonUI {
 		 * 
 		 * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
 		 */
-		public void removeLayoutComponent(Component c) {
+		@Override
+        public void removeLayoutComponent(Component c) {
 		}
 
 		/*
@@ -1638,7 +1655,8 @@ public class BasicRibbonUI extends RibbonUI {
 		 * 
 		 * @see java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
 		 */
-		public Dimension preferredLayoutSize(Container c) {
+		@Override
+        public Dimension preferredLayoutSize(Container c) {
 			int tabButtonGap = getTabButtonGap();
 			int taskToggleButtonHeight = getTaskToggleButtonHeight();
 
@@ -1658,7 +1676,8 @@ public class BasicRibbonUI extends RibbonUI {
 		 * 
 		 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
 		 */
-		public Dimension minimumLayoutSize(Container c) {
+		@Override
+        public Dimension minimumLayoutSize(Container c) {
 			int tabButtonGap = getTabButtonGap();
 			int taskToggleButtonHeight = getTaskToggleButtonHeight();
 
@@ -1678,7 +1697,8 @@ public class BasicRibbonUI extends RibbonUI {
 		 * 
 		 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
 		 */
-		public void layoutContainer(Container c) {
+		@Override
+        public void layoutContainer(Container c) {
 			int y = 0;
 			int tabButtonGap = getTabButtonGap();
 			int taskToggleButtonHeight = getTaskToggleButtonHeight();
@@ -1784,9 +1804,11 @@ public class BasicRibbonUI extends RibbonUI {
 			// wire listener to select the task when the button is
 			// selected
 			taskToggleButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+				@Override
+                public void actionPerformed(ActionEvent e) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							scrollAndRevealTaskToggleButton(taskToggleButton);
 
 							ribbon.setSelectedTask(task);
@@ -2078,7 +2100,8 @@ public class BasicRibbonUI extends RibbonUI {
 
 		final int indexToSet = newSelectedTaskIndex;
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				ribbon
 						.setCursor(Cursor
 								.getPredefinedCursor(Cursor.WAIT_CURSOR));

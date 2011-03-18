@@ -455,11 +455,13 @@ public class JRibbonFrame extends JFrame {
 		JLayeredPane layeredPane = rootPane.getLayeredPane();
 		final LayoutManager currLM = rootPane.getLayout();
 		rootPane.setLayout(new LayoutManager() {
-			public void addLayoutComponent(String name, Component comp) {
+			@Override
+            public void addLayoutComponent(String name, Component comp) {
 				currLM.addLayoutComponent(name, comp);
 			}
 
-			public void layoutContainer(Container parent) {
+			@Override
+            public void layoutContainer(Container parent) {
 				currLM.layoutContainer(parent);
 				JRibbonFrame ribbonFrame = JRibbonFrame.this;
 				if (ribbonFrame.getRootPane().getWindowDecorationStyle() != JRootPane.NONE)
@@ -470,15 +472,18 @@ public class JRibbonFrame extends JFrame {
 							.getContentPane().getBounds());
 			}
 
-			public Dimension minimumLayoutSize(Container parent) {
+			@Override
+            public Dimension minimumLayoutSize(Container parent) {
 				return currLM.minimumLayoutSize(parent);
 			}
 
-			public Dimension preferredLayoutSize(Container parent) {
+			@Override
+            public Dimension preferredLayoutSize(Container parent) {
 				return currLM.preferredLayoutSize(parent);
 			}
 
-			public void removeLayoutComponent(Component comp) {
+			@Override
+            public void removeLayoutComponent(Component comp) {
 				currLM.removeLayoutComponent(comp);
 			}
 		});
@@ -557,7 +562,8 @@ public class JRibbonFrame extends JFrame {
 						final CountDownLatch latch = new CountDownLatch(1);
 						final boolean[] status = new boolean[1];
 						AsynchronousLoadListener all = new AsynchronousLoadListener() {
-							public void completed(boolean success) {
+							@Override
+                            public void completed(boolean success) {
 								status[0] = success;
 								latch.countDown();
 							}
@@ -591,7 +597,8 @@ public class JRibbonFrame extends JFrame {
 			final Image image16 = getImage(icon, 16);
 			final Image image128 = getImage(icon, 128);
 			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					if (image16 != null) {
 						setLegacyIconImages(Arrays.asList(image16));
 					}
@@ -629,7 +636,8 @@ public class JRibbonFrame extends JFrame {
 			if (icon64 != null)
 				images.add(icon64);
 			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					if (!images.isEmpty())
 						setLegacyIconImages(images);
 					setMainAppIcon(icon);
@@ -658,7 +666,8 @@ public class JRibbonFrame extends JFrame {
 				final CountDownLatch latch = new CountDownLatch(1);
 				final boolean[] status = new boolean[1];
 				AsynchronousLoadListener all = new AsynchronousLoadListener() {
-					public void completed(boolean success) {
+					@Override
+                    public void completed(boolean success) {
 						status[0] = success;
 						latch.countDown();
 					}

@@ -705,12 +705,14 @@ public class JCommandButton extends AbstractCommandButton {
 	 * @author Kirill Grouchnikov
 	 */
 	class PopupHandler implements PopupActionListener, ChangeListener {
-		public void stateChanged(ChangeEvent e) {
+		@Override
+        public void stateChanged(ChangeEvent e) {
 			fireStateChanged();
 			repaint();
 		}
 
-		public void actionPerformed(ActionEvent event) {
+		@Override
+        public void actionPerformed(ActionEvent event) {
 			firePopupActionPerformed(event);
 		}
 	}

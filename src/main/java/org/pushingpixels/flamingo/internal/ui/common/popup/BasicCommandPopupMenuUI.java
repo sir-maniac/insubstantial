@@ -196,7 +196,8 @@ public class BasicCommandPopupMenuUI extends BasicPopupPanelUI {
 			 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String,
 			 * java.awt.Component)
 			 */
-			public void addLayoutComponent(String name, Component comp) {
+			@Override
+            public void addLayoutComponent(String name, Component comp) {
 			}
 
 			/*
@@ -205,7 +206,8 @@ public class BasicCommandPopupMenuUI extends BasicPopupPanelUI {
 			 * @see
 			 * java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
 			 */
-			public void removeLayoutComponent(Component comp) {
+			@Override
+            public void removeLayoutComponent(Component comp) {
 			}
 
 			/*
@@ -213,7 +215,8 @@ public class BasicCommandPopupMenuUI extends BasicPopupPanelUI {
 			 * 
 			 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
 			 */
-			public void layoutContainer(Container parent) {
+			@Override
+            public void layoutContainer(Container parent) {
 				Insets insets = parent.getInsets();
 				int left = insets.left;
 				int right = insets.right;
@@ -228,7 +231,8 @@ public class BasicCommandPopupMenuUI extends BasicPopupPanelUI {
 			 * 
 			 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
 			 */
-			public Dimension minimumLayoutSize(Container parent) {
+			@Override
+            public Dimension minimumLayoutSize(Container parent) {
 				return this.preferredLayoutSize(parent);
 			}
 
@@ -238,7 +242,8 @@ public class BasicCommandPopupMenuUI extends BasicPopupPanelUI {
 			 * @see
 			 * java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
 			 */
-			public Dimension preferredLayoutSize(Container parent) {
+			@Override
+            public Dimension preferredLayoutSize(Container parent) {
 				Insets insets = parent.getInsets();
 				int left = insets.left;
 				int right = insets.right;

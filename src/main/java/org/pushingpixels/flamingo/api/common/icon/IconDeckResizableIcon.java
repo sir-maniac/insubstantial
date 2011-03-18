@@ -88,7 +88,8 @@ public class IconDeckResizableIcon<T> implements ResizableIcon,
 	 * org.jvnet.flamingo.common.icon.ResizableIcon#setDimension(java.awt.Dimension
 	 * )
 	 */
-	public void setDimension(Dimension dim) {
+	@Override
+    public void setDimension(Dimension dim) {
 		for (ResizableIcon icon : iconDeck.values()) {
 			int currH = icon.getIconHeight();
 			int currW = icon.getIconWidth();
@@ -102,7 +103,8 @@ public class IconDeckResizableIcon<T> implements ResizableIcon,
 	 * 
 	 * @see javax.swing.Icon#getIconHeight()
 	 */
-	public int getIconHeight() {
+	@Override
+    public int getIconHeight() {
 		return currentIcon.getIconHeight();
 	}
 
@@ -111,7 +113,8 @@ public class IconDeckResizableIcon<T> implements ResizableIcon,
 	 * 
 	 * @see javax.swing.Icon#getIconWidth()
 	 */
-	public int getIconWidth() {
+	@Override
+    public int getIconWidth() {
 		return currentIcon.getIconWidth();
 	}
 
@@ -121,7 +124,8 @@ public class IconDeckResizableIcon<T> implements ResizableIcon,
 	 * @see javax.swing.Icon#paintIcon(java.awt.Component, java.awt.Graphics,
 	 * int, int)
 	 */
-	public void paintIcon(Component c, Graphics g, int x, int y) {
+	@Override
+    public void paintIcon(Component c, Graphics g, int x, int y) {
 		currentIcon.paintIcon(c, g, x, y);
 	}
 
@@ -132,7 +136,8 @@ public class IconDeckResizableIcon<T> implements ResizableIcon,
 	 * org.jvnet.flamingo.common.AsynchronousLoading#addAsynchronousLoadListener
 	 * (org.jvnet.flamingo.common.AsynchronousLoadListener)
 	 */
-	public void addAsynchronousLoadListener(AsynchronousLoadListener l) {
+	@Override
+    public void addAsynchronousLoadListener(AsynchronousLoadListener l) {
 		for (ResizableIcon icon : iconDeck.values()) {
 			if (icon instanceof AsynchronousLoading)
 				((AsynchronousLoading) icon).addAsynchronousLoadListener(l);
@@ -144,7 +149,8 @@ public class IconDeckResizableIcon<T> implements ResizableIcon,
 	 * 
 	 * @see org.jvnet.flamingo.common.AsynchronousLoading#isLoading()
 	 */
-	public boolean isLoading() {
+	@Override
+    public boolean isLoading() {
 		for (ResizableIcon icon : iconDeck.values()) {
 			if (icon instanceof AsynchronousLoading) {
 				if (((AsynchronousLoading) icon).isLoading())
@@ -162,7 +168,8 @@ public class IconDeckResizableIcon<T> implements ResizableIcon,
 	 * org.jvnet.flamingo.common.AsynchronousLoading#removeAsynchronousLoadListener
 	 * (org.jvnet.flamingo.common.AsynchronousLoadListener)
 	 */
-	public void removeAsynchronousLoadListener(AsynchronousLoadListener l) {
+	@Override
+    public void removeAsynchronousLoadListener(AsynchronousLoadListener l) {
 		for (ResizableIcon icon : iconDeck.values()) {
 			if (icon instanceof AsynchronousLoading)
 				((AsynchronousLoading) icon).removeAsynchronousLoadListener(l);

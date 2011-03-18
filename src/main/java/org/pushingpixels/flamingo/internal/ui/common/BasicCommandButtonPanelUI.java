@@ -128,12 +128,14 @@ public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
 	 */
 	protected void installListeners() {
 		this.propertyChangeListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if ("maxButtonColumns".equals(evt.getPropertyName())
 						|| "maxButtonRows".equals(evt.getPropertyName())
 						|| "toShowGroupLabels".equals(evt.getPropertyName())) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							if (buttonPanel != null) {
 								recomputeGroupHeaders();
 								buttonPanel.revalidate();
@@ -344,7 +346,8 @@ public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
 		 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String,
 		 * java.awt.Component)
 		 */
-		public void addLayoutComponent(String name, Component comp) {
+		@Override
+        public void addLayoutComponent(String name, Component comp) {
 		}
 
 		/*
@@ -352,7 +355,8 @@ public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
 		 * 
 		 * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
 		 */
-		public void removeLayoutComponent(Component comp) {
+		@Override
+        public void removeLayoutComponent(Component comp) {
 		}
 
 		/*
@@ -360,7 +364,8 @@ public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
 		 * 
 		 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
 		 */
-		public void layoutContainer(Container parent) {
+		@Override
+        public void layoutContainer(Container parent) {
 			Insets bInsets = parent.getInsets();
 			Insets groupInsets = getGroupInsets();
 			int left = bInsets.left;
@@ -484,7 +489,8 @@ public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
 		 * 
 		 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
 		 */
-		public Dimension minimumLayoutSize(Container parent) {
+		@Override
+        public Dimension minimumLayoutSize(Container parent) {
 			return new Dimension(20, 20);
 		}
 
@@ -493,7 +499,8 @@ public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
 		 * 
 		 * @see java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
 		 */
-		public Dimension preferredLayoutSize(Container parent) {
+		@Override
+        public Dimension preferredLayoutSize(Container parent) {
 			JCommandButtonPanel panel = (JCommandButtonPanel) parent;
 
 			int maxButtonColumnsToUse = panel.getMaxButtonColumns();
@@ -565,7 +572,8 @@ public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
 		 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String,
 		 * java.awt.Component)
 		 */
-		public void addLayoutComponent(String name, Component comp) {
+		@Override
+        public void addLayoutComponent(String name, Component comp) {
 		}
 
 		/*
@@ -573,7 +581,8 @@ public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
 		 * 
 		 * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
 		 */
-		public void removeLayoutComponent(Component comp) {
+		@Override
+        public void removeLayoutComponent(Component comp) {
 		}
 
 		/*
@@ -581,7 +590,8 @@ public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
 		 * 
 		 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
 		 */
-		public void layoutContainer(Container parent) {
+		@Override
+        public void layoutContainer(Container parent) {
 			Insets bInsets = parent.getInsets();
 			Insets groupInsets = getGroupInsets();
 			int top = bInsets.top;
@@ -696,7 +706,8 @@ public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
 		 * 
 		 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
 		 */
-		public Dimension minimumLayoutSize(Container parent) {
+		@Override
+        public Dimension minimumLayoutSize(Container parent) {
 			return new Dimension(20, 20);
 		}
 
@@ -705,7 +716,8 @@ public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
 		 * 
 		 * @see java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
 		 */
-		public Dimension preferredLayoutSize(Container parent) {
+		@Override
+        public Dimension preferredLayoutSize(Container parent) {
 			JCommandButtonPanel panel = (JCommandButtonPanel) parent;
 
 			int maxButtonRowsToUse = panel.getMaxButtonRows();

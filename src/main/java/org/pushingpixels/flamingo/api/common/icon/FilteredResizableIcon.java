@@ -87,7 +87,8 @@ public class FilteredResizableIcon implements ResizableIcon {
 	 * 
 	 * @see javax.swing.Icon#getIconHeight()
 	 */
-	public int getIconHeight() {
+	@Override
+    public int getIconHeight() {
 		return delegate.getIconHeight();
 	}
 
@@ -96,7 +97,8 @@ public class FilteredResizableIcon implements ResizableIcon {
 	 * 
 	 * @see javax.swing.Icon#getIconWidth()
 	 */
-	public int getIconWidth() {
+	@Override
+    public int getIconWidth() {
 		return delegate.getIconWidth();
 	}
 
@@ -107,7 +109,8 @@ public class FilteredResizableIcon implements ResizableIcon {
 	 * org.jvnet.flamingo.common.icon.ResizableIcon#setDimension(java.awt.Dimension
 	 * )
 	 */
-	public void setDimension(Dimension newDimension) {
+	@Override
+    public void setDimension(Dimension newDimension) {
 		delegate.setDimension(newDimension);
 	}
 

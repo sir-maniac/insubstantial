@@ -56,7 +56,8 @@ public abstract class AbstractFilter implements BufferedImageOp {
 	 * @see
 	 * java.awt.image.BufferedImageOp#getBounds2D(java.awt.image.BufferedImage)
 	 */
-	public Rectangle2D getBounds2D(BufferedImage src) {
+	@Override
+    public Rectangle2D getBounds2D(BufferedImage src) {
 		return new Rectangle(0, 0, src.getWidth(), src.getHeight());
 	}
 
@@ -67,7 +68,8 @@ public abstract class AbstractFilter implements BufferedImageOp {
 	 * java.awt.image.BufferedImageOp#createCompatibleDestImage(java.awt.image
 	 * .BufferedImage, java.awt.image.ColorModel)
 	 */
-	public BufferedImage createCompatibleDestImage(BufferedImage src,
+	@Override
+    public BufferedImage createCompatibleDestImage(BufferedImage src,
 			ColorModel destCM) {
 		if (destCM == null) {
 			destCM = src.getColorModel();
@@ -84,7 +86,8 @@ public abstract class AbstractFilter implements BufferedImageOp {
 	 * @see java.awt.image.BufferedImageOp#getPoint2D(java.awt.geom.Point2D,
 	 * java.awt.geom.Point2D)
 	 */
-	public Point2D getPoint2D(Point2D srcPt, Point2D dstPt) {
+	@Override
+    public Point2D getPoint2D(Point2D srcPt, Point2D dstPt) {
 		return (Point2D) srcPt.clone();
 	}
 
@@ -93,7 +96,8 @@ public abstract class AbstractFilter implements BufferedImageOp {
 	 * 
 	 * @see java.awt.image.BufferedImageOp#getRenderingHints()
 	 */
-	public RenderingHints getRenderingHints() {
+	@Override
+    public RenderingHints getRenderingHints() {
 		return null;
 	}
 

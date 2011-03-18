@@ -102,16 +102,19 @@ public class ArrowResizableIcon implements ResizableIcon {
 		this.height = initialDim.height;
 	}
 
-	public void setDimension(Dimension newDimension) {
+	@Override
+    public void setDimension(Dimension newDimension) {
 		this.width = newDimension.width;
 		this.height = newDimension.height;
 	}
 
-	public int getIconHeight() {
+	@Override
+    public int getIconHeight() {
 		return this.height;
 	}
 
-	public int getIconWidth() {
+	@Override
+    public int getIconWidth() {
 		return this.width;
 	}
 
@@ -119,7 +122,8 @@ public class ArrowResizableIcon implements ResizableIcon {
 		return c.isEnabled();
 	}
 
-	public void paintIcon(Component c, Graphics g, int x, int y) {
+	@Override
+    public void paintIcon(Component c, Graphics g, int x, int y) {
 		Graphics2D graphics = (Graphics2D) g.create();
 
 		float strokeWidth = this.width / 7.0f;

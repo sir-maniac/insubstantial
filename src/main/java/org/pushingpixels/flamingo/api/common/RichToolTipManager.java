@@ -337,7 +337,8 @@ public class RichToolTipManager extends MouseAdapter implements
 	}
 
 	protected class InitialDelayTimerAction implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			if (insideComponent != null && insideComponent.isShowing()) {
 				// Lazy lookup
 				if (richTooltip == null && mouseEvent != null) {
@@ -369,7 +370,8 @@ public class RichToolTipManager extends MouseAdapter implements
 	}
 
 	protected class DismissTimerAction implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			hideTipWindow();
 			initialDelayTimer.stop();
 			insideComponent = null;

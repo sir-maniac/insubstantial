@@ -182,7 +182,8 @@ public class BasicCommandButtonStripUI extends CommandButtonStripUI {
 		 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String,
 		 * java.awt.Component)
 		 */
-		public void addLayoutComponent(String name, Component c) {
+		@Override
+        public void addLayoutComponent(String name, Component c) {
 		}
 
 		/*
@@ -190,7 +191,8 @@ public class BasicCommandButtonStripUI extends CommandButtonStripUI {
 		 * 
 		 * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
 		 */
-		public void removeLayoutComponent(Component c) {
+		@Override
+        public void removeLayoutComponent(Component c) {
 		}
 
 		/*
@@ -198,7 +200,8 @@ public class BasicCommandButtonStripUI extends CommandButtonStripUI {
 		 * 
 		 * @see java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
 		 */
-		public Dimension preferredLayoutSize(Container c) {
+		@Override
+        public Dimension preferredLayoutSize(Container c) {
 			int width = 0;
 			int height = 0;
 			if (buttonStrip.getOrientation() == StripOrientation.HORIZONTAL) {
@@ -225,7 +228,8 @@ public class BasicCommandButtonStripUI extends CommandButtonStripUI {
 		 * 
 		 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
 		 */
-		public Dimension minimumLayoutSize(Container c) {
+		@Override
+        public Dimension minimumLayoutSize(Container c) {
 			return this.preferredLayoutSize(c);
 		}
 
@@ -234,7 +238,8 @@ public class BasicCommandButtonStripUI extends CommandButtonStripUI {
 		 * 
 		 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
 		 */
-		public void layoutContainer(Container c) {
+		@Override
+        public void layoutContainer(Container c) {
 			if (buttonStrip.getButtonCount() == 0)
 				return;
 			Insets ins = c.getInsets();

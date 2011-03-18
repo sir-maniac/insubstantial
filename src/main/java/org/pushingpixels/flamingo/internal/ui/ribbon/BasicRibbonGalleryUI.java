@@ -287,7 +287,8 @@ public class BasicRibbonGalleryUI extends RibbonGalleryUI {
 	 */
 	protected void installListeners() {
 		this.scrollDownListener = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				scrollOneRowDown();
 				ribbonGallery.revalidate();
 			}
@@ -296,7 +297,8 @@ public class BasicRibbonGalleryUI extends RibbonGalleryUI {
 		this.scrollDownButton.addActionListener(this.scrollDownListener);
 
 		this.scrollUpListener = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				scrollOneRowUp();
 				ribbonGallery.revalidate();
 			}
@@ -304,10 +306,12 @@ public class BasicRibbonGalleryUI extends RibbonGalleryUI {
 		this.scrollUpButton.addActionListener(this.scrollUpListener);
 
 		this.expandListener = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				PopupPanelManager.defaultManager().hidePopups(ribbonGallery);
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						PopupFactory popupFactory = PopupFactory
 								.getSharedInstance();
 
@@ -501,7 +505,8 @@ public class BasicRibbonGalleryUI extends RibbonGalleryUI {
 		 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String,
 		 * java.awt.Component)
 		 */
-		public void addLayoutComponent(String name, Component c) {
+		@Override
+        public void addLayoutComponent(String name, Component c) {
 		}
 
 		/*
@@ -509,7 +514,8 @@ public class BasicRibbonGalleryUI extends RibbonGalleryUI {
 		 * 
 		 * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
 		 */
-		public void removeLayoutComponent(Component c) {
+		@Override
+        public void removeLayoutComponent(Component c) {
 		}
 
 		/*
@@ -517,7 +523,8 @@ public class BasicRibbonGalleryUI extends RibbonGalleryUI {
 		 * 
 		 * @see java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
 		 */
-		public Dimension preferredLayoutSize(Container c) {
+		@Override
+        public Dimension preferredLayoutSize(Container c) {
 			return new Dimension(ribbonGallery.getPreferredWidth(ribbonGallery
 					.getDisplayPriority(), c.getHeight()), c.getHeight());
 		}
@@ -527,7 +534,8 @@ public class BasicRibbonGalleryUI extends RibbonGalleryUI {
 		 * 
 		 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
 		 */
-		public Dimension minimumLayoutSize(Container c) {
+		@Override
+        public Dimension minimumLayoutSize(Container c) {
 			return this.preferredLayoutSize(c);
 		}
 
@@ -536,7 +544,8 @@ public class BasicRibbonGalleryUI extends RibbonGalleryUI {
 		 * 
 		 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
 		 */
-		public void layoutContainer(Container c) {
+		@Override
+        public void layoutContainer(Container c) {
 			int width = c.getWidth();
 			int height = c.getHeight();
 

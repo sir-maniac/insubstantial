@@ -59,7 +59,8 @@ public class LayeredIcon implements ResizableIcon {
 	 * @see
 	 * org.jvnet.flamingo.common.ResizableIcon#setDimension(java.awt.Dimension)
 	 */
-	public void setDimension(Dimension newDimension) {
+	@Override
+    public void setDimension(Dimension newDimension) {
 		for (ResizableIcon layer : layers)
 			layer.setDimension(newDimension);
 	}
@@ -69,7 +70,8 @@ public class LayeredIcon implements ResizableIcon {
 	 * 
 	 * @see javax.swing.Icon#getIconHeight()
 	 */
-	public int getIconHeight() {
+	@Override
+    public int getIconHeight() {
 		return layers[0].getIconHeight();
 	}
 
@@ -78,7 +80,8 @@ public class LayeredIcon implements ResizableIcon {
 	 * 
 	 * @see javax.swing.Icon#getIconWidth()
 	 */
-	public int getIconWidth() {
+	@Override
+    public int getIconWidth() {
 		return layers[0].getIconWidth();
 	}
 
@@ -88,7 +91,8 @@ public class LayeredIcon implements ResizableIcon {
 	 * @see javax.swing.Icon#paintIcon(java.awt.Component, java.awt.Graphics,
 	 * int, int)
 	 */
-	public void paintIcon(Component c, Graphics g, int x, int y) {
+	@Override
+    public void paintIcon(Component c, Graphics g, int x, int y) {
 		for (ResizableIcon layer : layers)
 			layer.paintIcon(c, g, x, y);
 	}

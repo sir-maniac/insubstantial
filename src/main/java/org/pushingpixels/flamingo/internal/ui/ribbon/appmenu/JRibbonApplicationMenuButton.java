@@ -61,7 +61,8 @@ public class JRibbonApplicationMenuButton extends JCommandButton {
 		public org.pushingpixels.flamingo.api.common.CommandButtonLayoutManager createLayoutManager(
 				org.pushingpixels.flamingo.api.common.AbstractCommandButton commandButton) {
 			return new CommandButtonLayoutManager() {
-				public int getPreferredIconSize() {
+				@Override
+                public int getPreferredIconSize() {
 					return 24;
 				}
 

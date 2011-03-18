@@ -241,7 +241,8 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 		if (buttonIcon instanceof AsynchronousLoading) {
 			((AsynchronousLoading) buttonIcon)
 					.addAsynchronousLoadListener(new AsynchronousLoadListener() {
-						public void completed(boolean success) {
+						@Override
+                        public void completed(boolean success) {
 							if (success && (commandButton != null))
 								commandButton.repaint();
 						}
@@ -267,7 +268,8 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 		}
 
 		this.propertyChangeListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (AbstractButton.ICON_CHANGED_PROPERTY.equals(evt
 						.getPropertyName())) {
 					Icon newIcon = (Icon) evt.getNewValue();
@@ -275,7 +277,8 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 						AsynchronousLoading async = (AsynchronousLoading) newIcon;
 						async
 								.addAsynchronousLoadListener(new AsynchronousLoadListener() {
-									public void completed(boolean success) {
+									@Override
+                                    public void completed(boolean success) {
 										if (success) {
 											if (commandButton != null) {
 												syncIconDimension();
@@ -1104,7 +1107,8 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 		if (popupPanel != null) {
 			popupPanel.applyComponentOrientation(jcb.getComponentOrientation());
 			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					if ((commandButton == null) || (popupPanel == null))
 						return;
 

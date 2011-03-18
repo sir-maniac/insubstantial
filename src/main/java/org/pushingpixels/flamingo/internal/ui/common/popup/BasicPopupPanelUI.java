@@ -463,7 +463,8 @@ public class BasicPopupPanelUI extends PopupPanelUI {
 			final Toolkit tk = Toolkit.getDefaultToolkit();
 			java.security.AccessController
 					.doPrivileged(new java.security.PrivilegedAction() {
-						public Object run() {
+						@Override
+                        public Object run() {
 							tk.addAWTEventListener(WindowTracker.this,
 									AWTEvent.MOUSE_EVENT_MASK
 											| AWTEvent.MOUSE_MOTION_EVENT_MASK
@@ -490,7 +491,8 @@ public class BasicPopupPanelUI extends PopupPanelUI {
 			// The grab should be removed
 			java.security.AccessController
 					.doPrivileged(new java.security.PrivilegedAction() {
-						public Object run() {
+						@Override
+                        public Object run() {
 							tk.removeAWTEventListener(WindowTracker.this);
 							return null;
 						}
@@ -528,7 +530,8 @@ public class BasicPopupPanelUI extends PopupPanelUI {
 			lastPathSelected = p;
 		}
 
-		public void eventDispatched(AWTEvent ev) {
+		@Override
+        public void eventDispatched(AWTEvent ev) {
 			if (!(ev instanceof MouseEvent)) {
 				// We are interested in MouseEvents only
 				return;
@@ -625,45 +628,56 @@ public class BasicPopupPanelUI extends PopupPanelUI {
 			return false;
 		}
 
-		public void componentResized(ComponentEvent e) {
+		@Override
+        public void componentResized(ComponentEvent e) {
 			PopupPanelManager.defaultManager().hidePopups(null);
 		}
 
-		public void componentMoved(ComponentEvent e) {
+		@Override
+        public void componentMoved(ComponentEvent e) {
 			PopupPanelManager.defaultManager().hidePopups(null);
 		}
 
-		public void componentShown(ComponentEvent e) {
+		@Override
+        public void componentShown(ComponentEvent e) {
 			PopupPanelManager.defaultManager().hidePopups(null);
 		}
 
-		public void componentHidden(ComponentEvent e) {
+		@Override
+        public void componentHidden(ComponentEvent e) {
 			PopupPanelManager.defaultManager().hidePopups(null);
 		}
 
-		public void windowClosing(WindowEvent e) {
+		@Override
+        public void windowClosing(WindowEvent e) {
 			PopupPanelManager.defaultManager().hidePopups(null);
 		}
 
-		public void windowClosed(WindowEvent e) {
+		@Override
+        public void windowClosed(WindowEvent e) {
 			PopupPanelManager.defaultManager().hidePopups(null);
 		}
 
-		public void windowIconified(WindowEvent e) {
+		@Override
+        public void windowIconified(WindowEvent e) {
 			PopupPanelManager.defaultManager().hidePopups(null);
 		}
 
-		public void windowDeactivated(WindowEvent e) {
+		@Override
+        public void windowDeactivated(WindowEvent e) {
 			PopupPanelManager.defaultManager().hidePopups(null);
 		}
 
-		public void windowOpened(WindowEvent e) {
+		@Override
+        public void windowOpened(WindowEvent e) {
 		}
 
-		public void windowDeiconified(WindowEvent e) {
+		@Override
+        public void windowDeiconified(WindowEvent e) {
 		}
 
-		public void windowActivated(WindowEvent e) {
+		@Override
+        public void windowActivated(WindowEvent e) {
 		}
 	}
 }

@@ -180,7 +180,8 @@ abstract class SvgBatikIcon extends UserAgentAdapter implements Icon {
 	 * 
 	 * @see javax.swing.Icon#getIconWidth()
 	 */
-	public int getIconWidth() {
+	@Override
+    public int getIconWidth() {
 		return width;
 	}
 
@@ -189,7 +190,8 @@ abstract class SvgBatikIcon extends UserAgentAdapter implements Icon {
 	 * 
 	 * @see javax.swing.Icon#getIconHeight()
 	 */
-	public int getIconHeight() {
+	@Override
+    public int getIconHeight() {
 		return height;
 	}
 
@@ -199,7 +201,8 @@ abstract class SvgBatikIcon extends UserAgentAdapter implements Icon {
 	 * @see javax.swing.Icon#paintIcon(java.awt.Component, java.awt.Graphics,
 	 * int, int)
 	 */
-	public void paintIcon(Component c, Graphics g, int x, int y) {
+	@Override
+    public void paintIcon(Component c, Graphics g, int x, int y) {
 		BufferedImage image = this.cachedImages.get(this.getIconWidth() + ":"
 				+ this.getIconHeight());
 		if (image != null) {
@@ -342,7 +345,8 @@ abstract class SvgBatikIcon extends UserAgentAdapter implements Icon {
 	 * Dispatcher for GVT tree rendering completion.
 	 */
 	static Dispatcher completedDispatcher = new Dispatcher() {
-		public void dispatch(Object listener, Object event) {
+		@Override
+        public void dispatch(Object listener, Object event) {
 			((GVTTreeRendererListener) listener)
 					.gvtRenderingCompleted((GVTTreeRendererEvent) event);
 		}
@@ -352,7 +356,8 @@ abstract class SvgBatikIcon extends UserAgentAdapter implements Icon {
 	 * Dispatcher for GVT tree rendering start.
 	 */
 	static Dispatcher startedDispatcher = new Dispatcher() {
-		public void dispatch(Object listener, Object event) {
+		@Override
+        public void dispatch(Object listener, Object event) {
 			((GVTTreeRendererListener) listener)
 					.gvtRenderingStarted((GVTTreeRendererEvent) event);
 		}
@@ -362,7 +367,8 @@ abstract class SvgBatikIcon extends UserAgentAdapter implements Icon {
 	 * Dispatcher for GVT tree rendering fail.
 	 */
 	static Dispatcher failedDispatcher = new Dispatcher() {
-		public void dispatch(Object listener, Object event) {
+		@Override
+        public void dispatch(Object listener, Object event) {
 			((GVTTreeRendererListener) listener)
 					.gvtRenderingFailed((GVTTreeRendererEvent) event);
 		}
@@ -372,7 +378,8 @@ abstract class SvgBatikIcon extends UserAgentAdapter implements Icon {
 	 * Dispatcher for GVT tree rendering cancel.
 	 */
 	static Dispatcher cancelledDispatcher = new Dispatcher() {
-		public void dispatch(Object listener, Object event) {
+		@Override
+        public void dispatch(Object listener, Object event) {
 			((GVTTreeRendererListener) listener)
 					.gvtRenderingCancelled((GVTTreeRendererEvent) event);
 		}

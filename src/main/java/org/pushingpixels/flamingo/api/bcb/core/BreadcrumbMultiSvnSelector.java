@@ -178,7 +178,8 @@ public class BreadcrumbMultiSvnSelector extends JBreadcrumbBar<String> {
 						connectionLatch = new CountDownLatch(1);
 
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							// If one element - an SVN repository has been
 							// selected. Need to connect to it and update
 							// the currRepository field.

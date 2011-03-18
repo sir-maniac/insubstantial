@@ -42,19 +42,23 @@ public class ResizableIconUIResource implements ResizableIcon, UIResource {
 		this.delegate = delegate;
 	}
 
-	public int getIconHeight() {
+	@Override
+    public int getIconHeight() {
 		return delegate.getIconHeight();
 	}
 
-	public int getIconWidth() {
+	@Override
+    public int getIconWidth() {
 		return delegate.getIconWidth();
 	}
 
-	public void paintIcon(Component c, Graphics g, int x, int y) {
+	@Override
+    public void paintIcon(Component c, Graphics g, int x, int y) {
 		delegate.paintIcon(c, g, x, y);
 	}
 
-	public void setDimension(Dimension newDimension) {
+	@Override
+    public void setDimension(Dimension newDimension) {
 		delegate.setDimension(newDimension);
 	}
 

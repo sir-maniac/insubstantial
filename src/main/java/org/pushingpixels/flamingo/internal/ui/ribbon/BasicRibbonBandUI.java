@@ -335,9 +335,11 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 					.getExpandActionListener());
 
 			this.expandButtonActionListener = new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+				@Override
+                public void actionPerformed(ActionEvent e) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							trackMouseCrossing(false);
 						}
 					});
@@ -431,7 +433,8 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 		 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String,
 		 * java.awt.Component)
 		 */
-		public void addLayoutComponent(String name, Component c) {
+		@Override
+        public void addLayoutComponent(String name, Component c) {
 		}
 
 		/*
@@ -439,7 +442,8 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 		 * 
 		 * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
 		 */
-		public void removeLayoutComponent(Component c) {
+		@Override
+        public void removeLayoutComponent(Component c) {
 		}
 
 		/*
@@ -447,7 +451,8 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 		 * 
 		 * @see java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
 		 */
-		public Dimension preferredLayoutSize(Container c) {
+		@Override
+        public Dimension preferredLayoutSize(Container c) {
 			Insets ins = c.getInsets();
 			AbstractBandControlPanel controlPanel = ribbonBand
 					.getControlPanel();
@@ -478,7 +483,8 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 		 * 
 		 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
 		 */
-		public Dimension minimumLayoutSize(Container c) {
+		@Override
+        public Dimension minimumLayoutSize(Container c) {
 			Insets ins = c.getInsets();
 			AbstractBandControlPanel controlPanel = ribbonBand
 					.getControlPanel();
@@ -507,7 +513,8 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 		 * 
 		 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
 		 */
-		public void layoutContainer(Container c) {
+		@Override
+        public void layoutContainer(Container c) {
 			// System.out.println("Ribbon band real = " + c.getHeight());
 			if (!c.isVisible())
 				return;
@@ -637,7 +644,8 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 				instance = new AWTRibbonEventListener();
 				java.security.AccessController
 						.doPrivileged(new java.security.PrivilegedAction<Object>() {
-							public Object run() {
+							@Override
+                            public Object run() {
 								Toolkit
 										.getDefaultToolkit()
 										.addAWTEventListener(
@@ -665,7 +673,8 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 			return false;
 		}
 
-		public void eventDispatched(AWTEvent event) {
+		@Override
+        public void eventDispatched(AWTEvent event) {
 			MouseEvent mouseEvent = (MouseEvent) event;
 			if (mouseEvent.getID() == MouseEvent.MOUSE_ENTERED) {
 				Object object = event.getSource();

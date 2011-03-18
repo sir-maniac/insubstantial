@@ -122,7 +122,8 @@ public class ImageWrapperResizableIcon extends ImageWrapperIcon implements
 	 * org.jvnet.flamingo.common.icon.ResizableIcon#setDimension(java.awt.Dimension
 	 * )
 	 */
-	public void setDimension(Dimension dim) {
+	@Override
+    public void setDimension(Dimension dim) {
 		this.setPreferredSize(dim);
 	}
 }
