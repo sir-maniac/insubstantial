@@ -46,7 +46,8 @@ public class VAlignmentPanel extends ControllablePanel implements Deferrable {
 
 		toPaintGuiderLines = new JCheckBox("guider lines");
 		toPaintGuiderLines.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				repaint();
 			}
 		});
@@ -54,7 +55,8 @@ public class VAlignmentPanel extends ControllablePanel implements Deferrable {
 
 		toPaintBounds = new JCheckBox("bounds");
 		toPaintBounds.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				repaint();
 			}
 		});
@@ -177,7 +179,8 @@ public class VAlignmentPanel extends ControllablePanel implements Deferrable {
 	public static void main(String[] args) throws Exception {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				JFrame frame = new JFrame("Alignment");
 				frame.setSize(600, 400);

@@ -48,6 +48,7 @@ public class ICC_CMYKColorSliderModel extends ColorSliderModel {
         this.colorSpace = new ICC_ColorSpace(ICC_Profile.getInstance(iccProfile));
     }
     
+    @Override
     public int getRGB() {
         cmyk[0] = components[0].getValue() / 100f;
         cmyk[1] = components[1].getValue() / 100f;
@@ -57,6 +58,7 @@ public class ICC_CMYKColorSliderModel extends ColorSliderModel {
         return 0xff000000 | ((int) (rgb[0] * 255f) << 16) | ((int) (rgb[1] * 255f) << 8) | (int) (rgb[2] * 255f);
     }
     
+    @Override
     public void setRGB(int newRGB) {
         rgb[0] = ((newRGB & 0xff0000) >>> 16) / 255f;
         rgb[1] = ((newRGB & 0x00ff00) >>> 8) / 255f;
@@ -71,6 +73,7 @@ System.out.print("rgb in:"+new Color(newRGB));
 System.out.println(" out:"+new Color((int) (rgb[0]*255f), (int)(rgb[1]*255f), (int)(rgb[2]*255f)));        
     }
     
+    @Override
     public int toRGB(int[] values) {
         cmyk[0] = values[0] / 100f;
         cmyk[1] = values[1] / 100f;

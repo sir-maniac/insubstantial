@@ -179,7 +179,8 @@ public class ColorPicker extends AbstractColorChooserPanel {
 					RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
 
 			pickerTimer = new Timer(5, new ActionListener() {
-				public void actionPerformed(ActionEvent evt) {
+				@Override
+                public void actionPerformed(ActionEvent evt) {
 					updatePicker();
 				}
 			});
@@ -261,7 +262,8 @@ public class ColorPicker extends AbstractColorChooserPanel {
 		pickerButton.setBorderPainted(false);
 		pickerButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
 		pickerButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			@Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
 				pickBegin(evt);
 			}
 		});

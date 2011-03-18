@@ -66,7 +66,8 @@ public class ColorComboBox extends JComboBox {
 		setEditor(new Renderer());
 		setSelectedItem(new Value(null, null));
 		addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ev) {
+			@Override
+            public void actionPerformed(ActionEvent ev) {
 				if (getSelectedItem() == CUSTOM_COLOR) {
 					Color c = JColorChooser.showDialog(SwingUtilities
 							.getAncestorOfClass(Dialog.class,
@@ -191,7 +192,8 @@ public class ColorComboBox extends JComboBox {
 			super.setEnabled(enabled);
 		}
 
-		public Component getListCellRendererComponent(JList list, Object value,
+		@Override
+        public Component getListCellRendererComponent(JList list, Object value,
 				int index, boolean isSelected, boolean cellHasFocus) {
 			this.value = (Value) value;
 			setEnabled(list.isEnabled());
@@ -202,7 +204,8 @@ public class ColorComboBox extends JComboBox {
 			return this;
 		}
 
-		public Component getEditorComponent() {
+		@Override
+        public Component getEditorComponent() {
 			setEnabled(ColorComboBox.this.isEnabled());
 			setBackground(ColorComboBox.this.isFocusOwner() ? SystemColor.textHighlight
 					: SystemColor.text);
@@ -211,21 +214,26 @@ public class ColorComboBox extends JComboBox {
 			return this;
 		}
 
-		public void setItem(Object anObject) {
+		@Override
+        public void setItem(Object anObject) {
 			this.value = (Value) anObject;
 		}
 
-		public Object getItem() {
+		@Override
+        public Object getItem() {
 			return value;
 		}
 
-		public void selectAll() {
+		@Override
+        public void selectAll() {
 		}
 
-		public void addActionListener(ActionListener l) {
+		@Override
+        public void addActionListener(ActionListener l) {
 		}
 
-		public void removeActionListener(ActionListener l) {
+		@Override
+        public void removeActionListener(ActionListener l) {
 		}
 	}
 }

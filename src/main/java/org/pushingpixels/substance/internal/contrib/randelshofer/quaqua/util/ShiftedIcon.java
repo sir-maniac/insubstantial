@@ -41,14 +41,17 @@ public class ShiftedIcon implements Icon {
         this.shift = shiftAndSize;
     }
 
+    @Override
     public void paintIcon(Component c, Graphics g, int x, int y) {
         target.paintIcon(c, g, x + shift.x, y + shift.y);
     }
 
+    @Override
     public int getIconWidth() {
         return shift.width;
     }
 
+    @Override
     public int getIconHeight() {
         return shift.height;
     }

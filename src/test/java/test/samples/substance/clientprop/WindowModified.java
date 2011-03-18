@@ -75,15 +75,18 @@ public class WindowModified extends JFrame {
 						SubstanceLookAndFeel.WINDOW_MODIFIED, Boolean.TRUE);
 			}
 
-			public void changedUpdate(DocumentEvent e) {
+			@Override
+            public void changedUpdate(DocumentEvent e) {
 				handleChange();
 			}
 
-			public void insertUpdate(DocumentEvent e) {
+			@Override
+            public void insertUpdate(DocumentEvent e) {
 				handleChange();
 			}
 
-			public void removeUpdate(DocumentEvent e) {
+			@Override
+            public void removeUpdate(DocumentEvent e) {
 				handleChange();
 			}
 		});
@@ -91,7 +94,8 @@ public class WindowModified extends JFrame {
 		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		JButton saveButton = new JButton("Save");
 		saveButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				// on button click, mark root pane as not modified
 				getRootPane().putClientProperty(
 						SubstanceLookAndFeel.WINDOW_MODIFIED, Boolean.FALSE);
@@ -115,7 +119,8 @@ public class WindowModified extends JFrame {
 	public static void main(String... args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new WindowModified().setVisible(true);
 			}

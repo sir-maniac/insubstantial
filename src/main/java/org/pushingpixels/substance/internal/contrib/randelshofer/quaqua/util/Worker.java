@@ -39,8 +39,10 @@ public abstract class Worker implements Runnable {
      * Calls #construct on the current thread and invokes
      * #finished on the AWT event dispatcher thread.
      */
+    @Override
     public final void run() {
         final Runnable doFinished = new Runnable() {
+            @Override
             public void run() { finished(getValue()); }
         };
         try {

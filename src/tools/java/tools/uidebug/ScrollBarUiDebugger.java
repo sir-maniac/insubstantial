@@ -97,9 +97,11 @@ public class ScrollBarUiDebugger extends LafWidgetAdapter<JScrollBar> {
 		 * 
 		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 		 */
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					((JScrollPane) jcomp.getParent()).putClientProperty(
 							SubstanceLookAndFeel.SCROLL_PANE_BUTTONS_POLICY,
 							PolicyChanger.this.newPolicy);

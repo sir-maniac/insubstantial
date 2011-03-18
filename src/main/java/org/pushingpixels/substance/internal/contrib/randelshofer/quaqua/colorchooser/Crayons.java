@@ -74,6 +74,7 @@ public class Crayons extends javax.swing.JPanel {
     }
     
     private class MouseHandler extends MouseAdapter {
+        @Override
         public void mousePressed(MouseEvent evt) {
             int x = evt.getX();
             int y = evt.getY();
@@ -170,6 +171,7 @@ public class Crayons extends javax.swing.JPanel {
         return color;
     }
     
+    @Override
     public void paintComponent(Graphics gr) {
         Graphics2D g = (Graphics2D) gr;
         Object oldHints = QuaquaUtilities.beginGraphics((Graphics2D) g);

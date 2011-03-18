@@ -55,7 +55,8 @@ public class MyListCellRenderer extends JLabel implements ListCellRenderer {
 	 * @see javax.swing.ListCellRenderer#getListCellRendererComponent(javax.swing.JList,
 	 *      java.lang.Object, int, boolean, boolean)
 	 */
-	public Component getListCellRendererComponent(JList list, Object value,
+	@Override
+    public Component getListCellRendererComponent(JList list, Object value,
 			int index, boolean isSelected, boolean cellHasFocus) {
 		this.setText((String) value);
 		this.setForeground(list.getForeground());

@@ -136,7 +136,8 @@ public class SubstanceInternalFrameTitlePane extends
 	protected void installListeners() {
 		super.installListeners();
 		this.substancePropertyListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (JInternalFrame.TITLE_PROPERTY.equals(evt.getPropertyName())) {
 					SubstanceInternalFrameTitlePane.this
 							.setToolTipText((String) evt.getNewValue());
@@ -152,7 +153,8 @@ public class SubstanceInternalFrameTitlePane extends
 		// Property change listener for pulsating close button
 		// when window has been marked as changed.
 		this.substanceWinModifiedListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (SubstanceLookAndFeel.WINDOW_MODIFIED.equals(evt
 						.getPropertyName())) {
 					syncCloseButtonTooltip();
@@ -414,7 +416,8 @@ public class SubstanceInternalFrameTitlePane extends
 
 		Icon restoreIcon = new TransitionAwareIcon(this.maxButton,
 				new TransitionAwareIcon.Delegate() {
-					public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
+					@Override
+                    public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
 						return SubstanceIconFactory
 								.getTitlePaneIcon(
 										SubstanceIconFactory.IconKind.RESTORE,
@@ -428,7 +431,8 @@ public class SubstanceInternalFrameTitlePane extends
 				}, "substance.internalFrame.restoreIcon");
 		Icon maximizeIcon = new TransitionAwareIcon(this.maxButton,
 				new TransitionAwareIcon.Delegate() {
-					public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
+					@Override
+                    public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
 						return SubstanceIconFactory
 								.getTitlePaneIcon(
 										SubstanceIconFactory.IconKind.MAXIMIZE,
@@ -442,7 +446,8 @@ public class SubstanceInternalFrameTitlePane extends
 				}, "substance.internalFrame.maxIcon");
 		Icon minimizeIcon = new TransitionAwareIcon(this.iconButton,
 				new TransitionAwareIcon.Delegate() {
-					public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
+					@Override
+                    public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
 						return SubstanceIconFactory
 								.getTitlePaneIcon(
 										SubstanceIconFactory.IconKind.MINIMIZE,
@@ -456,7 +461,8 @@ public class SubstanceInternalFrameTitlePane extends
 				}, "substance.internalFrame.minIcon");
 		Icon closeIcon = new TransitionAwareIcon(this.closeButton,
 				new TransitionAwareIcon.Delegate() {
-					public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
+					@Override
+                    public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
 						return SubstanceIconFactory
 								.getTitlePaneIcon(
 										SubstanceIconFactory.IconKind.CLOSE,
@@ -512,7 +518,8 @@ public class SubstanceInternalFrameTitlePane extends
 		 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent
 		 * )
 		 */
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			AbstractButton src = (AbstractButton) e.getSource();
 			ButtonModel model = src.getModel();
 			model.setArmed(false);

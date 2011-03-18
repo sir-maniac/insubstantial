@@ -83,7 +83,8 @@ public class CaribbeanBlueColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getForegroundColor()
 	 */
-	public Color getForegroundColor() {
+	@Override
+    public Color getForegroundColor() {
 		return CaribbeanBlueColorScheme.foregroundColor;
 	}
 
@@ -92,7 +93,8 @@ public class CaribbeanBlueColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getUltraLightColor()
 	 */
-	public Color getUltraLightColor() {
+	@Override
+    public Color getUltraLightColor() {
 		return CaribbeanBlueColorScheme.mainUltraLightColor;
 	}
 
@@ -101,7 +103,8 @@ public class CaribbeanBlueColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getExtraLightColor()
 	 */
-	public Color getExtraLightColor() {
+	@Override
+    public Color getExtraLightColor() {
 		return CaribbeanBlueColorScheme.mainExtraLightColor;
 	}
 
@@ -110,7 +113,8 @@ public class CaribbeanBlueColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getLightColor()
 	 */
-	public Color getLightColor() {
+	@Override
+    public Color getLightColor() {
 		return CaribbeanBlueColorScheme.mainLightColor;
 	}
 
@@ -119,7 +123,8 @@ public class CaribbeanBlueColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getMidColor()
 	 */
-	public Color getMidColor() {
+	@Override
+    public Color getMidColor() {
 		return CaribbeanBlueColorScheme.mainMidColor;
 	}
 
@@ -128,7 +133,8 @@ public class CaribbeanBlueColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getDarkColor()
 	 */
-	public Color getDarkColor() {
+	@Override
+    public Color getDarkColor() {
 		return CaribbeanBlueColorScheme.mainDarkColor;
 	}
 
@@ -137,7 +143,8 @@ public class CaribbeanBlueColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getUltraDarkColor()
 	 */
-	public Color getUltraDarkColor() {
+	@Override
+    public Color getUltraDarkColor() {
 		return CaribbeanBlueColorScheme.mainUltraDarkColor;
 	}
 }

@@ -97,7 +97,8 @@ public class ButtonVisualStateTracker {
 		}
 
 		this.substancePropertyListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (AbstractButton.MODEL_CHANGED_PROPERTY.equals(evt
 						.getPropertyName())) {
 					stateTransitionTracker.setModel((ButtonModel) evt

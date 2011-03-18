@@ -73,7 +73,8 @@ public class HasLockIcon extends JFrame {
 
 		final JCheckBox hasLockIcon = new JCheckBox("Has lock icon");
 		hasLockIcon.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				jtf.putClientProperty(LafWidget.HAS_LOCK_ICON, hasLockIcon
 						.isSelected() ? Boolean.TRUE : null);
 			}
@@ -100,7 +101,8 @@ public class HasLockIcon extends JFrame {
 	public static void main(String[] args) throws Exception {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				UIManager.put(SubstanceLookAndFeel.SHOW_EXTRA_WIDGETS,
 						Boolean.TRUE);
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());

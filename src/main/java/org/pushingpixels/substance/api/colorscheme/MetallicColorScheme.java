@@ -85,7 +85,8 @@ public class MetallicColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getForegroundColor()
 	 */
-	public Color getForegroundColor() {
+	@Override
+    public Color getForegroundColor() {
 		return MetallicColorScheme.foregroundColor;
 	}
 
@@ -94,7 +95,8 @@ public class MetallicColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getUltraLightColor()
 	 */
-	public Color getUltraLightColor() {
+	@Override
+    public Color getUltraLightColor() {
 		return MetallicColorScheme.mainUltraLightColor;
 	}
 
@@ -103,7 +105,8 @@ public class MetallicColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getExtraLightColor()
 	 */
-	public Color getExtraLightColor() {
+	@Override
+    public Color getExtraLightColor() {
 		return MetallicColorScheme.mainExtraLightColor;
 	}
 
@@ -112,7 +115,8 @@ public class MetallicColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getLightColor()
 	 */
-	public Color getLightColor() {
+	@Override
+    public Color getLightColor() {
 		return MetallicColorScheme.mainLightColor;
 	}
 
@@ -121,7 +125,8 @@ public class MetallicColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getMidColor()
 	 */
-	public Color getMidColor() {
+	@Override
+    public Color getMidColor() {
 		return MetallicColorScheme.mainMidColor;
 	}
 
@@ -130,7 +135,8 @@ public class MetallicColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getDarkColor()
 	 */
-	public Color getDarkColor() {
+	@Override
+    public Color getDarkColor() {
 		return MetallicColorScheme.mainDarkColor;
 	}
 
@@ -139,7 +145,8 @@ public class MetallicColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getUltraDarkColor()
 	 */
-	public Color getUltraDarkColor() {
+	@Override
+    public Color getUltraDarkColor() {
 		return MetallicColorScheme.mainUltraDarkColor;
 	}
 }

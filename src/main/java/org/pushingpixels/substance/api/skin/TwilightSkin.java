@@ -248,7 +248,8 @@ public class TwilightSkin extends SubstanceSkin {
 						}));
 	}
 
-	public String getDisplayName() {
+	@Override
+    public String getDisplayName() {
 		return NAME;
 	}
 }

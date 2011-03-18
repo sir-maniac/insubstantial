@@ -247,7 +247,8 @@ public class SubstanceButtonUI extends BasicButtonUI implements
 		// b.addChangeListener(this.substanceButtonListener);
 
 		this.substancePropertyListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (AbstractButton.ICON_CHANGED_PROPERTY.equals(evt
 						.getPropertyName())) {
 					trackGlowingIcon();

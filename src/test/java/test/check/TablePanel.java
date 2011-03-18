@@ -219,7 +219,8 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 		 * 
 		 * @see javax.swing.table.TableModel#getColumnCount()
 		 */
-		public int getColumnCount() {
+		@Override
+        public int getColumnCount() {
 			return this.cols;
 		}
 
@@ -228,7 +229,8 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 		 * 
 		 * @see javax.swing.table.TableModel#getRowCount()
 		 */
-		public int getRowCount() {
+		@Override
+        public int getRowCount() {
 			return this.rows;
 		}
 
@@ -237,7 +239,8 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 		 * 
 		 * @see javax.swing.table.TableModel#getValueAt(int, int)
 		 */
-		public Object getValueAt(int row, int col) {
+		@Override
+        public Object getValueAt(int row, int col) {
 			return this.data[row][col];
 		}
 
@@ -281,7 +284,8 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 	public TablePanel() {
 	}
 
-	public synchronized void initialize() {
+	@Override
+    public synchronized void initialize() {
 		this.table = new JTable(new MyTableModel(20));
 
 		this.table.setTransferHandler(new TransferHandler() {
@@ -354,7 +358,8 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 		final JCheckBox isEnabled = new JCheckBox("is enabled");
 		isEnabled.setSelected(table.isEnabled());
 		isEnabled.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				table.setEnabled(isEnabled.isSelected());
 				// the table header is not repainted on disabling / enabling :(
 				table.getTableHeader().repaint();
@@ -364,9 +369,11 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 
 		JButton changeFirstColumn = new JButton("change 1st column");
 		changeFirstColumn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				new Thread(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						for (int i = 0; i < table.getModel().getRowCount(); i++) {
 							table.getModel().setValueAt(
 									Thread.currentThread().getName() + " " + i,
@@ -387,7 +394,8 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 		rowCountSlider.setPaintLabels(false);
 		rowCountSlider.setPaintTicks(false);
 		rowCountSlider.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
+			@Override
+            public void stateChanged(ChangeEvent e) {
 				if (rowCountSlider.getValueIsAdjusting())
 					return;
 				TablePanel.this.table.setModel(new MyTableModel(rowCountSlider
@@ -399,7 +407,8 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 		final JCheckBox areRowsSelectable = new JCheckBox("Rows selectable");
 		areRowsSelectable.setSelected(this.table.getRowSelectionAllowed());
 		areRowsSelectable.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				TablePanel.this.table.setRowSelectionAllowed(areRowsSelectable
 						.isSelected());
 			}
@@ -409,7 +418,8 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 		final JCheckBox areColsSelectable = new JCheckBox("Cols selectable");
 		areColsSelectable.setSelected(this.table.getColumnSelectionAllowed());
 		areColsSelectable.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				TablePanel.this.table
 						.setColumnSelectionAllowed(areColsSelectable
 								.isSelected());
@@ -420,7 +430,8 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 		final JCheckBox isSorted = new JCheckBox("Sorted");
 		final JCheckBox toHideOddModelRows = new JCheckBox("Hide odd rows");
 		isSorted.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				if (isSorted.isSelected()) {
 					table.setRowSorter(new TableRowSorter(table.getModel()));
 					toHideOddModelRows.setEnabled(true);
@@ -464,7 +475,8 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 		customBackgroundCb.addActionListener(new ActionListener() {
 			Color oldBackColor;
 
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				if (customBackgroundCb.isSelected()) {
 					oldBackColor = table.getBackground();
 					table.setBackground(new Color(255, 128, 128));
@@ -477,7 +489,8 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 
 		final JCheckBox watermarkBleed = new JCheckBox("Watermark bleed");
 		watermarkBleed.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				TablePanel.this.table.putClientProperty(
 						SubstanceLookAndFeel.WATERMARK_VISIBLE, Boolean
 								.valueOf(watermarkBleed.isSelected()));
@@ -492,7 +505,8 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 		final JCheckBox linesVertical = new JCheckBox("Vertical visible");
 		linesVertical.setSelected(this.table.getShowVerticalLines());
 		linesVertical.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				TablePanel.this.table.setShowVerticalLines(linesVertical
 						.isSelected());
 			}
@@ -501,7 +515,8 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 		final JCheckBox linesHorizontal = new JCheckBox("Horizontal visible");
 		linesHorizontal.setSelected(this.table.getShowHorizontalLines());
 		linesHorizontal.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				TablePanel.this.table.setShowHorizontalLines(linesHorizontal
 						.isSelected());
 			}
@@ -533,7 +548,8 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 		resizeModeCombo.setSelectedItem(this.table.getAutoResizeMode());
 
 		resizeModeCombo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				int selected = (Integer) resizeModeCombo.getSelectedItem();
 				TablePanel.this.table.setAutoResizeMode(selected);
 			}
@@ -545,7 +561,8 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 		hasRollovers.setSelected(AnimationConfigurationManager.getInstance()
 				.isAnimationAllowed(AnimationFacet.ROLLOVER, this.table));
 		hasRollovers.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				if (hasRollovers.isSelected()) {
 					AnimationConfigurationManager.getInstance()
 							.allowAnimations(AnimationFacet.ROLLOVER,
@@ -565,7 +582,8 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 				.getInstance().isAnimationAllowed(AnimationFacet.SELECTION,
 						this.table));
 		hasSelectionAnimations.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				if (hasSelectionAnimations.isSelected()) {
 					AnimationConfigurationManager.getInstance()
 							.allowAnimations(AnimationFacet.SELECTION,
@@ -582,7 +600,8 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 		builder.appendSeparator("Font settings");
 		JButton tahoma12 = new JButton("Tahoma 12");
 		tahoma12.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				table.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			}
 		});
@@ -590,7 +609,8 @@ public class TablePanel extends ControllablePanel implements Deferrable {
 
 		JButton tahoma13 = new JButton("Tahoma 13");
 		tahoma13.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				table.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			}
 		});

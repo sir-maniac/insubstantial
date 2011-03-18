@@ -76,11 +76,13 @@ public class SubstancePopupMenuUI extends BasicPopupMenuUI {
 		super.installListeners();
 
 		this.substanceContainerListener = new ContainerListener() {
-			public void componentAdded(ContainerEvent e) {
+			@Override
+            public void componentAdded(ContainerEvent e) {
 				MenuUtilities.cleanPopupLayoutMetrics(popupMenu);
 			}
 
-			public void componentRemoved(ContainerEvent e) {
+			@Override
+            public void componentRemoved(ContainerEvent e) {
 				MenuUtilities.cleanPopupLayoutMetrics(popupMenu);
 			}
 		};

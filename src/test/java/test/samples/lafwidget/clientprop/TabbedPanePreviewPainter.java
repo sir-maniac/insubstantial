@@ -106,7 +106,8 @@ public class TabbedPanePreviewPainter extends JFrame {
 		JPanel controls = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		final JCheckBox hasPreview = new JCheckBox("Has preview");
 		hasPreview.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				jtp
 						.putClientProperty(
 								LafWidget.TABBED_PANE_PREVIEW_PAINTER,
@@ -135,7 +136,8 @@ public class TabbedPanePreviewPainter extends JFrame {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		JDialog.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new TabbedPanePreviewPainter().setVisible(true);
 			}

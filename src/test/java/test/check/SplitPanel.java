@@ -71,7 +71,8 @@ public class SplitPanel extends ControllablePanel {
 		isOneTouch.setSelected(true);
 		splitPane.setOneTouchExpandable(true);
 		isOneTouch.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				splitPane.setOneTouchExpandable(isOneTouch.isSelected());
 			}
 		});
@@ -79,7 +80,8 @@ public class SplitPanel extends ControllablePanel {
 		final JCheckBox isFlat = new JCheckBox("is flat");
 		isFlat.setSelected(true);
 		isFlat.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				splitPane.putClientProperty(SubstanceLookAndFeel.FLAT_PROPERTY,
 						(isFlat.isSelected() ? Boolean.TRUE : Boolean.FALSE));
 				splitPane.repaint();
@@ -90,7 +92,8 @@ public class SplitPanel extends ControllablePanel {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		isVertical.setSelected(true);
 		isVertical.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				splitPane
 						.setOrientation(isVertical.isSelected() ? JSplitPane.VERTICAL_SPLIT
 								: JSplitPane.HORIZONTAL_SPLIT);
@@ -100,7 +103,8 @@ public class SplitPanel extends ControllablePanel {
 		final JCheckBox isEnabled = new JCheckBox("is enabled");
 		isEnabled.setSelected(true);
 		isEnabled.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				splitPane.setEnabled(isEnabled.isSelected());
 			}
 		});

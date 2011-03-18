@@ -95,7 +95,8 @@ public class ControlPanelFactory {
 		final JCheckBox markAsModified = new JCheckBox("Marked modified");
 		markAsModified.setSelected(false);
 		markAsModified.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				mainFrame.getRootPane().putClientProperty(
 						SubstanceLookAndFeel.WINDOW_MODIFIED,
 						(markAsModified.isSelected() ? Boolean.TRUE : false));
@@ -106,7 +107,8 @@ public class ControlPanelFactory {
 		final JCheckBox heapPanel = new JCheckBox("Has heap panel");
 		heapPanel.setSelected(false);
 		heapPanel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SubstanceLookAndFeel.setWidgetVisible(mainFrame.getRootPane(),
 						heapPanel.isSelected(),
 						SubstanceWidgetType.TITLE_PANE_HEAP_STATUS);
@@ -116,7 +118,8 @@ public class ControlPanelFactory {
 
 		JButton changeTitleButton = new JButton("Change");
 		changeTitleButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				String random = "abcdefghijklmnopqrstuvwxyz ";
 				int length = 60 + (int) (150 * Math.random());
 				String title = "";
@@ -135,9 +138,11 @@ public class ControlPanelFactory {
 		final JCheckBox useThemedDefaultIconsCheckBox = new JCheckBox(
 				"use themed icons");
 		useThemedDefaultIconsCheckBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						UIManager
 								.put(
 										SubstanceLookAndFeel.USE_THEMED_DEFAULT_ICONS,
@@ -156,9 +161,11 @@ public class ControlPanelFactory {
 		useConstantThemesOnDialogs.setSelected(SubstanceLookAndFeel
 				.isToUseConstantThemesOnDialogs());
 		useConstantThemesOnDialogs.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						SubstanceLookAndFeel
 								.setToUseConstantThemesOnDialogs(useConstantThemesOnDialogs
 										.isSelected());
@@ -173,7 +180,8 @@ public class ControlPanelFactory {
 		final JComboBox placementCombo = new JComboBox(new Object[] { "top",
 				"bottom", "left", "right" });
 		placementCombo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				String selected = (String) placementCombo.getSelectedItem();
 				if ("top".equals(selected))
 					mainTabbedPane.setTabPlacement(JTabbedPane.TOP);
@@ -200,7 +208,8 @@ public class ControlPanelFactory {
 					.getTabPreviewPainter(mainTabbedPane).getOverviewKind(
 							mainTabbedPane));
 			overviewKindCombo.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+				@Override
+                public void actionPerformed(ActionEvent e) {
 					mainTabPreviewPainter
 							.setTabOverviewKind((TabOverviewKind) overviewKindCombo
 									.getSelectedItem());
@@ -222,7 +231,8 @@ public class ControlPanelFactory {
 		};
 		menuGutterFillCombo.setSelectedItem(MenuGutterFillKind.HARD);
 		menuGutterFillCombo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				UIManager.put(SubstanceLookAndFeel.MENU_GUTTER_FILL_KIND,
 						menuGutterFillCombo.getSelectedItem());
 			}
@@ -238,7 +248,8 @@ public class ControlPanelFactory {
 		};
 		focusKindCombo.setSelectedItem(FocusKind.ALL_INNER);
 		focusKindCombo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				UIManager.put(SubstanceLookAndFeel.FOCUS_KIND, focusKindCombo
 						.getSelectedItem());
 			}
@@ -247,7 +258,8 @@ public class ControlPanelFactory {
 
 		JButton buttonGlassPane = new JButton("Show");
 		buttonGlassPane.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				final JPanel glassPane = new JPanel() {
 					@Override
 					public void paintComponent(Graphics g) {
@@ -298,7 +310,8 @@ public class ControlPanelFactory {
 				.setSelected(AnimationConfigurationManager.getInstance()
 						.isAnimationAllowed(AnimationFacet.FOCUS_LOOP_ANIMATION, null));
 		allowFocusLoopAnimations.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				if (allowFocusLoopAnimations.isSelected()) {
 					AnimationConfigurationManager.getInstance().allowAnimations(
 							AnimationFacet.FOCUS_LOOP_ANIMATION);
@@ -313,7 +326,8 @@ public class ControlPanelFactory {
 		final JCheckBox allowGlowIconAnimations = new JCheckBox(
 				"Allow animation");
 		allowGlowIconAnimations.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				if (allowGlowIconAnimations.isSelected()) {
 					AnimationConfigurationManager.getInstance().allowAnimations(
 							AnimationFacet.ICON_GLOW);
@@ -328,7 +342,8 @@ public class ControlPanelFactory {
 		final JCheckBox allowGhostIconAnimations = new JCheckBox(
 				"Allow animation");
 		allowGhostIconAnimations.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				if (allowGhostIconAnimations.isSelected()) {
 					AnimationConfigurationManager.getInstance().allowAnimations(
 							AnimationFacet.GHOSTING_ICON_ROLLOVER);
@@ -343,7 +358,8 @@ public class ControlPanelFactory {
 		final JCheckBox allowGhostPressAnimations = new JCheckBox(
 				"Allow animation");
 		allowGhostPressAnimations.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				if (allowGhostPressAnimations.isSelected()) {
 					AnimationConfigurationManager.getInstance().allowAnimations(
 							AnimationFacet.GHOSTING_BUTTON_PRESS);
@@ -360,7 +376,8 @@ public class ControlPanelFactory {
 
 		isToolbarFlat.setSelected(true);
 		isToolbarFlat.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				toolbar.putClientProperty(SubstanceLookAndFeel.FLAT_PROPERTY,
 						Boolean.valueOf(isToolbarFlat.isSelected()));
 				toolbar.repaint();
@@ -372,7 +389,8 @@ public class ControlPanelFactory {
 		final JCheckBox menuSearch = new JCheckBox("Has menu search");
 		menuSearch.setSelected(false);
 		menuSearch.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SubstanceLookAndFeel.setWidgetVisible(mainFrame.getRootPane(),
 						menuSearch.isSelected(),
 						SubstanceWidgetType.MENU_SEARCH);
@@ -383,7 +401,8 @@ public class ControlPanelFactory {
 		final JCheckBox menuLocale = new JCheckBox("Has custom locale");
 		menuLocale.setSelected(false);
 		menuLocale.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				if (menuLocale.isSelected()) {
 					mainFrame.getJMenuBar().setLocale(Locale.FRENCH);
 					mainFrame.getJMenuBar().putClientProperty(
@@ -416,9 +435,11 @@ public class ControlPanelFactory {
 		JButton bfo = new JButton("Open dialog", Check
 				.getIcon("JFileChooserColor16"));
 		bfo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						JFileChooser jfc = new JFileChooser();
 						jfc.showOpenDialog(mainFrame);
 					}
@@ -430,9 +451,11 @@ public class ControlPanelFactory {
 		JButton bfs = new JButton("Save dialog", Check
 				.getIcon("JFileChooserColor16"));
 		bfs.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						JFileChooser jfc = new JFileChooser();
 						jfc.showSaveDialog(mainFrame);
 					}
@@ -443,9 +466,11 @@ public class ControlPanelFactory {
 
 		JButton bc = new JButton("Open", Check.getIcon("JColorChooserColor16"));
 		bc.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						Color color = JColorChooser.showDialog(mainFrame,
 								"Color chooser", new Color(23, 45, 200));
 						if (color != null) {
@@ -459,9 +484,11 @@ public class ControlPanelFactory {
 
 		JButton bcWindow = new JButton("open in window");
 		bcWindow.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						final Window window = new Window(mainFrame);
 						window.setLayout(new BorderLayout());
 						window.add(new JColorChooser());
@@ -470,7 +497,8 @@ public class ControlPanelFactory {
 						window.setVisible(true);
 						Timer timerDispose = new Timer(5000,
 								new ActionListener() {
-									public void actionPerformed(ActionEvent e) {
+									@Override
+                                    public void actionPerformed(ActionEvent e) {
 										window.dispose();
 									}
 								});
@@ -486,9 +514,11 @@ public class ControlPanelFactory {
 
 		JButton bop = new JButton("Show");
 		bop.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						JOptionPane pane = new JOptionPane("Sample option pane");
 						JDialog dialog = pane.createDialog(mainFrame,
 								"Sample title");
@@ -503,9 +533,11 @@ public class ControlPanelFactory {
 		JButton bopi = new JButton("Show", Check
 				.getIcon("22/dialog-information"));
 		bopi.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						JOptionPane.showMessageDialog(mainFrame,
 								"Sample info message", "Sample title",
 								JOptionPane.INFORMATION_MESSAGE);
@@ -517,9 +549,11 @@ public class ControlPanelFactory {
 
 		JButton bope = new JButton("Show", Check.getIcon("22/dialog-error"));
 		bope.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						JOptionPane.showMessageDialog(mainFrame,
 								"Sample error message", "Sample title",
 								JOptionPane.ERROR_MESSAGE);
@@ -531,9 +565,11 @@ public class ControlPanelFactory {
 
 		JButton bopw = new JButton("Show", Check.getIcon("22/dialog-warning"));
 		bopw.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						JOptionPane.showMessageDialog(mainFrame,
 								"Sample warning message", "Sample title",
 								JOptionPane.WARNING_MESSAGE);
@@ -545,9 +581,11 @@ public class ControlPanelFactory {
 
 		JButton bopq = new JButton("Show", Check.getIcon("22/help-browser"));
 		bopq.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						JOptionPane.showMessageDialog(mainFrame,
 								"Sample question message", "Sample title",
 								JOptionPane.QUESTION_MESSAGE);
@@ -559,9 +597,11 @@ public class ControlPanelFactory {
 
 		JButton bopc = new JButton("Show");
 		bopc.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						JOptionPane.showOptionDialog(mainFrame, new JPanel(),
 								"Option", JOptionPane.OK_CANCEL_OPTION,
 								JOptionPane.PLAIN_MESSAGE, null, null, null);
@@ -573,9 +613,11 @@ public class ControlPanelFactory {
 
 		JButton buttonOptionPaneSimpleInput = new JButton("Show");
 		buttonOptionPaneSimpleInput.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						JDialog dialog = new JDialog(mainFrame,
 								"Sample dialog", true);
 						dialog.setSize(400, 300);
@@ -594,9 +636,11 @@ public class ControlPanelFactory {
 
 		JButton buttonOptionPaneComplexInput = new JButton("Show");
 		buttonOptionPaneComplexInput.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						JDialog dialog = new JDialog(mainFrame,
 								"Sample dialog", true);
 						dialog.setSize(400, 300);
@@ -620,9 +664,11 @@ public class ControlPanelFactory {
 
 		JButton buttonOptionPaneInternalInput = new JButton("Show");
 		buttonOptionPaneInternalInput.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						JDialog dialog = new JDialog(mainFrame,
 								"Sample dialog", true);
 						dialog.setSize(400, 300);
@@ -645,9 +691,11 @@ public class ControlPanelFactory {
 
 		JButton openDisposable = new JButton("Open");
 		openDisposable.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						if (disposableDialog != null) {
 							disposableDialog.setVisible(true);
 							return;
@@ -679,9 +727,11 @@ public class ControlPanelFactory {
 
 		JButton launchFrameDialogWithIcon = new JButton("Open");
 		launchFrameDialogWithIcon.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						SimpleDialog sd = new SimpleDialog();
 						if (UIManager.getLookAndFeel() instanceof SubstanceLookAndFeel) {
 							sd
@@ -709,9 +759,11 @@ public class ControlPanelFactory {
 
 		JButton bd = new JButton("Open");
 		bd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						SimpleDialog sd = new SimpleDialog();
 						sd.setModal(false);
 						sd.pack();
@@ -726,9 +778,11 @@ public class ControlPanelFactory {
 
 		JButton bcd = new JButton("Close");
 		bcd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						if (simpleDialog != null) {
 							simpleDialog.removeAll();
 							simpleDialog.dispose();
@@ -760,9 +814,11 @@ public class ControlPanelFactory {
 
 		JButton buttonDialogCloseOnEsc = new JButton("Show");
 		buttonDialogCloseOnEsc.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						final JDialog dialog = new JDialog((Frame) null,
 								"Click ESC to dispose");
 						dialog.setSize(200, 200);
@@ -792,7 +848,8 @@ public class ControlPanelFactory {
 						// connect "Esc" key with disposing the dialog
 						String actionName = "VK_ESCAPE";
 						Action action = new AbstractAction(actionName) {
-							public void actionPerformed(ActionEvent e) {
+							@Override
+                            public void actionPerformed(ActionEvent e) {
 								dialog.dispose();
 							}
 						};
@@ -813,9 +870,11 @@ public class ControlPanelFactory {
 
 		JButton buttonDialogUndecorated = new JButton("Show");
 		buttonDialogUndecorated.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						final JDialog dialog = new JDialog((Frame) null, "");
 						dialog.setSize(200, 200);
 						dialog.setUndecorated(true);
@@ -831,7 +890,8 @@ public class ControlPanelFactory {
 						// connect "Esc" key with "System.exit(0)"
 						String actionName = "VK_ESCAPE";
 						Action action = new AbstractAction(actionName) {
-							public void actionPerformed(ActionEvent e) {
+							@Override
+                            public void actionPerformed(ActionEvent e) {
 								dialog.dispose();
 							}
 						};
@@ -878,9 +938,11 @@ public class ControlPanelFactory {
 
 		JButton btf = new JButton("Show");
 		btf.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						JFrame testFrame = new JFrame("test1");
 						testFrame.setSize(262, 100);
 						testFrame.setLocationRelativeTo(mainFrame);
@@ -895,9 +957,11 @@ public class ControlPanelFactory {
 
 		JButton btfU = new JButton("Show");
 		btfU.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						JFrame.setDefaultLookAndFeelDecorated(false);
 						JDialog.setDefaultLookAndFeelDecorated(false);
 
@@ -920,9 +984,11 @@ public class ControlPanelFactory {
 
 		JButton bcp = new JButton("Open");
 		bcp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 
 						JFrame colorFrame = new JFrame();
 						final ColorPanel cp1 = new ColorPanel("default");
@@ -934,11 +1000,13 @@ public class ControlPanelFactory {
 						cp4.setBackground(Color.black);
 						// cp2.setBackground(Color.GREEN);
 						colorFrame.setLayout(new LayoutManager() {
-							public void addLayoutComponent(String name,
+							@Override
+                            public void addLayoutComponent(String name,
 									Component comp) {
 							}
 
-							public void layoutContainer(Container parent) {
+							@Override
+                            public void layoutContainer(Container parent) {
 								int h = parent.getHeight() / 2;
 								int w = parent.getWidth() / 2;
 								cp1.setBounds(0, 0, w, h);
@@ -948,16 +1016,19 @@ public class ControlPanelFactory {
 										- h);
 							}
 
-							public Dimension minimumLayoutSize(Container parent) {
+							@Override
+                            public Dimension minimumLayoutSize(Container parent) {
 								return preferredLayoutSize(parent);
 							}
 
-							public Dimension preferredLayoutSize(
+							@Override
+                            public Dimension preferredLayoutSize(
 									Container parent) {
 								return new Dimension(100, 100);
 							}
 
-							public void removeLayoutComponent(Component comp) {
+							@Override
+                            public void removeLayoutComponent(Component comp) {
 							}
 
 						});
@@ -979,9 +1050,11 @@ public class ControlPanelFactory {
 
 		JButton paneDialog = new JButton("Open");
 		paneDialog.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						JDialog dialog = new JDialog(mainFrame, true);
 						dialog.setTitle("Test text pane in scroll pane");
 						JTextPane textPane = new JTextPane();

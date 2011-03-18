@@ -218,27 +218,33 @@ public final class FontSets {
 
 		// FontSet API --------------------------------------------------------
 
-		public FontUIResource getControlFont() {
+		@Override
+        public FontUIResource getControlFont() {
 			return controlFont;
 		}
 
-		public FontUIResource getMenuFont() {
+		@Override
+        public FontUIResource getMenuFont() {
 			return menuFont;
 		}
 
-		public FontUIResource getTitleFont() {
+		@Override
+        public FontUIResource getTitleFont() {
 			return titleFont;
 		}
 
-		public FontUIResource getWindowTitleFont() {
+		@Override
+        public FontUIResource getWindowTitleFont() {
 			return windowTitleFont;
 		}
 
-		public FontUIResource getSmallFont() {
+		@Override
+        public FontUIResource getSmallFont() {
 			return smallFont;
 		}
 
-		public FontUIResource getMessageFont() {
+		@Override
+        public FontUIResource getMessageFont() {
 			return messageFont;
 		}
 
@@ -255,7 +261,8 @@ public final class FontSets {
 		private FontUIResource systemFont;
 		private FontUIResource smallFont;
 
-		public FontUIResource getControlFont() {
+		@Override
+        public FontUIResource getControlFont() {
 			if (controlFont == null) {
 				controlFont = new FontUIResource(Font.getFont(
 						"swing.plaf.metal.controlFont", new Font("Dialog",
@@ -265,11 +272,13 @@ public final class FontSets {
 			return controlFont;
 		}
 
-		public FontUIResource getMenuFont() {
+		@Override
+        public FontUIResource getMenuFont() {
 			return getControlFont();
 		}
 
-		public FontUIResource getTitleFont() {
+		@Override
+        public FontUIResource getTitleFont() {
 			if (titleFont == null) {
 				titleFont = new FontUIResource(getControlFont().deriveFont(
 						Font.BOLD));
@@ -277,7 +286,8 @@ public final class FontSets {
 			return titleFont;
 		}
 
-		public FontUIResource getSmallFont() {
+		@Override
+        public FontUIResource getSmallFont() {
 			if (smallFont == null) {
 				smallFont = new FontUIResource(Font.getFont(
 						"swing.plaf.metal.smallFont", new Font("Dialog",
@@ -286,7 +296,8 @@ public final class FontSets {
 			return smallFont;
 		}
 
-		public FontUIResource getMessageFont() {
+		@Override
+        public FontUIResource getMessageFont() {
 			if (systemFont == null) {
 				systemFont = new FontUIResource(Font.getFont(
 						"swing.plaf.metal.systemFont", new Font("Dialog",
@@ -295,7 +306,8 @@ public final class FontSets {
 			return systemFont;
 		}
 
-		public FontUIResource getWindowTitleFont() {
+		@Override
+        public FontUIResource getWindowTitleFont() {
 			return getTitleFont();
 		}
 

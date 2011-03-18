@@ -117,6 +117,7 @@ implements UIResource {
         new ColorSliderTextFieldHandler(blackField, ccModel, 3);
         
         ccModel.addChangeListener(new ChangeListener() {
+            @Override
             public void stateChanged(ChangeEvent evt) {
                 setColorToModel(ccModel.getColor());
             }
@@ -133,21 +134,26 @@ implements UIResource {
         blackLabel.setBorder(bm);
     }
     
+    @Override
     protected void buildChooser() {
     }
     
+    @Override
     public String getDisplayName() {
         return UIManager.getString("ColorChooser.cmykSliders");
     }
     
+    @Override
     public Icon getLargeDisplayIcon() {
         return UIManager.getIcon("ColorChooser.colorSlidersIcon");
     }
     
+    @Override
     public Icon getSmallDisplayIcon() {
         return getLargeDisplayIcon();
     }
     
+    @Override
     public void updateChooser() {
         if (updateRecursion == 0) {
             updateRecursion++;
@@ -219,6 +225,7 @@ implements UIResource {
         cyanField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         cyanField.setText("0");
         cyanField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 cyanFieldFocusLost(evt);
             }
@@ -259,6 +266,7 @@ implements UIResource {
         magentaField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         magentaField.setText("0");
         magentaField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 magentaFieldFocusLost(evt);
             }
@@ -299,6 +307,7 @@ implements UIResource {
         yellowField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         yellowField.setText("0");
         yellowField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 yellowFieldFocusLost(evt);
             }
@@ -339,6 +348,7 @@ implements UIResource {
         blackField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         blackField.setText("0");
         blackField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 blackFieldFocusLost(evt);
             }

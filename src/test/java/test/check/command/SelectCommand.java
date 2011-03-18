@@ -17,7 +17,8 @@ public class SelectCommand implements ConfigurationCommand<Component> {
 	 * 
 	 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 	 */
-	public void configure(Component ab) {
+	@Override
+    public void configure(Component ab) {
 		if (ab instanceof JButton)
 			return;
 		if (ab instanceof AbstractButton)

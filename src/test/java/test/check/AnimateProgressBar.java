@@ -18,7 +18,8 @@ public class AnimateProgressBar extends JFrame {
 		JPanel controls = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		JButton forw = new JButton("Increment");
 		forw.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				jpb.setValue(jpb.getValue() + 1);
 			}
 		});
@@ -33,7 +34,8 @@ public class AnimateProgressBar extends JFrame {
 	public static void main(String[] args) throws Exception {
 		UIManager.setLookAndFeel(new SubstanceBusinessBlackSteelLookAndFeel());
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				new AnimateProgressBar().setVisible(true);
 			}
 		});

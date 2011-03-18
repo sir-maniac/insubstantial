@@ -85,6 +85,7 @@ implements UIResource {
         new ColorSliderTextFieldHandler(brightnessField, ccModel, 2);
 
         ccModel.addChangeListener(new ChangeListener() {
+            @Override
             public void stateChanged(ChangeEvent evt) {
                 setColorToModel(ccModel.getColor());
             }
@@ -98,21 +99,26 @@ implements UIResource {
         brightnessLabel.setBorder(bm);
     }
     
+    @Override
     protected void buildChooser() {
     }
     
+    @Override
     public String getDisplayName() {
         return UIManager.getString("ColorChooser.hsbSliders");
     }
     
+    @Override
     public Icon getLargeDisplayIcon() {
         return UIManager.getIcon("ColorChooser.colorSlidersIcon");
     }
     
+    @Override
     public Icon getSmallDisplayIcon() {
         return getLargeDisplayIcon();
     }
     
+    @Override
     public void updateChooser() {
         ccModel.setColor(getColorFromModel());
     }
@@ -172,6 +178,7 @@ implements UIResource {
         hueField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         hueField.setText("0");
         hueField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 hueFieldFocusLost(evt);
             }
@@ -212,6 +219,7 @@ implements UIResource {
         saturationField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         saturationField.setText("0");
         saturationField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 saturationFieldFocusLost(evt);
             }
@@ -252,6 +260,7 @@ implements UIResource {
         brightnessField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         brightnessField.setText("0");
         brightnessField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 brightnessFieldFocusLost(evt);
             }

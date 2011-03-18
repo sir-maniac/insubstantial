@@ -125,7 +125,8 @@ public class SubstanceListUI extends BasicListUI implements
 
 	private class SubstanceListSelectionListener implements
 			ListSelectionListener {
-		public void valueChanged(final ListSelectionEvent e) {
+		@Override
+        public void valueChanged(final ListSelectionEvent e) {
 			// fix for issue 469/474 - update the inner structures
 			// in a separate event
 			SwingUtilities.invokeLater(new Runnable() {
@@ -249,19 +250,24 @@ public class SubstanceListUI extends BasicListUI implements
 	 */
 	private class RolloverFadeListener implements MouseListener,
 			MouseMotionListener {
-		public void mouseClicked(MouseEvent e) {
+		@Override
+        public void mouseClicked(MouseEvent e) {
 		}
 
-		public void mouseEntered(MouseEvent e) {
+		@Override
+        public void mouseEntered(MouseEvent e) {
 		}
 
-		public void mousePressed(MouseEvent e) {
+		@Override
+        public void mousePressed(MouseEvent e) {
 		}
 
-		public void mouseReleased(MouseEvent e) {
+		@Override
+        public void mouseReleased(MouseEvent e) {
 		}
 
-		public void mouseExited(MouseEvent e) {
+		@Override
+        public void mouseExited(MouseEvent e) {
 			// if (SubstanceCoreUtilities.toBleedWatermark(list))
 			// return;
 
@@ -270,13 +276,15 @@ public class SubstanceListUI extends BasicListUI implements
 			resetRolloverIndex();
 		}
 
-		public void mouseMoved(MouseEvent e) {
+		@Override
+        public void mouseMoved(MouseEvent e) {
 			if (!list.isEnabled())
 				return;
 			handleMove(e);
 		}
 
-		public void mouseDragged(MouseEvent e) {
+		@Override
+        public void mouseDragged(MouseEvent e) {
 			if (!list.isEnabled())
 				return;
 			handleMove(e);
@@ -462,7 +470,8 @@ public class SubstanceListUI extends BasicListUI implements
 		list.addMouseListener(substanceFadeRolloverListener);
 
 		substancePropertyChangeListener = new PropertyChangeListener() {
-			public void propertyChange(final PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(final PropertyChangeEvent evt) {
 				if (SubstanceLookAndFeel.WATERMARK_VISIBLE.equals(evt
 						.getPropertyName())) {
 					list.setOpaque(!SubstanceCoreUtilities

@@ -64,7 +64,8 @@ public class SetUseConstantThemesOnDialogs extends JFrame {
 				.getResource(packageName.replace('.', '/')
 						+ "/dialog-information.png")));
 		bopi.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(
 						SetUseConstantThemesOnDialogs.this,
 						"Sample info message", "Sample title",
@@ -77,7 +78,8 @@ public class SetUseConstantThemesOnDialogs extends JFrame {
 				.getResource(packageName.replace('.', '/')
 						+ "/dialog-error.png")));
 		bope.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(
 						SetUseConstantThemesOnDialogs.this,
 						"Sample error message", "Sample title",
@@ -90,7 +92,8 @@ public class SetUseConstantThemesOnDialogs extends JFrame {
 				.getResource(packageName.replace('.', '/')
 						+ "/dialog-warning.png")));
 		bopw.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(
 						SetUseConstantThemesOnDialogs.this,
 						"Sample warning message", "Sample title",
@@ -103,7 +106,8 @@ public class SetUseConstantThemesOnDialogs extends JFrame {
 				.getResource(packageName.replace('.', '/')
 						+ "/help-browser.png")));
 		bopq.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(
 						SetUseConstantThemesOnDialogs.this,
 						"Sample question message", "Sample title",
@@ -120,9 +124,11 @@ public class SetUseConstantThemesOnDialogs extends JFrame {
 		useConstantThemesOnDialogs.setSelected(SubstanceLookAndFeel
 				.isToUseConstantThemesOnDialogs());
 		useConstantThemesOnDialogs.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						SubstanceLookAndFeel
 								.setToUseConstantThemesOnDialogs(useConstantThemesOnDialogs
 										.isSelected());
@@ -148,7 +154,8 @@ public class SetUseConstantThemesOnDialogs extends JFrame {
 		JDialog.setDefaultLookAndFeelDecorated(true);
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new NebulaSkin());
 				new SetUseConstantThemesOnDialogs().setVisible(true);
 			}

@@ -127,6 +127,7 @@ public class HTMLChooser extends AbstractColorChooserPanel implements UIResource
         
 
         htmlListener = new ChangeListener() {
+            @Override
             public void stateChanged(ChangeEvent evt) {
                 Color c = ccModel.getColor();
                 setColorToModel(c);
@@ -173,21 +174,26 @@ public class HTMLChooser extends AbstractColorChooserPanel implements UIResource
         greenLabel.setBorder(bm);
         blueLabel.setBorder(bm);
     }
+    @Override
     protected void buildChooser() {
     }
     
+    @Override
     public String getDisplayName() {
         return UIManager.getString("ColorChooser.htmlSliders");
     }
     
+    @Override
     public Icon getLargeDisplayIcon() {
         return UIManager.getIcon("ColorChooser.colorSlidersIcon");
     }
     
+    @Override
     public Icon getSmallDisplayIcon() {
         return getLargeDisplayIcon();
     }
     
+    @Override
     public void updateChooser() {
         if (updateRecursion == 0) {
             updateRecursion++;
@@ -261,6 +267,7 @@ public class HTMLChooser extends AbstractColorChooserPanel implements UIResource
         redField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         redField.setText("0");
         redField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 redFieldFocusLost(evt);
             }
@@ -283,6 +290,7 @@ public class HTMLChooser extends AbstractColorChooserPanel implements UIResource
         greenField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         greenField.setText("0");
         greenField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 greenFieldFocusLost(evt);
             }
@@ -329,6 +337,7 @@ public class HTMLChooser extends AbstractColorChooserPanel implements UIResource
         blueField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         blueField.setText("0");
         blueField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 blueFieldFocusLost(evt);
             }
@@ -349,6 +358,7 @@ public class HTMLChooser extends AbstractColorChooserPanel implements UIResource
         htmlField.setColumns(7);
         htmlField.setText("#000000");
         htmlField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 htmlFieldFocusLost(evt);
             }
@@ -365,6 +375,7 @@ public class HTMLChooser extends AbstractColorChooserPanel implements UIResource
 
         webSaveCheckBox.setText(UIManager.getString("ColorChooser.htmlChooseOnlyWebSaveColorsText"));
         webSaveCheckBox.addItemListener(new java.awt.event.ItemListener() {
+            @Override
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 webSaveChanged(evt);
             }

@@ -127,10 +127,12 @@ public class SubstanceFormattedTextFieldUI extends BasicFormattedTextFieldUI
 		this.stateTransitionTracker.registerFocusListeners();
 
 		this.substancePropertyChangeListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if ("font".equals(evt.getPropertyName())) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							// remember the caret location - issue 404
 							int caretPos = textField.getCaretPosition();
 							textField.updateUI();

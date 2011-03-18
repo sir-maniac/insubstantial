@@ -42,11 +42,13 @@ public class Quaqua14ColorChooserUI extends Quaqua13ColorChooserUI {
         return new Quaqua14ColorChooserUI();
     }
     
+    @Override
     public void installUI(JComponent c) {
         super.installUI(c);
         chooser.applyComponentOrientation(c.getComponentOrientation());
     }
     
+    @Override
     protected void installDefaults() {
         super.installDefaults();
         TransferHandler th = chooser.getTransferHandler();
@@ -55,16 +57,19 @@ public class Quaqua14ColorChooserUI extends Quaqua13ColorChooserUI {
         }
     }
     
+    @Override
     protected void uninstallDefaults() {
         if (chooser.getTransferHandler() instanceof UIResource) {
             chooser.setTransferHandler(null);
         }
     }
     
+    @Override
     protected void installListeners() {
         super.installListeners();
         
         previewMouseListener = new MouseAdapter() {
+            @Override
             public void mousePressed(MouseEvent e) {
                 if (chooser.getDragEnabled()) {
                     TransferHandler th = chooser.getTransferHandler();
@@ -75,11 +80,13 @@ public class Quaqua14ColorChooserUI extends Quaqua13ColorChooserUI {
         
     }
     
+    @Override
     protected void uninstallListeners() {
         super.uninstallListeners();
         previewPanel.removeMouseListener(previewMouseListener);
     }
     
+    @Override
     protected void installPreviewPanel() {
         if (previewPanel != null) {
             previewPanel.removeMouseListener(previewMouseListener);
@@ -88,12 +95,14 @@ public class Quaqua14ColorChooserUI extends Quaqua13ColorChooserUI {
         previewPanel.addMouseListener(previewMouseListener);
     }
     
+    @Override
     protected PropertyChangeListener createPropertyChangeListener() {
         return new PropertyHandler();
     }
     
     public class PropertyHandler implements PropertyChangeListener {
         
+        @Override
         public void propertyChange(PropertyChangeEvent e) {
             
             if ( e.getPropertyName().equals( JColorChooser.CHOOSER_PANELS_PROPERTY ) ) {

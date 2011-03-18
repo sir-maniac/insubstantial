@@ -552,7 +552,8 @@ public class SubstanceSliderUI extends BasicSliderUI implements
 	 * @see
 	 * org.pushingpixels.substance.Trackable#isInside(java.awt.event.MouseEvent)
 	 */
-	public boolean isInside(MouseEvent me) {
+	@Override
+    public boolean isInside(MouseEvent me) {
 		Rectangle thumbB = this.thumbRect;
 		if (thumbB == null)
 			return false;
@@ -607,14 +608,16 @@ public class SubstanceSliderUI extends BasicSliderUI implements
 		slider.addMouseMotionListener(this.substanceRolloverListener);
 
 		this.substancePropertyChangeListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if ("enabled".equals(evt.getPropertyName())) {
 					SubstanceSliderUI.this.thumbModel.setEnabled(slider
 							.isEnabled());
 				}
 				if ("font".equals(evt.getPropertyName())) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							slider.updateUI();
 						}
 					});

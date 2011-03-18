@@ -59,19 +59,22 @@ public class SpinnerPanel extends JPanel {
 		builder.setDefaultDialogBorder();
 
 		CreationCommand<Component> basicCr = new CreationCommand<Component>() {
-			public Component create() {
+			@Override
+            public Component create() {
 				JSpinner basicSpinner = new JSpinner(new SpinnerNumberModel());
 				return basicSpinner;
 			}
 		};
 		CreationCommand<Component> dateCr = new CreationCommand<Component>() {
-			public Component create() {
+			@Override
+            public Component create() {
 				JSpinner dateEnSpinner = new JSpinner(new SpinnerDateModel());
 				return dateEnSpinner;
 			}
 		};
 		CreationCommand<Component> weekdaysCr = new CreationCommand<Component>() {
-			public Component create() {
+			@Override
+            public Component create() {
 				String weekdaysEn[] = new String[] { "Sunday", "Monday",
 						"Tuesday", "Wednesday", "Thursday", "Friday",
 						"Saturday" };
@@ -81,7 +84,8 @@ public class SpinnerPanel extends JPanel {
 			}
 		};
 		CreationCommand<Component> numberCr = new CreationCommand<Component>() {
-			public Component create() {
+			@Override
+            public Component create() {
 				JSpinner numberEnSpinner = new JSpinner(new SpinnerNumberModel(
 						0, 0, 100, 5));
 				return numberEnSpinner;

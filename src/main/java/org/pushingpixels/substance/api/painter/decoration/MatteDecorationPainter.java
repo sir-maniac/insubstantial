@@ -52,7 +52,8 @@ public class MatteDecorationPainter implements SubstanceDecorationPainter {
 	 * 
 	 * @see org.pushingpixels.substance.utils.SubstanceTrait#getDisplayName()
 	 */
-	public String getDisplayName() {
+	@Override
+    public String getDisplayName() {
 		return DISPLAY_NAME;
 	}
 
@@ -68,7 +69,8 @@ public class MatteDecorationPainter implements SubstanceDecorationPainter {
 	 * org.pushingpixels.substance.painter.decoration.DecorationAreaType, int,
 	 * int, org.pushingpixels.substance.api.SubstanceSkin)
 	 */
-	public void paintDecorationArea(Graphics2D graphics, Component comp,
+	@Override
+    public void paintDecorationArea(Graphics2D graphics, Component comp,
 			DecorationAreaType decorationAreaType, int width, int height,
 			SubstanceSkin skin) {
 		if ((decorationAreaType == DecorationAreaType.PRIMARY_TITLE_PANE)

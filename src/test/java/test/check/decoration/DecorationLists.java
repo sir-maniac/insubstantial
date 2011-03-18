@@ -66,7 +66,8 @@ public class DecorationLists extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new DecorationLists().setVisible(true);
 			}

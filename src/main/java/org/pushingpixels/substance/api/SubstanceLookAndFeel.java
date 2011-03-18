@@ -1655,7 +1655,8 @@ public abstract class SubstanceLookAndFeel extends BasicLookAndFeel {
 		// fix for defect 208 - tracking changes to focus owner
 		// and repainting the default button
 		this.focusOwnerChangeListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if ("focusOwner".equals(evt.getPropertyName())) {
 					Component newFocusOwner = (Component) evt.getNewValue();
 					if (newFocusOwner != null) {
@@ -1935,7 +1936,8 @@ public abstract class SubstanceLookAndFeel extends BasicLookAndFeel {
 			boolean toUseConstantThemesOnDialogs) {
 		SubstanceLookAndFeel.toUseConstantThemesOnDialogs = toUseConstantThemesOnDialogs;
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				for (Window window : Window.getWindows()) {
 					SwingUtilities.updateComponentTreeUI(window);
 				}

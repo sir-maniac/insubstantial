@@ -71,9 +71,11 @@ public class ShowExtraWidgets extends JFrame {
 		JPanel controls = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		final JCheckBox showExtraWidgets = new JCheckBox("show extra widgets");
 		showExtraWidgets.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						// based on the checkbox selection status, set the
 						// property
 						UIManager.put(SubstanceLookAndFeel.SHOW_EXTRA_WIDGETS,
@@ -105,7 +107,8 @@ public class ShowExtraWidgets extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new ShowExtraWidgets().setVisible(true);
 			}

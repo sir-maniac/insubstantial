@@ -116,7 +116,8 @@ public class SubstanceTableHeaderUI extends BasicTableHeaderUI {
 		 * javax.swing.event.ListSelectionListener#valueChanged(javax.swing.
 		 * event.ListSelectionEvent)
 		 */
-		public void valueChanged(ListSelectionEvent e) {
+		@Override
+        public void valueChanged(ListSelectionEvent e) {
 			if (ui.header == null)
 				return;
 			if (ui.header.isValid())
@@ -162,7 +163,8 @@ public class SubstanceTableHeaderUI extends BasicTableHeaderUI {
 
 		// Add listener for the selection animation
 		this.substanceFadeSelectionListener = new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent e) {
+			@Override
+            public void valueChanged(ListSelectionEvent e) {
 				if (header == null)
 					return;
 
@@ -268,7 +270,8 @@ public class SubstanceTableHeaderUI extends BasicTableHeaderUI {
 		}
 
 		this.substancePropertyChangeListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if ("table".equals(evt.getPropertyName())) {
 					// track changes to the table and re-register the
 					// column model listener to the new table.
@@ -1006,7 +1009,8 @@ public class SubstanceTableHeaderUI extends BasicTableHeaderUI {
 		 */
 		private void repaintColumnHeader() {
 			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					if (header == null) {
 						// may happen if the LAF was switched in the meantime
 						return;

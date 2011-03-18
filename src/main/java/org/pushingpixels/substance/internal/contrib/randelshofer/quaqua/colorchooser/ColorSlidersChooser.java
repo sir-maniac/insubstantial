@@ -76,6 +76,7 @@ implements UIResource {
 
     }//GEN-END:initComponents
     
+    @Override
     protected void buildChooser() {
         slidersHolder.add(new GrayChooser(),UIManager.getString("ColorChooser.grayScaleSlider"));
         slidersHolder.add(new RGBChooser(),UIManager.getString("ColorChooser.rgbSliders"));
@@ -90,6 +91,7 @@ implements UIResource {
         cbm.addElement(UIManager.getString("ColorChooser.htmlSliders"));
         slidersComboBox.setModel(cbm);
         slidersComboBox.addItemListener(new ItemListener() {
+            @Override
             public void itemStateChanged(ItemEvent evt) {
                 if (evt.getStateChange() == ItemEvent.SELECTED) {
                     ((CardLayout) slidersHolder.getLayout()).show(slidersHolder, (String) evt.getItem());
@@ -100,6 +102,7 @@ implements UIResource {
         slidersComboBox.setSelectedIndex(lastSelectedPanelIndex);
     }
     
+    @Override
     public void installChooserPanel(JColorChooser enclosingChooser) {
         super.installChooserPanel(enclosingChooser);
         Component[] components = slidersHolder.getComponents();
@@ -113,6 +116,7 @@ implements UIResource {
      * Invoked when the panel is removed from the chooser.
      * If override this, be sure to call <code>super</code>.
      */
+    @Override
     public void uninstallChooserPanel(JColorChooser enclosingChooser) {
         Component[] components = slidersHolder.getComponents();
         for (int i=0; i < components.length; i++) {
@@ -122,18 +126,22 @@ implements UIResource {
         super.uninstallChooserPanel(enclosingChooser);
     }
     
+    @Override
     public String getDisplayName() {
         return UIManager.getString("ColorChooser.colorSliders");
     }
     
+    @Override
     public Icon getLargeDisplayIcon() {
         return UIManager.getIcon("ColorChooser.colorSlidersIcon");
     }
     
+    @Override
     public Icon getSmallDisplayIcon() {
         return getLargeDisplayIcon();
     }
     
+    @Override
     public void updateChooser() {
     }
     

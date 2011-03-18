@@ -94,27 +94,33 @@ public class GetFontPolicy extends JFrame {
 					.getStyle(), systemFont.getSize() + this.extra);
 		}
 
-		public FontUIResource getControlFont() {
+		@Override
+        public FontUIResource getControlFont() {
 			return this.getWrappedFont(this.delegate.getControlFont());
 		}
 
-		public FontUIResource getMenuFont() {
+		@Override
+        public FontUIResource getMenuFont() {
 			return this.getWrappedFont(this.delegate.getMenuFont());
 		}
 
-		public FontUIResource getMessageFont() {
+		@Override
+        public FontUIResource getMessageFont() {
 			return this.getWrappedFont(this.delegate.getMessageFont());
 		}
 
-		public FontUIResource getSmallFont() {
+		@Override
+        public FontUIResource getSmallFont() {
 			return this.getWrappedFont(this.delegate.getSmallFont());
 		}
 
-		public FontUIResource getTitleFont() {
+		@Override
+        public FontUIResource getTitleFont() {
 			return this.getWrappedFont(this.delegate.getTitleFont());
 		}
 
-		public FontUIResource getWindowTitleFont() {
+		@Override
+        public FontUIResource getWindowTitleFont() {
 			return this.getWrappedFont(this.delegate.getWindowTitleFont());
 		}
 	}
@@ -135,13 +141,15 @@ public class GetFontPolicy extends JFrame {
 		fontSizeSlider.setMajorTickSpacing(1);
 		fontSizeSlider.setToolTipText("Controls the global font set size");
 		fontSizeSlider.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
+			@Override
+            public void stateChanged(ChangeEvent e) {
 				// if the value is adjusting - ignore. This is done
 				// to make CPU usage better.
 				if (!fontSizeSlider.getModel().getValueIsAdjusting()) {
 					final int newValue = fontSizeSlider.getValue();
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							// reset the base font policy to null - this
 							// restores the original font policy (default size).
 							SubstanceLookAndFeel.setFontPolicy(null);
@@ -151,7 +159,8 @@ public class GetFontPolicy extends JFrame {
 											null);
 							// Create the wrapper font set
 							FontPolicy newFontPolicy = new FontPolicy() {
-								public FontSet getFontSet(String lafName,
+								@Override
+                                public FontSet getFontSet(String lafName,
 										UIDefaults table) {
 									return new WrapperFontSet(
 											substanceCoreFontSet, newValue);
@@ -179,7 +188,8 @@ public class GetFontPolicy extends JFrame {
 
 		JButton jb = new JButton("Show font info");
 		jb.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				FontPolicy fontPolicy = SubstanceLookAndFeel.getFontPolicy();
 				FontSet fontSet = fontPolicy.getFontSet("Substance", null);
 				String[] infoArray = new String[] {
@@ -218,7 +228,8 @@ public class GetFontPolicy extends JFrame {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		JDialog.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new GetFontPolicy().setVisible(true);
 			}

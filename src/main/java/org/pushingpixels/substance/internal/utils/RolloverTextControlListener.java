@@ -122,7 +122,8 @@ public class RolloverTextControlListener implements MouseListener,
 	 * 
 	 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
 	 */
-	public void mouseEntered(MouseEvent e) {
+	@Override
+    public void mouseEntered(MouseEvent e) {
 		this.stateTransitionTracker.turnOffModelChangeTracking();
 		try {
 			Component component = (Component) e.getSource();
@@ -143,7 +144,8 @@ public class RolloverTextControlListener implements MouseListener,
 	 * 
 	 * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
 	 */
-	public void mouseExited(MouseEvent e) {
+	@Override
+    public void mouseExited(MouseEvent e) {
 		this.stateTransitionTracker.turnOffModelChangeTracking();
 		try {
 			Component component = (Component) e.getSource();
@@ -164,7 +166,8 @@ public class RolloverTextControlListener implements MouseListener,
 	 * @see
 	 * java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
 	 */
-	public void mouseReleased(MouseEvent e) {
+	@Override
+    public void mouseReleased(MouseEvent e) {
 		// System.out.println("mouse released [" + e.getX() + ":" + e.getY() +
 		// "]");
 		this.stateTransitionTracker.turnOffModelChangeTracking();
@@ -187,7 +190,8 @@ public class RolloverTextControlListener implements MouseListener,
 	 * 
 	 * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
 	 */
-	public void mousePressed(MouseEvent e) {
+	@Override
+    public void mousePressed(MouseEvent e) {
 		// System.out.println("mouse pressed [" + e.getX() + ":" + e.getY() +
 		// "]");
 		this.stateTransitionTracker.turnOffModelChangeTracking();
@@ -212,7 +216,8 @@ public class RolloverTextControlListener implements MouseListener,
 	 * java.awt.event.MouseMotionListener#mouseDragged(java.awt.event.MouseEvent
 	 * )
 	 */
-	public void mouseDragged(MouseEvent e) {
+	@Override
+    public void mouseDragged(MouseEvent e) {
 		// System.out.println("mouse dragged [" + e.getX() + ":" + e.getY() +
 		// "]");
 		this.stateTransitionTracker.turnOffModelChangeTracking();
@@ -235,7 +240,8 @@ public class RolloverTextControlListener implements MouseListener,
 	 * @see
 	 * java.awt.event.MouseMotionListener#mouseMoved(java.awt.event.MouseEvent)
 	 */
-	public void mouseMoved(MouseEvent e) {
+	@Override
+    public void mouseMoved(MouseEvent e) {
 		// System.out.println("mouse moved [" + e.getX() + ":" + e.getY() +
 		// "]");
 		this.stateTransitionTracker.turnOffModelChangeTracking();
@@ -259,6 +265,7 @@ public class RolloverTextControlListener implements MouseListener,
 	 * 
 	 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
 	 */
-	public void mouseClicked(MouseEvent e) {
+	@Override
+    public void mouseClicked(MouseEvent e) {
 	}
 }

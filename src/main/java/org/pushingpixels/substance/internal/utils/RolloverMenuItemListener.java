@@ -75,7 +75,8 @@ public class RolloverMenuItemListener implements MouseInputListener {
 	 * 
 	 * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
 	 */
-	public void mouseEntered(MouseEvent e) {
+	@Override
+    public void mouseEntered(MouseEvent e) {
 		this.stateTransitionTracker.turnOffModelChangeTracking();
 		try {
 			this.isMouseInside = true;
@@ -90,7 +91,8 @@ public class RolloverMenuItemListener implements MouseInputListener {
 	 * 
 	 * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
 	 */
-	public void mouseExited(MouseEvent e) {
+	@Override
+    public void mouseExited(MouseEvent e) {
 		this.stateTransitionTracker.turnOffModelChangeTracking();
 		try {
 			this.isMouseInside = false;
@@ -106,7 +108,8 @@ public class RolloverMenuItemListener implements MouseInputListener {
 	 * @see
 	 * java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
 	 */
-	public void mouseReleased(MouseEvent e) {
+	@Override
+    public void mouseReleased(MouseEvent e) {
 		this.stateTransitionTracker.turnOffModelChangeTracking();
 		try {
 			ButtonModel model = this.item.getModel();
@@ -121,7 +124,8 @@ public class RolloverMenuItemListener implements MouseInputListener {
 	 * 
 	 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
 	 */
-	public void mouseClicked(MouseEvent e) {
+	@Override
+    public void mouseClicked(MouseEvent e) {
 	}
 
 	/*
@@ -129,7 +133,8 @@ public class RolloverMenuItemListener implements MouseInputListener {
 	 * 
 	 * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
 	 */
-	public void mousePressed(MouseEvent e) {
+	@Override
+    public void mousePressed(MouseEvent e) {
 	}
 
 	/*
@@ -139,7 +144,8 @@ public class RolloverMenuItemListener implements MouseInputListener {
 	 * java.awt.event.MouseMotionListener#mouseDragged(java.awt.event.MouseEvent
 	 * )
 	 */
-	public void mouseDragged(MouseEvent e) {
+	@Override
+    public void mouseDragged(MouseEvent e) {
 	}
 
 	/*
@@ -148,7 +154,8 @@ public class RolloverMenuItemListener implements MouseInputListener {
 	 * @see
 	 * java.awt.event.MouseMotionListener#mouseMoved(java.awt.event.MouseEvent)
 	 */
-	public void mouseMoved(MouseEvent e) {
+	@Override
+    public void mouseMoved(MouseEvent e) {
 		this.stateTransitionTracker.turnOffModelChangeTracking();
 		try {
 			this.item.getModel().setRollover(this.isMouseInside);

@@ -38,12 +38,15 @@ public class ColorSliderTextFieldHandler implements DocumentListener, ChangeList
         ccModel.getBoundedRangeModel(component).addChangeListener(this);
     }
     
+    @Override
     public void changedUpdate(DocumentEvent evt) {
         docChanged();
     }
+    @Override
     public void removeUpdate(DocumentEvent evt) {
         docChanged();
     }
+    @Override
     public void insertUpdate(DocumentEvent evt) {
         docChanged();
     }
@@ -60,6 +63,7 @@ public class ColorSliderTextFieldHandler implements DocumentListener, ChangeList
             }
         }
     }
+    @Override
     public void stateChanged(ChangeEvent e) {
         if (! textField.hasFocus()) {
             textField.setText(Integer.toString(ccModel.getBoundedRangeModel(component).getValue()));

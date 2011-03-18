@@ -91,7 +91,8 @@ public class SaharaSkin extends SubstanceSkin {
 	 * 
 	 * @see org.pushingpixels.substance.skin.SubstanceSkin#getDisplayName()
 	 */
-	public String getDisplayName() {
+	@Override
+    public String getDisplayName() {
 		return NAME;
 	}
 }

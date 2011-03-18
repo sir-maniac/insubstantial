@@ -502,7 +502,8 @@ public class SubstanceTreeUI extends BasicTreeUI {
 	protected void installListeners() {
 		super.installListeners();
 		this.substancePropertyChangeListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (SubstanceLookAndFeel.WATERMARK_VISIBLE.equals(evt
 						.getPropertyName())) {
 					tree.setOpaque(!SubstanceCoreUtilities
@@ -510,7 +511,8 @@ public class SubstanceTreeUI extends BasicTreeUI {
 				}
 				if ("font".equals(evt.getPropertyName())) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							tree.updateUI();
 						}
 					});
@@ -605,7 +607,8 @@ public class SubstanceTreeUI extends BasicTreeUI {
 		 * 
 		 * @see java.lang.Comparable#compareTo(java.lang.Object)
 		 */
-		public int compareTo(Object o) {
+		@Override
+        public int compareTo(Object o) {
 			if (o instanceof TreePathId) {
 				TreePathId otherId = (TreePathId) o;
 				if ((this.path == null) && (otherId.path != null))
@@ -664,7 +667,8 @@ public class SubstanceTreeUI extends BasicTreeUI {
 		 * javax.swing.event.TreeSelectionListener#valueChanged(javax.swing.
 		 * event.TreeSelectionEvent)
 		 */
-		public void valueChanged(TreeSelectionEvent e) {
+		@Override
+        public void valueChanged(TreeSelectionEvent e) {
 			// Map<TreePathId, Object> currSelected = (Map<TreePathId, Object>)
 			// tree
 			// .getClientProperty(SELECTED_INDICES);
@@ -751,7 +755,8 @@ public class SubstanceTreeUI extends BasicTreeUI {
 		 */
 		private void repaintPath() {
 			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					if (SubstanceTreeUI.this.tree == null) {
 						// may happen if the LAF was switched in the meantime
 						return;
@@ -789,22 +794,27 @@ public class SubstanceTreeUI extends BasicTreeUI {
 	private class RolloverFadeListener implements MouseListener,
 			MouseMotionListener {
 
-		public void mouseClicked(MouseEvent e) {
+		@Override
+        public void mouseClicked(MouseEvent e) {
 		}
 
-		public void mouseEntered(MouseEvent e) {
+		@Override
+        public void mouseEntered(MouseEvent e) {
 			if (!tree.isEnabled())
 				return;
 			// isInside = true;
 		}
 
-		public void mousePressed(MouseEvent e) {
+		@Override
+        public void mousePressed(MouseEvent e) {
 		}
 
-		public void mouseReleased(MouseEvent e) {
+		@Override
+        public void mouseReleased(MouseEvent e) {
 		}
 
-		public void mouseExited(MouseEvent e) {
+		@Override
+        public void mouseExited(MouseEvent e) {
 			if (!tree.isEnabled())
 				return;
 			// isInside = false;
@@ -813,14 +823,16 @@ public class SubstanceTreeUI extends BasicTreeUI {
 			currRolloverPathId = null;
 		}
 
-		public void mouseMoved(MouseEvent e) {
+		@Override
+        public void mouseMoved(MouseEvent e) {
 			if (!tree.isEnabled())
 				return;
 			// isInside = true;
 			handleMove(e);
 		}
 
-		public void mouseDragged(MouseEvent e) {
+		@Override
+        public void mouseDragged(MouseEvent e) {
 			if (!tree.isEnabled())
 				return;
 			handleMove(e);

@@ -62,7 +62,8 @@ public abstract class SubstanceButtonBorder implements Border, UIResource {
 	 * 
 	 * @see javax.swing.border.Border#isBorderOpaque()
 	 */
-	public boolean isBorderOpaque() {
+	@Override
+    public boolean isBorderOpaque() {
 		return false;
 	}
 
@@ -72,7 +73,8 @@ public abstract class SubstanceButtonBorder implements Border, UIResource {
 	 * @see javax.swing.border.Border#paintBorder(java.awt.Component,
 	 * java.awt.Graphics, int, int, int, int)
 	 */
-	public void paintBorder(Component c, Graphics g, int x, int y, int width,
+	@Override
+    public void paintBorder(Component c, Graphics g, int x, int y, int width,
 			int height) {
 	}
 

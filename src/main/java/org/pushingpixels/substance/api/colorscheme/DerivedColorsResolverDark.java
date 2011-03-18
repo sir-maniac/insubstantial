@@ -88,7 +88,8 @@ class DerivedColorsResolverDark implements SchemeDerivedColors {
 	 * 
 	 * @see org.pushingpixels.substance.api.SchemeDerivedColors#getWatermarkLightColor()
 	 */
-	public Color getWatermarkLightColor() {
+	@Override
+    public Color getWatermarkLightColor() {
 		return this.scheme.getUltraLightColor();
 	}
 

@@ -48,7 +48,8 @@ public interface SubstanceButtonShaper extends SubstanceTrait {
 	 * 
 	 * @see org.pushingpixels.substance.utils.SubstanceTrait#getDisplayName()
 	 */
-	public String getDisplayName();
+	@Override
+    public String getDisplayName();
 
 	/**
 	 * Returns the outline path for the specified button.

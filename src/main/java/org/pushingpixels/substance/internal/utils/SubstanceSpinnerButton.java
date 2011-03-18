@@ -87,7 +87,8 @@ public class SubstanceSpinnerButton extends JButton implements Sideable,
 		this.setRequestFocusEnabled(false);
 		this.setMargin(new Insets(0, 0, 0, 2));
 		this.setBorder(new SpinnerButtonBorder(ClassicButtonShaper.class) {
-			public Insets getBorderInsets(Component c) {
+			@Override
+            public Insets getBorderInsets(Component c) {
 				int extraPadding = SubstanceSizeUtils
 						.getExtraPadding(SubstanceSizeUtils
 								.getComponentFontSize(c));
@@ -133,7 +134,8 @@ public class SubstanceSpinnerButton extends JButton implements Sideable,
 	 * 
 	 * @see org.pushingpixels.substance.utils.Sideable#getSide()
 	 */
-	public SubstanceConstants.Side getSide() {
+	@Override
+    public SubstanceConstants.Side getSide() {
 		switch (this.orientation) {
 		case SwingConstants.NORTH:
 			return SubstanceConstants.Side.BOTTOM;

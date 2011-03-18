@@ -56,11 +56,13 @@ public class BaseInputMapSet implements InputMapSet {
 		return result;
 	}
 
-	public SubstanceInputMap getButtonFocusInputMap() {
+	@Override
+    public SubstanceInputMap getButtonFocusInputMap() {
 		return this.getActionControlFocusInputMap();
 	}
 
-	public SubstanceInputMap getCheckBoxFocusInputMap() {
+	@Override
+    public SubstanceInputMap getCheckBoxFocusInputMap() {
 		return this.getActionControlFocusInputMap();
 	}
 
@@ -82,7 +84,8 @@ public class BaseInputMapSet implements InputMapSet {
 		public static final String END = "endPassThrough";
 	}
 
-	public SubstanceInputMap getComboBoxAncestorInputMap() {
+	@Override
+    public SubstanceInputMap getComboBoxAncestorInputMap() {
 		SubstanceInputMap result = new SubstanceInputMap();
 
 		result.put("ESCAPE", ComboActions.HIDE);
@@ -129,7 +132,8 @@ public class BaseInputMapSet implements InputMapSet {
 		public static String NAVIGATE_PREVIOUS = "navigatePrevious";
 	}
 
-	public SubstanceInputMap getDesktopAncestorInputMap() {
+	@Override
+    public SubstanceInputMap getDesktopAncestorInputMap() {
 		SubstanceInputMap result = new SubstanceInputMap();
 
 		result.put("ctrl F5", DesktopPaneActions.RESTORE);
@@ -275,7 +279,8 @@ public class BaseInputMapSet implements InputMapSet {
 		return result;
 	};
 
-	public SubstanceInputMap getEditorPaneFocusInputMap() {
+	@Override
+    public SubstanceInputMap getEditorPaneFocusInputMap() {
 		return this.getMultilineTextComponentFocusInputMap();
 	}
 
@@ -290,7 +295,8 @@ public class BaseInputMapSet implements InputMapSet {
 		public static final String GO_UP = "Go Up";
 	}
 
-	public SubstanceInputMap getFileChooserAncestorInputMap() {
+	@Override
+    public SubstanceInputMap getFileChooserAncestorInputMap() {
 		SubstanceInputMap result = new SubstanceInputMap();
 
 		result.put("ESCAPE", FileChooserActions.CANCEL_SELECTION);
@@ -406,7 +412,8 @@ public class BaseInputMapSet implements InputMapSet {
 
 	}
 
-	public SubstanceInputMap getListFocusInputMap() {
+	@Override
+    public SubstanceInputMap getListFocusInputMap() {
 		SubstanceInputMap result = new SubstanceInputMap();
 
 		result.put("ctrl C", COPY);
@@ -490,7 +497,8 @@ public class BaseInputMapSet implements InputMapSet {
 		return result;
 	}
 
-	public SubstanceInputMap getPasswordFieldFocusInputMap() {
+	@Override
+    public SubstanceInputMap getPasswordFieldFocusInputMap() {
 		SubstanceInputMap result = new SubstanceInputMap();
 
 		result.put("ctrl C", DefaultEditorKit.copyAction);
@@ -542,7 +550,8 @@ public class BaseInputMapSet implements InputMapSet {
 		return result;
 	}
 
-	public SubstanceInputMap getRadioButtonFocusInputMap() {
+	@Override
+    public SubstanceInputMap getRadioButtonFocusInputMap() {
 		return this.getActionControlFocusInputMap();
 	}
 
@@ -553,7 +562,8 @@ public class BaseInputMapSet implements InputMapSet {
 		public static final String POST_POPUP = "postPopup";
 	}
 
-	public SubstanceInputMap getRootPaneAncestorInputMap() {
+	@Override
+    public SubstanceInputMap getRootPaneAncestorInputMap() {
 		SubstanceInputMap result = new SubstanceInputMap();
 
 		result.put("shift F10", RootPaneActions.POST_POPUP);
@@ -612,7 +622,8 @@ public class BaseInputMapSet implements InputMapSet {
 		public static final String UNIT_SCROLL_RIGHT = "unitScrollRight";
 	}
 
-	public SubstanceInputMap getScrollPaneAncestorInputMap() {
+	@Override
+    public SubstanceInputMap getScrollPaneAncestorInputMap() {
 		SubstanceInputMap result = new SubstanceInputMap();
 
 		result.put("RIGHT", ScrollPaneActions.UNIT_SCROLL_RIGHT);
@@ -646,7 +657,8 @@ public class BaseInputMapSet implements InputMapSet {
 		public static final String MAX_SCROLL_INCREMENT = "maxScroll";
 	}
 
-	public SubstanceInputMap getSliderFocusInputMap() {
+	@Override
+    public SubstanceInputMap getSliderFocusInputMap() {
 		SubstanceInputMap result = new SubstanceInputMap();
 
 		result.put("RIGHT", SliderActions.POSITIVE_UNIT_INCREMENT);
@@ -669,7 +681,8 @@ public class BaseInputMapSet implements InputMapSet {
 		return result;
 	}
 
-	public SubstanceInputMap getSpinnerAncestorInputMap() {
+	@Override
+    public SubstanceInputMap getSpinnerAncestorInputMap() {
 		SubstanceInputMap result = new SubstanceInputMap();
 
 		result.put("UP", TextComponentActions.INCREMENT);
@@ -692,7 +705,8 @@ public class BaseInputMapSet implements InputMapSet {
 		public static final String FOCUS_OUT_BACKWARD = "focusOutBackward";
 	}
 
-	public SubstanceInputMap getSplitPaneAncestorInputMap() {
+	@Override
+    public SubstanceInputMap getSplitPaneAncestorInputMap() {
 		SubstanceInputMap result = new SubstanceInputMap();
 
 		result.put("UP", SplitPaneActions.NEGATIVE_INCREMENT);
@@ -824,7 +838,8 @@ public class BaseInputMapSet implements InputMapSet {
 		public static final String FOCUS_HEADER = "focusHeader";
 	}
 
-	public SubstanceInputMap getTableAncestorInputMap() {
+	@Override
+    public SubstanceInputMap getTableAncestorInputMap() {
 		SubstanceInputMap result = new SubstanceInputMap();
 
 		result.put("ctrl C", COPY);
@@ -935,7 +950,8 @@ public class BaseInputMapSet implements InputMapSet {
 		public static final String FOCUS_TABLE = "focusTable";
 	}
 
-	public SubstanceInputMap getTableHeaderAncestorInputMap() {
+	@Override
+    public SubstanceInputMap getTableHeaderAncestorInputMap() {
 		SubstanceInputMap result = new SubstanceInputMap();
 
 		result.put("SPACE", TableHeaderActions.TOGGLE_SORT_ORDER);
@@ -961,11 +977,13 @@ public class BaseInputMapSet implements InputMapSet {
 
 	}
 
-	public SubstanceInputMap getTextAreaFocusInputMap() {
+	@Override
+    public SubstanceInputMap getTextAreaFocusInputMap() {
 		return this.getMultilineTextComponentFocusInputMap();
 	}
 
-	public SubstanceInputMap getTextFieldFocusInputMap() {
+	@Override
+    public SubstanceInputMap getTextFieldFocusInputMap() {
 		SubstanceInputMap result = new SubstanceInputMap();
 
 		result.put("ctrl C", DefaultEditorKit.copyAction);
@@ -1022,11 +1040,13 @@ public class BaseInputMapSet implements InputMapSet {
 
 	}
 
-	public SubstanceInputMap getTextPaneFocusInputMap() {
+	@Override
+    public SubstanceInputMap getTextPaneFocusInputMap() {
 		return this.getMultilineTextComponentFocusInputMap();
 	}
 
-	public SubstanceInputMap getToggleButtonFocusInputMap() {
+	@Override
+    public SubstanceInputMap getToggleButtonFocusInputMap() {
 		return this.getActionControlFocusInputMap();
 	}
 
@@ -1040,7 +1060,8 @@ public class BaseInputMapSet implements InputMapSet {
 		public static final String NAVIGATE_DOWN = "navigateDown";
 	}
 
-	public SubstanceInputMap getToolBarAncestorInputMap() {
+	@Override
+    public SubstanceInputMap getToolBarAncestorInputMap() {
 		SubstanceInputMap result = new SubstanceInputMap();
 
 		result.put("UP", ToolBarActions.NAVIGATE_UP);
@@ -1102,7 +1123,8 @@ public class BaseInputMapSet implements InputMapSet {
 		public static final String MOVE_SELECTION_TO = "moveSelectionTo";
 	}
 
-	public SubstanceInputMap getTreeAncestorInputMap() {
+	@Override
+    public SubstanceInputMap getTreeAncestorInputMap() {
 		SubstanceInputMap result = new SubstanceInputMap();
 
 		result.put("ESCAPE", TreeActions.CANCEL_EDITING);
@@ -1111,7 +1133,8 @@ public class BaseInputMapSet implements InputMapSet {
 
 	}
 
-	public SubstanceInputMap getTreeFocusInputMap() {
+	@Override
+    public SubstanceInputMap getTreeFocusInputMap() {
 		SubstanceInputMap result = new SubstanceInputMap();
 
 		result.put("ADD", TreeActions.EXPAND);

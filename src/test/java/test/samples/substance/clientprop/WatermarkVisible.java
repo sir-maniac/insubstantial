@@ -69,9 +69,11 @@ public class WatermarkVisible extends JFrame {
 		final JCheckBox isListWatermarkVisible = new JCheckBox(
 				"watermark visible");
 		isListWatermarkVisible.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						// based on checkbox selection, mark the list to
 						// show the watermark
 						jlist.putClientProperty(
@@ -95,9 +97,11 @@ public class WatermarkVisible extends JFrame {
 				"watermark visible");
 		isPanelWatermarkVisible.setSelected(true);
 		isPanelWatermarkVisible.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						// based on checkbox selection, mark the panel to
 						// show the watermark
 						colorPanel.putClientProperty(
@@ -141,7 +145,8 @@ public class WatermarkVisible extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new MySkin());
 				new WatermarkVisible().setVisible(true);
 			}

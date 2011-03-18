@@ -412,18 +412,21 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 		builderOther.appendSeparator("Labels");
 		addControlRow(builderOther, "Regular",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						return new JLabel("label");
 					}
 				}, null);
 		addControlRow(builderOther, "Disabled",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						return new JLabel("label");
 					}
 				}, new DisableCommand());
 		addControlRow(builderOther, "HTML", new CreationCommand<Component>() {
-			public Component create() {
+			@Override
+            public Component create() {
 				return new JLabel(
 						"<html>text <b>text</b> <font color='red'>text</font>");
 			}
@@ -432,13 +435,15 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 		builderOther.appendSeparator("Sliders");
 		addControlRow(builderOther, "Regular",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						return new JSlider(0, 100, 50);
 					}
 				}, null);
 		addControlRow(builderOther, "Disabled",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						return new JSlider(0, 100, 50);
 					}
 				}, new DisableCommand());
@@ -446,7 +451,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 		builderOther.appendSeparator("Progress bars");
 		addControlRow(builderOther, "Regular",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JProgressBar jpb = new JProgressBar(0, 100);
 						jpb.setIndeterminate(false);
 						jpb.setValue(50);
@@ -456,7 +462,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 				}, null);
 		addControlRow(builderOther, "Disabled",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JProgressBar jpb = new JProgressBar(0, 100);
 						jpb.setIndeterminate(false);
 						jpb.setValue(50);
@@ -466,7 +473,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 				}, new DisableCommand());
 		addControlRow(builderOther, "Custom foreground",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JProgressBar jpb = new JProgressBar(0, 100);
 						jpb.setIndeterminate(false);
 						jpb.setValue(50);
@@ -476,7 +484,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 				}, new ForegroundColorCommand(Color.red));
 		addControlRow(builderOther, "Disabled with foreground",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JProgressBar jpb = new JProgressBar(0, 100);
 						jpb.setIndeterminate(false);
 						jpb.setValue(50);
@@ -487,7 +496,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 						new ForegroundColorCommand(Color.red)));
 		addControlRow(builderOther, "Indeterminate",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JProgressBar jpb = new JProgressBar(0, 100);
 						jpb.setIndeterminate(true);
 						return jpb;
@@ -495,7 +505,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 				}, null);
 		addControlRow(builderOther, "Indeterminate disabled",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JProgressBar jpb = new JProgressBar(0, 100);
 						jpb.setIndeterminate(true);
 						return jpb;
@@ -505,14 +516,16 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 		builderOther.appendSeparator("Combo boxes");
 		addControlRow(builderOther, "Regular",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JComboBox jcb = new JComboBox(new Object[] { "Ester",
 								"Jordi", "Jordina", "Jorge", "Sergi" });
 						return jcb;
 					}
 				}, null);
 		addControlRow(builderOther, "Flat", new CreationCommand<Component>() {
-			public Component create() {
+			@Override
+            public Component create() {
 				JComboBox jcb = new JComboBox(new Object[] { "Ester", "Jordi",
 						"Jordina", "Jorge", "Sergi" });
 				return jcb;
@@ -521,7 +534,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 				Boolean.TRUE));
 		addControlRow(builderOther, "Disabled",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JComboBox jcb = new JComboBox(new Object[] { "Ester",
 								"Jordi", "Jordina", "Jorge", "Sergi" });
 						return jcb;
@@ -529,7 +543,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 				}, new DisableCommand());
 		addControlRow(builderOther, "Editable",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JComboBox jcb = new JComboBox(new Object[] { "Ester",
 								"Jordi", "Jordina", "Jorge", "Sergi" });
 						jcb.setEditable(true);
@@ -538,7 +553,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 				}, null);
 		addControlRow(builderOther, "Disabled editable",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JComboBox jcb = new JComboBox(new Object[] { "Ester",
 								"Jordi", "Jordina", "Jorge", "Sergi" });
 						jcb.setEditable(true);
@@ -547,7 +563,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 				}, new DisableCommand());
 
 		CreationCommand<Component> spinnerCreationCmd = new CreationCommand<Component>() {
-			public Component create() {
+			@Override
+            public Component create() {
 				JSpinner s = new JSpinner(new SpinnerListModel(new Object[] {
 						"sample0", "sample", "sample2" }));
 				s.getModel().setValue("sample");
@@ -584,14 +601,16 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 
 		builderText.appendSeparator("Text fields");
 		addControlRow(builderText, "Regular", new CreationCommand<Component>() {
-			public Component create() {
+			@Override
+            public Component create() {
 				JTextField field = new JTextField("test", 15);
 				return field;
 			}
 		}, null);
 		addControlRow(builderText, "Watermark",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JTextField field = new JTextField("test", 15);
 						return field;
 					}
@@ -599,14 +618,16 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 						SubstanceLookAndFeel.WATERMARK_VISIBLE, Boolean.TRUE));
 		addControlRow(builderText, "Disabled",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JTextField field = new JTextField("test", 15);
 						return field;
 					}
 				}, new DisableCommand());
 		addControlRow(builderText, "Not editable",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JTextField field = new JTextField("test", 15);
 						field.setEditable(false);
 						return field;
@@ -615,7 +636,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 
 		builderText.appendSeparator("Formatted text fields");
 		addControlRow(builderText, "Regular", new CreationCommand<Component>() {
-			public Component create() {
+			@Override
+            public Component create() {
 				JFormattedTextField field = new JFormattedTextField(
 						new DecimalFormat("#,##0.0000"));
 				field.setText("2,430.0000");
@@ -624,7 +646,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 		}, null);
 		addControlRow(builderText, "Watermark",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JFormattedTextField field = new JFormattedTextField(
 								new DecimalFormat("#,##0.0000"));
 						field.setText("2,430.0000");
@@ -634,7 +657,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 						SubstanceLookAndFeel.WATERMARK_VISIBLE, Boolean.TRUE));
 		addControlRow(builderText, "Disabled",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JFormattedTextField field = new JFormattedTextField(
 								new DecimalFormat("#,##0.0000"));
 						field.setText("2,430.0000");
@@ -643,7 +667,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 				}, new DisableCommand());
 		addControlRow(builderText, "Not editable",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JFormattedTextField field = new JFormattedTextField(
 								new DecimalFormat("#,##0.0000"));
 						field.setText("2,430.0000");
@@ -654,14 +679,16 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 
 		builderText.appendSeparator("Password fields");
 		addControlRow(builderText, "Regular", new CreationCommand<Component>() {
-			public Component create() {
+			@Override
+            public Component create() {
 				JPasswordField field = new JPasswordField("password", 15);
 				return field;
 			}
 		}, null);
 		addControlRow(builderText, "Watermark",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JPasswordField field = new JPasswordField("password",
 								15);
 						return field;
@@ -670,7 +697,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 						SubstanceLookAndFeel.WATERMARK_VISIBLE, Boolean.TRUE));
 		addControlRow(builderText, "Disabled",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JPasswordField field = new JPasswordField("password",
 								15);
 						return field;
@@ -678,7 +706,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 				}, new DisableCommand());
 		addControlRow(builderText, "Not editable",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JPasswordField field = new JPasswordField("password",
 								15);
 						field.setEditable(false);
@@ -688,7 +717,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 
 		builderText.appendSeparator("Editor panes");
 		addControlRow(builderText, "Regular", new CreationCommand<Component>() {
-			public Component create() {
+			@Override
+            public Component create() {
 				JEditorPane pane = new JEditorPane("text/html;",
 						"Sample <b>content</b><br> <u>text</u>");
 				return pane;
@@ -696,7 +726,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 		}, null);
 		addControlRow(builderText, "Watermark",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JEditorPane pane = new JEditorPane("text/html;",
 								"Sample <b>content</b><br> <u>text</u>");
 						return pane;
@@ -705,7 +736,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 						SubstanceLookAndFeel.WATERMARK_VISIBLE, Boolean.TRUE));
 		addControlRow(builderText, "Disabled",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JEditorPane pane = new JEditorPane("text/html;",
 								"Sample <b>content</b><br> <u>text</u>");
 						return pane;
@@ -713,7 +745,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 				}, new DisableCommand());
 		addControlRow(builderText, "Not editable",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JEditorPane pane = new JEditorPane("text/html;",
 								"Sample <b>content</b><br> <u>text</u>");
 						pane.setEditable(false);
@@ -723,14 +756,16 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 
 		builderText.appendSeparator("Text areas");
 		addControlRow(builderText, "Regular", new CreationCommand<Component>() {
-			public Component create() {
+			@Override
+            public Component create() {
 				JTextArea area = new JTextArea("Sample content text", 3, 15);
 				return area;
 			}
 		}, null);
 		addControlRow(builderText, "Watermark",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JTextArea area = new JTextArea("Sample content text",
 								3, 15);
 						return area;
@@ -739,7 +774,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 						SubstanceLookAndFeel.WATERMARK_VISIBLE, Boolean.TRUE));
 		addControlRow(builderText, "Disabled",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JTextArea area = new JTextArea("Sample content text",
 								3, 15);
 						return area;
@@ -747,7 +783,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 				}, new DisableCommand());
 		addControlRow(builderText, "Not editable",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JTextArea area = new JTextArea("Sample content text",
 								3, 15);
 						area.setEditable(false);
@@ -757,7 +794,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 
 		builderText.appendSeparator("Text panes");
 		addControlRow(builderText, "Regular", new CreationCommand<Component>() {
-			public Component create() {
+			@Override
+            public Component create() {
 				JTextPane pane = new JTextPane();
 				pane.replaceSelection("Sample content text");
 				pane.setPreferredSize(new Dimension(120, 40));
@@ -766,7 +804,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 		}, null);
 		addControlRow(builderText, "Watermark",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JTextPane pane = new JTextPane();
 						pane.replaceSelection("Sample content text");
 						pane.setPreferredSize(new Dimension(120, 40));
@@ -776,7 +815,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 						SubstanceLookAndFeel.WATERMARK_VISIBLE, Boolean.TRUE));
 		addControlRow(builderText, "Disabled",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JTextPane pane = new JTextPane();
 						pane.replaceSelection("Sample content text");
 						pane.setPreferredSize(new Dimension(120, 40));
@@ -785,7 +825,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 				}, new DisableCommand());
 		addControlRow(builderText, "Not editable",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JTextPane pane = new JTextPane();
 						pane.replaceSelection("Sample content text");
 						pane.setPreferredSize(new Dimension(120, 40));
@@ -820,7 +861,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 
 		builderCells.appendSeparator("Lists");
 		addControlRow(builderCells, "List", new CreationCommand<Component>() {
-			public Component create() {
+			@Override
+            public Component create() {
 				JList list = new JList(new Object[] { "entry1", "entry2",
 						"entry3" });
 				return list;
@@ -828,7 +870,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 		}, null);
 		addControlRow(builderCells, "List watermark",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JList list = new JList(new Object[] { "entry1",
 								"entry2", "entry3" });
 						return list;
@@ -837,7 +880,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 						SubstanceLookAndFeel.WATERMARK_VISIBLE, Boolean.TRUE));
 		addControlRow(builderCells, "List disabled",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JList list = new JList(new Object[] { "entry1",
 								"entry2", "entry3" });
 						return list;
@@ -845,7 +889,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 				}, new DisableCommand());
 
 		CreationCommand<Component> tableCreationCmd = new CreationCommand<Component>() {
-			public Component create() {
+			@Override
+            public Component create() {
 				final JTable table = new JTable(new Object[][] {
 						{ "entry11", "entry12", "entry13" },
 						{ "entry21", "entry22", "entry23" },
@@ -908,7 +953,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 				}
 			}
 
-			public Component create() {
+			@Override
+            public Component create() {
 				DefaultMutableTreeNode root = new DefaultMutableTreeNode("root");
 				DefaultMutableTreeNode son1 = new DefaultMutableTreeNode("son1");
 				DefaultMutableTreeNode son2 = new DefaultMutableTreeNode("son2");
@@ -966,7 +1012,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 
 		JDesktopPane desktopPane = new JDesktopPane();
 		CreationCommand<Component> internalFrameCreationCmd = new CreationCommand<Component>() {
-			public Component create() {
+			@Override
+            public Component create() {
 				JInternalFrame jif = new JInternalFrame("Internal frame");
 				jif.setLayout(new FlowLayout());
 				JButton button = new JButton("red button");
@@ -1060,7 +1107,8 @@ public class ColorizedControlsPanel extends JPanel implements Deferrable {
 		final JSlider colorizationSlider = new JSlider(0, 100, 50);
 		this.putClientProperty(SubstanceLookAndFeel.COLORIZATION_FACTOR, 0.5);
 		colorizationSlider.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
+			@Override
+            public void stateChanged(ChangeEvent e) {
 				double val = colorizationSlider.getValue() / 100.0;
 				ColorizedControlsPanel.this.putClientProperty(
 						SubstanceLookAndFeel.COLORIZATION_FACTOR, new Double(

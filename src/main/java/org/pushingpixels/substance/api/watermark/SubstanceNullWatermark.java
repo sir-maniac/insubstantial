@@ -57,7 +57,8 @@ public class SubstanceNullWatermark implements SubstanceWatermark {
 	 * org.pushingpixels.substance.watermark.SubstanceWatermark#drawWatermarkImage
 	 * (java .awt.Graphics, int, int, int, int)
 	 */
-	public void drawWatermarkImage(Graphics graphics, Component c, int x,
+	@Override
+    public void drawWatermarkImage(Graphics graphics, Component c, int x,
 			int y, int width, int height) {
 		SubstanceSkin skin = SubstanceCoreUtilities.getSkin(c);
 		Graphics2D g2d = (Graphics2D) graphics.create();
@@ -88,7 +89,8 @@ public class SubstanceNullWatermark implements SubstanceWatermark {
 	 * org.pushingpixels.substance.watermark.SubstanceWatermark#updateWatermarkImage
 	 * (org.pushingpixels.substance.skin.SubstanceSkin)
 	 */
-	public boolean updateWatermarkImage(SubstanceSkin skin) {
+	@Override
+    public boolean updateWatermarkImage(SubstanceSkin skin) {
 		return true;
 	}
 
@@ -98,7 +100,8 @@ public class SubstanceNullWatermark implements SubstanceWatermark {
 	 * @see
 	 * org.pushingpixels.substance.api.trait.SubstanceTrait#getDisplayName()
 	 */
-	public String getDisplayName() {
+	@Override
+    public String getDisplayName() {
 		return "Null";
 	}
 
@@ -107,6 +110,7 @@ public class SubstanceNullWatermark implements SubstanceWatermark {
 	 * 
 	 * @see org.pushingpixels.substance.watermark.SubstanceWatermark#dispose()
 	 */
-	public void dispose() {
+	@Override
+    public void dispose() {
 	}
 }

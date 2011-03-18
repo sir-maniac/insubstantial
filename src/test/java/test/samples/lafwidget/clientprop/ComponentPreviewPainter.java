@@ -80,9 +80,11 @@ public class ComponentPreviewPainter extends JFrame {
 		JPanel controls = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		final JCheckBox hasPreview = new JCheckBox("scroll has preview");
 		hasPreview.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						scrollPane
 								.putClientProperty(
 										LafWidget.COMPONENT_PREVIEW_PAINTER,
@@ -110,7 +112,8 @@ public class ComponentPreviewPainter extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				UIManager.put(SubstanceLookAndFeel.SHOW_EXTRA_WIDGETS,
 						Boolean.TRUE);
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());

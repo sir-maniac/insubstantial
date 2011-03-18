@@ -69,6 +69,7 @@ public class ColorPalettesChooser extends AbstractColorChooserPanel implements U
              * Called whenever the value of the selection changes.
              * @param e the event that characterizes the change.
              */
+            @Override
             public void valueChanged(ListSelectionEvent e) {
                 PaletteEntry entry = (PaletteEntry) paletteList.getSelectedValue();
                 if (entry != null) {
@@ -146,21 +147,26 @@ public class ColorPalettesChooser extends AbstractColorChooserPanel implements U
         updateChooser();
     }
     
+    @Override
     protected void buildChooser() {
     }
     
+    @Override
     public String getDisplayName() {
         return UIManager.getString("ColorChooser.colorPalettes");
     }
     
+    @Override
     public javax.swing.Icon getLargeDisplayIcon() {
         return UIManager.getIcon("ColorChooser.colorPalettesIcon");
     }
     
+    @Override
     public Icon getSmallDisplayIcon() {
         return getLargeDisplayIcon();
     }
     
+    @Override
     public void updateChooser() {
         Color color;
         try {
@@ -230,6 +236,7 @@ public class ColorPalettesChooser extends AbstractColorChooserPanel implements U
         add(paletteLabel, gridBagConstraints);
 
         paletteCombo.addItemListener(new java.awt.event.ItemListener() {
+            @Override
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 paletteChanged(evt);
             }

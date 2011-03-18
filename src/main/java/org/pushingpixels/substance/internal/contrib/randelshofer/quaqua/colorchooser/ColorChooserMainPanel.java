@@ -87,7 +87,8 @@ public class ColorChooserMainPanel extends javax.swing.JPanel {
 			}
 
 			tb.addItemListener(new ItemListener() {
-				public void itemStateChanged(ItemEvent evt) {
+				@Override
+                public void itemStateChanged(ItemEvent evt) {
 					if (evt.getStateChange() == ItemEvent.SELECTED) {
 						CardLayout cl = (CardLayout) chooserPanelHolder
 								.getLayout();

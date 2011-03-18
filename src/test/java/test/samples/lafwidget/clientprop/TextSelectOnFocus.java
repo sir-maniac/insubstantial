@@ -72,7 +72,8 @@ public class TextSelectOnFocus extends JFrame {
 		final JCheckBox hasSelectOnFocus = new JCheckBox(
 				"Has \"select on focus\" behaviour");
 		hasSelectOnFocus.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				jtf.putClientProperty(LafWidget.TEXT_SELECT_ON_FOCUS,
 						hasSelectOnFocus.isSelected() ? Boolean.TRUE : null);
 			}
@@ -95,7 +96,8 @@ public class TextSelectOnFocus extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new TextSelectOnFocus().setVisible(true);
 			}

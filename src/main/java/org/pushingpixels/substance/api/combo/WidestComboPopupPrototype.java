@@ -50,7 +50,8 @@ public class WidestComboPopupPrototype implements ComboPopupPrototypeCallback {
 	 * @seeorg.pushingpixels.substance.combo.ComboPopupPrototypeCallback#
 	 * getPopupPrototypeDisplayValue(javax.swing.JComboBox)
 	 */
-	public Object getPopupPrototypeDisplayValue(JComboBox jc) {
+	@Override
+    public Object getPopupPrototypeDisplayValue(JComboBox jc) {
 		int maxWidth = -1;
 		Object prototype = null;
 		JList list = ((SubstanceComboBoxUI) jc.getUI()).getPopup().getList();

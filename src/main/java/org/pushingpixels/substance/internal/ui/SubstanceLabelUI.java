@@ -88,7 +88,8 @@ public class SubstanceLabelUI extends BasicLabelUI {
 		super.installListeners(c);
 
 		this.substancePropertyChangeListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if ("opaque".equals(evt.getPropertyName())) {
 					if (!Boolean.TRUE.equals(c
 							.getClientProperty(SubstanceButtonUI.LOCK_OPACITY))) {

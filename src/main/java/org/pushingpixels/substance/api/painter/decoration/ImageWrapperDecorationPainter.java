@@ -98,7 +98,8 @@ public abstract class ImageWrapperDecorationPainter implements
 	 * org.pushingpixels.substance.painter.decoration.DecorationAreaType, int,
 	 * int, org.pushingpixels.substance.api.SubstanceSkin)
 	 */
-	public void paintDecorationArea(Graphics2D graphics, Component comp,
+	@Override
+    public void paintDecorationArea(Graphics2D graphics, Component comp,
 			DecorationAreaType decorationAreaType, int width, int height,
 			SubstanceSkin skin) {
 		if ((decorationAreaType == DecorationAreaType.PRIMARY_TITLE_PANE)

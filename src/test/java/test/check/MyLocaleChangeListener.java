@@ -97,27 +97,33 @@ public class MyLocaleChangeListener implements ActionListener {
 					systemFont.getSize());
 		}
 
-		public FontUIResource getControlFont() {
+		@Override
+        public FontUIResource getControlFont() {
 			return this.getWrappedFont(this.delegate.getControlFont());
 		}
 
-		public FontUIResource getMenuFont() {
+		@Override
+        public FontUIResource getMenuFont() {
 			return this.getWrappedFont(this.delegate.getMenuFont());
 		}
 
-		public FontUIResource getMessageFont() {
+		@Override
+        public FontUIResource getMessageFont() {
 			return this.getWrappedFont(this.delegate.getMessageFont());
 		}
 
-		public FontUIResource getSmallFont() {
+		@Override
+        public FontUIResource getSmallFont() {
 			return this.getWrappedFont(this.delegate.getSmallFont());
 		}
 
-		public FontUIResource getTitleFont() {
+		@Override
+        public FontUIResource getTitleFont() {
 			return this.getWrappedFont(this.delegate.getTitleFont());
 		}
 
-		public FontUIResource getWindowTitleFont() {
+		@Override
+        public FontUIResource getWindowTitleFont() {
 			return this.getWrappedFont(this.delegate.getWindowTitleFont());
 		}
 	}
@@ -176,9 +182,11 @@ public class MyLocaleChangeListener implements ActionListener {
 		}
 	}
 
-	public void actionPerformed(ActionEvent e) {
+	@Override
+    public void actionPerformed(ActionEvent e) {
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				LookAndFeel currLaf = UIManager.getLookAndFeel();
 				// Locale currLocale = Locale.getDefault();
 				Locale newLocale = new Locale(langCode, countryCode);
@@ -191,7 +199,8 @@ public class MyLocaleChangeListener implements ActionListener {
 						final FontSet currFontSet = SubstanceLookAndFeel
 								.getFontPolicy().getFontSet("Substance", null);
 						SubstanceLookAndFeel.setFontPolicy(new FontPolicy() {
-							public FontSet getFontSet(String lafName,
+							@Override
+                            public FontSet getFontSet(String lafName,
 									UIDefaults table) {
 								return new DialogFontSet(currFontSet);
 							}

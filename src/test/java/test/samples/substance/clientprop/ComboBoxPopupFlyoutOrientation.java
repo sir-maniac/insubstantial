@@ -68,7 +68,8 @@ public class ComboBoxPopupFlyoutOrientation extends JFrame {
 		final JComboBox flyoutCombo = new JComboBox(new Object[] { "default",
 				"center", "north", "east", "west", "south" });
 		flyoutCombo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				Object selected = flyoutCombo.getSelectedItem();
 				// set popup flyout orientation based on the selected
 				// item
@@ -123,7 +124,8 @@ public class ComboBoxPopupFlyoutOrientation extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new ComboBoxPopupFlyoutOrientation().setVisible(true);
 			}

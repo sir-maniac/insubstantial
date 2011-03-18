@@ -68,7 +68,8 @@ public class SubstanceSplitPaneUI extends BasicSplitPaneUI {
 		super.installListeners();
 
 		this.substancePropertyListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (JSplitPane.ORIENTATION_PROPERTY.equals(evt
 						.getPropertyName())) {
 					SubstanceSplitPaneDivider substanceDivider = (SubstanceSplitPaneDivider) SubstanceSplitPaneUI.this.divider;

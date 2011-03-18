@@ -70,7 +70,8 @@ public class RegisterTabCloseChangeListener_SpecificSingleVetoable extends
 		// register tab close listener on the specific tabbed pane.
 		SubstanceLookAndFeel.registerTabCloseChangeListener(jtp,
 				new VetoableTabCloseListener() {
-					public void tabClosing(JTabbedPane tabbedPane,
+					@Override
+                    public void tabClosing(JTabbedPane tabbedPane,
 							Component tabComponent) {
 						System.out.println("Tab "
 								+ tabbedPane.getTitleAt(tabbedPane
@@ -78,12 +79,14 @@ public class RegisterTabCloseChangeListener_SpecificSingleVetoable extends
 								+ " closing");
 					}
 
-					public void tabClosed(JTabbedPane tabbedPane,
+					@Override
+                    public void tabClosed(JTabbedPane tabbedPane,
 							Component tabComponent) {
 						System.out.println("Tab closed");
 					}
 
-					public boolean vetoTabClosing(JTabbedPane tabbedPane,
+					@Override
+                    public boolean vetoTabClosing(JTabbedPane tabbedPane,
 							Component tabComponent) {
 						return (JOptionPane
 								.showConfirmDialog(
@@ -113,7 +116,8 @@ public class RegisterTabCloseChangeListener_SpecificSingleVetoable extends
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		JDialog.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new RegisterTabCloseChangeListener_SpecificSingleVetoable()
 						.setVisible(true);

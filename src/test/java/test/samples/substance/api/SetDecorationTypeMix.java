@@ -90,7 +90,8 @@ public class SetDecorationTypeMix extends JFrame {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		JDialog.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlueSteelSkin());
 				UIManager.put("TabbedPane.contentOpaque", Boolean.TRUE);
 				new SetDecorationTypeMix().setVisible(true);

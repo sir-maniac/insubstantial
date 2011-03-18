@@ -17,7 +17,8 @@ public class MinimizeInternalFrameCommand implements
 	 * 
 	 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 	 */
-	public void configure(Component ab) {
+	@Override
+    public void configure(Component ab) {
 		if (ab instanceof JInternalFrame) {
 			JInternalFrame jif = (JInternalFrame) ab;
 			try {

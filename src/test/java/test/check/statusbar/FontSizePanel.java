@@ -34,27 +34,33 @@ public class FontSizePanel {
 					.getStyle(), systemFont.getSize() + extra);
 		}
 
-		public FontUIResource getControlFont() {
+		@Override
+        public FontUIResource getControlFont() {
 			return getWrappedFont(delegate.getControlFont());
 		}
 
-		public FontUIResource getMenuFont() {
+		@Override
+        public FontUIResource getMenuFont() {
 			return getWrappedFont(delegate.getMenuFont());
 		}
 
-		public FontUIResource getMessageFont() {
+		@Override
+        public FontUIResource getMessageFont() {
 			return getWrappedFont(delegate.getMessageFont());
 		}
 
-		public FontUIResource getSmallFont() {
+		@Override
+        public FontUIResource getSmallFont() {
 			return getWrappedFont(delegate.getSmallFont());
 		}
 
-		public FontUIResource getTitleFont() {
+		@Override
+        public FontUIResource getTitleFont() {
 			return getWrappedFont(delegate.getTitleFont());
 		}
 
-		public FontUIResource getWindowTitleFont() {
+		@Override
+        public FontUIResource getWindowTitleFont() {
 			// FontUIResource f = this.getWrappedFont(this.delegate
 			// .getWindowTitleFont());
 			// return new FontUIResource(f.deriveFont(Font.BOLD, f.getSize() +
@@ -67,27 +73,33 @@ public class FontSizePanel {
 		private FontUIResource tahoma11 = new FontUIResource("Tahoma",
 				Font.PLAIN, 11);
 
-		public FontUIResource getControlFont() {
+		@Override
+        public FontUIResource getControlFont() {
 			return tahoma11;
 		}
 
-		public FontUIResource getMenuFont() {
+		@Override
+        public FontUIResource getMenuFont() {
 			return tahoma11;
 		}
 
-		public FontUIResource getMessageFont() {
+		@Override
+        public FontUIResource getMessageFont() {
 			return tahoma11;
 		}
 
-		public FontUIResource getSmallFont() {
+		@Override
+        public FontUIResource getSmallFont() {
 			return tahoma11;
 		}
 
-		public FontUIResource getTitleFont() {
+		@Override
+        public FontUIResource getTitleFont() {
 			return tahoma11;
 		}
 
-		public FontUIResource getWindowTitleFont() {
+		@Override
+        public FontUIResource getWindowTitleFont() {
 			return tahoma11;
 		}
 	}
@@ -118,19 +130,22 @@ public class FontSizePanel {
 		fontSizeSlider
 				.setToolTipText("Controls the global font set size. Resets Substance as the current LAF.");
 		fontSizeSlider.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
+			@Override
+            public void stateChanged(ChangeEvent e) {
 				// if the value is adjusting - ignore. This is done
 				// to make CPU usage better.
 				if (!fontSizeSlider.getModel().getValueIsAdjusting()) {
 					final int newValue = fontSizeSlider.getValue();
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							SubstanceLookAndFeel.setFontPolicy(null);
 							final FontSet substanceCoreFontSet = SubstanceLookAndFeel
 									.getFontPolicy().getFontSet("Substance",
 											null);
 							FontPolicy newFontPolicy = new FontPolicy() {
-								public FontSet getFontSet(String lafName,
+								@Override
+                                public FontSet getFontSet(String lafName,
 										UIDefaults table) {
 									return new WrapperFontSet(
 											substanceCoreFontSet, newValue);
@@ -163,10 +178,12 @@ public class FontSizePanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						SubstanceLookAndFeel.setFontPolicy(null);
 						FontPolicy newFontPolicy = new FontPolicy() {
-							public FontSet getFontSet(String lafName,
+							@Override
+                            public FontSet getFontSet(String lafName,
 									UIDefaults table) {
 								return new Tahoma11FontSet();
 							}

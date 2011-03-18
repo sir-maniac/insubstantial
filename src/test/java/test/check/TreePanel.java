@@ -167,7 +167,8 @@ public class TreePanel extends ControllablePanel {
 		final JCheckBox isEnabled = new JCheckBox("is enabled");
 		isEnabled.setSelected(tree.isEnabled());
 		isEnabled.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				tree.setEnabled(isEnabled.isSelected());
 			}
 		});
@@ -176,7 +177,8 @@ public class TreePanel extends ControllablePanel {
 		final JCheckBox isOpaque = new JCheckBox("is opaque");
 		isOpaque.setSelected(tree.isOpaque());
 		isOpaque.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				tree.setOpaque(isOpaque.isSelected());
 				tree.repaint();
 			}
@@ -186,7 +188,8 @@ public class TreePanel extends ControllablePanel {
 		final JCheckBox isEditable = new JCheckBox("is editable");
 		isEditable.setSelected(tree.isEditable());
 		isEditable.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				tree.setEditable(isEditable.isSelected());
 			}
 		});
@@ -195,7 +198,8 @@ public class TreePanel extends ControllablePanel {
 		final JCheckBox isDragEnabled = new JCheckBox("is drag enabled");
 		isDragEnabled.setSelected(tree.getDragEnabled());
 		isDragEnabled.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				tree.setDragEnabled(isDragEnabled.isSelected());
 			}
 		});
@@ -203,7 +207,8 @@ public class TreePanel extends ControllablePanel {
 
 		final JCheckBox watermarkBleed = new JCheckBox("is visible");
 		watermarkBleed.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				tree.putClientProperty(SubstanceLookAndFeel.WATERMARK_VISIBLE,
 						Boolean.valueOf(watermarkBleed.isSelected()));
 				jsp.putClientProperty(SubstanceLookAndFeel.WATERMARK_VISIBLE,
@@ -217,7 +222,8 @@ public class TreePanel extends ControllablePanel {
 				"is in scroll pane");
 		isWrappedInScrollPane.setSelected(true);
 		isWrappedInScrollPane.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				if (isWrappedInScrollPane.isSelected()) {
 					remove(tree);
 					jsp.setViewportView(tree);
@@ -234,9 +240,11 @@ public class TreePanel extends ControllablePanel {
 
 		final JCheckBox rendererCB = new JCheckBox("has custom renderer");
 		rendererCB.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						if (rendererCB.isSelected()) {
 							tree.setCellRenderer(new TestTreeCellRenderer());
 						} else {
@@ -265,7 +273,8 @@ public class TreePanel extends ControllablePanel {
 		builder.append("Right", rightInsets);
 
 		ChangeListener cl = new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
+			@Override
+            public void stateChanged(ChangeEvent e) {
 				tree.setBorder(new EmptyBorder((Integer) topInsets.getValue(),
 						(Integer) leftInsets.getValue(), (Integer) bottomInsets
 								.getValue(), (Integer) rightInsets.getValue()));

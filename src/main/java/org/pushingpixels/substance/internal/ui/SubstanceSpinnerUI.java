@@ -120,7 +120,8 @@ public class SubstanceSpinnerUI extends BasicSpinnerUI {
 
 		Icon icon = new TransitionAwareIcon(this.nextButton,
 				new TransitionAwareIcon.Delegate() {
-					public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
+					@Override
+                    public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
 						int fontSize = SubstanceSizeUtils
 								.getComponentFontSize(nextButton);
 						return SubstanceImageCreator.getArrowIcon(
@@ -173,7 +174,8 @@ public class SubstanceSpinnerUI extends BasicSpinnerUI {
 
 		Icon icon = new TransitionAwareIcon(this.prevButton,
 				new TransitionAwareIcon.Delegate() {
-					public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
+					@Override
+                    public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
 						int fontSize = SubstanceSizeUtils
 								.getComponentFontSize(prevButton);
 						float spinnerArrowIconHeight = SubstanceSizeUtils
@@ -256,10 +258,12 @@ public class SubstanceSpinnerUI extends BasicSpinnerUI {
 	protected void installListeners() {
 		super.installListeners();
 		this.substancePropertyChangeListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if ("editor".equals(evt.getPropertyName())) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							if (spinner == null)
 								return;
 							JComponent editor = spinner.getEditor();
@@ -282,7 +286,8 @@ public class SubstanceSpinnerUI extends BasicSpinnerUI {
 
 				if ("font".equals(evt.getPropertyName())) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							if (spinner != null) {
 								spinner.updateUI();
 							}
@@ -416,17 +421,21 @@ public class SubstanceSpinnerUI extends BasicSpinnerUI {
 	 * @author Kirill Grouchnikov
 	 */
 	protected class SpinnerLayoutManager implements LayoutManager {
-		public void addLayoutComponent(String name, Component comp) {
+		@Override
+        public void addLayoutComponent(String name, Component comp) {
 		}
 
-		public void removeLayoutComponent(Component comp) {
+		@Override
+        public void removeLayoutComponent(Component comp) {
 		}
 
-		public Dimension minimumLayoutSize(Container parent) {
+		@Override
+        public Dimension minimumLayoutSize(Container parent) {
 			return this.preferredLayoutSize(parent);
 		}
 
-		public Dimension preferredLayoutSize(Container parent) {
+		@Override
+        public Dimension preferredLayoutSize(Container parent) {
 			Dimension nextD = nextButton.getPreferredSize();
 			Dimension previousD = prevButton.getPreferredSize();
 			Dimension editorD = spinner.getEditor().getPreferredSize();
@@ -450,7 +459,8 @@ public class SubstanceSpinnerUI extends BasicSpinnerUI {
 			return size;
 		}
 
-		public void layoutContainer(Container parent) {
+		@Override
+        public void layoutContainer(Container parent) {
 			int width = parent.getWidth();
 			int height = parent.getHeight();
 

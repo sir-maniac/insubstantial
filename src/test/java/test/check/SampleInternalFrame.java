@@ -170,7 +170,8 @@ public class SampleInternalFrame extends JInternalFrame {
 	 */
 	protected void synchronize() {
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				if (UIManager.getLookAndFeel() instanceof SubstanceLookAndFeel) {
 					SubstanceSkin currentSkin = SubstanceLookAndFeel
 							.getCurrentSkin(getRootPane());

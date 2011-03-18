@@ -79,7 +79,8 @@ public class TabbedPaneContentBorderKind extends JFrame {
 		contentBorderCombo
 				.setSelectedItem(TabContentPaneBorderKind.DOUBLE_FULL);
 		contentBorderCombo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				TabContentPaneBorderKind contentBorderKind = (TabContentPaneBorderKind) contentBorderCombo
 						.getSelectedItem();
 				jtp.putClientProperty(
@@ -108,7 +109,8 @@ public class TabbedPaneContentBorderKind extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new TabbedPaneContentBorderKind().setVisible(true);
 			}

@@ -83,7 +83,8 @@ public class JaxbwIconDemo {
 		 * 
 		 * @see java.awt.Component#paint(java.awt.Graphics)
 		 */
-		public final void paint(Graphics g) {
+		@Override
+        public final void paint(Graphics g) {
 			Graphics2D g2 = (Graphics2D) g.create();
 			g2.setColor(Color.white);
 			g2.translate(15, 15);

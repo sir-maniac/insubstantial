@@ -81,7 +81,8 @@ public class FocusKindProperty extends JFrame {
 		});
 		focusKindCombo.setSelectedItem(FocusKind.ALL_INNER);
 		focusKindCombo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				// based on the selected value, set focus kind on the
 				// button and request focus
 				button1.putClientProperty(SubstanceLookAndFeel.FOCUS_KIND,
@@ -107,7 +108,8 @@ public class FocusKindProperty extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new FocusKindProperty().setVisible(true);
 			}

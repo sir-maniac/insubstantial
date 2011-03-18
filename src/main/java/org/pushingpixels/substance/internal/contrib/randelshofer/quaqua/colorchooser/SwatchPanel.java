@@ -70,6 +70,7 @@ public class SwatchPanel extends javax.swing.JPanel {
     
     
     
+    @Override
     public boolean isFocusTraversable() {
         return false;
     }
@@ -81,6 +82,7 @@ public class SwatchPanel extends javax.swing.JPanel {
         gap = new Dimension(1, 1);
     }
     
+    @Override
     public void setBounds(int x, int y, int width, int height) {
         super.setBounds(x, y, width, height);
         if (width > getPreferredSize().width) {
@@ -102,6 +104,7 @@ public class SwatchPanel extends javax.swing.JPanel {
         numSwatches = new Dimension(rows, columns);
     }
     
+    @Override
     public void paintComponent(Graphics g) {
         Dimension preferredSize = getSwatchesSize();
         int xoffset = (getWidth() - preferredSize.width) / 2;
@@ -129,6 +132,7 @@ public class SwatchPanel extends javax.swing.JPanel {
         return new Dimension( x, y );
     }
     
+    @Override
     public Dimension getPreferredSize() {
         int x = numSwatches.width * (defaultSwatchSize.width + gap.width);
         int y = numSwatches.height * (defaultSwatchSize.height + gap.height);
@@ -140,6 +144,7 @@ public class SwatchPanel extends javax.swing.JPanel {
         
     }
     
+    @Override
     public String getToolTipText(MouseEvent e) {
         Color color = getColorForLocation(e.getX(), e.getY());
         return (color == null) ? null : color.getRed()+", "+ color.getGreen() + ", " + color.getBlue();

@@ -72,7 +72,8 @@ public class TextFlipSelectOnEscape extends JFrame {
 		final JCheckBox hasSelectOnFocus = new JCheckBox(
 				"Has \"flip select on ESC\" behaviour");
 		hasSelectOnFocus.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				jtf.putClientProperty(LafWidget.TEXT_FLIP_SELECT_ON_ESCAPE,
 						hasSelectOnFocus.isSelected() ? Boolean.TRUE : null);
 			}
@@ -99,7 +100,8 @@ public class TextFlipSelectOnEscape extends JFrame {
 	public static void main(String[] args) throws Exception {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new TextFlipSelectOnEscape().setVisible(true);
 			}

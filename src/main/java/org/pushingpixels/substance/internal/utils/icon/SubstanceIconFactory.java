@@ -223,7 +223,8 @@ public class SubstanceIconFactory {
 		 * org.pushingpixels.substance.Trackable#isInside(java.awt.event.MouseEvent
 		 * )
 		 */
-		public boolean isInside(MouseEvent me) {
+		@Override
+        public boolean isInside(MouseEvent me) {
 			try {
 				Rectangle thumbB = (Rectangle) this.thumbRectField
 						.get(this.slider.getUI());
@@ -400,7 +401,8 @@ public class SubstanceIconFactory {
 		 * @see javax.swing.Icon#paintIcon(java.awt.Component,
 		 * java.awt.Graphics, int, int)
 		 */
-		public void paintIcon(Component c, Graphics g, int x, int y) {
+		@Override
+        public void paintIcon(Component c, Graphics g, int x, int y) {
 			if (!(g instanceof Graphics2D)) {
 				return;
 			}
@@ -420,7 +422,8 @@ public class SubstanceIconFactory {
 		 * 
 		 * @see javax.swing.Icon#getIconWidth()
 		 */
-		public int getIconWidth() {
+		@Override
+        public int getIconWidth() {
 			return this.size - 1;
 		}
 
@@ -429,7 +432,8 @@ public class SubstanceIconFactory {
 		 * 
 		 * @see javax.swing.Icon#getIconHeight()
 		 */
-		public int getIconHeight() {
+		@Override
+        public int getIconHeight() {
 			return this.size - 1;
 		}
 	}
@@ -597,7 +601,8 @@ public class SubstanceIconFactory {
 		 * @see javax.swing.Icon#paintIcon(java.awt.Component,
 		 * java.awt.Graphics, int, int)
 		 */
-		public void paintIcon(Component c, Graphics g, int x, int y) {
+		@Override
+        public void paintIcon(Component c, Graphics g, int x, int y) {
 			if (!(g instanceof Graphics2D)) {
 				return;
 			}
@@ -617,7 +622,8 @@ public class SubstanceIconFactory {
 		 * 
 		 * @see javax.swing.Icon#getIconWidth()
 		 */
-		public int getIconWidth() {
+		@Override
+        public int getIconWidth() {
 			return this.size - 1;
 		}
 
@@ -626,7 +632,8 @@ public class SubstanceIconFactory {
 		 * 
 		 * @see javax.swing.Icon#getIconHeight()
 		 */
-		public int getIconHeight() {
+		@Override
+        public int getIconHeight() {
 			return this.size - 1;
 		}
 	}
@@ -811,7 +818,8 @@ public class SubstanceIconFactory {
 		 * @see javax.swing.Icon#paintIcon(java.awt.Component,
 		 * java.awt.Graphics, int, int)
 		 */
-		public void paintIcon(Component c, Graphics g, int x, int y) {
+		@Override
+        public void paintIcon(Component c, Graphics g, int x, int y) {
 			if (!(g instanceof Graphics2D)) {
 				return;
 			}
@@ -831,7 +839,8 @@ public class SubstanceIconFactory {
 		 * 
 		 * @see javax.swing.Icon#getIconWidth()
 		 */
-		public int getIconWidth() {
+		@Override
+        public int getIconWidth() {
 			return this.size - 1;
 		}
 
@@ -840,7 +849,8 @@ public class SubstanceIconFactory {
 		 * 
 		 * @see javax.swing.Icon#getIconHeight()
 		 */
-		public int getIconHeight() {
+		@Override
+        public int getIconHeight() {
 			return this.size - 1;
 		}
 	}
@@ -920,7 +930,8 @@ public class SubstanceIconFactory {
 		 * @see javax.swing.Icon#paintIcon(java.awt.Component,
 		 * java.awt.Graphics, int, int)
 		 */
-		public void paintIcon(Component c, Graphics g, int x, int y) {
+		@Override
+        public void paintIcon(Component c, Graphics g, int x, int y) {
 			if (!(g instanceof Graphics2D)) {
 				return;
 			}
@@ -940,7 +951,8 @@ public class SubstanceIconFactory {
 		 * 
 		 * @see javax.swing.Icon#getIconWidth()
 		 */
-		public int getIconWidth() {
+		@Override
+        public int getIconWidth() {
 			return this.size;
 		}
 
@@ -949,7 +961,8 @@ public class SubstanceIconFactory {
 		 * 
 		 * @see javax.swing.Icon#getIconHeight()
 		 */
-		public int getIconHeight() {
+		@Override
+        public int getIconHeight() {
 			return this.size;
 		}
 	}

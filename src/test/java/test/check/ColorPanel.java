@@ -61,7 +61,8 @@ public class ColorPanel extends JPanel {
 	 * 
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
-	protected void paintComponent(Graphics g) {
+	@Override
+    protected void paintComponent(Graphics g) {
 		Graphics2D graphics = (Graphics2D) g.create();
 		graphics.setComposite(LafWidgetUtilities.getAlphaComposite(this));
 		super.paintComponent(graphics);

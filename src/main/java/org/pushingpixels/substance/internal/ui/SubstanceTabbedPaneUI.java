@@ -179,7 +179,8 @@ public class SubstanceTabbedPaneUI extends BasicTabbedPaneUI {
 				return;
 
 			PropertyChangeListener tabModifiedListener = new PropertyChangeListener() {
-				public void propertyChange(PropertyChangeEvent evt) {
+				@Override
+                public void propertyChange(PropertyChangeEvent evt) {
 					if (SubstanceLookAndFeel.WINDOW_MODIFIED.equals(evt
 							.getPropertyName())) {
 						Object oldValue = evt.getOldValue();
@@ -341,7 +342,8 @@ public class SubstanceTabbedPaneUI extends BasicTabbedPaneUI {
 		 * @see
 		 * java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
 		 */
-		public void mouseClicked(final MouseEvent e) {
+		@Override
+        public void mouseClicked(final MouseEvent e) {
 			final int tabIndex = SubstanceTabbedPaneUI.this.tabForCoordinate(
 					SubstanceTabbedPaneUI.this.tabPane, e.getX(), e.getY());
 			TabCloseCallback closeCallback = SubstanceCoreUtilities
@@ -356,7 +358,8 @@ public class SubstanceTabbedPaneUI extends BasicTabbedPaneUI {
 				return;
 
 			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					SubstanceTabbedPaneUI.this.tryCloseTabs(tabIndex,
 							tabCloseKind);
 				}
@@ -370,7 +373,8 @@ public class SubstanceTabbedPaneUI extends BasicTabbedPaneUI {
 		 * java.awt.event.MouseMotionListener#mouseDragged(java.awt.event.MouseEvent
 		 * )
 		 */
-		public void mouseDragged(MouseEvent e) {
+		@Override
+        public void mouseDragged(MouseEvent e) {
 			this.handleMouseMoveDrag(e);
 		}
 
@@ -380,7 +384,8 @@ public class SubstanceTabbedPaneUI extends BasicTabbedPaneUI {
 		 * @see
 		 * java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
 		 */
-		public void mouseEntered(MouseEvent e) {
+		@Override
+        public void mouseEntered(MouseEvent e) {
 			setRolloverTab(tabForCoordinate(tabPane, e.getX(), e.getY()));
 		}
 
@@ -390,7 +395,8 @@ public class SubstanceTabbedPaneUI extends BasicTabbedPaneUI {
 		 * @see
 		 * java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
 		 */
-		public void mousePressed(MouseEvent e) {
+		@Override
+        public void mousePressed(MouseEvent e) {
 			if (!tabPane.isEnabled()) {
 				return;
 			}
@@ -428,7 +434,8 @@ public class SubstanceTabbedPaneUI extends BasicTabbedPaneUI {
 		 * java.awt.event.MouseMotionListener#mouseMoved(java.awt.event.MouseEvent
 		 * )
 		 */
-		public void mouseMoved(MouseEvent e) {
+		@Override
+        public void mouseMoved(MouseEvent e) {
 			this.handleMouseMoveDrag(e);
 		}
 
@@ -515,7 +522,8 @@ public class SubstanceTabbedPaneUI extends BasicTabbedPaneUI {
 		 * @see
 		 * java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
 		 */
-		public void mouseExited(MouseEvent e) {
+		@Override
+        public void mouseExited(MouseEvent e) {
 			setRolloverTab(-1);
 			// fix for bug 69 - non-selected non-rollover tab
 			// may remain with close button after moving mouse quickly
@@ -546,7 +554,8 @@ public class SubstanceTabbedPaneUI extends BasicTabbedPaneUI {
 		 * @see
 		 * java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
 		 */
-		public void mouseReleased(final MouseEvent e) {
+		@Override
+        public void mouseReleased(final MouseEvent e) {
 			// enhancement 307 - moving the tab close to be on mouse release
 			// and not on mouse press.
 			final int tabIndex = SubstanceTabbedPaneUI.this.tabForCoordinate(
@@ -557,7 +566,8 @@ public class SubstanceTabbedPaneUI extends BasicTabbedPaneUI {
 					SubstanceTabbedPaneUI.this.tabPane, tabIndex)
 					&& (tabIndex == this.tabOfPressedCloseButton)) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						if ((tabIndex >= 0)
 								&& SubstanceTabbedPaneUI.this.tabPane
 										.isEnabledAt(tabIndex)) {
@@ -633,9 +643,11 @@ public class SubstanceTabbedPaneUI extends BasicTabbedPaneUI {
 		this.tabPane.addContainerListener(this.substanceContainerListener);
 
 		this.substanceSelectionListener = new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
+			@Override
+            public void stateChanged(ChangeEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						if (SubstanceTabbedPaneUI.this.tabPane == null)
 							return;
 						int selected = SubstanceTabbedPaneUI.this.tabPane
@@ -1302,7 +1314,8 @@ public class SubstanceTabbedPaneUI extends BasicTabbedPaneUI {
 		SubstanceScrollButton ssb = new SubstanceScrollButton(direction);
 		Icon icon = new TransitionAwareIcon(ssb,
 				new TransitionAwareIcon.Delegate() {
-					public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
+					@Override
+                    public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
 						// fix for defect 279 - tab pane might not yet have the
 						// font installed.
 						int fontSize = SubstanceSizeUtils
@@ -1625,7 +1638,8 @@ public class SubstanceTabbedPaneUI extends BasicTabbedPaneUI {
 		 */
 		protected void repaintTab() {
 			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					if (SubstanceTabbedPaneUI.this.tabPane == null) {
 						// may happen if the LAF was switched in the meantime
 						return;

@@ -212,7 +212,8 @@ public class CheckBoxMenuItemIcon implements Icon, UIResource {
 	 * @see javax.swing.Icon#paintIcon(java.awt.Component, java.awt.Graphics,
 	 * int, int)
 	 */
-	public void paintIcon(Component c, Graphics g, int x, int y) {
+	@Override
+    public void paintIcon(Component c, Graphics g, int x, int y) {
 		Icon iconToDraw = this.getIconToPaint();
 		if (iconToDraw != null)
 			iconToDraw.paintIcon(c, g, x, y);
@@ -223,7 +224,8 @@ public class CheckBoxMenuItemIcon implements Icon, UIResource {
 	 * 
 	 * @see javax.swing.Icon#getIconWidth()
 	 */
-	public int getIconWidth() {
+	@Override
+    public int getIconWidth() {
 		return this.size + 2;
 	}
 
@@ -232,7 +234,8 @@ public class CheckBoxMenuItemIcon implements Icon, UIResource {
 	 * 
 	 * @see javax.swing.Icon#getIconHeight()
 	 */
-	public int getIconHeight() {
+	@Override
+    public int getIconHeight() {
 		return this.size + 2;
 	}
 }

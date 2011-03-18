@@ -65,7 +65,8 @@ public class MousePopupListener extends MouseAdapter {
 	 * 
 	 * @see java.awt.event.MouseAdapter#mousePressed(java.awt.event.MouseEvent)
 	 */
-	public void mousePressed(MouseEvent e) {
+	@Override
+    public void mousePressed(MouseEvent e) {
 		checkPopup(e);
 	}
 
@@ -74,7 +75,8 @@ public class MousePopupListener extends MouseAdapter {
 	 * 
 	 * @see java.awt.event.MouseAdapter#mouseClicked(java.awt.event.MouseEvent)
 	 */
-	public void mouseClicked(MouseEvent e) {
+	@Override
+    public void mouseClicked(MouseEvent e) {
 		checkPopup(e);
 	}
 
@@ -83,7 +85,8 @@ public class MousePopupListener extends MouseAdapter {
 	 * 
 	 * @see java.awt.event.MouseAdapter#mouseReleased(java.awt.event.MouseEvent)
 	 */
-	public void mouseReleased(MouseEvent e) {
+	@Override
+    public void mouseReleased(MouseEvent e) {
 		checkPopup(e);
 	}
 
@@ -133,7 +136,8 @@ public class MousePopupListener extends MouseAdapter {
 		 * 
 		 * @see javax.swing.event.PopupMenuListener#popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent)
 		 */
-		public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+		@Override
+        public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
 			Check.out("Popup menu will be visible!");
 		}
 
@@ -142,7 +146,8 @@ public class MousePopupListener extends MouseAdapter {
 		 * 
 		 * @see javax.swing.event.PopupMenuListener#popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent)
 		 */
-		public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+		@Override
+        public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
 			Check.out("Popup menu will be invisible!");
 		}
 
@@ -151,7 +156,8 @@ public class MousePopupListener extends MouseAdapter {
 		 * 
 		 * @see javax.swing.event.PopupMenuListener#popupMenuCanceled(javax.swing.event.PopupMenuEvent)
 		 */
-		public void popupMenuCanceled(PopupMenuEvent e) {
+		@Override
+        public void popupMenuCanceled(PopupMenuEvent e) {
 			Check.out("Popup menu is hidden!");
 		}
 	}

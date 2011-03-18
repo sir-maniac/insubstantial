@@ -40,6 +40,7 @@ public class QuaquaColorPreviewPanel extends JPanel implements UIResource {
         setToolTipText("on"); // set dummy text, to switch tooltip on
     }
     
+    @Override
     public void paintComponent(Graphics g) {
         Insets insets = getInsets();
         int x = insets.left;
@@ -54,6 +55,7 @@ public class QuaquaColorPreviewPanel extends JPanel implements UIResource {
         g.fillRect(x+2,y+2,w-4,h-4);
     }
     
+    @Override
     public String getToolTipText(MouseEvent evt) {
         Color color = getForeground();
         return (color == null) ? null : color.getRed()+", "+ color.getGreen() + ", " + color.getBlue();

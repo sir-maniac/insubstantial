@@ -68,7 +68,8 @@ public class RegisterTabCloseChangeListener_GeneralSingle extends JFrame {
 		// register tab close listener on all tabbed panes.
 		SubstanceLookAndFeel
 				.registerTabCloseChangeListener(new TabCloseListener() {
-					public void tabClosing(JTabbedPane tabbedPane,
+					@Override
+                    public void tabClosing(JTabbedPane tabbedPane,
 							Component tabComponent) {
 						System.out.println("Tab "
 								+ tabbedPane.getTitleAt(tabbedPane
@@ -76,7 +77,8 @@ public class RegisterTabCloseChangeListener_GeneralSingle extends JFrame {
 								+ " closing");
 					}
 
-					public void tabClosed(JTabbedPane tabbedPane,
+					@Override
+                    public void tabClosed(JTabbedPane tabbedPane,
 							Component tabComponent) {
 						System.out.println("Tab closed");
 					}
@@ -98,7 +100,8 @@ public class RegisterTabCloseChangeListener_GeneralSingle extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new RegisterTabCloseChangeListener_GeneralSingle()
 						.setVisible(true);

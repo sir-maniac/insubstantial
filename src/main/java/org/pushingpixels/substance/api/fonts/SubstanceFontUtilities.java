@@ -108,28 +108,34 @@ public class SubstanceFontUtilities {
 			// systemFont.getSize() + extraFontSize);
 		}
 
-		public FontUIResource getControlFont() {
+		@Override
+        public FontUIResource getControlFont() {
 			return this.getSubstanceFont(this.systemFontSet.getControlFont());
 		}
 
-		public FontUIResource getMenuFont() {
+		@Override
+        public FontUIResource getMenuFont() {
 			return this.getSubstanceFont(this.systemFontSet.getMenuFont());
 		}
 
-		public FontUIResource getMessageFont() {
+		@Override
+        public FontUIResource getMessageFont() {
 			return this.getSubstanceFont(this.systemFontSet.getMessageFont());
 		}
 
-		public FontUIResource getSmallFont() {
+		@Override
+        public FontUIResource getSmallFont() {
 			return this.getSubstanceFont(this.systemFontSet.getSmallFont(),
 					false, 1);
 		}
 
-		public FontUIResource getTitleFont() {
+		@Override
+        public FontUIResource getTitleFont() {
 			return this.getSubstanceFont(this.systemFontSet.getTitleFont());
 		}
 
-		public FontUIResource getWindowTitleFont() {
+		@Override
+        public FontUIResource getWindowTitleFont() {
 			return this.getSubstanceFont(this.systemFontSet
 					.getWindowTitleFont(), true, 1);
 		}
@@ -163,7 +169,8 @@ public class SubstanceFontUtilities {
 					try {
 						String desktop = AccessController
 								.doPrivileged(new PrivilegedAction<String>() {
-									public String run() {
+									@Override
+                                    public String run() {
 										return System
 												.getProperty("sun.desktop");
 									}
@@ -189,7 +196,8 @@ public class SubstanceFontUtilities {
 		if (LookUtils.IS_OS_MAC || isKDE)// || isGnome)
 			return fontPolicy;
 		return new FontPolicy() {
-			public FontSet getFontSet(String lafName, UIDefaults table) {
+			@Override
+            public FontSet getFontSet(String lafName, UIDefaults table) {
 				FontSet baseResult = fontPolicy.getFontSet(lafName, table);
 				FontSet substanceFontSet = new SubstanceFontSet(baseResult);
 				return substanceFontSet;
@@ -209,7 +217,8 @@ public class SubstanceFontUtilities {
 				.getDefaultFontPolicy().getFontSet("Substance", null);
 		// Create the scaled font set
 		FontPolicy newFontPolicy = new FontPolicy() {
-			public FontSet getFontSet(String lafName, UIDefaults table) {
+			@Override
+            public FontSet getFontSet(String lafName, UIDefaults table) {
 				return new ScaledFontSet(substanceCoreFontSet, scaleFactor);
 			}
 		};

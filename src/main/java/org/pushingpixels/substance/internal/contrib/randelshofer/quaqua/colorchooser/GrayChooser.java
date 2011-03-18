@@ -70,6 +70,7 @@ public class GrayChooser extends AbstractColorChooserPanel implements UIResource
         new ColorSliderTextFieldHandler(brightnessField, ccModel, 0);
 
         ccModel.addChangeListener(new ChangeListener() {
+            @Override
             public void stateChanged(ChangeEvent evt) {
                 if (updateRecursion == 0) {
                     setColorToModel(ccModel.getColor());
@@ -100,17 +101,21 @@ public class GrayChooser extends AbstractColorChooserPanel implements UIResource
         hundredPercentButton.setPreferredSize(d);
     }
     
+    @Override
     protected void buildChooser() {
     }
     
+    @Override
     public String getDisplayName() {
         return UIManager.getString("ColorChooser.grayScaleSlider");
     }
     
+    @Override
     public Icon getLargeDisplayIcon() {
         return UIManager.getIcon("ColorChooser.colorSlidersIcon");
     }
     
+    @Override
     public Icon getSmallDisplayIcon() {
         return getLargeDisplayIcon();
     }
@@ -121,6 +126,7 @@ public class GrayChooser extends AbstractColorChooserPanel implements UIResource
      */
     private int updateRecursion;
     
+    @Override
     public void updateChooser() {
         updateRecursion++;
         Color cfm = getColorFromModel();
@@ -181,6 +187,7 @@ public class GrayChooser extends AbstractColorChooserPanel implements UIResource
         brightnessField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         brightnessField.setText("0");
         brightnessField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 brightnessFieldFocusLost(evt);
             }
@@ -211,6 +218,7 @@ public class GrayChooser extends AbstractColorChooserPanel implements UIResource
         zeroPercentButton.setBackground(new java.awt.Color(0, 0, 0));
         zeroPercentButton.setToolTipText("0 %");
         zeroPercentButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 percentActionPerformed(evt);
             }
@@ -224,6 +232,7 @@ public class GrayChooser extends AbstractColorChooserPanel implements UIResource
         twentyFivePercentButton.setBackground(new java.awt.Color(64, 64, 64));
         twentyFivePercentButton.setToolTipText("25 %");
         twentyFivePercentButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 percentActionPerformed(evt);
             }
@@ -237,6 +246,7 @@ public class GrayChooser extends AbstractColorChooserPanel implements UIResource
         fiftyPercentButton.setBackground(new java.awt.Color(128, 128, 128));
         fiftyPercentButton.setToolTipText("50 %");
         fiftyPercentButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 percentActionPerformed(evt);
             }
@@ -249,6 +259,7 @@ public class GrayChooser extends AbstractColorChooserPanel implements UIResource
         seventyFivePercentButton.setBackground(new java.awt.Color(192, 192, 192));
         seventyFivePercentButton.setToolTipText("75 %");
         seventyFivePercentButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 percentActionPerformed(evt);
             }
@@ -262,6 +273,7 @@ public class GrayChooser extends AbstractColorChooserPanel implements UIResource
         hundredPercentButton.setBackground(new java.awt.Color(255, 255, 255));
         hundredPercentButton.setToolTipText("100 %");
         hundredPercentButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 percentActionPerformed(evt);
             }

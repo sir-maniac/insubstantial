@@ -49,7 +49,8 @@ public class SubstanceDiagonalGradientWatermark implements SubstanceWatermark {
 	 * org.pushingpixels.substance.watermark.SubstanceWatermark#drawWatermarkImage(java
 	 * .awt.Graphics, int, int, int, int)
 	 */
-	public void drawWatermarkImage(Graphics g, Component c, int x, int y,
+	@Override
+    public void drawWatermarkImage(Graphics g, Component c, int x, int y,
 			int width, int height) {
 		if (c != null)
 			if (!c.isDisplayable() || !c.isShowing())
@@ -88,7 +89,8 @@ public class SubstanceDiagonalGradientWatermark implements SubstanceWatermark {
 	 * org.pushingpixels.substance.watermark.SubstanceWatermark#updateWatermarkImage
 	 * (org.pushingpixels.substance.skin.SubstanceSkin)
 	 */
-	public boolean updateWatermarkImage(SubstanceSkin skin) {
+	@Override
+    public boolean updateWatermarkImage(SubstanceSkin skin) {
 		return true;
 	}
 
@@ -111,7 +113,8 @@ public class SubstanceDiagonalGradientWatermark implements SubstanceWatermark {
 	 * 
 	 * @see org.pushingpixels.substance.watermark.SubstanceWatermark#getDisplayName()
 	 */
-	public String getDisplayName() {
+	@Override
+    public String getDisplayName() {
 		return "Diagonal Gradient";
 	}
 
@@ -120,6 +123,7 @@ public class SubstanceDiagonalGradientWatermark implements SubstanceWatermark {
 	 * 
 	 * @see org.pushingpixels.substance.watermark.SubstanceWatermark#dispose()
 	 */
-	public void dispose() {
+	@Override
+    public void dispose() {
 	}
 }

@@ -116,10 +116,12 @@ public class SubstanceTextPaneUI extends BasicTextPaneUI implements
 		this.stateTransitionTracker.registerFocusListeners();
 
 		this.substancePropertyChangeListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if ("font".equals(evt.getPropertyName())) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							// remember the caret location - issue 404
 							int caretPos = textPane.getCaretPosition();
 							textPane.updateUI();

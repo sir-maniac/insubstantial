@@ -62,6 +62,7 @@ implements UIResource {
         swatchPanel.setColors(colors);
         swatchPanel.setNumSwatches(9, 31);
         swatchPanel.addMouseListener(new MouseAdapter() {
+            @Override
             public void mouseReleased(MouseEvent e) {
                 Color c = swatchPanel.getColorForLocation(e.getX(), e.getY());
                 if (c != null) {
@@ -85,17 +86,21 @@ implements UIResource {
 
     }//GEN-END:initComponents
     
+    @Override
     protected void buildChooser() {
     }
     
+    @Override
     public String getDisplayName() {
         return UIManager.getString("ColorChooser.colorSwatches");
     }
     
+    @Override
     public Icon getLargeDisplayIcon() {
         return UIManager.getIcon("ColorChooser.colorSwatchesIcon");
     }
     
+    @Override
     public Icon getSmallDisplayIcon() {
         return getLargeDisplayIcon();
     }
@@ -104,6 +109,7 @@ implements UIResource {
         getColorSelectionModel().setSelectedColor(color);
     }
     
+    @Override
     public void updateChooser() {
     }
     

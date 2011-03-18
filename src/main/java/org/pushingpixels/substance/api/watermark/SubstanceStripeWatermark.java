@@ -57,7 +57,8 @@ public class SubstanceStripeWatermark implements SubstanceWatermark {
 	 * org.pushingpixels.substance.watermark.SubstanceWatermark#drawWatermarkImage(java
 	 * .awt.Graphics, int, int, int, int)
 	 */
-	public void drawWatermarkImage(Graphics graphics, Component c, int x,
+	@Override
+    public void drawWatermarkImage(Graphics graphics, Component c, int x,
 			int y, int width, int height) {
 		if (!c.isShowing())
 			return;
@@ -78,7 +79,8 @@ public class SubstanceStripeWatermark implements SubstanceWatermark {
 	 * org.pushingpixels.substance.watermark.SubstanceWatermark#updateWatermarkImage
 	 * (org.pushingpixels.substance.skin.SubstanceSkin)
 	 */
-	public boolean updateWatermarkImage(SubstanceSkin skin) {
+	@Override
+    public boolean updateWatermarkImage(SubstanceSkin skin) {
 		// fix by Chris for bug 67 - support for multiple screens
 		Rectangle virtualBounds = new Rectangle();
 		GraphicsEnvironment ge = GraphicsEnvironment
@@ -166,7 +168,8 @@ public class SubstanceStripeWatermark implements SubstanceWatermark {
 	 * 
 	 * @see org.pushingpixels.substance.api.trait.SubstanceTrait#getDisplayName()
 	 */
-	public String getDisplayName() {
+	@Override
+    public String getDisplayName() {
 		return "Stripes";
 	}
 
@@ -175,7 +178,8 @@ public class SubstanceStripeWatermark implements SubstanceWatermark {
 	 * 
 	 * @see org.pushingpixels.substance.watermark.SubstanceWatermark#dispose()
 	 */
-	public void dispose() {
+	@Override
+    public void dispose() {
 		watermarkImage = null;
 	}
 }

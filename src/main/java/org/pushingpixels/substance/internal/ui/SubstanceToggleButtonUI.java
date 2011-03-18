@@ -215,7 +215,8 @@ public class SubstanceToggleButtonUI extends BasicToggleButtonUI implements
 		this.trackGlowingIcon();
 
 		this.substancePropertyListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (AbstractButton.ICON_CHANGED_PROPERTY.equals(evt
 						.getPropertyName())) {
 					trackGlowingIcon();

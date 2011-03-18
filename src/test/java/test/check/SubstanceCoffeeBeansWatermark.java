@@ -56,7 +56,8 @@ public class SubstanceCoffeeBeansWatermark implements SubstanceWatermark {
 	 * org.pushingpixels.substance.watermark.SubstanceWatermark#drawWatermarkImage(java
 	 * .awt.Graphics, int, int, int, int)
 	 */
-	public void drawWatermarkImage(Graphics graphics, Component c, int x,
+	@Override
+    public void drawWatermarkImage(Graphics graphics, Component c, int x,
 			int y, int width, int height) {
 		int dx = c.getLocationOnScreen().x;
 		int dy = c.getLocationOnScreen().y;
@@ -72,7 +73,8 @@ public class SubstanceCoffeeBeansWatermark implements SubstanceWatermark {
 	 * org.pushingpixels.substance.watermark.SubstanceWatermark#updateWatermarkImage
 	 * (org.pushingpixels.substance.skin.SubstanceSkin)
 	 */
-	public boolean updateWatermarkImage(SubstanceSkin skin) {
+	@Override
+    public boolean updateWatermarkImage(SubstanceSkin skin) {
 		Dimension screenDim = Toolkit.getDefaultToolkit().getScreenSize();
 		int screenWidth = screenDim.width;
 		int screenHeight = screenDim.height;
@@ -174,7 +176,8 @@ public class SubstanceCoffeeBeansWatermark implements SubstanceWatermark {
 	 * 
 	 * @see org.pushingpixels.substance.watermark.SubstanceWatermark#getDisplayName()
 	 */
-	public String getDisplayName() {
+	@Override
+    public String getDisplayName() {
 		return "Coffee Beans";
 	}
 
@@ -183,7 +186,8 @@ public class SubstanceCoffeeBeansWatermark implements SubstanceWatermark {
 	 * 
 	 * @see org.pushingpixels.substance.watermark.SubstanceWatermark#dispose()
 	 */
-	public void dispose() {
+	@Override
+    public void dispose() {
 		watermarkImage = null;
 	}
 }

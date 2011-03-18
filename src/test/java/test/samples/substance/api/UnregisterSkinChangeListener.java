@@ -70,13 +70,15 @@ public class UnregisterSkinChangeListener extends JFrame {
 		cb.setSelectedIndex(-1);
 
 		cb.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent evt) {
+			@Override
+            public void itemStateChanged(ItemEvent evt) {
 				// Get the affected item
 				final Object item = evt.getItem();
 
 				if (evt.getStateChange() == ItemEvent.SELECTED) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							try {
 								// Get the skin info object based on
 								// the selected skin display name
@@ -102,9 +104,11 @@ public class UnregisterSkinChangeListener extends JFrame {
 		JPanel controls = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		final JButton unregisterListener = new JButton("Unregister listener");
 		unregisterListener.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						unregisterListener.setEnabled(false);
 						// unregister listener
 						SubstanceLookAndFeel
@@ -121,10 +125,12 @@ public class UnregisterSkinChangeListener extends JFrame {
 		// register listener
 		SubstanceLookAndFeel
 				.registerSkinChangeListener(listener = new SkinChangeListener() {
-					public void skinChanged() {
+					@Override
+                    public void skinChanged() {
 						// show dialog with skin changed message.
 						SwingUtilities.invokeLater(new Runnable() {
-							public void run() {
+							@Override
+                            public void run() {
 								JOptionPane.showMessageDialog(
 										UnregisterSkinChangeListener.this,
 										"Skin changed");
@@ -148,7 +154,8 @@ public class UnregisterSkinChangeListener extends JFrame {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		JDialog.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new UnregisterSkinChangeListener().setVisible(true);
 			}

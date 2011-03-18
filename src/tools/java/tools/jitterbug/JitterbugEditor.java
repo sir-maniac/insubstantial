@@ -374,7 +374,8 @@ public class JitterbugEditor extends JFrame implements ClipboardOwner {
 		JDialog.setDefaultLookAndFeelDecorated(true);
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessSkin());
 				new JitterbugEditor().setVisible(true);
 			}

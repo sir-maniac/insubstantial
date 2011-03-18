@@ -114,7 +114,8 @@ public class NegatedColorScheme extends BaseColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getForegroundColor()
 	 */
-	public Color getForegroundColor() {
+	@Override
+    public Color getForegroundColor() {
 		return this.foregroundColor;
 	}
 
@@ -123,7 +124,8 @@ public class NegatedColorScheme extends BaseColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getUltraLightColor()
 	 */
-	public Color getUltraLightColor() {
+	@Override
+    public Color getUltraLightColor() {
 		return this.mainUltraLightColor;
 	}
 
@@ -132,7 +134,8 @@ public class NegatedColorScheme extends BaseColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getExtraLightColor()
 	 */
-	public Color getExtraLightColor() {
+	@Override
+    public Color getExtraLightColor() {
 		return this.mainExtraLightColor;
 	}
 
@@ -141,7 +144,8 @@ public class NegatedColorScheme extends BaseColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getLightColor()
 	 */
-	public Color getLightColor() {
+	@Override
+    public Color getLightColor() {
 		return this.mainLightColor;
 	}
 
@@ -150,7 +154,8 @@ public class NegatedColorScheme extends BaseColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getMidColor()
 	 */
-	public Color getMidColor() {
+	@Override
+    public Color getMidColor() {
 		return this.mainMidColor;
 	}
 
@@ -159,7 +164,8 @@ public class NegatedColorScheme extends BaseColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getDarkColor()
 	 */
-	public Color getDarkColor() {
+	@Override
+    public Color getDarkColor() {
 		return this.mainDarkColor;
 	}
 
@@ -168,7 +174,8 @@ public class NegatedColorScheme extends BaseColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getUltraDarkColor()
 	 */
-	public Color getUltraDarkColor() {
+	@Override
+    public Color getUltraDarkColor() {
 		return this.mainUltraDarkColor;
 	}
 

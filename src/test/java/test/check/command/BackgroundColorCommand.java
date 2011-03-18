@@ -32,7 +32,8 @@ public class BackgroundColorCommand implements
 	 * 
 	 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 	 */
-	public void configure(Component ab) {
+	@Override
+    public void configure(Component ab) {
 		ab.setBackground(this.color);
 	}
 }

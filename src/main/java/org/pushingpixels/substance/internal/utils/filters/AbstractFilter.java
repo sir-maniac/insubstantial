@@ -51,19 +51,22 @@ import java.awt.image.*;
  */
 
 public abstract class AbstractFilter implements BufferedImageOp {
-	public abstract BufferedImage filter(BufferedImage src, BufferedImage dest);
+	@Override
+    public abstract BufferedImage filter(BufferedImage src, BufferedImage dest);
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public Rectangle2D getBounds2D(BufferedImage src) {
+	@Override
+    public Rectangle2D getBounds2D(BufferedImage src) {
 		return new Rectangle(0, 0, src.getWidth(), src.getHeight());
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public BufferedImage createCompatibleDestImage(BufferedImage src,
+	@Override
+    public BufferedImage createCompatibleDestImage(BufferedImage src,
 			ColorModel destCM) {
 		if (destCM == null) {
 			destCM = src.getColorModel();
@@ -77,14 +80,16 @@ public abstract class AbstractFilter implements BufferedImageOp {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Point2D getPoint2D(Point2D srcPt, Point2D dstPt) {
+	@Override
+    public Point2D getPoint2D(Point2D srcPt, Point2D dstPt) {
 		return (Point2D) srcPt.clone();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public RenderingHints getRenderingHints() {
+	@Override
+    public RenderingHints getRenderingHints() {
 		return null;
 	}
 

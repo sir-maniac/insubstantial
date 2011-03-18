@@ -82,9 +82,11 @@ public class SetWidgetVisible extends JFrame {
 				"Show menu search panels");
 		showMenuSearchPanels.setSelected(false);
 		showMenuSearchPanels.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						SubstanceLookAndFeel.setWidgetVisible(
 								SetWidgetVisible.this.getRootPane(),
 								showMenuSearchPanels.isSelected(),
@@ -110,7 +112,8 @@ public class SetWidgetVisible extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new SetWidgetVisible().setVisible(true);
 			}

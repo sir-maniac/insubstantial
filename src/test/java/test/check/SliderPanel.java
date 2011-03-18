@@ -66,7 +66,8 @@ public class SliderPanel extends ControllablePanel implements Deferrable {
 		 * 
 		 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 		 */
-		public void configure(JSlider slider) {
+		@Override
+        public void configure(JSlider slider) {
 			slider.setBorder(BorderFactory.createTitledBorder("Title"));
 		}
 	}
@@ -83,7 +84,8 @@ public class SliderPanel extends ControllablePanel implements Deferrable {
 		 * 
 		 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 		 */
-		public void configure(JSlider slider) {
+		@Override
+        public void configure(JSlider slider) {
 			slider.setBorder(null);
 		}
 	}
@@ -101,7 +103,8 @@ public class SliderPanel extends ControllablePanel implements Deferrable {
 		 * 
 		 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 		 */
-		public void configure(JSlider slider) {
+		@Override
+        public void configure(JSlider slider) {
 			slider.setSnapToTicks(true);
 		}
 	}
@@ -119,7 +122,8 @@ public class SliderPanel extends ControllablePanel implements Deferrable {
 		 * 
 		 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 		 */
-		public void configure(JSlider slider) {
+		@Override
+        public void configure(JSlider slider) {
 			slider.setSnapToTicks(false);
 		}
 	}
@@ -131,7 +135,8 @@ public class SliderPanel extends ControllablePanel implements Deferrable {
 		this.setLayout(new BorderLayout());
 	}
 
-	public synchronized void initialize() {
+	@Override
+    public synchronized void initialize() {
 		JPanel mainPanel = new ScrollablePanel();
 		mainPanel.setLayout(new BorderLayout());
 		mainPanel.setOpaque(false);
@@ -353,9 +358,11 @@ public class SliderPanel extends ControllablePanel implements Deferrable {
 
 		JButton setTitledBorderButton = new JButton("Set titled border");
 		setTitledBorderButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						SliderPanel.run(SliderPanel.this,
 								new SetTitleBorderCommand());
 					}
@@ -365,9 +372,11 @@ public class SliderPanel extends ControllablePanel implements Deferrable {
 
 		JButton clearBorderButton = new JButton("Clear border");
 		clearBorderButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						SliderPanel.run(SliderPanel.this,
 								new ClearBorderCommand());
 					}
@@ -377,9 +386,11 @@ public class SliderPanel extends ControllablePanel implements Deferrable {
 
 		JButton snapToTicksButton = new JButton("Snap to ticks");
 		snapToTicksButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						SliderPanel.run(SliderPanel.this,
 								new SnapToTicksCommand());
 					}
@@ -389,9 +400,11 @@ public class SliderPanel extends ControllablePanel implements Deferrable {
 
 		JButton unsnapToTicksButton = new JButton("Unsnap to ticks");
 		unsnapToTicksButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						SliderPanel.run(SliderPanel.this,
 								new UnsnapToTicksCommand());
 					}

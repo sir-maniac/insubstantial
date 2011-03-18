@@ -66,13 +66,15 @@ public class RegisterSkinChangeListener extends JFrame {
 		cb.setSelectedIndex(-1);
 
 		cb.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent evt) {
+			@Override
+            public void itemStateChanged(ItemEvent evt) {
 				// Get the affected item
 				final Object item = evt.getItem();
 
 				if (evt.getStateChange() == ItemEvent.SELECTED) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							try {
 								// Get the skin info object based on
 								// the selected skin display name
@@ -100,10 +102,12 @@ public class RegisterSkinChangeListener extends JFrame {
 		// register listener
 		SubstanceLookAndFeel
 				.registerSkinChangeListener(new SkinChangeListener() {
-					public void skinChanged() {
+					@Override
+                    public void skinChanged() {
 						// show dialog with skin changed message.
 						SwingUtilities.invokeLater(new Runnable() {
-							public void run() {
+							@Override
+                            public void run() {
 								JOptionPane.showMessageDialog(
 										RegisterSkinChangeListener.this,
 										"Skin changed");
@@ -127,7 +131,8 @@ public class RegisterSkinChangeListener extends JFrame {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		JDialog.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new RegisterSkinChangeListener().setVisible(true);
 			}

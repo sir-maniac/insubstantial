@@ -590,7 +590,8 @@ public class SubstanceTitlePane extends JComponent {
 		// when window has been marked as changed.
 		// Fix for defect 109 - memory leak on skin change.
 		this.propertyListener = new PropertyChangeListener() {
-			public void propertyChange(final PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(final PropertyChangeEvent evt) {
 				if (SubstanceLookAndFeel.WINDOW_MODIFIED.equals(evt
 						.getPropertyName())) {
 					syncCloseButtonTooltip();
@@ -616,7 +617,8 @@ public class SubstanceTitlePane extends JComponent {
 
 				if ("componentOrientation".equals(evt.getPropertyName())) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							if (SubstanceTitlePane.this.menuBar != null) {
 								SubstanceTitlePane.this.menuBar
 										.applyComponentOrientation((ComponentOrientation) evt
@@ -852,9 +854,11 @@ public class SubstanceTitlePane extends JComponent {
 						.getClassName();
 				JMenuItem jmiSkin = new JMenuItem(skinEntry.getKey());
 				jmiSkin.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+					@Override
+                    public void actionPerformed(ActionEvent e) {
 						SwingUtilities.invokeLater(new Runnable() {
-							public void run() {
+							@Override
+                            public void run() {
 								SubstanceLookAndFeel.setSkin(skinClassName);
 							}
 						});
@@ -903,7 +907,8 @@ public class SubstanceTitlePane extends JComponent {
 
 		Icon closeIcon = new TransitionAwareIcon(closeButton,
 				new TransitionAwareIcon.Delegate() {
-					public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
+					@Override
+                    public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
 						return SubstanceIconFactory
 								.getTitlePaneIcon(
 										SubstanceIconFactory.IconKind.CLOSE,
@@ -931,7 +936,8 @@ public class SubstanceTitlePane extends JComponent {
 
 			Icon minIcon = new TransitionAwareIcon(this.minimizeButton,
 					new TransitionAwareIcon.Delegate() {
-						public Icon getColorSchemeIcon(
+						@Override
+                        public Icon getColorSchemeIcon(
 								SubstanceColorScheme scheme) {
 							return SubstanceIconFactory
 									.getTitlePaneIcon(
@@ -959,7 +965,8 @@ public class SubstanceTitlePane extends JComponent {
 
 			Icon maxIcon = new TransitionAwareIcon(this.toggleButton,
 					new TransitionAwareIcon.Delegate() {
-						public Icon getColorSchemeIcon(
+						@Override
+                        public Icon getColorSchemeIcon(
 								SubstanceColorScheme scheme) {
 							return SubstanceIconFactory
 									.getTitlePaneIcon(
@@ -1052,7 +1059,8 @@ public class SubstanceTitlePane extends JComponent {
 						Icon restoreIcon = new TransitionAwareIcon(
 								this.toggleButton,
 								new TransitionAwareIcon.Delegate() {
-									public Icon getColorSchemeIcon(
+									@Override
+                                    public Icon getColorSchemeIcon(
 											SubstanceColorScheme scheme) {
 										return SubstanceIconFactory
 												.getTitlePaneIcon(
@@ -1077,7 +1085,8 @@ public class SubstanceTitlePane extends JComponent {
 						Icon maxIcon = new TransitionAwareIcon(
 								this.toggleButton,
 								new TransitionAwareIcon.Delegate() {
-									public Icon getColorSchemeIcon(
+									@Override
+                                    public Icon getColorSchemeIcon(
 											SubstanceColorScheme scheme) {
 										return SubstanceIconFactory
 												.getTitlePaneIcon(
@@ -1372,7 +1381,8 @@ public class SubstanceTitlePane extends JComponent {
 									DecorationAreaType.PRIMARY_TITLE_PANE)));
 		}
 
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			Window window = SubstanceTitlePane.this.getWindow();
 
 			if (window != null) {
@@ -1405,7 +1415,8 @@ public class SubstanceTitlePane extends JComponent {
 													DecorationAreaType.PRIMARY_TITLE_PANE)));
 		}
 
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			Frame frame = SubstanceTitlePane.this.getFrame();
 			if (frame != null) {
 				frame.setExtendedState(SubstanceTitlePane.this.state
@@ -1437,7 +1448,8 @@ public class SubstanceTitlePane extends JComponent {
 													DecorationAreaType.PRIMARY_TITLE_PANE)));
 		}
 
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			Frame frame = SubstanceTitlePane.this.getFrame();
 
 			if (frame == null) {
@@ -1477,7 +1489,8 @@ public class SubstanceTitlePane extends JComponent {
 													DecorationAreaType.PRIMARY_TITLE_PANE)));
 		}
 
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			Frame frame = SubstanceTitlePane.this.getFrame();
 			if (frame != null) {
 				if (frame instanceof JFrame) {
@@ -1535,7 +1548,8 @@ public class SubstanceTitlePane extends JComponent {
 		 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String,
 		 * java.awt.Component)
 		 */
-		public void addLayoutComponent(String name, Component c) {
+		@Override
+        public void addLayoutComponent(String name, Component c) {
 		}
 
 		/*
@@ -1543,7 +1557,8 @@ public class SubstanceTitlePane extends JComponent {
 		 * 
 		 * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
 		 */
-		public void removeLayoutComponent(Component c) {
+		@Override
+        public void removeLayoutComponent(Component c) {
 		}
 
 		/*
@@ -1551,7 +1566,8 @@ public class SubstanceTitlePane extends JComponent {
 		 * 
 		 * @see java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
 		 */
-		public Dimension preferredLayoutSize(Container c) {
+		@Override
+        public Dimension preferredLayoutSize(Container c) {
 			int height = this.computeHeight();
 			return new Dimension(height, height);
 		}
@@ -1580,7 +1596,8 @@ public class SubstanceTitlePane extends JComponent {
 		 * 
 		 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
 		 */
-		public Dimension minimumLayoutSize(Container c) {
+		@Override
+        public Dimension minimumLayoutSize(Container c) {
 			return this.preferredLayoutSize(c);
 		}
 
@@ -1589,7 +1606,8 @@ public class SubstanceTitlePane extends JComponent {
 		 * 
 		 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
 		 */
-		public void layoutContainer(Container c) {
+		@Override
+        public void layoutContainer(Container c) {
 			boolean leftToRight = (SubstanceTitlePane.this.window == null) ? SubstanceTitlePane.this
 					.getRootPane().getComponentOrientation().isLeftToRight()
 					: SubstanceTitlePane.this.window.getComponentOrientation()
@@ -1686,7 +1704,8 @@ public class SubstanceTitlePane extends JComponent {
 	 * state as the state of the Window changes.
 	 */
 	private class PropertyChangeHandler implements PropertyChangeListener {
-		public void propertyChange(PropertyChangeEvent pce) {
+		@Override
+        public void propertyChange(PropertyChangeEvent pce) {
 			String name = pce.getPropertyName();
 
 			// Frame.state isn't currently bound.

@@ -75,7 +75,8 @@ public class UnregisterTabCloseChangeListener_Specific extends JFrame {
 		// register tab close listener on the specific tabbed pane.
 		SubstanceLookAndFeel.registerTabCloseChangeListener(jtp,
 				listener = new TabCloseListener() {
-					public void tabClosing(JTabbedPane tabbedPane,
+					@Override
+                    public void tabClosing(JTabbedPane tabbedPane,
 							Component tabComponent) {
 						System.out.println("Tab "
 								+ tabbedPane.getTitleAt(tabbedPane
@@ -83,7 +84,8 @@ public class UnregisterTabCloseChangeListener_Specific extends JFrame {
 								+ " closing");
 					}
 
-					public void tabClosed(JTabbedPane tabbedPane,
+					@Override
+                    public void tabClosed(JTabbedPane tabbedPane,
 							Component tabComponent) {
 						System.out.println("Tab closed");
 					}
@@ -94,9 +96,11 @@ public class UnregisterTabCloseChangeListener_Specific extends JFrame {
 		JPanel controls = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		final JButton unregisterListener = new JButton("Unregister listener");
 		unregisterListener.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						unregisterListener.setEnabled(false);
 						// unregister listener
 						SubstanceLookAndFeel.unregisterTabCloseChangeListener(
@@ -122,7 +126,8 @@ public class UnregisterTabCloseChangeListener_Specific extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new UnregisterTabCloseChangeListener_Specific()
 						.setVisible(true);

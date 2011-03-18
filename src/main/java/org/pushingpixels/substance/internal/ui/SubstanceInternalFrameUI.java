@@ -116,7 +116,8 @@ public class SubstanceInternalFrameUI extends BasicInternalFrameUI {
 	protected void installListeners() {
 		super.installListeners();
 		this.substancePropertyListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (JInternalFrame.IS_CLOSED_PROPERTY.equals(evt
 						.getPropertyName())) {
 					titlePane.uninstall();

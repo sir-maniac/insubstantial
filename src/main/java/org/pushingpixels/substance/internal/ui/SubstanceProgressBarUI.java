@@ -82,7 +82,8 @@ public class SubstanceProgressBarUI extends BasicProgressBarUI {
 					ComponentStateFacet.ENABLE, ComponentStateFacet.SELECTION });
 
 	private final class SubstanceChangeListener implements ChangeListener {
-		public void stateChanged(ChangeEvent e) {
+		@Override
+        public void stateChanged(ChangeEvent e) {
 			SubstanceCoreUtilities
 					.testComponentStateChangeThreadingViolation(progressBar);
 
@@ -216,7 +217,8 @@ public class SubstanceProgressBarUI extends BasicProgressBarUI {
 			public void propertyChange(PropertyChangeEvent evt) {
 				if ("font".equals(evt.getPropertyName())) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							if (progressBar != null)
 								progressBar.updateUI();
 						}

@@ -15,7 +15,8 @@ public class DisableViewportCommand implements ConfigurationCommand<Component> {
 	 * 
 	 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 	 */
-	public void configure(Component ab) {
+	@Override
+    public void configure(Component ab) {
 		if (ab instanceof JScrollPane) {
 			JScrollPane jsp = (JScrollPane) ab;
 			jsp.getViewport().getView().setEnabled(false);

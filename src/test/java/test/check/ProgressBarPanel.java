@@ -185,7 +185,8 @@ public class ProgressBarPanel extends JPanel {
 
 		this.startButton = new JButton("start");
 		this.startButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				progressTimeline.playLoop(RepeatBehavior.LOOP);
 				startButton.setEnabled(false);
 				stopButton.setEnabled(true);
@@ -195,7 +196,8 @@ public class ProgressBarPanel extends JPanel {
 		this.stopButton = new JButton("stop");
 		this.stopButton.setEnabled(false);
 		this.stopButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				progressTimeline.cancel();
 				stopButton.setEnabled(false);
 				startButton.setEnabled(true);
@@ -204,7 +206,8 @@ public class ProgressBarPanel extends JPanel {
 
 		JButton plus10Button = new JButton("plus 10");
 		plus10Button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				delta(ProgressBarPanel.this, 10);
 			}
 		});
@@ -212,7 +215,8 @@ public class ProgressBarPanel extends JPanel {
 
 		JButton minus10Button = new JButton("minus 10");
 		minus10Button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				delta(ProgressBarPanel.this, -10);
 			}
 		});
@@ -220,7 +224,8 @@ public class ProgressBarPanel extends JPanel {
 
 		JButton plus1Button = new JButton("plus 1");
 		plus1Button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				delta(ProgressBarPanel.this, 1);
 			}
 		});
@@ -228,7 +233,8 @@ public class ProgressBarPanel extends JPanel {
 
 		JButton minus1Button = new JButton("minus 1");
 		minus1Button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				delta(ProgressBarPanel.this, -1);
 			}
 		});
@@ -236,7 +242,8 @@ public class ProgressBarPanel extends JPanel {
 
 		JButton resetButton = new JButton("reset");
 		resetButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				progressTimeline.cancel();
 				reset(ProgressBarPanel.this);
 				stopButton.setEnabled(false);

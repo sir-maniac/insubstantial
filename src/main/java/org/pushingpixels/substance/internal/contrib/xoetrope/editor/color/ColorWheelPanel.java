@@ -102,24 +102,29 @@ public class ColorWheelPanel extends AbstractColorChooserPanel implements
 		fixedPanel.setPreferredSize(new Dimension(255, 328));
 
 		setLayout(new LayoutManager() {
-			public void addLayoutComponent(String name, Component comp) {
+			@Override
+            public void addLayoutComponent(String name, Component comp) {
 			}
 
-			public void removeLayoutComponent(Component comp) {
+			@Override
+            public void removeLayoutComponent(Component comp) {
 			}
 
-			public void layoutContainer(Container parent) {
+			@Override
+            public void layoutContainer(Container parent) {
 				Dimension fpp = fixedPanel.getPreferredSize();
 				int dx = (parent.getWidth() - fpp.width) / 2;
 				int dy = (parent.getHeight() - fpp.height) / 2;
 				fixedPanel.setBounds(dx, dy, fpp.width, fpp.height);
 			}
 
-			public Dimension minimumLayoutSize(Container parent) {
+			@Override
+            public Dimension minimumLayoutSize(Container parent) {
 				return preferredLayoutSize(parent);
 			}
 
-			public Dimension preferredLayoutSize(Container parent) {
+			@Override
+            public Dimension preferredLayoutSize(Container parent) {
 				return fixedPanel.getPreferredSize();
 			}
 
@@ -538,7 +543,8 @@ public class ColorWheelPanel extends AbstractColorChooserPanel implements
 	/**
 	 * Respond to action events for the edit fields
 	 */
-	public void actionPerformed(ActionEvent e) {
+	@Override
+    public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		if (source == resetBtn)
 			resetColorWheel();
@@ -672,7 +678,8 @@ public class ColorWheelPanel extends AbstractColorChooserPanel implements
 	 * Invoked when the mouse button has been clicked (pressed and released) on
 	 * a component.
 	 */
-	public void mouseClicked(MouseEvent e) {
+	@Override
+    public void mouseClicked(MouseEvent e) {
 		Object src = e.getSource();
 		if (src == imagePicker) {
 			Point pt = e.getPoint();
@@ -721,26 +728,30 @@ public class ColorWheelPanel extends AbstractColorChooserPanel implements
 	/**
 	 * Invoked when a mouse button has been pressed on a component.
 	 */
-	public void mousePressed(MouseEvent e) {
+	@Override
+    public void mousePressed(MouseEvent e) {
 		imagePicker.repaint();
 	}
 
 	/**
 	 * Invoked when a mouse button has been released on a component.
 	 */
-	public void mouseReleased(MouseEvent e) {
+	@Override
+    public void mouseReleased(MouseEvent e) {
 	}
 
 	/**
 	 * Invoked when the mouse enters a component.
 	 */
-	public void mouseEntered(MouseEvent e) {
+	@Override
+    public void mouseEntered(MouseEvent e) {
 	}
 
 	/**
 	 * Invoked when the mouse exits a component.
 	 */
-	public void mouseExited(MouseEvent e) {
+	@Override
+    public void mouseExited(MouseEvent e) {
 		rolloverPath = null;
 		repaint();
 	}
@@ -748,7 +759,8 @@ public class ColorWheelPanel extends AbstractColorChooserPanel implements
 	/**
 	 * Invoked when the mouse exits a component.
 	 */
-	public void mouseMoved(MouseEvent e) {
+	@Override
+    public void mouseMoved(MouseEvent e) {
 		GeneralPath oldPath = rolloverPath;
 		rolloverPath = null;
 		if (e.getSource() == imagePicker) {
@@ -786,7 +798,8 @@ public class ColorWheelPanel extends AbstractColorChooserPanel implements
 	/**
 	 * Move the sliders in rsponse to the mouse wheel
 	 */
-	public void mouseWheelMoved(MouseWheelEvent e) {
+	@Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
 		Object src = e.getSource();
 		ctrlKeyDown = e.isControlDown();
 		int notches = e.getWheelRotation();
@@ -807,7 +820,8 @@ public class ColorWheelPanel extends AbstractColorChooserPanel implements
 	/**
 	 * Invoked when the mouse exits a component.
 	 */
-	public void mouseDragged(MouseEvent e) {
+	@Override
+    public void mouseDragged(MouseEvent e) {
 		ctrlKeyDown = e.isControlDown();
 	}
 
@@ -817,7 +831,8 @@ public class ColorWheelPanel extends AbstractColorChooserPanel implements
 	 * @param e
 	 *            a ChangeEvent object
 	 */
-	public void stateChanged(ChangeEvent e) {
+	@Override
+    public void stateChanged(ChangeEvent e) {
 		Object source = e.getSource();
 		if (source == saturationSlider) {
 			satEdit.setText(Integer.toString(saturationSlider.getValue()));
@@ -1192,14 +1207,16 @@ public class ColorWheelPanel extends AbstractColorChooserPanel implements
 		/**
 		 * This method is called after an insert into the document
 		 */
-		public void insertUpdate(DocumentEvent evt) {
+		@Override
+        public void insertUpdate(DocumentEvent evt) {
 			synchronize(evt);
 		}
 
 		/**
 		 * This method is called after a removal from the document
 		 */
-		public void removeUpdate(DocumentEvent evt) {
+		@Override
+        public void removeUpdate(DocumentEvent evt) {
 			synchronize(evt);
 		}
 
@@ -1207,7 +1224,8 @@ public class ColorWheelPanel extends AbstractColorChooserPanel implements
 		 * This method is called after one or more attributes have changed. This
 		 * method is not called when characters are inserted with attributes.
 		 */
-		public void changedUpdate(DocumentEvent evt) {
+		@Override
+        public void changedUpdate(DocumentEvent evt) {
 			synchronize(evt);
 		}
 
@@ -1222,14 +1240,16 @@ public class ColorWheelPanel extends AbstractColorChooserPanel implements
 
 			final boolean hasAllValues = _hasAllValues;
 			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					useWebColors.setEnabled(hasAllValues);
 					decimalRGB.setEnabled(hasAllValues);
 				}
 			});
 
 			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					// the below use of client property is to prevent
 					// infinite event loop (resetColor evetually changes
 					// the text boxes)

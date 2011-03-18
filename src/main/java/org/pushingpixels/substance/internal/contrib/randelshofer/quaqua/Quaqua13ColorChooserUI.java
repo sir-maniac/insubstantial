@@ -50,6 +50,7 @@ public class Quaqua13ColorChooserUI extends ColorChooserUI {
         return new Quaqua13ColorChooserUI();
     }
     
+    @Override
     public void installUI( JComponent c ) {
         chooser = (JColorChooser)c;
         
@@ -87,6 +88,7 @@ public class Quaqua13ColorChooserUI extends ColorChooserUI {
     }
     
     
+    @Override
     public void uninstallUI( JComponent c ) {
         chooser.remove(mainPanel);
         
@@ -151,6 +153,7 @@ public class Quaqua13ColorChooserUI extends ColorChooserUI {
     }
     
     class PreviewListener implements ChangeListener {
+        @Override
         public void stateChanged( ChangeEvent e ) {
             ColorSelectionModel model = (ColorSelectionModel)e.getSource();
             if (previewPanel != null) {
@@ -172,6 +175,7 @@ public class Quaqua13ColorChooserUI extends ColorChooserUI {
      */
     public class PropertyHandler implements PropertyChangeListener {
         
+        @Override
         public void propertyChange(PropertyChangeEvent e) {
             
             if (e.getPropertyName().equals( JColorChooser.CHOOSER_PANELS_PROPERTY)) {

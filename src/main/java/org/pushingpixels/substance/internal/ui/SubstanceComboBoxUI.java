@@ -397,7 +397,8 @@ public class SubstanceComboBoxUI extends BasicComboBoxUI implements
 
 			if (propertyName.equals("componentOrientation")) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						if (SubstanceComboBoxUI.this.comboBox == null)
 							return;
 						final ComponentOrientation newOrientation = (ComponentOrientation) e
@@ -441,7 +442,8 @@ public class SubstanceComboBoxUI extends BasicComboBoxUI implements
 
 			if ("font".equals(propertyName)) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						if (comboBox != null)
 							comboBox.updateUI();
 					}
@@ -482,7 +484,8 @@ public class SubstanceComboBoxUI extends BasicComboBoxUI implements
 				.getComponentOrientation();
 
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				if (SubstanceComboBoxUI.this.comboBox == null)
 					return;
 

@@ -33,6 +33,7 @@ public class RGBColorSliderModel extends ColorSliderModel {
         });
     }
     
+    @Override
     public int getRGB() {
         return getRGB(components[0].getValue(), components[1].getValue(), components[2].getValue());
     }
@@ -41,12 +42,14 @@ public class RGBColorSliderModel extends ColorSliderModel {
         return 0xff000000 | r << 16 | g << 8 | b;
     }
     
+    @Override
     public void setRGB(int rgb) {
         components[0].setValue((rgb & 0xff0000) >> 16);
         components[1].setValue((rgb & 0x00ff00) >> 8);
         components[2].setValue( rgb & 0x0000ff);
     }
     
+    @Override
     public int toRGB(int[] values) {
         return 0xff000000 | values[0] << 16 | values[1] << 8 | values[2];
     }

@@ -239,7 +239,8 @@ public class SampleMenuFactory {
 		for (final Map.Entry<String, SkinInfo> entry : skinMap.entrySet()) {
 			JMenuItem jmiSkin = new JMenuItem(entry.getValue().getDisplayName());
 			jmiSkin.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+				@Override
+                public void actionPerformed(ActionEvent e) {
 					String skinClassName = entry.getValue().getClassName();
 					boolean status = SubstanceLookAndFeel
 							.setSkin(skinClassName);
@@ -256,7 +257,8 @@ public class SampleMenuFactory {
 		final CustomSkin customSkin = new CustomSkin();
 		JMenuItem jmiSkin = new JMenuItem(customSkin.getDisplayName());
 		jmiSkin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SubstanceLookAndFeel.setSkin(customSkin);
 			}
 		});
@@ -888,9 +890,11 @@ public class SampleMenuFactory {
 			this.name = name;
 		}
 
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					SubstanceSkin newSkin = SubstanceLookAndFeel
 							.getCurrentSkin(null).transform(transform, name);
 					SubstanceLookAndFeel.setSkin(newSkin);

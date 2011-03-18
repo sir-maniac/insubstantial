@@ -79,9 +79,11 @@ public class UseThemedDefaultIcons extends JFrame {
 		JPanel controls = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		final JCheckBox useThemedIcons = new JCheckBox("use themed icons");
 		useThemedIcons.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						// based on the checkbox selection status, set the
 						// property
 						UIManager.put(
@@ -110,7 +112,8 @@ public class UseThemedDefaultIcons extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new GraphiteSkin());
 				new UseThemedDefaultIcons().setVisible(true);
 			}

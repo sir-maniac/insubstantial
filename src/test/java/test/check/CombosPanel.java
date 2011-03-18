@@ -70,7 +70,8 @@ public class CombosPanel extends ControllablePanel implements Deferrable {
 		 * 
 		 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 		 */
-		public void configure(JComboBox combo) {
+		@Override
+        public void configure(JComboBox combo) {
 			combo.setEditable(true);
 		}
 	}
@@ -87,7 +88,8 @@ public class CombosPanel extends ControllablePanel implements Deferrable {
 		 * 
 		 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 		 */
-		public void configure(JComboBox combo) {
+		@Override
+        public void configure(JComboBox combo) {
 			combo.setEditable(false);
 		}
 	}
@@ -140,7 +142,8 @@ public class CombosPanel extends ControllablePanel implements Deferrable {
 		 * 
 		 * @see javax.swing.ComboBoxEditor#getEditorComponent()
 		 */
-		public java.awt.Component getEditorComponent() {
+		@Override
+        public java.awt.Component getEditorComponent() {
 			return this;
 		}
 
@@ -149,7 +152,8 @@ public class CombosPanel extends ControllablePanel implements Deferrable {
 		 * 
 		 * @see javax.swing.ComboBoxEditor#setItem(java.lang.Object)
 		 */
-		public void setItem(Object anObject) {
+		@Override
+        public void setItem(Object anObject) {
 			if (anObject instanceof EditableDocument151) {
 				super.setCaretPosition(0);
 				super.setDocument((javax.swing.text.Document) anObject);
@@ -167,7 +171,8 @@ public class CombosPanel extends ControllablePanel implements Deferrable {
 		 * 
 		 * @see javax.swing.ComboBoxEditor#getItem()
 		 */
-		public Object getItem() {
+		@Override
+        public Object getItem() {
 			return super.getText();
 		}
 
@@ -368,7 +373,8 @@ public class CombosPanel extends ControllablePanel implements Deferrable {
 		combo151.addItem("No Sound");
 
 		combo151.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent e) {
+			@Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
 				editor.setCaretPosition(0);
 				if (combo151.getSelectedItem() instanceof String) {
 					combo151.setEditable(false);
@@ -469,7 +475,8 @@ public class CombosPanel extends ControllablePanel implements Deferrable {
 		comboProto3.putClientProperty(
 				SubstanceLookAndFeel.COMBO_POPUP_PROTOTYPE,
 				new ComboPopupPrototypeCallback() {
-					public Object getPopupPrototypeDisplayValue(JComboBox jc) {
+					@Override
+                    public Object getPopupPrototypeDisplayValue(JComboBox jc) {
 						return jc.getModel().getElementAt(
 								jc.getModel().getSize() - 1);
 					}
@@ -525,7 +532,8 @@ public class CombosPanel extends ControllablePanel implements Deferrable {
 
 		JButton checkEscape = new JButton("Check ESC key");
 		checkEscape.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				final JDialog dialog = new JDialog();
 				dialog.setTitle("Press ESC key when combo is focused");
 				dialog.setLayout(new FlowLayout());
@@ -545,7 +553,8 @@ public class CombosPanel extends ControllablePanel implements Deferrable {
 
 				ActionMap aMap = rootPane.getActionMap();
 				aMap.put("escape", new AbstractAction() {
-					public void actionPerformed(ActionEvent e) {
+					@Override
+                    public void actionPerformed(ActionEvent e) {
 						dialog.dispose();
 					}
 				});
@@ -560,9 +569,11 @@ public class CombosPanel extends ControllablePanel implements Deferrable {
 
 		JButton disableCombosButton = new JButton("Disable all");
 		disableCombosButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						CombosPanel.run(CombosPanel.this, new DisableCommand());
 					}
 				});
@@ -570,9 +581,11 @@ public class CombosPanel extends ControllablePanel implements Deferrable {
 		});
 		JButton enableCombosButton = new JButton("Enable all");
 		enableCombosButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						CombosPanel.run(CombosPanel.this, new EnableCommand());
 					}
 				});
@@ -580,9 +593,11 @@ public class CombosPanel extends ControllablePanel implements Deferrable {
 		});
 		JButton makeAllEditableButton = new JButton("Make all editable");
 		makeAllEditableButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						CombosPanel.run(CombosPanel.this,
 								new EditAllowCommand());
 					}
@@ -591,9 +606,11 @@ public class CombosPanel extends ControllablePanel implements Deferrable {
 		});
 		JButton makeAllNonEditableButton = new JButton("Make all non-editable");
 		makeAllNonEditableButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						CombosPanel.run(CombosPanel.this,
 								new EditDisallowCommand());
 					}

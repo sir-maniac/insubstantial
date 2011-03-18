@@ -33,25 +33,32 @@ public class ColorWheel extends JPanel {
     private HSBColorSliderModel model;
     
     private class MouseHandler implements MouseListener, MouseMotionListener {
+        @Override
         public void mouseClicked(MouseEvent e) {
         }
         
+        @Override
         public void mouseDragged(MouseEvent e) {
             update(e);
         }
         
+        @Override
         public void mouseEntered(MouseEvent e) {
         }
         
+        @Override
         public void mouseExited(MouseEvent e) {
         }
         
+        @Override
         public void mouseMoved(MouseEvent e) {
         }
         
+        @Override
         public void mousePressed(MouseEvent e) {
         }
         
+        @Override
         public void mouseReleased(MouseEvent e) {
             update(e);
         }
@@ -72,6 +79,7 @@ public class ColorWheel extends JPanel {
     private MouseHandler mouseHandler;
     
     private class ModelHandler implements ChangeListener {
+        @Override
         public void stateChanged(ChangeEvent e) {
             repaint();
         }
@@ -104,6 +112,7 @@ public class ColorWheel extends JPanel {
         }
     }
     
+    @Override
     public Dimension getPreferredSize() {
         return new Dimension(100,100);
     }
@@ -112,6 +121,7 @@ public class ColorWheel extends JPanel {
         return model;
     }
     
+    @Override
     public void paintComponent(Graphics g) {
         int w = getWidth();
         int h = getHeight();

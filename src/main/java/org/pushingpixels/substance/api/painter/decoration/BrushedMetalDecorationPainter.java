@@ -78,7 +78,8 @@ public class BrushedMetalDecorationPainter extends
 	 * 
 	 * @see org.pushingpixels.substance.utils.SubstanceTrait#getDisplayName()
 	 */
-	public String getDisplayName() {
+	@Override
+    public String getDisplayName() {
 		return DISPLAY_NAME;
 	}
 }

@@ -41,6 +41,7 @@ public class NominalCMYKColorSliderModel extends ColorSliderModel {
         });
     }
     
+    @Override
     public int getRGB() {
         float cyan, magenta, yellow, black;
         
@@ -59,6 +60,7 @@ public class NominalCMYKColorSliderModel extends ColorSliderModel {
         | (int) (blue * 255);
     }
     
+    @Override
     public void setRGB(int rgb) {
         float cyan, magenta, yellow, black;
         
@@ -84,6 +86,7 @@ public class NominalCMYKColorSliderModel extends ColorSliderModel {
         components[3].setValue((int) (black * 100f));
     }
     
+    @Override
     public int toRGB(int[] values) {
         float cyan, magenta, yellow, black;
         

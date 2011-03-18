@@ -80,11 +80,13 @@ public class SubstanceEtchedBorder implements Border {
 		return SubstanceColorUtilities.getAlphaColor(back, 196);
 	}
 
-	public boolean isBorderOpaque() {
+	@Override
+    public boolean isBorderOpaque() {
 		return false;
 	}
 
-	public void paintBorder(Component c, Graphics g, int x, int y, int width,
+	@Override
+    public void paintBorder(Component c, Graphics g, int x, int y, int width,
 			int height) {
 		int w = width;
 		int h = height;
@@ -137,7 +139,8 @@ public class SubstanceEtchedBorder implements Border {
 	 * 
 	 * @see javax.swing.border.Border#getBorderInsets(java.awt.Component)
 	 */
-	public Insets getBorderInsets(Component c) {
+	@Override
+    public Insets getBorderInsets(Component c) {
 		float borderStrokeWidth = SubstanceSizeUtils
 				.getBorderStrokeWidth(SubstanceSizeUtils
 						.getComponentFontSize(c));

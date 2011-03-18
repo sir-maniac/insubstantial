@@ -103,7 +103,8 @@ public class SubstanceMenuItemUI extends BasicMenuItemUI implements
 		this.stateTransitionTracker.registerModelListeners();
 
 		this.substancePropertyListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (AbstractButton.MODEL_CHANGED_PROPERTY.equals(evt
 						.getPropertyName())) {
 					stateTransitionTracker.setModel((ButtonModel) evt
@@ -111,7 +112,8 @@ public class SubstanceMenuItemUI extends BasicMenuItemUI implements
 				}
 				if ("font".equals(evt.getPropertyName())) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							if (menuItem != null) {
 								menuItem.updateUI();
 							}
@@ -166,7 +168,8 @@ public class SubstanceMenuItemUI extends BasicMenuItemUI implements
 	 * 
 	 * @see org.pushingpixels.substance.SubstanceMenu#getAssociatedMenuItem()
 	 */
-	public JMenuItem getAssociatedMenuItem() {
+	@Override
+    public JMenuItem getAssociatedMenuItem() {
 		return this.menuItem;
 	}
 
@@ -175,7 +178,8 @@ public class SubstanceMenuItemUI extends BasicMenuItemUI implements
 	 * 
 	 * @see org.pushingpixels.substance.SubstanceMenu#getAcceleratorFont()
 	 */
-	public Font getAcceleratorFont() {
+	@Override
+    public Font getAcceleratorFont() {
 		return this.acceleratorFont;
 	}
 
@@ -184,7 +188,8 @@ public class SubstanceMenuItemUI extends BasicMenuItemUI implements
 	 * 
 	 * @see org.pushingpixels.substance.SubstanceMenu#getArrowIcon()
 	 */
-	public Icon getArrowIcon() {
+	@Override
+    public Icon getArrowIcon() {
 		return this.arrowIcon;
 	}
 
@@ -193,7 +198,8 @@ public class SubstanceMenuItemUI extends BasicMenuItemUI implements
 	 * 
 	 * @see org.pushingpixels.substance.SubstanceMenu#getCheckIcon()
 	 */
-	public Icon getCheckIcon() {
+	@Override
+    public Icon getCheckIcon() {
 		return null;
 	}
 
@@ -202,7 +208,8 @@ public class SubstanceMenuItemUI extends BasicMenuItemUI implements
 	 * 
 	 * @see org.pushingpixels.substance.SubstanceMenu#getDefaultTextIconGap()
 	 */
-	public int getDefaultTextIconGap() {
+	@Override
+    public int getDefaultTextIconGap() {
 		return this.defaultTextIconGap;
 	}
 

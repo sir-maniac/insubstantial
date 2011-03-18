@@ -81,7 +81,8 @@ public class RootPaneTitlePaneUiDebugger extends LafWidgetAdapter<JRootPane> {
 								protanopiaCurrent
 										.addActionListener(new SkinChanger(
 												new ColorSchemeTransform() {
-													public SubstanceColorScheme transform(
+													@Override
+                                                    public SubstanceColorScheme transform(
 															SubstanceColorScheme scheme) {
 														return new ProtanopiaColorScheme(
 																scheme);
@@ -93,7 +94,8 @@ public class RootPaneTitlePaneUiDebugger extends LafWidgetAdapter<JRootPane> {
 								deuteranopiaCurrent
 										.addActionListener(new SkinChanger(
 												new ColorSchemeTransform() {
-													public SubstanceColorScheme transform(
+													@Override
+                                                    public SubstanceColorScheme transform(
 															SubstanceColorScheme scheme) {
 														return new DeuteranopiaColorScheme(
 																scheme);
@@ -105,7 +107,8 @@ public class RootPaneTitlePaneUiDebugger extends LafWidgetAdapter<JRootPane> {
 								tritanopiaCurrent
 										.addActionListener(new SkinChanger(
 												new ColorSchemeTransform() {
-													public SubstanceColorScheme transform(
+													@Override
+                                                    public SubstanceColorScheme transform(
 															SubstanceColorScheme scheme) {
 														return new TritanopiaColorScheme(
 																scheme);
@@ -123,7 +126,8 @@ public class RootPaneTitlePaneUiDebugger extends LafWidgetAdapter<JRootPane> {
 									restoreOriginal
 											.addActionListener(new SkinChanger(
 													new ColorSchemeTransform() {
-														public SubstanceColorScheme transform(
+														@Override
+                                                        public SubstanceColorScheme transform(
 																SubstanceColorScheme scheme) {
 															if (scheme instanceof ColorBlindColorScheme)
 																return ((ColorBlindColorScheme) scheme)
@@ -190,7 +194,8 @@ public class RootPaneTitlePaneUiDebugger extends LafWidgetAdapter<JRootPane> {
 										"Dump hierarchy");
 								dumpHierarchy
 										.addActionListener(new ActionListener() {
-											public void actionPerformed(
+											@Override
+                                            public void actionPerformed(
 													ActionEvent e) {
 												dump(jcomp, 0);
 											}
@@ -204,11 +209,13 @@ public class RootPaneTitlePaneUiDebugger extends LafWidgetAdapter<JRootPane> {
 										.isLeftToRight());
 								ltrChange
 										.addActionListener(new ActionListener() {
-											public void actionPerformed(
+											@Override
+                                            public void actionPerformed(
 													ActionEvent e) {
 												SwingUtilities
 														.invokeLater(new Runnable() {
-															public void run() {
+															@Override
+                                                            public void run() {
 																jcomp
 																		.applyComponentOrientation(ltrChange
 																				.isSelected() ? ComponentOrientation.LEFT_TO_RIGHT
@@ -226,11 +233,13 @@ public class RootPaneTitlePaneUiDebugger extends LafWidgetAdapter<JRootPane> {
 												.useThemedDefaultIcon(null));
 								useThemedIcons
 										.addActionListener(new ActionListener() {
-											public void actionPerformed(
+											@Override
+                                            public void actionPerformed(
 													ActionEvent e) {
 												SwingUtilities
 														.invokeLater(new Runnable() {
-															public void run() {
+															@Override
+                                                            public void run() {
 																UIManager
 																		.put(
 																				SubstanceLookAndFeel.USE_THEMED_DEFAULT_ICONS,
@@ -248,11 +257,13 @@ public class RootPaneTitlePaneUiDebugger extends LafWidgetAdapter<JRootPane> {
 										"Ghost debug mode");
 								ghostDebugMode
 										.addActionListener(new ActionListener() {
-											public void actionPerformed(
+											@Override
+                                            public void actionPerformed(
 													ActionEvent e) {
 												SwingUtilities
 														.invokeLater(new Runnable() {
-															public void run() {
+															@Override
+                                                            public void run() {
 																ghostDebugMode
 																		.setEnabled(false);
 																GhostPaintingUtils.MAX_ICON_GHOSTING_ALPHA = 0.8f;
@@ -275,7 +286,8 @@ public class RootPaneTitlePaneUiDebugger extends LafWidgetAdapter<JRootPane> {
 													ActionEvent e) {
 												SwingUtilities
 														.invokeLater(new Runnable() {
-															public void run() {
+															@Override
+                                                            public void run() {
 																final JTextArea textArea = new JTextArea();
 																java.util.List<String> stats = LazyResettableHashMap
 																		.getStats();
@@ -303,7 +315,8 @@ public class RootPaneTitlePaneUiDebugger extends LafWidgetAdapter<JRootPane> {
 																		"Dismiss");
 																dismiss
 																		.addActionListener(new ActionListener() {
-																			public void actionPerformed(
+																			@Override
+                                                                            public void actionPerformed(
 																					ActionEvent e) {
 																				dialog
 																						.dispose();
@@ -313,7 +326,8 @@ public class RootPaneTitlePaneUiDebugger extends LafWidgetAdapter<JRootPane> {
 																		"Copy to clipboard");
 																copyToClipboard
 																		.addActionListener(new ActionListener() {
-																			public void actionPerformed(
+																			@Override
+                                                                            public void actionPerformed(
 																					ActionEvent e) {
 																				textArea
 																						.selectAll();
@@ -381,9 +395,11 @@ public class RootPaneTitlePaneUiDebugger extends LafWidgetAdapter<JRootPane> {
 			this.name = name;
 		}
 
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					SubstanceSkin newSkin = SubstanceLookAndFeel
 							.getCurrentSkin(null).transform(transform, name);
 					SubstanceLookAndFeel.setSkin(newSkin);
@@ -400,9 +416,11 @@ public class RootPaneTitlePaneUiDebugger extends LafWidgetAdapter<JRootPane> {
 			this.newAnimationDuration = newAnimationDuration;
 		}
 
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					AnimationConfigurationManager.getInstance()
 							.setTimelineDuration(newAnimationDuration);
 				}
@@ -418,9 +436,11 @@ public class RootPaneTitlePaneUiDebugger extends LafWidgetAdapter<JRootPane> {
 			this.newFocusKind = newFocusKind;
 		}
 
-		public void actionPerformed(ActionEvent e) {
+		@Override
+        public void actionPerformed(ActionEvent e) {
 			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					UIManager
 							.put(SubstanceLookAndFeel.FOCUS_KIND, newFocusKind);
 				}

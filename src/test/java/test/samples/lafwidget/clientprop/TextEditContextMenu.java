@@ -72,7 +72,8 @@ public class TextEditContextMenu extends JFrame {
 		final JCheckBox hasEditContextMenu = new JCheckBox(
 				"Has edit context menu");
 		hasEditContextMenu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				jtf.putClientProperty(LafWidget.TEXT_EDIT_CONTEXT_MENU,
 						hasEditContextMenu.isSelected() ? Boolean.TRUE : null);
 			}
@@ -95,7 +96,8 @@ public class TextEditContextMenu extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new TextEditContextMenu().setVisible(true);
 			}

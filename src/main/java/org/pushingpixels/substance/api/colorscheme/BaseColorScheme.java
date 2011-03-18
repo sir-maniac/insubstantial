@@ -101,7 +101,8 @@ public abstract class BaseColorScheme implements SubstanceColorScheme {
 	 * org.pushingpixels.substance.api.SubstanceColorScheme#shift(java.awt.Color
 	 * , double, java.awt.Color, double)
 	 */
-	public final SubstanceColorScheme shift(Color backgroundShiftColor,
+	@Override
+    public final SubstanceColorScheme shift(Color backgroundShiftColor,
 			double backgroundShiftFactor, Color foregroundShiftColor,
 			double foregroundShiftFactor) {
 		return new ShiftColorScheme(this, backgroundShiftColor,
@@ -128,7 +129,8 @@ public abstract class BaseColorScheme implements SubstanceColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.api.SubstanceColorScheme#tint(double)
 	 */
-	public SubstanceColorScheme tint(double tintFactor) {
+	@Override
+    public SubstanceColorScheme tint(double tintFactor) {
 		return new TintColorScheme(this, tintFactor);
 	}
 
@@ -137,7 +139,8 @@ public abstract class BaseColorScheme implements SubstanceColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.api.SubstanceColorScheme#tone(double)
 	 */
-	public SubstanceColorScheme tone(double toneFactor) {
+	@Override
+    public SubstanceColorScheme tone(double toneFactor) {
 		return new ToneColorScheme(this, toneFactor);
 	}
 
@@ -146,7 +149,8 @@ public abstract class BaseColorScheme implements SubstanceColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.api.SubstanceColorScheme#shade(double)
 	 */
-	public SubstanceColorScheme shade(double shadeFactor) {
+	@Override
+    public SubstanceColorScheme shade(double shadeFactor) {
 		return new ShadeColorScheme(this, shadeFactor);
 	}
 
@@ -156,7 +160,8 @@ public abstract class BaseColorScheme implements SubstanceColorScheme {
 	 * @see
 	 * org.pushingpixels.substance.api.SubstanceColorScheme#saturate(double)
 	 */
-	public SubstanceColorScheme saturate(double saturateFactor) {
+	@Override
+    public SubstanceColorScheme saturate(double saturateFactor) {
 		return new SaturatedColorScheme(this, saturateFactor);
 	}
 
@@ -165,7 +170,8 @@ public abstract class BaseColorScheme implements SubstanceColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.api.SubstanceColorScheme#invert()
 	 */
-	public SubstanceColorScheme invert() {
+	@Override
+    public SubstanceColorScheme invert() {
 		return new InvertedColorScheme(this);
 	}
 
@@ -174,7 +180,8 @@ public abstract class BaseColorScheme implements SubstanceColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.api.SubstanceColorScheme#negate()
 	 */
-	public SubstanceColorScheme negate() {
+	@Override
+    public SubstanceColorScheme negate() {
 		return new NegatedColorScheme(this);
 	}
 
@@ -184,7 +191,8 @@ public abstract class BaseColorScheme implements SubstanceColorScheme {
 	 * @see
 	 * org.pushingpixels.substance.api.SubstanceColorScheme#hueShift(double)
 	 */
-	public SubstanceColorScheme hueShift(double hueShiftFactor) {
+	@Override
+    public SubstanceColorScheme hueShift(double hueShiftFactor) {
 		return new HueShiftColorScheme(this, hueShiftFactor);
 	}
 
@@ -195,7 +203,8 @@ public abstract class BaseColorScheme implements SubstanceColorScheme {
 	 * org.pushingpixels.substance.api.SchemeDerivedColors#getBackgroundFillColor
 	 * ()
 	 */
-	public final Color getBackgroundFillColor() {
+	@Override
+    public final Color getBackgroundFillColor() {
 		return derivedColorsResolver.getBackgroundFillColor();
 	}
 
@@ -215,7 +224,8 @@ public abstract class BaseColorScheme implements SubstanceColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.api.SchemeDerivedColors#getLineColor()
 	 */
-	public final Color getLineColor() {
+	@Override
+    public final Color getLineColor() {
 		return derivedColorsResolver.getLineColor();
 	}
 
@@ -225,7 +235,8 @@ public abstract class BaseColorScheme implements SubstanceColorScheme {
 	 * @seeorg.pushingpixels.substance.api.SchemeDerivedColors#
 	 * getSelectionForegroundColor()
 	 */
-	public final Color getSelectionForegroundColor() {
+	@Override
+    public final Color getSelectionForegroundColor() {
 		return derivedColorsResolver.getSelectionForegroundColor();
 	}
 
@@ -247,7 +258,8 @@ public abstract class BaseColorScheme implements SubstanceColorScheme {
 	 * org.pushingpixels.substance.api.SchemeDerivedColors#getWatermarkDarkColor
 	 * ()
 	 */
-	public final Color getWatermarkDarkColor() {
+	@Override
+    public final Color getWatermarkDarkColor() {
 		return derivedColorsResolver.getWatermarkDarkColor();
 	}
 
@@ -258,7 +270,8 @@ public abstract class BaseColorScheme implements SubstanceColorScheme {
 	 * org.pushingpixels.substance.api.SchemeDerivedColors#getWatermarkLightColor
 	 * ()
 	 */
-	public final Color getWatermarkLightColor() {
+	@Override
+    public final Color getWatermarkLightColor() {
 		return derivedColorsResolver.getWatermarkLightColor();
 	}
 

@@ -71,7 +71,8 @@ public class RegisterTabCloseChangeListener_GeneralMultiple extends JFrame {
 
 		// create a custom implementation of TabCloseCallback interface.
 		TabCloseCallback closeCallback = new TabCloseCallback() {
-			public TabCloseKind onAreaClick(JTabbedPane tabbedPane,
+			@Override
+            public TabCloseKind onAreaClick(JTabbedPane tabbedPane,
 					int tabIndex, MouseEvent mouseEvent) {
 				if (mouseEvent.getButton() != MouseEvent.BUTTON3)
 					return TabCloseKind.NONE;
@@ -81,7 +82,8 @@ public class RegisterTabCloseChangeListener_GeneralMultiple extends JFrame {
 				return TabCloseKind.THIS;
 			}
 
-			public TabCloseKind onCloseButtonClick(JTabbedPane tabbedPane,
+			@Override
+            public TabCloseKind onCloseButtonClick(JTabbedPane tabbedPane,
 					int tabIndex, MouseEvent mouseEvent) {
 				if (mouseEvent.isAltDown()) {
 					return TabCloseKind.ALL_BUT_THIS;
@@ -92,11 +94,13 @@ public class RegisterTabCloseChangeListener_GeneralMultiple extends JFrame {
 				return TabCloseKind.THIS;
 			}
 
-			public String getAreaTooltip(JTabbedPane tabbedPane, int tabIndex) {
+			@Override
+            public String getAreaTooltip(JTabbedPane tabbedPane, int tabIndex) {
 				return null;
 			}
 
-			public String getCloseButtonTooltip(JTabbedPane tabbedPane,
+			@Override
+            public String getCloseButtonTooltip(JTabbedPane tabbedPane,
 					int tabIndex) {
 				StringBuffer result = new StringBuffer();
 				result.append("<html><body>");
@@ -118,7 +122,8 @@ public class RegisterTabCloseChangeListener_GeneralMultiple extends JFrame {
 		// register tab close listener on all tabbed panes.
 		SubstanceLookAndFeel
 				.registerTabCloseChangeListener(new MultipleTabCloseListener() {
-					public void tabsClosing(JTabbedPane tabbedPane,
+					@Override
+                    public void tabsClosing(JTabbedPane tabbedPane,
 							Set<Component> tabComponents) {
 						StringBuffer sb = new StringBuffer("Tab (s)");
 						String sep = " [";
@@ -132,7 +137,8 @@ public class RegisterTabCloseChangeListener_GeneralMultiple extends JFrame {
 						System.out.println(sb.toString());
 					}
 
-					public void tabsClosed(JTabbedPane tabbedPane,
+					@Override
+                    public void tabsClosed(JTabbedPane tabbedPane,
 							Set<Component> tabComponents) {
 						System.out.println(tabComponents.size()
 								+ " tab(s) closed");
@@ -155,7 +161,8 @@ public class RegisterTabCloseChangeListener_GeneralMultiple extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new RegisterTabCloseChangeListener_GeneralMultiple()
 						.setVisible(true);

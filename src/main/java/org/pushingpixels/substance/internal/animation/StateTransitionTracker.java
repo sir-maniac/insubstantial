@@ -241,11 +241,13 @@ public class StateTransitionTracker {
 
 	public void registerFocusListeners() {
 		this.focusListener = new FocusListener() {
-			public void focusGained(FocusEvent e) {
+			@Override
+            public void focusGained(FocusEvent e) {
 				setFocusState(true);
 			}
 
-			public void focusLost(FocusEvent e) {
+			@Override
+            public void focusLost(FocusEvent e) {
 				setFocusState(false);
 			}
 		};

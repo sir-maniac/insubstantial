@@ -34,6 +34,7 @@ public class HSBColorSliderModel extends ColorSliderModel {
         });
     }
     
+    @Override
     public int getRGB() {
         return Color.HSBtoRGB(
         components[0].getValue() / 360f,
@@ -42,6 +43,7 @@ public class HSBColorSliderModel extends ColorSliderModel {
         );
     }
     
+    @Override
     public void setRGB(int rgb) {
         float[] hsb = Color.RGBtoHSB((rgb & 0xff0000) >>> 16, (rgb & 0xff00) >>> 8, rgb & 0xff, new float[3]);
         components[0].setValue((int) (hsb[0] * 360f));
@@ -49,6 +51,7 @@ public class HSBColorSliderModel extends ColorSliderModel {
         components[2].setValue((int) (hsb[2] * 100f));
     }
     
+    @Override
     public int toRGB(int[] values) {
         return Color.HSBtoRGB(
         values[0] / 360f,

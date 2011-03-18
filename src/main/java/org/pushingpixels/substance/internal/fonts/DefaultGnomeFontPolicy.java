@@ -66,7 +66,8 @@ public class DefaultGnomeFontPolicy implements FontPolicy {
 	 * @see org.pushingpixels.substance.fonts.FontPolicy#getFontSet(java.lang.String,
 	 * javax.swing.UIDefaults)
 	 */
-	public FontSet getFontSet(String lafName, UIDefaults table) {
+	@Override
+    public FontSet getFontSet(String lafName, UIDefaults table) {
 		Object defaultGtkFontName = Toolkit.getDefaultToolkit()
 				.getDesktopProperty("gnome.Gtk/FontName");
 		String family = "";

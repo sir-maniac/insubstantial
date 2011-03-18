@@ -42,7 +42,8 @@ public class CellsPanel extends JPanel implements Deferrable {
 
 		builderCells.appendSeparator("Lists");
 		addControlRow(builderCells, "List", new CreationCommand<Component>() {
-			public Component create() {
+			@Override
+            public Component create() {
 				JList list = new JList(new Object[] { "entry1", "entry2",
 						"entry3" });
 				return list;
@@ -50,7 +51,8 @@ public class CellsPanel extends JPanel implements Deferrable {
 		}, null);
 		addControlRow(builderCells, "List watermark",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JList list = new JList(new Object[] { "entry1",
 								"entry2", "entry3" });
 						return list;
@@ -59,7 +61,8 @@ public class CellsPanel extends JPanel implements Deferrable {
 						SubstanceLookAndFeel.WATERMARK_VISIBLE, Boolean.TRUE));
 		addControlRow(builderCells, "List disabled",
 				new CreationCommand<Component>() {
-					public Component create() {
+					@Override
+                    public Component create() {
 						JList list = new JList(new Object[] { "entry1",
 								"entry2", "entry3" });
 						return list;
@@ -67,7 +70,8 @@ public class CellsPanel extends JPanel implements Deferrable {
 				}, new DisableCommand());
 
 		CreationCommand<Component> tableCreationCmd = new CreationCommand<Component>() {
-			public Component create() {
+			@Override
+            public Component create() {
 				final JTable table = new JTable(new Object[][] {
 						{ "entry11", "entry12", "entry13" },
 						{ "entry21", "entry22", "entry23" },
@@ -130,7 +134,8 @@ public class CellsPanel extends JPanel implements Deferrable {
 				}
 			}
 
-			public Component create() {
+			@Override
+            public Component create() {
 				DefaultMutableTreeNode root = new DefaultMutableTreeNode("root");
 				DefaultMutableTreeNode son1 = new DefaultMutableTreeNode("son1");
 				DefaultMutableTreeNode son2 = new DefaultMutableTreeNode("son2");

@@ -149,15 +149,18 @@ class SoftHashMap<K, V> extends AbstractMap<K, V> implements Serializable {
 			final V value = entry.getValue().get();
 			if (value != null) {
 				result.add(new Entry<K, V>() {
-					public K getKey() {
+					@Override
+                    public K getKey() {
 						return entry.getKey();
 					}
 
-					public V getValue() {
+					@Override
+                    public V getValue() {
 						return value;
 					}
 
-					public V setValue(V v) {
+					@Override
+                    public V setValue(V v) {
 						entry.setValue(new KeySoftReference<K, V>(entry
 								.getKey(), v, queue));
 						return value;

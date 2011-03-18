@@ -163,7 +163,8 @@ public class BasePlugin implements LafComponentPlugin {
 					// quaqua
 					"Slider.upThumbSmall",
 					new UIDefaults.LazyValue() {
-						public Object createValue(UIDefaults table) {
+						@Override
+                        public Object createValue(UIDefaults table) {
 							return SubstanceIconFactory
 									.getSliderHorizontalIcon(
 											SubstanceSizeUtils
@@ -176,7 +177,8 @@ public class BasePlugin implements LafComponentPlugin {
 					// quaqua
 					"Slider.leftThumbSmall",
 					new UIDefaults.LazyValue() {
-						public Object createValue(UIDefaults table) {
+						@Override
+                        public Object createValue(UIDefaults table) {
 							return SubstanceIconFactory
 									.getSliderVerticalIcon(
 											SubstanceSizeUtils

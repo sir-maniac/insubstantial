@@ -273,7 +273,8 @@ public class FileTreePanel extends ControllablePanel implements Deferrable {
 		 * 
 		 * @see javax.swing.tree.TreeNode#children()
 		 */
-		public Enumeration<?> children() {
+		@Override
+        public Enumeration<?> children() {
 			final int elementCount = this.children.size();
 			return new Enumeration<File>() {
 				int count = 0;
@@ -283,7 +284,8 @@ public class FileTreePanel extends ControllablePanel implements Deferrable {
 				 * 
 				 * @see java.util.Enumeration#hasMoreElements()
 				 */
-				public boolean hasMoreElements() {
+				@Override
+                public boolean hasMoreElements() {
 					return count < elementCount;
 				}
 
@@ -292,7 +294,8 @@ public class FileTreePanel extends ControllablePanel implements Deferrable {
 				 * 
 				 * @see java.util.Enumeration#nextElement()
 				 */
-				public File nextElement() {
+				@Override
+                public File nextElement() {
 					if (count < elementCount) {
 						return children.get(count++);
 					}
@@ -307,7 +310,8 @@ public class FileTreePanel extends ControllablePanel implements Deferrable {
 		 * 
 		 * @see javax.swing.tree.TreeNode#getAllowsChildren()
 		 */
-		public boolean getAllowsChildren() {
+		@Override
+        public boolean getAllowsChildren() {
 			return true;
 		}
 
@@ -316,7 +320,8 @@ public class FileTreePanel extends ControllablePanel implements Deferrable {
 		 * 
 		 * @see javax.swing.tree.TreeNode#getChildAt(int)
 		 */
-		public TreeNode getChildAt(int childIndex) {
+		@Override
+        public TreeNode getChildAt(int childIndex) {
 			return new FileTreeNode(this.children.get(childIndex),
 					this.parent == null, this);
 		}
@@ -326,7 +331,8 @@ public class FileTreePanel extends ControllablePanel implements Deferrable {
 		 * 
 		 * @see javax.swing.tree.TreeNode#getChildCount()
 		 */
-		public int getChildCount() {
+		@Override
+        public int getChildCount() {
 			return this.children.size();
 		}
 
@@ -335,7 +341,8 @@ public class FileTreePanel extends ControllablePanel implements Deferrable {
 		 * 
 		 * @see javax.swing.tree.TreeNode#getIndex(javax.swing.tree.TreeNode)
 		 */
-		public int getIndex(TreeNode node) {
+		@Override
+        public int getIndex(TreeNode node) {
 			FileTreeNode ftn = (FileTreeNode) node;
 			for (int i = 0; i < this.children.size(); i++) {
 				if (ftn.file.equals(this.children.get(i)))
@@ -349,7 +356,8 @@ public class FileTreePanel extends ControllablePanel implements Deferrable {
 		 * 
 		 * @see javax.swing.tree.TreeNode#getParent()
 		 */
-		public TreeNode getParent() {
+		@Override
+        public TreeNode getParent() {
 			return this.parent;
 		}
 
@@ -358,7 +366,8 @@ public class FileTreePanel extends ControllablePanel implements Deferrable {
 		 * 
 		 * @see javax.swing.tree.TreeNode#isLeaf()
 		 */
-		public boolean isLeaf() {
+		@Override
+        public boolean isLeaf() {
 			return (this.getChildCount() == 0);
 		}
 	}
@@ -375,7 +384,8 @@ public class FileTreePanel extends ControllablePanel implements Deferrable {
 		this.setLayout(new BorderLayout());
 	}
 	
-	public synchronized void initialize() {
+	@Override
+    public synchronized void initialize() {
 		List<File> rootsList = new ArrayList<File>();
 		for (File child : File.listRoots()) {
 			rootsList.add(child);
@@ -398,7 +408,8 @@ public class FileTreePanel extends ControllablePanel implements Deferrable {
 		final JCheckBox isEnabled = new JCheckBox("is enabled");
 		isEnabled.setSelected(tree.isEnabled());
 		isEnabled.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				tree.setEnabled(isEnabled.isSelected());
 			}
 		});
@@ -406,7 +417,8 @@ public class FileTreePanel extends ControllablePanel implements Deferrable {
 
 		final JCheckBox watermarkBleed = new JCheckBox("is bleeding");
 		watermarkBleed.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				tree.putClientProperty(SubstanceLookAndFeel.WATERMARK_VISIBLE,
 						Boolean.valueOf(watermarkBleed.isSelected()));
 				jsp.putClientProperty(SubstanceLookAndFeel.WATERMARK_VISIBLE,
@@ -418,7 +430,8 @@ public class FileTreePanel extends ControllablePanel implements Deferrable {
 
 		final JCheckBox cbTreeSmartScroll = new JCheckBox("smart tree scroll");
 		cbTreeSmartScroll.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				if (cbTreeSmartScroll.isSelected()) {
 					AnimationConfigurationManager
 							.getInstance()

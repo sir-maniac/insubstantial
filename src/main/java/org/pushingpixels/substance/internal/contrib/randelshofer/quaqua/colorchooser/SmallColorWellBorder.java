@@ -29,14 +29,17 @@ public class SmallColorWellBorder implements Border {
     public SmallColorWellBorder() {
     }
     
+    @Override
     public Insets getBorderInsets(Component c) {
         return new Insets(1, 1, 1, 1);
     }
     
+    @Override
     public boolean isBorderOpaque() {
         return true;
     }
     
+    @Override
     public void paintBorder(Component c, Graphics gr, int x, int y, int width, int height) {
         gr.setColor(c.getBackground());
         gr.fillRect(x + 2, y + 2, width - 4, height - 4);

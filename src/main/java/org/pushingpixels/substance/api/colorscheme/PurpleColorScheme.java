@@ -84,7 +84,8 @@ public class PurpleColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getForegroundColor()
 	 */
-	public Color getForegroundColor() {
+	@Override
+    public Color getForegroundColor() {
 		return PurpleColorScheme.foregroundColor;
 	}
 
@@ -93,7 +94,8 @@ public class PurpleColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getUltraLightColor()
 	 */
-	public Color getUltraLightColor() {
+	@Override
+    public Color getUltraLightColor() {
 		return PurpleColorScheme.mainUltraLightColor;
 	}
 
@@ -102,7 +104,8 @@ public class PurpleColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getExtraLightColor()
 	 */
-	public Color getExtraLightColor() {
+	@Override
+    public Color getExtraLightColor() {
 		return PurpleColorScheme.mainExtraLightColor;
 	}
 
@@ -111,7 +114,8 @@ public class PurpleColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getLightColor()
 	 */
-	public Color getLightColor() {
+	@Override
+    public Color getLightColor() {
 		return PurpleColorScheme.mainLightColor;
 	}
 
@@ -120,7 +124,8 @@ public class PurpleColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getMidColor()
 	 */
-	public Color getMidColor() {
+	@Override
+    public Color getMidColor() {
 		return PurpleColorScheme.mainMidColor;
 	}
 
@@ -129,7 +134,8 @@ public class PurpleColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getDarkColor()
 	 */
-	public Color getDarkColor() {
+	@Override
+    public Color getDarkColor() {
 		return PurpleColorScheme.mainDarkColor;
 	}
 
@@ -138,7 +144,8 @@ public class PurpleColorScheme extends BaseLightColorScheme {
 	 * 
 	 * @see org.pushingpixels.substance.color.ColorScheme#getUltraDarkColor()
 	 */
-	public Color getUltraDarkColor() {
+	@Override
+    public Color getUltraDarkColor() {
 		return PurpleColorScheme.mainUltraDarkColor;
 	}
 }

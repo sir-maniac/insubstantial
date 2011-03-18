@@ -44,11 +44,13 @@ import org.pushingpixels.substance.internal.utils.SubstanceCoreUtilities;
  * @author Kirill Grouchnikov
  */
 public class StandardFillPainter implements SubstanceFillPainter {
-	public String getDisplayName() {
+	@Override
+    public String getDisplayName() {
 		return "Standard";
 	}
 
-	public void paintContourBackground(Graphics g, Component comp, int width,
+	@Override
+    public void paintContourBackground(Graphics g, Component comp, int width,
 			int height, Shape contour, boolean isFocused,
 			SubstanceColorScheme fillScheme, boolean hasShine) {
 

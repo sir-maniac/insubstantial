@@ -28,13 +28,15 @@ public class SkinUtilities {
 	public static void addCustomEntriesToTable(UIDefaults table,
 			SubstanceSkin skin) {
 		Object menuArrowIcon = new UIDefaults.LazyValue() {
-			public Object createValue(UIDefaults table) {
+			@Override
+            public Object createValue(UIDefaults table) {
 				return new MenuArrowIcon(null);
 			}
 		};
 
 		Object listCellRendererActiveValue = new UIDefaults.ActiveValue() {
-			public Object createValue(UIDefaults table) {
+			@Override
+            public Object createValue(UIDefaults table) {
 				return new SubstanceDefaultListCellRenderer.SubstanceUIResource();
 			}
 		};
@@ -183,7 +185,8 @@ public class SkinUtilities {
 			@Override
 			public Object createValue(UIDefaults table) {
 				return new IconUIResource(new Icon() {
-					public int getIconHeight() {
+					@Override
+                    public int getIconHeight() {
 						// return the value that matches the core height, so
 						// that the DefaultTreeCellEditor.EditorContainer
 						// returns the correct value in its getPreferredSize
@@ -191,11 +194,13 @@ public class SkinUtilities {
 						return 16;
 					}
 
-					public int getIconWidth() {
+					@Override
+                    public int getIconWidth() {
 						return 2;
 					}
 
-					public void paintIcon(Component c, Graphics g, int x, int y) {
+					@Override
+                    public void paintIcon(Component c, Graphics g, int x, int y) {
 					}
 				});
 			}
@@ -343,7 +348,8 @@ public class SkinUtilities {
 
 				"FileChooser.upFolderIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return SubstanceCoreUtilities
 								.getIcon("resource/go-up.png");
 					}
@@ -351,7 +357,8 @@ public class SkinUtilities {
 
 				"FileChooser.newFolderIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return SubstanceCoreUtilities
 								.getIcon("resource/folder-new.png");
 					}
@@ -359,7 +366,8 @@ public class SkinUtilities {
 
 				"FileChooser.homeFolderIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return SubstanceCoreUtilities
 								.getIcon("resource/user-home.png");
 					}
@@ -367,7 +375,8 @@ public class SkinUtilities {
 
 				"FileChooser.listViewIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return SubstanceCoreUtilities
 								.getIcon("resource/application_view_list.png");
 					}
@@ -375,7 +384,8 @@ public class SkinUtilities {
 
 				"FileChooser.detailsViewIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return SubstanceCoreUtilities
 								.getIcon("resource/application_view_detail.png");
 					}
@@ -386,7 +396,8 @@ public class SkinUtilities {
 
 				"FileView.computerIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return SubstanceCoreUtilities
 								.getIcon("resource/computer.png");
 					}
@@ -394,7 +405,8 @@ public class SkinUtilities {
 
 				"FileView.directoryIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return SubstanceCoreUtilities
 								.getIcon("resource/folder.png");
 					}
@@ -402,7 +414,8 @@ public class SkinUtilities {
 
 				"FileView.fileIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return SubstanceCoreUtilities
 								.getIcon("resource/text-x-generic.png");
 					}
@@ -410,7 +423,8 @@ public class SkinUtilities {
 
 				"FileView.floppyDriveIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return SubstanceCoreUtilities
 								.getIcon("resource/media-floppy.png");
 					}
@@ -418,7 +432,8 @@ public class SkinUtilities {
 
 				"FileView.hardDriveIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return SubstanceCoreUtilities
 								.getIcon("resource/drive-harddisk.png");
 					}
@@ -465,7 +480,8 @@ public class SkinUtilities {
 
 				"InternalFrame.closeIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return SubstanceImageCreator.getCloseIcon(
 								titlePaneScheme, titlePaneScheme);
 					}
@@ -473,7 +489,8 @@ public class SkinUtilities {
 
 				"InternalFrame.iconifyIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return SubstanceImageCreator.getMinimizeIcon(
 								titlePaneScheme, titlePaneScheme);
 					}
@@ -481,7 +498,8 @@ public class SkinUtilities {
 
 				"InternalFrame.maximizeIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return SubstanceImageCreator.getMaximizeIcon(
 								titlePaneScheme, titlePaneScheme);
 					}
@@ -489,7 +507,8 @@ public class SkinUtilities {
 
 				"InternalFrame.minimizeIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return SubstanceImageCreator.getRestoreIcon(
 								titlePaneScheme, titlePaneScheme);
 					}
@@ -497,7 +516,8 @@ public class SkinUtilities {
 
 				"InternalFrame.paletteCloseIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return SubstanceImageCreator.getCloseIcon(
 								titlePaneScheme, titlePaneScheme);
 					}
@@ -610,7 +630,8 @@ public class SkinUtilities {
 
 				"OptionPane.errorIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return SubstanceCoreUtilities
 								.getIcon("resource/32/dialog-error.png");
 					}
@@ -621,7 +642,8 @@ public class SkinUtilities {
 
 				"OptionPane.informationIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return SubstanceCoreUtilities
 								.getIcon("resource/32/dialog-information.png");
 					}
@@ -632,7 +654,8 @@ public class SkinUtilities {
 
 				"OptionPane.questionIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return SubstanceCoreUtilities
 								.getIcon("resource/32/help-browser.png");
 					}
@@ -640,7 +663,8 @@ public class SkinUtilities {
 
 				"OptionPane.warningIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return SubstanceCoreUtilities
 								.getIcon("resource/32/dialog-warning.png");
 					}
@@ -1133,7 +1157,8 @@ public class SkinUtilities {
 
 				"Tree.collapsedIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return new IconUIResource(
 								SubstanceIconFactory.getTreeIcon(null, true));
 					}
@@ -1141,7 +1166,8 @@ public class SkinUtilities {
 
 				"Tree.expandedIcon",
 				new UIDefaults.LazyValue() {
-					public Object createValue(UIDefaults table) {
+					@Override
+                    public Object createValue(UIDefaults table) {
 						return new IconUIResource(
 								SubstanceIconFactory.getTreeIcon(null, false));
 					}

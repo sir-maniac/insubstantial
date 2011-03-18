@@ -76,27 +76,33 @@ public class ScaledFontSet implements FontSet {
 				.getStyle(), (int) (systemFont.getSize() * this.scaleFactor));
 	}
 
-	public FontUIResource getControlFont() {
+	@Override
+    public FontUIResource getControlFont() {
 		return this.getWrappedFont(this.delegate.getControlFont());
 	}
 
-	public FontUIResource getMenuFont() {
+	@Override
+    public FontUIResource getMenuFont() {
 		return this.getWrappedFont(this.delegate.getMenuFont());
 	}
 
-	public FontUIResource getMessageFont() {
+	@Override
+    public FontUIResource getMessageFont() {
 		return this.getWrappedFont(this.delegate.getMessageFont());
 	}
 
-	public FontUIResource getSmallFont() {
+	@Override
+    public FontUIResource getSmallFont() {
 		return this.getWrappedFont(this.delegate.getSmallFont());
 	}
 
-	public FontUIResource getTitleFont() {
+	@Override
+    public FontUIResource getTitleFont() {
 		return this.getWrappedFont(this.delegate.getTitleFont());
 	}
 
-	public FontUIResource getWindowTitleFont() {
+	@Override
+    public FontUIResource getWindowTitleFont() {
 		return this.getWrappedFont(this.delegate.getWindowTitleFont());
 	}
 }

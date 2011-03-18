@@ -32,9 +32,11 @@ public class HTMLColorSliderModel extends RGBColorSliderModel {
     public HTMLColorSliderModel() {
     }
     
+    @Override
     public int getRGB() {
         return getRGB(components[0].getValue(), components[1].getValue(), components[2].getValue());
     }
+    @Override
     public int getInterpolatedRGB(int component, float value) {
         if (isWebSaveOnly) {
             for (int i=0, n = getComponentCount(); i < n; i++) {
@@ -46,6 +48,7 @@ public class HTMLColorSliderModel extends RGBColorSliderModel {
             return super.getInterpolatedRGB(component, value);
         }
     }
+    @Override
     protected int getRGB(int r, int g, int b) {
         if (isWebSaveOnly) {
             return 0xff000000 | (Math.round(r / 51f) * 51) << 16 | (Math.round(g / 51f) * 51) << 8 | Math.round(b / 51f) * 51;
@@ -54,6 +57,7 @@ public class HTMLColorSliderModel extends RGBColorSliderModel {
         }
     }
     
+    @Override
     public void setRGB(int rgb) {
         if (isWebSaveOnly) {
             components[0].setValue((Math.round((rgb & 0xff0000) / 51f) * 51) >> 16);
@@ -64,6 +68,7 @@ public class HTMLColorSliderModel extends RGBColorSliderModel {
         }
     }
     
+    @Override
     public int toRGB(int[] values) {
         if (isWebSaveOnly) {
             return 0xff000000 

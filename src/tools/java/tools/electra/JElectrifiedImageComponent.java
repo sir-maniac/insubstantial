@@ -376,13 +376,15 @@ public class JElectrifiedImageComponent extends JComponent {
 
 		ActionMap am = this.captionEditor.getActionMap();
 		am.put("enter", new AbstractAction() {
-			public void actionPerformed(ActionEvent ae) {
+			@Override
+            public void actionPerformed(ActionEvent ae) {
 				stopCaptionEdit(true);
 			}
 		});
 
 		am.put("escape", new AbstractAction() {
-			public void actionPerformed(ActionEvent ae) {
+			@Override
+            public void actionPerformed(ActionEvent ae) {
 				stopCaptionEdit(false);
 			}
 		});

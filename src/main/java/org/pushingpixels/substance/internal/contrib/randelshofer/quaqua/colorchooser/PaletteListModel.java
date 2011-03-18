@@ -66,10 +66,12 @@ public class PaletteListModel extends AbstractListModel {
         return info;
     }
     
+    @Override
     public Object getElementAt(int index) {
         return entries[index];
     }
     
+    @Override
     public int getSize() {
         return entries.length;
     }

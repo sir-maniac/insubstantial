@@ -66,7 +66,8 @@ public class PasswordEchoPerChar extends JFrame {
 		SpinnerNumberModel model = new SpinnerNumberModel(1, 1, 5, 1);
 		countSpinner.setModel(model);
 		countSpinner.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
+			@Override
+            public void stateChanged(ChangeEvent e) {
 				// set the amount of echo per character based on the current
 				// value in the spinner
 				jpf.putClientProperty(
@@ -94,7 +95,8 @@ public class PasswordEchoPerChar extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new PasswordEchoPerChar().setVisible(true);
 			}

@@ -95,6 +95,7 @@ public class ButtonStateIcon extends MultiIcon {
     }
     
     
+    @Override
     protected Icon getIcon(Component c) {
         Icon icon;
         boolean isActive = QuaquaUtilities.isOnActiveWindow(c);
@@ -154,6 +155,7 @@ public class ButtonStateIcon extends MultiIcon {
         return icon;
     }
     
+    @Override
     protected void generateMissingIcons() {
         if (icons.length != 10) {
             Icon[] helper = icons;

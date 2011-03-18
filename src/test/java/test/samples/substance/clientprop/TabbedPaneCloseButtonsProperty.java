@@ -72,7 +72,8 @@ public class TabbedPaneCloseButtonsProperty extends JFrame {
 		JPanel controls = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		final JCheckBox allHaveCloseButton = new JCheckBox("All tabs");
 		allHaveCloseButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				// based on the checkbox selection, mark the tabbed pane to have
 				// close buttons on all tabs
 				jtp
@@ -87,7 +88,8 @@ public class TabbedPaneCloseButtonsProperty extends JFrame {
 
 		final JCheckBox firstHasCloseButton = new JCheckBox("First tab");
 		firstHasCloseButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				// based on the checkbox selection, mark the first tab component
 				// to have close button
 				((JComponent) jtp.getComponentAt(0))
@@ -118,7 +120,8 @@ public class TabbedPaneCloseButtonsProperty extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new TabbedPaneCloseButtonsProperty().setVisible(true);
 			}

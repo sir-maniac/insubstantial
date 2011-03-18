@@ -75,7 +75,8 @@ public class TabbedPaneCloseButtonsModifiedAnimation extends JFrame {
 		JPanel controls = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		final JCheckBox firstTabModified = new JCheckBox("First tab modified");
 		firstTabModified.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				Component comp = jtp.getComponentAt(0);
 				// based on the checkbox selection, mark the first tab component
 				// to have modified contents
@@ -89,7 +90,8 @@ public class TabbedPaneCloseButtonsModifiedAnimation extends JFrame {
 		final JCheckBox animationOnCloseButton = new JCheckBox(
 				"Animation on close button");
 		animationOnCloseButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				// based on the checkbox selection, mark the tabbed pane to have
 				// modified animations on the close button only
 				jtp
@@ -119,7 +121,8 @@ public class TabbedPaneCloseButtonsModifiedAnimation extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new TabbedPaneCloseButtonsModifiedAnimation().setVisible(true);
 			}

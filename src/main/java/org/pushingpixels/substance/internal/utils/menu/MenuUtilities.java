@@ -114,7 +114,8 @@ public class MenuUtilities {
 		public MenuPropertyListener(final JMenuItem menuItem) {
 			this.menuItem = menuItem;
 			this.cleanLayoutMetricsRunnable = new Runnable() {
-				public void run() {
+				@Override
+                public void run() {
 					MenuUtilities.cleanPopupLayoutMetrics(menuItem);
 				}
 			};
@@ -141,7 +142,8 @@ public class MenuUtilities {
 		 * @seejava.beans.PropertyChangeListener#propertyChange(java.beans.
 		 * PropertyChangeEvent)
 		 */
-		public void propertyChange(PropertyChangeEvent evt) {
+		@Override
+        public void propertyChange(PropertyChangeEvent evt) {
 			if (!evt.getPropertyName().equals(MenuUtilities.LAYOUT_METRICS)) {
 				SwingUtilities.invokeLater(cleanLayoutMetricsRunnable);
 			}

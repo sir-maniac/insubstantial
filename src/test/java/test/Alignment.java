@@ -90,9 +90,11 @@ public class Alignment extends JFrame {
 			}
 		}
 		lafSwitchCombo.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
+			@Override
+            public void itemStateChanged(ItemEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						String selected = (String) lafSwitchCombo
 								.getSelectedItem();
 						LookAndFeelInfo matchingLafInfo = null;

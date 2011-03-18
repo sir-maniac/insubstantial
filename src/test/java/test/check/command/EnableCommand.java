@@ -13,7 +13,8 @@ public class EnableCommand implements ConfigurationCommand<Component> {
 	 * 
 	 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 	 */
-	public void configure(Component comp) {
+	@Override
+    public void configure(Component comp) {
 		comp.setEnabled(true);
 	}
 }

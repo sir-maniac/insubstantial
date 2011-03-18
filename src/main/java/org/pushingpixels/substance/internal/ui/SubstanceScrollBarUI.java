@@ -1144,10 +1144,12 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 		// this.thumbStateTransitionTracker.registerModelListeners();
 
 		this.substancePropertyListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if ("font".equals(evt.getPropertyName())) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							scrollbar.updateUI();
 						}
 					});
@@ -1188,7 +1190,8 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 		this.mySecondIncreaseButton.addMouseListener(this.buttonListener);
 
 		this.substanceAdjustmentListener = new AdjustmentListener() {
-			public void adjustmentValueChanged(AdjustmentEvent e) {
+			@Override
+            public void adjustmentValueChanged(AdjustmentEvent e) {
 				SubstanceCoreUtilities
 						.testComponentStateChangeThreadingViolation(scrollbar);
 				Component parent = SubstanceScrollBarUI.this.scrollbar
@@ -1250,7 +1253,8 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 		super.uninstallListeners();
 	}
 
-	public boolean isInside(MouseEvent me) {
+	@Override
+    public boolean isInside(MouseEvent me) {
 		Rectangle trackB = this.getTrackBounds();
 		if (trackB == null)
 			return false;

@@ -75,7 +75,8 @@ public class ColorizationFactor extends JFrame {
 		JPanel controls = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		final JSlider colorizationSlider = new JSlider(0, 100, 50);
 		colorizationSlider.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
+			@Override
+            public void stateChanged(ChangeEvent e) {
 				double val = colorizationSlider.getValue() / 100.0;
 				panel.putClientProperty(
 						SubstanceLookAndFeel.COLORIZATION_FACTOR, new Double(
@@ -101,7 +102,8 @@ public class ColorizationFactor extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new ColorizationFactor().setVisible(true);
 			}

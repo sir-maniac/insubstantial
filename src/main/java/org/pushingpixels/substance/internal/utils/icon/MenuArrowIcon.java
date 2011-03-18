@@ -69,7 +69,8 @@ public class MenuArrowIcon implements Icon, UIResource {
 	 * 
 	 * @see javax.swing.Icon#getIconHeight()
 	 */
-	public int getIconHeight() {
+	@Override
+    public int getIconHeight() {
 		return this.ltrIcon.getIconHeight();
 	}
 
@@ -78,7 +79,8 @@ public class MenuArrowIcon implements Icon, UIResource {
 	 * 
 	 * @see javax.swing.Icon#getIconWidth()
 	 */
-	public int getIconWidth() {
+	@Override
+    public int getIconWidth() {
 		return this.ltrIcon.getIconWidth();
 	}
 
@@ -88,7 +90,8 @@ public class MenuArrowIcon implements Icon, UIResource {
 	 * @see javax.swing.Icon#paintIcon(java.awt.Component, java.awt.Graphics,
 	 * int, int)
 	 */
-	public void paintIcon(Component c, Graphics g, int x, int y) {
+	@Override
+    public void paintIcon(Component c, Graphics g, int x, int y) {
 		if (c.getComponentOrientation().isLeftToRight()) {
 			this.ltrIcon.paintIcon(c, g, x, y);
 		} else {

@@ -61,9 +61,11 @@ public class SubstanceLafChanger implements ActionListener {
 		this.wasOriginallyDecoratedByOS = !frame.isUndecorated();
 	}
 
-	public void actionPerformed(ActionEvent e) {
+	@Override
+    public void actionPerformed(ActionEvent e) {
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				final boolean wasDecoratedByOS = !frame.isUndecorated();
 
 				try {

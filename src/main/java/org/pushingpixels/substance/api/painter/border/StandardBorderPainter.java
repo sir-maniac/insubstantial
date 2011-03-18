@@ -47,7 +47,8 @@ public class StandardBorderPainter implements SubstanceBorderPainter {
 	 * @see
 	 * org.pushingpixels.substance.api.trait.SubstanceTrait#getDisplayName()
 	 */
-	public String getDisplayName() {
+	@Override
+    public String getDisplayName() {
 		return "Standard";
 	}
 

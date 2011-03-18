@@ -60,7 +60,8 @@ public class MarbleNoiseDecorationPainter extends ImageWrapperDecorationPainter 
 	 * 
 	 * @see org.pushingpixels.substance.utils.SubstanceTrait#getDisplayName()
 	 */
-	public String getDisplayName() {
+	@Override
+    public String getDisplayName() {
 		return DISPLAY_NAME;
 	}
 }

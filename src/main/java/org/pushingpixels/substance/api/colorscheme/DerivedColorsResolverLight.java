@@ -78,7 +78,8 @@ public class DerivedColorsResolverLight implements SchemeDerivedColors {
 	 * 
 	 * @see org.pushingpixels.substance.api.SchemeDerivedColors#getWatermarkLightColor()
 	 */
-	public Color getWatermarkLightColor() {
+	@Override
+    public Color getWatermarkLightColor() {
 		return this.scheme.getLightColor();
 	}
 
@@ -87,7 +88,8 @@ public class DerivedColorsResolverLight implements SchemeDerivedColors {
 	 * 
 	 * @see org.pushingpixels.substance.api.SchemeDerivedColors#getWatermarkDarkColor()
 	 */
-	public Color getWatermarkDarkColor() {
+	@Override
+    public Color getWatermarkDarkColor() {
 		return SubstanceColorUtilities.getAlphaColor(
 				this.scheme.getDarkColor(), 15);
 	}
@@ -97,7 +99,8 @@ public class DerivedColorsResolverLight implements SchemeDerivedColors {
 	 * 
 	 * @see org.pushingpixels.substance.api.SchemeDerivedColors#getLineColor()
 	 */
-	public Color getLineColor() {
+	@Override
+    public Color getLineColor() {
 		return SubstanceColorUtilities.getInterpolatedColor(this.scheme
 				.getMidColor(), this.scheme.getDarkColor(), 0.7);
 	}

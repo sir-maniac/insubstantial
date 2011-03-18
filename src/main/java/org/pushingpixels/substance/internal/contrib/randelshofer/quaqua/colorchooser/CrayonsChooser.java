@@ -47,6 +47,7 @@ public class CrayonsChooser extends AbstractColorChooserPanel implements UIResou
         crayons = new Crayons();
         add(crayons);
         crayons.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 if (evt.getPropertyName().equals("Color")) {
                     setColorToModel(crayons.getColor());
@@ -64,21 +65,26 @@ public class CrayonsChooser extends AbstractColorChooserPanel implements UIResou
 
     }//GEN-END:initComponents
     
+    @Override
     protected void buildChooser() {
     }
     
+    @Override
     public String getDisplayName() {
         return UIManager.getString("ColorChooser.crayons");
     }    
     
+    @Override
     public javax.swing.Icon getLargeDisplayIcon() {
         return UIManager.getIcon("ColorChooser.crayonsIcon");
     }
     
+    @Override
     public Icon getSmallDisplayIcon() {
         return getLargeDisplayIcon();
     }
     
+    @Override
     public void updateChooser() {
         crayons.setColor(getColorFromModel());
     }

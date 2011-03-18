@@ -110,7 +110,8 @@ public class SubstanceScrollPaneUI extends BasicScrollPaneUI {
 				.getLayout()));
 
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				// System.out.println("Installing");
 				installTableHeaderCornerFiller(scrollpane);
 			}
@@ -166,11 +167,13 @@ public class SubstanceScrollPaneUI extends BasicScrollPaneUI {
 	protected void installListeners(final JScrollPane c) {
 		super.installListeners(c);
 		this.substancePropertyChangeListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (SubstanceLookAndFeel.SCROLL_PANE_BUTTONS_POLICY.equals(evt
 						.getPropertyName())) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							c.getHorizontalScrollBar().doLayout();
 							c.getVerticalScrollBar().doLayout();
 						}
@@ -226,7 +229,8 @@ public class SubstanceScrollPaneUI extends BasicScrollPaneUI {
 						|| "componentOrientation".equals(evt.getPropertyName())
 						|| "ancestor".equals(evt.getPropertyName())) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							// need to switch the corner filler based on the
 							// current scroll pane state.
 							if (scrollpane != null) {
@@ -240,7 +244,8 @@ public class SubstanceScrollPaneUI extends BasicScrollPaneUI {
 		c.addPropertyChangeListener(this.substancePropertyChangeListener);
 
 		this.substanceVerticalScrollbarChangeListener = new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
+			@Override
+            public void stateChanged(ChangeEvent e) {
 				// check if it's a horizontally scrollable tree inside
 				if ((c.getHorizontalScrollBar() != null)
 						&& c.getHorizontalScrollBar().isVisible()

@@ -47,7 +47,8 @@ public abstract class ControllablePanel extends JPanel implements Controllable {
 	 * 
 	 * @see test.check.Controllable#getControlPanel()
 	 */
-	public JPanel getControlPanel() {
+	@Override
+    public JPanel getControlPanel() {
 		return this.controlPanel;
 	}
 }

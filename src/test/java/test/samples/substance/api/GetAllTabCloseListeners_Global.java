@@ -68,12 +68,14 @@ public class GetAllTabCloseListeners_Global extends JFrame {
 
 		SubstanceLookAndFeel.registerTabCloseChangeListener(null,
 				new TabCloseListener() {
-					public void tabClosing(JTabbedPane tabbedPane,
+					@Override
+                    public void tabClosing(JTabbedPane tabbedPane,
 							Component tabComponent) {
 						System.out.println("Tab closing");
 					}
 
-					public void tabClosed(JTabbedPane tabbedPane,
+					@Override
+                    public void tabClosed(JTabbedPane tabbedPane,
 							Component tabComponent) {
 						System.out.println("Tab closed");
 					}
@@ -81,17 +83,20 @@ public class GetAllTabCloseListeners_Global extends JFrame {
 
 		SubstanceLookAndFeel.registerTabCloseChangeListener(jtp,
 				new VetoableMultipleTabCloseListener() {
-					public void tabsClosed(JTabbedPane tabbedPane,
+					@Override
+                    public void tabsClosed(JTabbedPane tabbedPane,
 							Set<Component> tabComponents) {
 						System.out.println("Tabs closed");
 					}
 
-					public void tabsClosing(JTabbedPane tabbedPane,
+					@Override
+                    public void tabsClosing(JTabbedPane tabbedPane,
 							Set<Component> tabComponents) {
 						System.out.println("Tabs closing");
 					}
 
-					public boolean vetoTabsClosing(JTabbedPane tabbedPane,
+					@Override
+                    public boolean vetoTabsClosing(JTabbedPane tabbedPane,
 							Set<Component> tabComponents) {
 						System.out.println("Vetoing tabs closing");
 						return true;
@@ -104,7 +109,8 @@ public class GetAllTabCloseListeners_Global extends JFrame {
 
 		JButton getTabCloseListeners = new JButton("Get tab close listeners");
 		getTabCloseListeners.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(
 						GetAllTabCloseListeners_Global.this,
 						SubstanceLookAndFeel.getAllTabCloseListeners().size()
@@ -130,7 +136,8 @@ public class GetAllTabCloseListeners_Global extends JFrame {
 		JDialog.setDefaultLookAndFeelDecorated(true);
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new GetAllTabCloseListeners_Global().setVisible(true);
 			}

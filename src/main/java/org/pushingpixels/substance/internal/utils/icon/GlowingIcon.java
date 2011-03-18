@@ -64,7 +64,8 @@ public class GlowingIcon implements Icon {
 	 * 
 	 * @see javax.swing.Icon#getIconHeight()
 	 */
-	public int getIconHeight() {
+	@Override
+    public int getIconHeight() {
 		if (this.delegate == null)
 			return 0;
 		return this.delegate.getIconHeight();
@@ -75,7 +76,8 @@ public class GlowingIcon implements Icon {
 	 * 
 	 * @see javax.swing.Icon#getIconWidth()
 	 */
-	public int getIconWidth() {
+	@Override
+    public int getIconWidth() {
 		if (this.delegate == null)
 			return 0;
 		return this.delegate.getIconWidth();
@@ -93,7 +95,8 @@ public class GlowingIcon implements Icon {
 	 * @see javax.swing.Icon#paintIcon(java.awt.Component, java.awt.Graphics,
 	 * int, int)
 	 */
-	public void paintIcon(Component c, Graphics g, int x, int y) {
+	@Override
+    public void paintIcon(Component c, Graphics g, int x, int y) {
 		if (this.delegate == null)
 			return;
 		float fadePos = this.iconGlowTracker.getIconGlowPosition();

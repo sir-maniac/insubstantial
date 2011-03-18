@@ -87,7 +87,8 @@ public class ScrollPaneButtonsPolicy extends JFrame {
 				ScrollPaneButtonPolicyKind.MULTIPLE_BOTH });
 		buttonsPolicyCombo.setSelectedItem(ScrollPaneButtonPolicyKind.OPPOSITE);
 		buttonsPolicyCombo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				// set the selected button policy kind on the scroll pane
 				ScrollPaneButtonPolicyKind buttonPolicy = (ScrollPaneButtonPolicyKind) buttonsPolicyCombo
 						.getSelectedItem();
@@ -116,7 +117,8 @@ public class ScrollPaneButtonsPolicy extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new ScrollPaneButtonsPolicy().setVisible(true);
 			}

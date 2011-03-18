@@ -84,9 +84,11 @@ public class DesktopPanel extends ControllablePanel {
 
 		JButton sample = new JButton("Add");
 		sample.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						JInternalFrame jif = new SampleInternalFrame() {
 							// @Override
 							// public void paint(Graphics g) {
@@ -130,7 +132,8 @@ public class DesktopPanel extends ControllablePanel {
 
 		JButton bt = new JButton("Add");
 		bt.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				String title = "[" + count + "]Internal title ";
 				int c = (int) (20 * Math.random());
 				for (int i = 0; i < c; i++) {
@@ -144,7 +147,8 @@ public class DesktopPanel extends ControllablePanel {
 								ComponentState.ENABLED)));
 				SubstanceLookAndFeel
 						.registerSkinChangeListener(new SkinChangeListener() {
-							public void skinChanged() {
+							@Override
+                            public void skinChanged() {
 								jif
 										.setFrameIcon(SubstanceLogo
 												.getLogoIcon(SubstanceLookAndFeel
@@ -222,7 +226,8 @@ public class DesktopPanel extends ControllablePanel {
 				JPanel buttons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 				final JCheckBox isModified = new JCheckBox("modified");
 				isModified.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+					@Override
+                    public void actionPerformed(ActionEvent e) {
 						jif.getRootPane().putClientProperty(
 								SubstanceLookAndFeel.WINDOW_MODIFIED,
 								Boolean.valueOf(isModified.isSelected()));
@@ -232,7 +237,8 @@ public class DesktopPanel extends ControllablePanel {
 
 				JButton changeTitleButton = new JButton("Change title");
 				changeTitleButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+					@Override
+                    public void actionPerformed(ActionEvent e) {
 						String random = "abcdefghijklmnopqrstuvwxyz     ";
 						int length = (int) (50 * Math.random());
 						String title = "";
@@ -249,9 +255,11 @@ public class DesktopPanel extends ControllablePanel {
 
 				JButton setNullTitlePane = new JButton("Remove title pane");
 				setNullTitlePane.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+					@Override
+                    public void actionPerformed(ActionEvent e) {
 						SwingUtilities.invokeLater(new Runnable() {
-							public void run() {
+							@Override
+                            public void run() {
 								((BasicInternalFrameUI) jif.getUI())
 										.setNorthPane(null);
 								jif.revalidate();
@@ -312,7 +320,8 @@ public class DesktopPanel extends ControllablePanel {
 
 		JButton minAll = new JButton("Execute");
 		minAll.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				for (JInternalFrame jif : jdp.getAllFrames()) {
 					try {
 						jif.setIcon(true);
@@ -325,7 +334,8 @@ public class DesktopPanel extends ControllablePanel {
 
 		JButton closeAll = new JButton("Execute");
 		closeAll.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				for (JInternalFrame jif : jdp.getAllFrames()) {
 					try {
 						jif.setClosed(true);
@@ -338,7 +348,8 @@ public class DesktopPanel extends ControllablePanel {
 
 		JButton disposeAll = new JButton("Execute");
 		disposeAll.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				for (JInternalFrame jif : jdp.getAllFrames()) {
 					disposed.add(jif);
 					jif.dispose();
@@ -349,7 +360,8 @@ public class DesktopPanel extends ControllablePanel {
 
 		JButton reshowAll = new JButton("Execute");
 		reshowAll.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				for (JInternalFrame jif : disposed) {
 					jif.setVisible(true);
 				}

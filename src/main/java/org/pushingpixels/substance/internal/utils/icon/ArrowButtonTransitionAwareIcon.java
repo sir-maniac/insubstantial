@@ -349,7 +349,8 @@ public class ArrowButtonTransitionAwareIcon implements Icon {
 	 * 
 	 * @see javax.swing.Icon#getIconHeight()
 	 */
-	public int getIconHeight() {
+	@Override
+    public int getIconHeight() {
 		return this.iconHeight;
 	}
 
@@ -358,7 +359,8 @@ public class ArrowButtonTransitionAwareIcon implements Icon {
 	 * 
 	 * @see javax.swing.Icon#getIconWidth()
 	 */
-	public int getIconWidth() {
+	@Override
+    public int getIconWidth() {
 		return this.iconWidth;
 	}
 }

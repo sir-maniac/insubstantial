@@ -78,7 +78,8 @@ public class DefaultKDEFontPolicy implements FontPolicy {
 	private static final String SANS_SERIF = "SansSerif";
 	private static FontSet fontSet = null;
 
-	public synchronized FontSet getFontSet(String lafName, UIDefaults table) {
+	@Override
+    public synchronized FontSet getFontSet(String lafName, UIDefaults table) {
 		if (fontSet == null) {
 			fontSet = getInternalFontSet(lafName, table);
 		}

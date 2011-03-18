@@ -76,27 +76,33 @@ public class Check extends JFrame {
 					.getStyle(), systemFont.getSize() + extra);
 		}
 
-		public FontUIResource getControlFont() {
+		@Override
+        public FontUIResource getControlFont() {
 			return getWrappedFont(delegate.getControlFont());
 		}
 
-		public FontUIResource getMenuFont() {
+		@Override
+        public FontUIResource getMenuFont() {
 			return getWrappedFont(delegate.getMenuFont());
 		}
 
-		public FontUIResource getMessageFont() {
+		@Override
+        public FontUIResource getMessageFont() {
 			return getWrappedFont(delegate.getMessageFont());
 		}
 
-		public FontUIResource getSmallFont() {
+		@Override
+        public FontUIResource getSmallFont() {
 			return getWrappedFont(delegate.getSmallFont());
 		}
 
-		public FontUIResource getTitleFont() {
+		@Override
+        public FontUIResource getTitleFont() {
 			return getWrappedFont(delegate.getTitleFont());
 		}
 
-		public FontUIResource getWindowTitleFont() {
+		@Override
+        public FontUIResource getWindowTitleFont() {
 			return getWrappedFont(delegate.getWindowTitleFont());
 		}
 	}
@@ -205,17 +211,20 @@ public class Check extends JFrame {
 		mainPanel.add(scrollPane);
 		mainPanel.add(jtp);
 		mainPanel.setLayout(new LayoutManager() {
-			public void addLayoutComponent(String name, Component comp) {
+			@Override
+            public void addLayoutComponent(String name, Component comp) {
 			}
 
-			public Dimension minimumLayoutSize(Container parent) {
+			@Override
+            public Dimension minimumLayoutSize(Container parent) {
 				Dimension min1 = scrollPane.getMinimumSize();
 				Dimension min2 = jtp.getMinimumSize();
 				return new Dimension(min1.width + min2.width, min1.height
 						+ min2.height);
 			}
 
-			public void layoutContainer(Container parent) {
+			@Override
+            public void layoutContainer(Container parent) {
 				// give 30% width to task pane container and
 				// 70% width to the tabbed pane with controls.
 				int width = parent.getWidth();
@@ -225,14 +234,16 @@ public class Check extends JFrame {
 						- (int) (0.3 * width), height);
 			}
 
-			public Dimension preferredLayoutSize(Container parent) {
+			@Override
+            public Dimension preferredLayoutSize(Container parent) {
 				Dimension pref1 = scrollPane.getPreferredSize();
 				Dimension pref2 = jtp.getPreferredSize();
 				return new Dimension(pref1.width + pref2.width, pref1.height
 						+ pref2.height);
 			}
 
-			public void removeLayoutComponent(Component comp) {
+			@Override
+            public void removeLayoutComponent(Component comp) {
 			}
 		});
 		jxPanel.add(mainPanel, BorderLayout.CENTER);
@@ -253,7 +264,8 @@ public class Check extends JFrame {
 				new ScrollPanel());
 
 		TabCloseCallback closeCallback = new TabCloseCallback() {
-			public TabCloseKind onAreaClick(JTabbedPane tabbedPane,
+			@Override
+            public TabCloseKind onAreaClick(JTabbedPane tabbedPane,
 					int tabIndex, MouseEvent mouseEvent) {
 				if (mouseEvent.getButton() != MouseEvent.BUTTON3)
 					return TabCloseKind.NONE;
@@ -263,7 +275,8 @@ public class Check extends JFrame {
 				return TabCloseKind.THIS;
 			}
 
-			public TabCloseKind onCloseButtonClick(JTabbedPane tabbedPane,
+			@Override
+            public TabCloseKind onCloseButtonClick(JTabbedPane tabbedPane,
 					int tabIndex, MouseEvent mouseEvent) {
 				if (mouseEvent.isAltDown()) {
 					return TabCloseKind.ALL_BUT_THIS;
@@ -274,11 +287,13 @@ public class Check extends JFrame {
 				return TabCloseKind.THIS;
 			}
 
-			public String getAreaTooltip(JTabbedPane tabbedPane, int tabIndex) {
+			@Override
+            public String getAreaTooltip(JTabbedPane tabbedPane, int tabIndex) {
 				return null;
 			}
 
-			public String getCloseButtonTooltip(JTabbedPane tabbedPane,
+			@Override
+            public String getCloseButtonTooltip(JTabbedPane tabbedPane,
 					int tabIndex) {
 				StringBuffer result = new StringBuffer();
 				result.append("<html><body>");
@@ -399,7 +414,8 @@ public class Check extends JFrame {
 		setJMenuBar(jmb);
 
 		TabCloseCallback closeCallbackMain = new TabCloseCallback() {
-			public TabCloseKind onAreaClick(JTabbedPane tabbedPane,
+			@Override
+            public TabCloseKind onAreaClick(JTabbedPane tabbedPane,
 					int tabIndex, MouseEvent mouseEvent) {
 				if (mouseEvent.getButton() != MouseEvent.BUTTON2)
 					return TabCloseKind.NONE;
@@ -409,7 +425,8 @@ public class Check extends JFrame {
 				return TabCloseKind.THIS;
 			}
 
-			public TabCloseKind onCloseButtonClick(JTabbedPane tabbedPane,
+			@Override
+            public TabCloseKind onCloseButtonClick(JTabbedPane tabbedPane,
 					int tabIndex, MouseEvent mouseEvent) {
 				if (mouseEvent.isAltDown()) {
 					return TabCloseKind.ALL_BUT_THIS;
@@ -420,11 +437,13 @@ public class Check extends JFrame {
 				return TabCloseKind.THIS;
 			}
 
-			public String getAreaTooltip(JTabbedPane tabbedPane, int tabIndex) {
+			@Override
+            public String getAreaTooltip(JTabbedPane tabbedPane, int tabIndex) {
 				return null;
 			}
 
-			public String getCloseButtonTooltip(JTabbedPane tabbedPane,
+			@Override
+            public String getCloseButtonTooltip(JTabbedPane tabbedPane,
 					int tabIndex) {
 				StringBuffer result = new StringBuffer();
 				result.append("<html><body>");
@@ -443,12 +462,14 @@ public class Check extends JFrame {
 				closeCallbackMain);
 		SubstanceLookAndFeel
 				.registerTabCloseChangeListener(new TabCloseListener() {
-					public void tabClosed(JTabbedPane tabbedPane,
+					@Override
+                    public void tabClosed(JTabbedPane tabbedPane,
 							Component tabComponent) {
 						out("Closed tab");
 					}
 
-					public void tabClosing(JTabbedPane tabbedPane,
+					@Override
+                    public void tabClosing(JTabbedPane tabbedPane,
 							Component tabComponent) {
 						out("Closing tab");
 					}
@@ -456,17 +477,20 @@ public class Check extends JFrame {
 
 		SubstanceLookAndFeel.registerTabCloseChangeListener(jtp,
 				new VetoableTabCloseListener() {
-					public void tabClosed(JTabbedPane tabbedPane,
+					@Override
+                    public void tabClosed(JTabbedPane tabbedPane,
 							Component tabComponent) {
 						out("Closed tab - specific");
 					}
 
-					public void tabClosing(JTabbedPane tabbedPane,
+					@Override
+                    public void tabClosing(JTabbedPane tabbedPane,
 							Component tabComponent) {
 						out("Closing tab - specific");
 					}
 
-					public boolean vetoTabClosing(JTabbedPane tabbedPane,
+					@Override
+                    public boolean vetoTabClosing(JTabbedPane tabbedPane,
 							Component tabComponent) {
 						int userCloseAnswer = JOptionPane
 								.showConfirmDialog(
@@ -483,19 +507,22 @@ public class Check extends JFrame {
 
 		SubstanceLookAndFeel.registerTabCloseChangeListener(jtp,
 				new VetoableMultipleTabCloseListener() {
-					public void tabsClosed(JTabbedPane tabbedPane,
+					@Override
+                    public void tabsClosed(JTabbedPane tabbedPane,
 							Set<Component> tabComponents) {
 						out("Closed " + tabComponents.size()
 								+ " tabs - specific");
 					}
 
-					public void tabsClosing(JTabbedPane tabbedPane,
+					@Override
+                    public void tabsClosing(JTabbedPane tabbedPane,
 							Set<Component> tabComponents) {
 						out("Closing " + tabComponents.size()
 								+ " tabs - specific");
 					}
 
-					public boolean vetoTabsClosing(JTabbedPane tabbedPane,
+					@Override
+                    public boolean vetoTabsClosing(JTabbedPane tabbedPane,
 							Set<Component> tabComponents) {
 						int userCloseAnswer = JOptionPane.showConfirmDialog(
 								Check.this, "Are you sure you want to close "
@@ -561,7 +588,8 @@ public class Check extends JFrame {
 		final JLabel tabLabel = new JLabel("");
 		statusBar.add(tabLabel, c2);
 		mainTabbedPane.getModel().addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
+			@Override
+            public void stateChanged(ChangeEvent e) {
 				int selectedIndex = mainTabbedPane.getSelectedIndex();
 				if (selectedIndex < 0)
 					tabLabel.setText("No selected tab");
@@ -583,7 +611,8 @@ public class Check extends JFrame {
 		final JSlider alphaSlider = new JSlider(0, 100, 100);
 		alphaSlider.setFocusable(false);
 		alphaSlider.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
+			@Override
+            public void stateChanged(ChangeEvent e) {
 				int currValue = alphaSlider.getValue();
 				alphaLabel.setText(currValue + "%");
 				jxPanel.setAlpha(currValue / 100.0f);
@@ -605,7 +634,8 @@ public class Check extends JFrame {
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				boolean hasLafSpecified = false;
 				try {
 					hasLafSpecified = (System.getProperty("swing.defaultlaf") != null);
@@ -810,7 +840,8 @@ public class Check extends JFrame {
 		JButton buttonExit = new JButton(getIcon(size + "/process-stop"));
 		buttonExit.setToolTipText("Closes the test application");
 		buttonExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
@@ -845,7 +876,8 @@ public class Check extends JFrame {
 	}
 
 	public class TabSwitchListener implements ChangeListener {
-		public void stateChanged(ChangeEvent e) {
+		@Override
+        public void stateChanged(ChangeEvent e) {
 			Component selected = jtp.getSelectedComponent();
 			if (selected instanceof Deferrable) {
 				Deferrable deferrable = (Deferrable) selected;

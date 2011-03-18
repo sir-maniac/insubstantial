@@ -95,7 +95,8 @@ public class MenuGutterFillKindProperty extends JFrame {
 		});
 		menuGutterFillCombo.setSelectedItem(MenuGutterFillKind.HARD);
 		menuGutterFillCombo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				// based on the selected item, set the global menu gutter
 				// fill kind
 				UIManager.put(SubstanceLookAndFeel.MENU_GUTTER_FILL_KIND,
@@ -121,7 +122,8 @@ public class MenuGutterFillKindProperty extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new MenuGutterFillKindProperty().setVisible(true);
 			}

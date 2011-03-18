@@ -70,7 +70,8 @@ public class ButtonsPanel extends JPanel {
 		 * 
 		 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 		 */
-		public void configure(AbstractButton ab) {
+		@Override
+        public void configure(AbstractButton ab) {
 			ab.setFocusPainted(false);
 		}
 	}
@@ -103,7 +104,8 @@ public class ButtonsPanel extends JPanel {
 		 * 
 		 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 		 */
-		public void configure(AbstractButton ab) {
+		@Override
+        public void configure(AbstractButton ab) {
 			ab.putClientProperty(SubstanceLookAndFeel.FOCUS_KIND, focusKind);
 		}
 	}
@@ -121,7 +123,8 @@ public class ButtonsPanel extends JPanel {
 		 * 
 		 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 		 */
-		public void configure(AbstractButton ab) {
+		@Override
+        public void configure(AbstractButton ab) {
 			ab.putClientProperty(
 					SubstanceLookAndFeel.BUTTON_NO_MIN_SIZE_PROPERTY,
 					Boolean.TRUE);
@@ -139,7 +142,8 @@ public class ButtonsPanel extends JPanel {
 		 * 
 		 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 		 */
-		public void configure(AbstractButton ab) {
+		@Override
+        public void configure(AbstractButton ab) {
 			ab.setMargin(new Insets(5, 5, 5, 5));
 		}
 	}
@@ -171,7 +175,8 @@ public class ButtonsPanel extends JPanel {
 		 * 
 		 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 		 */
-		public void configure(AbstractButton ab) {
+		@Override
+        public void configure(AbstractButton ab) {
 			ab.putClientProperty(SubstanceLookAndFeel.BUTTON_SIDE_PROPERTY,
 					this.sideObj);
 		}
@@ -204,7 +209,8 @@ public class ButtonsPanel extends JPanel {
 		 * 
 		 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 		 */
-		public void configure(AbstractButton ab) {
+		@Override
+        public void configure(AbstractButton ab) {
 			ab.putClientProperty(
 					SubstanceLookAndFeel.BUTTON_OPEN_SIDE_PROPERTY,
 					this.sideObj);
@@ -237,7 +243,8 @@ public class ButtonsPanel extends JPanel {
 		 * 
 		 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 		 */
-		public void configure(AbstractButton ab) {
+		@Override
+        public void configure(AbstractButton ab) {
 			ab.setText(this.text);
 		}
 	}
@@ -270,7 +277,8 @@ public class ButtonsPanel extends JPanel {
 		 * 
 		 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 		 */
-		public void configure(AbstractButton ab) {
+		@Override
+        public void configure(AbstractButton ab) {
 			ab.setToolTipText(this.tooltipText);
 		}
 	}
@@ -288,7 +296,8 @@ public class ButtonsPanel extends JPanel {
 		 * 
 		 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 		 */
-		public void configure(AbstractButton ab) {
+		@Override
+        public void configure(AbstractButton ab) {
 			ab.addMouseListener(new MousePopupListener(ab));
 		}
 	}
@@ -319,7 +328,8 @@ public class ButtonsPanel extends JPanel {
 		 * 
 		 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 		 */
-		public void configure(AbstractButton ab) {
+		@Override
+        public void configure(AbstractButton ab) {
 			ab.setFont(this.font);
 		}
 	}
@@ -350,7 +360,8 @@ public class ButtonsPanel extends JPanel {
 		 * 
 		 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 		 */
-		public void configure(AbstractButton ab) {
+		@Override
+        public void configure(AbstractButton ab) {
 			if ((ab instanceof JRadioButton) || (ab instanceof JCheckBox))
 				return;
 			ab.setIcon(this.icon);
@@ -370,7 +381,8 @@ public class ButtonsPanel extends JPanel {
 		 * 
 		 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 		 */
-		public void configure(AbstractButton ab) {
+		@Override
+        public void configure(AbstractButton ab) {
 			ab.setContentAreaFilled(false);
 		}
 	}
@@ -387,7 +399,8 @@ public class ButtonsPanel extends JPanel {
 		 * 
 		 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 		 */
-		public void configure(AbstractButton ab) {
+		@Override
+        public void configure(AbstractButton ab) {
 			ab.setBorderPainted(false);
 		}
 	}

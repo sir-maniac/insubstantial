@@ -81,7 +81,8 @@ public class ScrollPanel extends ControllablePanel {
 		final JCheckBox isEnabled = new JCheckBox("is enabled");
 		isEnabled.setSelected(true);
 		isEnabled.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				boolean toEnable = isEnabled.isSelected();
 				sp.setEnabled(toEnable);
 				updateEnabledState(sp, toEnable);
@@ -93,7 +94,8 @@ public class ScrollPanel extends ControllablePanel {
 		final JCheckBox hasNullBorder = new JCheckBox("Has null border");
 		hasNullBorder.setSelected(false);
 		hasNullBorder.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				if (hasNullBorder.isSelected())
 					sp.setBorder(null);
 				else
@@ -105,7 +107,8 @@ public class ScrollPanel extends ControllablePanel {
 
 		final JCheckBox hasPreview = new JCheckBox("Has preview");
 		hasPreview.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				sp.putClientProperty(LafWidget.COMPONENT_PREVIEW_PAINTER,
 						hasPreview.isSelected() ? new DefaultPreviewPainter()
 								: null);
@@ -115,7 +118,8 @@ public class ScrollPanel extends ControllablePanel {
 
 		final JCheckBox hasAutoScroll = new JCheckBox("Has auto scroll");
 		hasAutoScroll.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				sp.putClientProperty(LafWidget.AUTO_SCROLL, hasAutoScroll
 						.isSelected() ? Boolean.TRUE : null);
 			}
@@ -131,7 +135,8 @@ public class ScrollPanel extends ControllablePanel {
 				ScrollPaneButtonPolicyKind.MULTIPLE_BOTH });
 		buttonPolicyCombo.setSelectedItem(ScrollPaneButtonPolicyKind.OPPOSITE);
 		buttonPolicyCombo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				ScrollPaneButtonPolicyKind buttonPolicy = (ScrollPaneButtonPolicyKind) buttonPolicyCombo
 						.getSelectedItem();
 				sp.putClientProperty(
@@ -144,7 +149,8 @@ public class ScrollPanel extends ControllablePanel {
 
 		final JCheckBox isFlat = new JCheckBox("Is flat");
 		isFlat.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				sp.putClientProperty(SubstanceLookAndFeel.FLAT_PROPERTY, isFlat
 						.isSelected() ? Boolean.TRUE : null);
 				sp.repaint();
@@ -154,7 +160,8 @@ public class ScrollPanel extends ControllablePanel {
 
 		final JCheckBox isNever = new JCheckBox("Is never painted");
 		isNever.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				sp.putClientProperty(
 						SubstanceLookAndFeel.BUTTON_PAINT_NEVER_PROPERTY,
 						isNever.isSelected() ? Boolean.TRUE : null);

@@ -70,7 +70,8 @@ public class TraitInfoImpl implements SubstanceTraitInfo {
 	 * 
 	 * @see org.pushingpixels.substance.utils.SubstanceTraitInfo#getClassName()
 	 */
-	public String getClassName() {
+	@Override
+    public String getClassName() {
 		return this.className;
 	}
 
@@ -79,7 +80,8 @@ public class TraitInfoImpl implements SubstanceTraitInfo {
 	 * 
 	 * @see org.pushingpixels.substance.utils.SubstanceTrait#getDisplayName()
 	 */
-	public String getDisplayName() {
+	@Override
+    public String getDisplayName() {
 		return this.displayName;
 	}
 
@@ -88,7 +90,8 @@ public class TraitInfoImpl implements SubstanceTraitInfo {
 	 * 
 	 * @see org.pushingpixels.substance.utils.SubstanceTraitInfo#isDefault()
 	 */
-	public boolean isDefault() {
+	@Override
+    public boolean isDefault() {
 		return this.isDefault;
 	}
 
@@ -97,7 +100,8 @@ public class TraitInfoImpl implements SubstanceTraitInfo {
 	 * 
 	 * @see org.pushingpixels.substance.utils.SubstanceTraitInfo#setDefault(boolean)
 	 */
-	public void setDefault(boolean isDefault) {
+	@Override
+    public void setDefault(boolean isDefault) {
 		this.isDefault = isDefault;
 	}
 }

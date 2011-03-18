@@ -58,9 +58,11 @@ public class SetSkin_ClassName extends JFrame {
 		JPanel controls = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		final JButton changeSkin = new JButton("Change skin");
 		changeSkin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						changeSkin.setEnabled(false);
 						// set new skin by class name
 						SubstanceLookAndFeel
@@ -89,7 +91,8 @@ public class SetSkin_ClassName extends JFrame {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		JDialog.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new SetSkin_ClassName().setVisible(true);
 			}

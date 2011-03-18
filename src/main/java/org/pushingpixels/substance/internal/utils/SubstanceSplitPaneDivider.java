@@ -112,7 +112,8 @@ public class SubstanceSplitPaneDivider extends BasicSplitPaneDivider implements
 			this.addMouseMotionListener(this.substanceRolloverListener);
 
 			this.substancePropertyChangeListener = new PropertyChangeListener() {
-				public void propertyChange(PropertyChangeEvent evt) {
+				@Override
+                public void propertyChange(PropertyChangeEvent evt) {
 					if ("enabled".equals(evt.getPropertyName())) {
 						boolean isEnabled = splitPane.isEnabled();
 						gripModel.setEnabled(isEnabled);
@@ -271,7 +272,8 @@ public class SubstanceSplitPaneDivider extends BasicSplitPaneDivider implements
 		};
 		Icon verticalSplit = new TransitionAwareIcon(oneTouchButton,
 				new TransitionAwareIcon.Delegate() {
-					public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
+					@Override
+                    public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
 						int fontSize = SubstanceSizeUtils
 								.getComponentFontSize(splitPane);
 						return SubstanceImageCreator.getArrowIcon(
@@ -286,7 +288,8 @@ public class SubstanceSplitPaneDivider extends BasicSplitPaneDivider implements
 				}, "substance.splitPane.left.vertical");
 		Icon horizontalSplit = new TransitionAwareIcon(oneTouchButton,
 				new TransitionAwareIcon.Delegate() {
-					public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
+					@Override
+                    public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
 						int fontSize = SubstanceSizeUtils
 								.getComponentFontSize(splitPane);
 						return SubstanceImageCreator.getArrowIcon(
@@ -334,7 +337,8 @@ public class SubstanceSplitPaneDivider extends BasicSplitPaneDivider implements
 		};
 		Icon verticalSplit = new TransitionAwareIcon(oneTouchButton,
 				new TransitionAwareIcon.Delegate() {
-					public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
+					@Override
+                    public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
 						int fontSize = SubstanceSizeUtils
 								.getComponentFontSize(splitPane);
 						return SubstanceImageCreator.getArrowIcon(
@@ -349,7 +353,8 @@ public class SubstanceSplitPaneDivider extends BasicSplitPaneDivider implements
 				}, "substance.splitPane.right.vertical");
 		Icon horizontalSplit = new TransitionAwareIcon(oneTouchButton,
 				new TransitionAwareIcon.Delegate() {
-					public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
+					@Override
+                    public Icon getColorSchemeIcon(SubstanceColorScheme scheme) {
 						int fontSize = SubstanceSizeUtils
 								.getComponentFontSize(splitPane);
 						return SubstanceImageCreator.getArrowIcon(
@@ -392,7 +397,8 @@ public class SubstanceSplitPaneDivider extends BasicSplitPaneDivider implements
 			if (this.leftButton != null) {
 				this.leftButton.setIcon(new TransitionAwareIcon(
 						this.leftButton, new TransitionAwareIcon.Delegate() {
-							public Icon getColorSchemeIcon(
+							@Override
+                            public Icon getColorSchemeIcon(
 									SubstanceColorScheme scheme) {
 								int fontSize = SubstanceSizeUtils
 										.getComponentFontSize(splitPane);
@@ -411,7 +417,8 @@ public class SubstanceSplitPaneDivider extends BasicSplitPaneDivider implements
 			if (this.rightButton != null) {
 				this.rightButton.setIcon(new TransitionAwareIcon(
 						this.rightButton, new TransitionAwareIcon.Delegate() {
-							public Icon getColorSchemeIcon(
+							@Override
+                            public Icon getColorSchemeIcon(
 									SubstanceColorScheme scheme) {
 								int fontSize = SubstanceSizeUtils
 										.getComponentFontSize(splitPane);
@@ -431,7 +438,8 @@ public class SubstanceSplitPaneDivider extends BasicSplitPaneDivider implements
 			if (this.leftButton != null) {
 				this.leftButton.setIcon(new TransitionAwareIcon(
 						this.leftButton, new TransitionAwareIcon.Delegate() {
-							public Icon getColorSchemeIcon(
+							@Override
+                            public Icon getColorSchemeIcon(
 									SubstanceColorScheme scheme) {
 								int fontSize = SubstanceSizeUtils
 										.getComponentFontSize(splitPane);
@@ -450,7 +458,8 @@ public class SubstanceSplitPaneDivider extends BasicSplitPaneDivider implements
 			if (this.rightButton != null) {
 				this.rightButton.setIcon(new TransitionAwareIcon(
 						this.rightButton, new TransitionAwareIcon.Delegate() {
-							public Icon getColorSchemeIcon(
+							@Override
+                            public Icon getColorSchemeIcon(
 									SubstanceColorScheme scheme) {
 								int fontSize = SubstanceSizeUtils
 										.getComponentFontSize(splitPane);
@@ -475,7 +484,8 @@ public class SubstanceSplitPaneDivider extends BasicSplitPaneDivider implements
 	 * @seeorg.pushingpixels.substance.utils.Trackable#isInside(java.awt.event.
 	 * MouseEvent)
 	 */
-	public boolean isInside(MouseEvent me) {
+	@Override
+    public boolean isInside(MouseEvent me) {
 		// entire area is sensitive
 		return true;
 	}

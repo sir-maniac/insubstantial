@@ -38,12 +38,15 @@ public class HTMLSliderTextFieldHandler implements DocumentListener, ChangeListe
         ccModel.getBoundedRangeModel(component).addChangeListener(this);
     }
     
+    @Override
     public void changedUpdate(DocumentEvent evt) {
         docChanged();
     }
+    @Override
     public void removeUpdate(DocumentEvent evt) {
         docChanged();
     }
+    @Override
     public void insertUpdate(DocumentEvent evt) {
         docChanged();
     }
@@ -59,6 +62,7 @@ public class HTMLSliderTextFieldHandler implements DocumentListener, ChangeListe
             }
         }
     }
+    @Override
     public void stateChanged(ChangeEvent e) {
         if (! textField.hasFocus()) {
             int value = ccModel.getBoundedRangeModel(2).getValue();

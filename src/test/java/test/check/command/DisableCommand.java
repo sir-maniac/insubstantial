@@ -14,7 +14,8 @@ public class DisableCommand implements ConfigurationCommand<Component> {
 	 * 
 	 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 	 */
-	public void configure(Component ab) {
+	@Override
+    public void configure(Component ab) {
 		ab.setEnabled(false);
 	}
 }

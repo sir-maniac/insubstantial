@@ -156,7 +156,8 @@ public class SubstanceDefaultTreeCellRenderer extends JLabel implements
 	 * foreground color is set based on the selection and the icon is set based
 	 * on on leaf and expanded.
 	 */
-	public Component getTreeCellRendererComponent(JTree tree, Object value,
+	@Override
+    public Component getTreeCellRendererComponent(JTree tree, Object value,
 			boolean sel, boolean expanded, boolean leaf, int row,
 			boolean hasFocus) {
 		String stringValue = tree.convertValueToText(value, sel, expanded,

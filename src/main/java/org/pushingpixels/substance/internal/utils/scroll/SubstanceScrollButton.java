@@ -91,7 +91,8 @@ public class SubstanceScrollButton extends JButton implements UIResource,
 	 * 
 	 * @see org.pushingpixels.substance.utils.Sideable#getSide()
 	 */
-	public SubstanceConstants.Side getSide() {
+	@Override
+    public SubstanceConstants.Side getSide() {
 		switch (this.orientation) {
 		case SwingConstants.NORTH:
 			return SubstanceConstants.Side.BOTTOM;

@@ -89,9 +89,11 @@ public class AutoScroll extends JFrame {
 		JPanel controls = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		final JCheckBox hasAutoScroll = new JCheckBox("has auto scroll");
 		hasAutoScroll.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						scrollPane.putClientProperty(LafWidget.AUTO_SCROLL,
 								hasAutoScroll.isSelected() ? Boolean.TRUE
 										: null);
@@ -117,7 +119,8 @@ public class AutoScroll extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new AutoScroll().setVisible(true);
 			}

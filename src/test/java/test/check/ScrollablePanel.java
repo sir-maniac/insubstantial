@@ -37,24 +37,29 @@ import javax.swing.Scrollable;
 
 public class ScrollablePanel extends JPanel implements Scrollable {
 
-	public Dimension getPreferredScrollableViewportSize() {
+	@Override
+    public Dimension getPreferredScrollableViewportSize() {
 		return this.getPreferredSize();
 	}
 
-	public int getScrollableBlockIncrement(Rectangle visibleRect,
+	@Override
+    public int getScrollableBlockIncrement(Rectangle visibleRect,
 			int orientation, int direction) {
 		return 30;
 	}
 
-	public boolean getScrollableTracksViewportHeight() {
+	@Override
+    public boolean getScrollableTracksViewportHeight() {
 		return false;
 	}
 
-	public boolean getScrollableTracksViewportWidth() {
+	@Override
+    public boolean getScrollableTracksViewportWidth() {
 		return false;
 	}
 
-	public int getScrollableUnitIncrement(Rectangle visibleRect,
+	@Override
+    public int getScrollableUnitIncrement(Rectangle visibleRect,
 			int orientation, int direction) {
 		return 10;
 	}

@@ -65,7 +65,8 @@ public class BaseSkinPlugin implements SubstanceSkinPlugin {
 	 * 
 	 * @see org.pushingpixels.substance.plugin.SubstanceSkinPlugin#getSkins()
 	 */
-	public Set<SkinInfo> getSkins() {
+	@Override
+    public Set<SkinInfo> getSkins() {
 		Set<SkinInfo> result = new HashSet<SkinInfo>();
 		// result.add(create(AutumnSkin.NAME, AutumnSkin.class, false));
 		result.add(create(BusinessSkin.NAME, BusinessSkin.class, false));
@@ -115,7 +116,8 @@ public class BaseSkinPlugin implements SubstanceSkinPlugin {
 	 * @seeorg.pushingpixels.substance.plugin.SubstanceSkinPlugin#
 	 * getDefaultSkinClassName()
 	 */
-	public String getDefaultSkinClassName() {
+	@Override
+    public String getDefaultSkinClassName() {
 		return null;
 	}
 }

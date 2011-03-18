@@ -414,7 +414,8 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 		// System.out.println("Listeners on root " + root.hashCode());
 
 		this.substanceHierarchyListener = new HierarchyListener() {
-			public void hierarchyChanged(HierarchyEvent e) {
+			@Override
+            public void hierarchyChanged(HierarchyEvent e) {
 				Component parent = root.getParent();
 				if (parent == null) {
 					// fix for defect 271 - check for null parent
@@ -440,7 +441,8 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 					// in zeroed modifiers set on the ActionEvent passed
 					// to the action listeners on that menu item.
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							root
 									.removeHierarchyListener(substanceHierarchyListener);
 							// System.out.println(root.hashCode() + ":"
@@ -476,7 +478,8 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 									.testWindowCloseThreadingViolation(e
 											.getWindow());
 							SwingUtilities.invokeLater(new Runnable() {
-								public void run() {
+								@Override
+                                public void run() {
 									Frame[] frames = Frame.getFrames();
 									for (Frame frame : frames) {
 										if (frame.isDisplayable())
@@ -508,7 +511,8 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 
 						protected void processNewPosition() {
 							SwingUtilities.invokeLater(new Runnable() {
-								public void run() {
+								@Override
+                                public void run() {
 									if (window == null)
 										return;
 
@@ -863,7 +867,8 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 		 * 
 		 * @return a Dimension object containing the layout's preferred size
 		 */
-		public Dimension preferredLayoutSize(Container parent) {
+		@Override
+        public Dimension preferredLayoutSize(Container parent) {
 			Dimension cpd, mbd, tpd;
 			int cpWidth = 0;
 			int cpHeight = 0;
@@ -918,7 +923,8 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 		 * 
 		 * @return a Dimension object containing the layout's minimum size
 		 */
-		public Dimension minimumLayoutSize(Container parent) {
+		@Override
+        public Dimension minimumLayoutSize(Container parent) {
 			Dimension cpd, mbd, tpd;
 			int cpWidth = 0;
 			int cpHeight = 0;
@@ -972,7 +978,8 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 		 * 
 		 * @return a Dimension object containing the layout's maximum size
 		 */
-		public Dimension maximumLayoutSize(Container target) {
+		@Override
+        public Dimension maximumLayoutSize(Container target) {
 			Dimension cpd, mbd, tpd;
 			int cpWidth = Integer.MAX_VALUE;
 			int cpHeight = Integer.MAX_VALUE;
@@ -1037,7 +1044,8 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 		 * 
 		 * aram the Container for which this layout manager is being used
 		 */
-		public void layoutContainer(Container parent) {
+		@Override
+        public void layoutContainer(Container parent) {
 			JRootPane root = (JRootPane) parent;
 			Rectangle b = root.getBounds();
 			Insets i = root.getInsets();
@@ -1078,24 +1086,30 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 			}
 		}
 
-		public void addLayoutComponent(String name, Component comp) {
+		@Override
+        public void addLayoutComponent(String name, Component comp) {
 		}
 
-		public void removeLayoutComponent(Component comp) {
+		@Override
+        public void removeLayoutComponent(Component comp) {
 		}
 
-		public void addLayoutComponent(Component comp, Object constraints) {
+		@Override
+        public void addLayoutComponent(Component comp, Object constraints) {
 		}
 
-		public float getLayoutAlignmentX(Container target) {
+		@Override
+        public float getLayoutAlignmentX(Container target) {
 			return 0.0f;
 		}
 
-		public float getLayoutAlignmentY(Container target) {
+		@Override
+        public float getLayoutAlignmentY(Container target) {
 			return 0.0f;
 		}
 
-		public void invalidateLayout(Container target) {
+		@Override
+        public void invalidateLayout(Container target) {
 		}
 	}
 
@@ -1155,12 +1169,14 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 		 */
 		@SuppressWarnings("unchecked")
 		private final PrivilegedExceptionAction getLocationAction = new PrivilegedExceptionAction() {
-			public Object run() throws HeadlessException {
+			@Override
+            public Object run() throws HeadlessException {
 				return MouseInfo.getPointerInfo().getLocation();
 			}
 		};
 
-		public void mousePressed(MouseEvent ev) {
+		@Override
+        public void mousePressed(MouseEvent ev) {
 			JRootPane rootPane = SubstanceRootPaneUI.this.getRootPane();
 
 			if (rootPane.getWindowDecorationStyle() == JRootPane.NONE) {
@@ -1208,7 +1224,8 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 			}
 		}
 
-		public void mouseReleased(MouseEvent ev) {
+		@Override
+        public void mouseReleased(MouseEvent ev) {
 			if ((this.dragCursor != 0)
 					&& (SubstanceRootPaneUI.this.window != null)
 					&& !SubstanceRootPaneUI.this.window.isValid()) {
@@ -1221,7 +1238,8 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 			this.dragCursor = 0;
 		}
 
-		public void mouseMoved(MouseEvent ev) {
+		@Override
+        public void mouseMoved(MouseEvent ev) {
 			JRootPane root = SubstanceRootPaneUI.this.getRootPane();
 
 			if (root.getWindowDecorationStyle() == JRootPane.NONE) {
@@ -1293,7 +1311,8 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 			}
 		}
 
-		@SuppressWarnings("unchecked")
+		@Override
+        @SuppressWarnings("unchecked")
 		public void mouseDragged(MouseEvent ev) {
 			Window w = (Window) ev.getSource();
 			Point pt = ev.getPoint();
@@ -1369,7 +1388,8 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 
 		private CursorState cursorState = CursorState.NIL;
 
-		public void mouseEntered(MouseEvent ev) {
+		@Override
+        public void mouseEntered(MouseEvent ev) {
 			Window w = (Window) ev.getSource();
 			if (cursorState == CursorState.EXITED
 					|| cursorState == CursorState.NIL) {
@@ -1380,13 +1400,15 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 			this.mouseMoved(ev);
 		}
 
-		public void mouseExited(MouseEvent ev) {
+		@Override
+        public void mouseExited(MouseEvent ev) {
 			Window w = (Window) ev.getSource();
 			w.setCursor(SubstanceRootPaneUI.this.lastCursor);
 			cursorState = CursorState.EXITED;
 		}
 
-		public void mouseClicked(MouseEvent ev) {
+		@Override
+        public void mouseClicked(MouseEvent ev) {
 			Window w = (Window) ev.getSource();
 			Frame f = null;
 

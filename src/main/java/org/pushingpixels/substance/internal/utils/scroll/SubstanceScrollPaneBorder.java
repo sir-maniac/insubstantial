@@ -53,7 +53,8 @@ public class SubstanceScrollPaneBorder implements Border, UIResource {
 	 * 
 	 * @see javax.swing.border.Border#getBorderInsets(java.awt.Component)
 	 */
-	public Insets getBorderInsets(Component c) {
+	@Override
+    public Insets getBorderInsets(Component c) {
 		float borderStrokeWidth = SubstanceSizeUtils
 				.getBorderStrokeWidth(SubstanceSizeUtils
 						.getComponentFontSize(c));
@@ -66,7 +67,8 @@ public class SubstanceScrollPaneBorder implements Border, UIResource {
 	 * 
 	 * @see javax.swing.border.Border#isBorderOpaque()
 	 */
-	public boolean isBorderOpaque() {
+	@Override
+    public boolean isBorderOpaque() {
 		return false;
 	}
 
@@ -76,7 +78,8 @@ public class SubstanceScrollPaneBorder implements Border, UIResource {
 	 * @see javax.swing.border.Border#paintBorder(java.awt.Component,
 	 * java.awt.Graphics, int, int, int, int)
 	 */
-	public void paintBorder(Component c, Graphics g, int x, int y, int width,
+	@Override
+    public void paintBorder(Component c, Graphics g, int x, int y, int width,
 			int height) {
 		if (!(c instanceof JScrollPane)) {
 			// Applications (such as NetBeans RCP) may incorrectly assume

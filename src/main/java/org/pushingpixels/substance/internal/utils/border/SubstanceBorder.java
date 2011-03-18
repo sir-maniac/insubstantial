@@ -198,7 +198,8 @@ public class SubstanceBorder implements Border, UIResource {
 	 * @see javax.swing.border.Border#paintBorder(java.awt.Component,
 	 * java.awt.Graphics, int, int, int, int)
 	 */
-	public void paintBorder(Component c, Graphics g, int x, int y, int width,
+	@Override
+    public void paintBorder(Component c, Graphics g, int x, int y, int width,
 			int height) {
 		paintBorder(c, g, x, y, width, height, c.isEnabled(), c.hasFocus(),
 				this.alpha);
@@ -209,7 +210,8 @@ public class SubstanceBorder implements Border, UIResource {
 	 * 
 	 * @see javax.swing.border.Border#getBorderInsets(java.awt.Component)
 	 */
-	public Insets getBorderInsets(Component c) {
+	@Override
+    public Insets getBorderInsets(Component c) {
 		if (this.myInsets == null) {
 			return SubstanceSizeUtils.getDefaultBorderInsets(SubstanceSizeUtils
 					.getComponentFontSize(c));
@@ -222,7 +224,8 @@ public class SubstanceBorder implements Border, UIResource {
 	 * 
 	 * @see javax.swing.border.Border#isBorderOpaque()
 	 */
-	public boolean isBorderOpaque() {
+	@Override
+    public boolean isBorderOpaque() {
 		return false;
 	}
 

@@ -41,7 +41,8 @@ public class ClientPropertyCommand implements
 	 * 
 	 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 	 */
-	public void configure(Component ab) {
+	@Override
+    public void configure(Component ab) {
 		if (ab instanceof JComponent)
 			((JComponent) ab).putClientProperty(this.propName,
 					this.propValue);

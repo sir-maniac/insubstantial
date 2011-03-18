@@ -46,14 +46,17 @@ public class PaletteEntryCellRenderer extends DefaultListCellRenderer {
             return color;
         }
         
+        @Override
         public int getIconHeight() {
             return 15;
         }
         
+        @Override
         public int getIconWidth() {
             return 25;
         }
         
+        @Override
         public void paintIcon(Component c, Graphics g, int x, int y) {
             g.setColor(getColor());
             g.fillRect(x + 1, y + 1, getIconWidth() - 2, getIconHeight() - 2);
@@ -75,6 +78,7 @@ public class PaletteEntryCellRenderer extends DefaultListCellRenderer {
         setOpaque(false);
     }
     
+    @Override
     public Component getListCellRendererComponent(
     JList list,
     Object value,
@@ -105,6 +109,7 @@ public class PaletteEntryCellRenderer extends DefaultListCellRenderer {
         return this;
     }
     
+    @Override
     public void paintComponent(Graphics g) {
         int width = getWidth();
         int height = getHeight();

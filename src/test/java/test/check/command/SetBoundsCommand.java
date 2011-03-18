@@ -29,7 +29,8 @@ public class SetBoundsCommand implements ConfigurationCommand<Component> {
 	 * 
 	 * @see test.check.ConfigurationCommand#invoke(java.lang.Object)
 	 */
-	public void configure(Component comp) {
+	@Override
+    public void configure(Component comp) {
 		comp.setBounds(this.bounds);
 	}
 }

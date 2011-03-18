@@ -529,31 +529,38 @@ public class SubstanceColorSchemeUtilities {
 			throw new IllegalArgumentException(
 					"Color encoding must have 7 components");
 		return new BaseLightColorScheme(name) {
-			public Color getUltraLightColor() {
+			@Override
+            public Color getUltraLightColor() {
 				return colors[0];
 			}
 
-			public Color getExtraLightColor() {
+			@Override
+            public Color getExtraLightColor() {
 				return colors[1];
 			}
 
-			public Color getLightColor() {
+			@Override
+            public Color getLightColor() {
 				return colors[2];
 			}
 
-			public Color getMidColor() {
+			@Override
+            public Color getMidColor() {
 				return colors[3];
 			}
 
-			public Color getDarkColor() {
+			@Override
+            public Color getDarkColor() {
 				return colors[4];
 			}
 
-			public Color getUltraDarkColor() {
+			@Override
+            public Color getUltraDarkColor() {
 				return colors[5];
 			}
 
-			public Color getForegroundColor() {
+			@Override
+            public Color getForegroundColor() {
 				return colors[6];
 			}
 		};
@@ -567,31 +574,38 @@ public class SubstanceColorSchemeUtilities {
 			throw new IllegalArgumentException(
 					"Color encoding must have 7 components");
 		return new BaseDarkColorScheme(name) {
-			public Color getUltraLightColor() {
+			@Override
+            public Color getUltraLightColor() {
 				return colors[0];
 			}
 
-			public Color getExtraLightColor() {
+			@Override
+            public Color getExtraLightColor() {
 				return colors[1];
 			}
 
-			public Color getLightColor() {
+			@Override
+            public Color getLightColor() {
 				return colors[2];
 			}
 
-			public Color getMidColor() {
+			@Override
+            public Color getMidColor() {
 				return colors[3];
 			}
 
-			public Color getDarkColor() {
+			@Override
+            public Color getDarkColor() {
 				return colors[4];
 			}
 
-			public Color getUltraDarkColor() {
+			@Override
+            public Color getUltraDarkColor() {
 				return colors[5];
 			}
 
-			public Color getForegroundColor() {
+			@Override
+            public Color getForegroundColor() {
 				return colors[6];
 			}
 		};

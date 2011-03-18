@@ -48,7 +48,8 @@ public class DefaultMacFontPolicy implements FontPolicy {
 	 * @see org.pushingpixels.substance.fonts.FontPolicy#getFontSet(java.lang.String,
 	 * javax.swing.UIDefaults)
 	 */
-	public FontSet getFontSet(String lafName, UIDefaults table) {
+	@Override
+    public FontSet getFontSet(String lafName, UIDefaults table) {
 		Font controlFont = new Font("Lucida Grande", Font.PLAIN, 13);
 		Font menuFont = table == null ? new Font("Lucida Grande", Font.PLAIN,
 				14) : table.getFont("Menu.font");

@@ -74,7 +74,8 @@ public class PasswordStrengthCheckerProperty extends JFrame {
 		final JCheckBox hasPasswordStrengthChecker = new JCheckBox(
 				"Has password strength checker");
 		hasPasswordStrengthChecker.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				if (hasPasswordStrengthChecker.isSelected()) {
 					jpf.putClientProperty(LafWidget.PASSWORD_STRENGTH_CHECKER,
 							new PasswordStrengthChecker() {
@@ -125,7 +126,8 @@ public class PasswordStrengthCheckerProperty extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new PasswordStrengthCheckerProperty().setVisible(true);
 			}

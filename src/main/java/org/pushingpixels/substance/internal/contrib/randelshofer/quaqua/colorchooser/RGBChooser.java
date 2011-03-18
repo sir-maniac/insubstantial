@@ -83,6 +83,7 @@ public class RGBChooser extends AbstractColorChooserPanel implements UIResource 
         new ColorSliderTextFieldHandler(blueField, ccModel, 2);
 
         ccModel.addChangeListener(new ChangeListener() {
+            @Override
             public void stateChanged(ChangeEvent evt) {
                 setColorToModel(ccModel.getColor());
             }
@@ -95,21 +96,26 @@ public class RGBChooser extends AbstractColorChooserPanel implements UIResource 
         greenLabel.setBorder(bm);
         blueLabel.setBorder(bm);
     }
+    @Override
     protected void buildChooser() {
     }
     
+    @Override
     public String getDisplayName() {
         return UIManager.getString("ColorChooser.rgbSliders");
     }
     
+    @Override
     public Icon getLargeDisplayIcon() {
         return UIManager.getIcon("ColorChooser.colorSlidersIcon");
     }
     
+    @Override
     public Icon getSmallDisplayIcon() {
         return getLargeDisplayIcon();
     }
     
+    @Override
     public void updateChooser() {
         ccModel.setColor(getColorFromModel());
     }
@@ -162,6 +168,7 @@ public class RGBChooser extends AbstractColorChooserPanel implements UIResource 
         redField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         redField.setText("0");
         redField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 redFieldFocusLost(evt);
             }
@@ -195,6 +202,7 @@ public class RGBChooser extends AbstractColorChooserPanel implements UIResource 
         greenField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         greenField.setText("0");
         greenField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 greenFieldFocusLost(evt);
             }
@@ -228,6 +236,7 @@ public class RGBChooser extends AbstractColorChooserPanel implements UIResource 
         blueField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         blueField.setText("0");
         blueField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 blueFieldFocusLost(evt);
             }

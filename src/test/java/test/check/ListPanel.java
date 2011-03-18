@@ -82,7 +82,8 @@ public class ListPanel extends ControllablePanel {
 		 * 
 		 * @see javax.swing.ListModel#getElementAt(int)
 		 */
-		public Object getElementAt(int index) {
+		@Override
+        public Object getElementAt(int index) {
 			return model.get(index);
 		}
 
@@ -91,7 +92,8 @@ public class ListPanel extends ControllablePanel {
 		 * 
 		 * @see javax.swing.ListModel#getSize()
 		 */
-		public int getSize() {
+		@Override
+        public int getSize() {
 			return model.size();
 		}
 
@@ -212,7 +214,8 @@ public class ListPanel extends ControllablePanel {
 		final JCheckBox isEnabled = new JCheckBox("is enabled");
 		isEnabled.setSelected(list.isEnabled());
 		isEnabled.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				list.setEnabled(isEnabled.isSelected());
 			}
 		});
@@ -223,7 +226,8 @@ public class ListPanel extends ControllablePanel {
 		rowCountSlider.setPaintLabels(false);
 		rowCountSlider.setPaintTicks(false);
 		rowCountSlider.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
+			@Override
+            public void stateChanged(ChangeEvent e) {
 				if (rowCountSlider.getValueIsAdjusting())
 					return;
 				list.setModel(new MoveableListModel(rowCountSlider.getValue()));
@@ -233,7 +237,8 @@ public class ListPanel extends ControllablePanel {
 
 		final JCheckBox watermarkBleed = new JCheckBox("watermark bleed");
 		watermarkBleed.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				list.putClientProperty(SubstanceLookAndFeel.WATERMARK_VISIBLE,
 						Boolean.valueOf(watermarkBleed.isSelected()));
 				jsp.putClientProperty(SubstanceLookAndFeel.WATERMARK_VISIBLE,
@@ -259,7 +264,8 @@ public class ListPanel extends ControllablePanel {
 		builder.append("", bDelete);
 
 		bUp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				int si = list.getSelectedIndex();
 				MoveableListModel mlm = (MoveableListModel) list.getModel();
 				mlm.moveUp(si);
@@ -268,7 +274,8 @@ public class ListPanel extends ControllablePanel {
 		});
 
 		bDown.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				int si = list.getSelectedIndex();
 				MoveableListModel mlm = (MoveableListModel) list.getModel();
 				mlm.moveDown(si);
@@ -277,7 +284,8 @@ public class ListPanel extends ControllablePanel {
 		});
 
 		bDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				MoveableListModel mlm = (MoveableListModel) list.getModel();
 				for (int i = list.getMaxSelectionIndex(); i >= list
 						.getMinSelectionIndex(); i--) {
@@ -293,9 +301,11 @@ public class ListPanel extends ControllablePanel {
 
 		list.getSelectionModel().addListSelectionListener(
 				new ListSelectionListener() {
-					public void valueChanged(ListSelectionEvent e) {
+					@Override
+                    public void valueChanged(ListSelectionEvent e) {
 						SwingUtilities.invokeLater(new Runnable() {
-							public void run() {
+							@Override
+                            public void run() {
 								synchronize();
 							}
 						});
@@ -310,9 +320,11 @@ public class ListPanel extends ControllablePanel {
 				SubstanceLookAndFeel.COMBO_POPUP_PROTOTYPE,
 				new WidestComboPopupPrototype());
 		selectionModelCb.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
+					@Override
+                    public void run() {
 						String selected = (String) selectionModelCb
 								.getSelectedItem();
 						if ("single".equals(selected))
@@ -334,7 +346,8 @@ public class ListPanel extends ControllablePanel {
 		final JCheckBox customBackgroundCb = new JCheckBox(
 				"Has pink background");
 		customBackgroundCb.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				if (customBackgroundCb.isSelected()) {
 					oldBackColor = list.getBackground();
 					list.setBackground(new Color(255, 128, 128));

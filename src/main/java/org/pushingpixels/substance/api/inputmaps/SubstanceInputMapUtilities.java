@@ -46,7 +46,8 @@ public class SubstanceInputMapUtilities {
 		try {
 			String desktop = AccessController
 					.doPrivileged(new PrivilegedAction<String>() {
-						public String run() {
+						@Override
+                        public String run() {
 							return System.getProperty("sun.desktop");
 						}
 					});

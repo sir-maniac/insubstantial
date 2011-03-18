@@ -194,7 +194,8 @@ public class DustSkin extends SubstanceSkin {
 						}));
 	}
 
-	public String getDisplayName() {
+	@Override
+    public String getDisplayName() {
 		return NAME;
 	}
 }

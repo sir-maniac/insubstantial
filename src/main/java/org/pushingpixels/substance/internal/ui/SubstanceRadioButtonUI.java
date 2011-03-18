@@ -97,7 +97,8 @@ public class SubstanceRadioButtonUI extends BasicRadioButtonUI implements
 		this.stateTransitionTracker.registerFocusListeners();
 
 		this.substancePropertyListener = new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
+			@Override
+            public void propertyChange(PropertyChangeEvent evt) {
 				if (AbstractButton.MODEL_CHANGED_PROPERTY.equals(evt
 						.getPropertyName())) {
 					stateTransitionTracker.setModel((ButtonModel) evt
@@ -105,7 +106,8 @@ public class SubstanceRadioButtonUI extends BasicRadioButtonUI implements
 				}
 				if ("font".equals(evt.getPropertyName())) {
 					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
+						@Override
+                        public void run() {
 							b.updateUI();
 						}
 					});

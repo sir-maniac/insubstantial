@@ -141,6 +141,7 @@ public class VisualMargin extends AbstractBorder implements UIResource {
         return insets;
     }
     
+    @Override
     public Insets getBorderInsets(Component c) {
         return getBorderInsets(c, new Insets(0, 0, 0, 0));
     }
@@ -151,6 +152,7 @@ public class VisualMargin extends AbstractBorder implements UIResource {
      * @param insets the object to be reinitialized
      * @return the <code>insets</code> object
      */
+    @Override
     public Insets getBorderInsets(Component c, Insets insets) {
         return getVisualMargin(c, insets);
     }

@@ -67,7 +67,8 @@ public class ClassicButtonShaper implements SubstanceButtonShaper,
 	 * @see
 	 * org.pushingpixels.substance.button.SubstanceButtonShaper#getDisplayName()
 	 */
-	public String getDisplayName() {
+	@Override
+    public String getDisplayName() {
 		return "Classic";
 	}
 
@@ -114,9 +115,11 @@ public class ClassicButtonShaper implements SubstanceButtonShaper,
 	 * org.pushingpixels.substance.button.SubstanceButtonShaper#getButtonBorder
 	 * (javax .swing.AbstractButton)
 	 */
-	public Border getButtonBorder(final AbstractButton button) {
+	@Override
+    public Border getButtonBorder(final AbstractButton button) {
 		return new SubstanceButtonBorder(ClassicButtonShaper.class) {
-			public Insets getBorderInsets(Component c) {
+			@Override
+            public Insets getBorderInsets(Component c) {
 				int fontSize = SubstanceSizeUtils.getComponentFontSize(button);
 				Insets buttonInsets = SubstanceSizeUtils
 						.getButtonInsets(fontSize);
@@ -164,7 +167,8 @@ public class ClassicButtonShaper implements SubstanceButtonShaper,
 	 * org.pushingpixels.substance.button.SubstanceButtonShaper#getPreferredSize
 	 * (javax .swing.AbstractButton, java.awt.Dimension)
 	 */
-	public Dimension getPreferredSize(AbstractButton button,
+	@Override
+    public Dimension getPreferredSize(AbstractButton button,
 			Dimension uiPreferredSize) {
 		Dimension result;
 		boolean toTweakWidth = false;
@@ -259,7 +263,8 @@ public class ClassicButtonShaper implements SubstanceButtonShaper,
 	 * org.pushingpixels.substance.button.SubstanceButtonShaper#isProportionate
 	 * ()
 	 */
-	public boolean isProportionate() {
+	@Override
+    public boolean isProportionate() {
 		return true;
 	}
 

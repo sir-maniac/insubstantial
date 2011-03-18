@@ -92,7 +92,8 @@ public class ComboPopupPrototype extends JFrame {
 		comboProto3.putClientProperty(
 				SubstanceLookAndFeel.COMBO_POPUP_PROTOTYPE,
 				new ComboPopupPrototypeCallback() {
-					public Object getPopupPrototypeDisplayValue(JComboBox jc) {
+					@Override
+                    public Object getPopupPrototypeDisplayValue(JComboBox jc) {
 						return jc.getModel().getElementAt(
 								jc.getModel().getSize() - 1);
 					}
@@ -115,7 +116,8 @@ public class ComboPopupPrototype extends JFrame {
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				SubstanceLookAndFeel.setSkin(new BusinessBlackSteelSkin());
 				new ComboPopupPrototype().setVisible(true);
 			}

@@ -72,7 +72,8 @@ public class ClassicDecorationPainter implements SubstanceDecorationPainter {
 	 * 
 	 * @see org.pushingpixels.substance.utils.SubstanceTrait#getDisplayName()
 	 */
-	public String getDisplayName() {
+	@Override
+    public String getDisplayName() {
 		return DISPLAY_NAME;
 	}
 
@@ -86,7 +87,8 @@ public class ClassicDecorationPainter implements SubstanceDecorationPainter {
 	 * org.pushingpixels.substance.painter.decoration.DecorationAreaType, int,
 	 * int, org.pushingpixels.substance.skin.SubstanceSkin)
 	 */
-	public void paintDecorationArea(Graphics2D graphics, Component comp,
+	@Override
+    public void paintDecorationArea(Graphics2D graphics, Component comp,
 			DecorationAreaType decorationAreaType, int width, int height,
 			SubstanceSkin skin) {
 		SubstanceColorScheme scheme = skin
