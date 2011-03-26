@@ -333,7 +333,7 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 						newModel.addPopupActionListener(popupActionListener);
 					}
 				}
-				if ("displayState".equals(evt.getPropertyName())) {
+				if ("displayState".equals(evt.getPropertyName()) || ("enabled".equals(evt.getPropertyName()) && !((Boolean) evt.getNewValue()))) {
 					syncIconDimension();
 					syncDisabledIcon();
 
