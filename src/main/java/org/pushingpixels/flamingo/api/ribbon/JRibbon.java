@@ -269,6 +269,11 @@ public class JRibbon extends JComponent {
 		this.fireStateChanged();
 	}
 
+    /*
+     * Added Remove Tasks from patch provided by Jonathan Giles Jan 2009
+     * http://markmail.org/message/vzw3hrntr6qsdlu3
+     */
+
 	/**
 	 * Removes the specified taskbar component from this ribbon.
 	 * 
@@ -281,6 +286,14 @@ public class JRibbon extends JComponent {
 		this.taskbarComponents.remove(comp);
 		this.fireStateChanged();
 	}
+
+	/**
+     * Removes all components added to the taskbar of the ribbon.
+     */
+    public void removeAllTaskbarComponents() {
+        this.taskbarComponents.clear();
+        this.fireStateChanged();
+    }
 
 	/**
 	 * Adds the specified task to this ribbon.
@@ -302,6 +315,54 @@ public class JRibbon extends JComponent {
 
 		this.fireStateChanged();
 	}
+
+	/**
+     * Removes the task at the specified position, if it represents a valid task.
+     * Throws an {@link IndexOutOfBoundsException} if not.
+     *
+     * @param pos
+     *             The position of the task to remove.
+     */
+    public void removeTask(int pos) {
+        if (pos >= getTaskCount()) {
+             throw new IndexOutOfBoundsException("task position  '"+pos+"' exceeds number of tasks in ribbon ('"+getTaskCount()+"')");
+        }
+
+        removeTask(getTask(pos));
+    }
+
+    /**
+     * Removes the given task from the ribbon. If this is the currently visible task, the
+     * ribbon will move to the task to its left, unless the removed task is the left-most,
+     * in which case it will move to the next task to the right.
+     *
+     * @param task The ribbon task to be removed from the panel.
+     */
+    public void removeTask(RibbonTask task) {
+        if (task == null) {
+            throw new IllegalArgumentException("RibbonTask can not be null");
+        }
+
+        int posOfTask = this.tasks.indexOf(task);
+        this.tasks.remove(task);
+
+        if (getSelectedTask().equals(task) && tasks.size() > 0) {
+            RibbonTask newTask = getTask(posOfTask == 0 ? 1 : posOfTask
+- 1);
+            setSelectedTask(newTask);
+        }
+
+        this.fireStateChanged();
+    }
+
+    /**
+     * Removes all tasks from the ribbon.
+     */
+    public void removeAllTasks() {
+        this.tasks.clear();
+        this.contextualTaskGroups.clear();
+        this.fireStateChanged();
+    }
 
 	/**
 	 * Configures the help button of this ribbon.
