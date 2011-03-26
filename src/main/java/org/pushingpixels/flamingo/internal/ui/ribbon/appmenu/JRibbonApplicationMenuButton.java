@@ -54,16 +54,17 @@ public class JRibbonApplicationMenuButton extends JCommandButton {
 	 * The UI class ID string.
 	 */
 	public static final String uiClassID = "RibbonApplicationMenuButtonUI";
+    static final int APP_BUTTON_SIZE = Integer.getInteger("peacock.appButtonSize", 24);
 
 	private final static CommandButtonDisplayState APP_MENU_BUTTON_STATE = new CommandButtonDisplayState(
-			"Ribbon Application Menu Button", 24) {
+			"Ribbon Application Menu Button", APP_BUTTON_SIZE) {
 		@Override
 		public org.pushingpixels.flamingo.api.common.CommandButtonLayoutManager createLayoutManager(
 				org.pushingpixels.flamingo.api.common.AbstractCommandButton commandButton) {
 			return new CommandButtonLayoutManager() {
 				@Override
                 public int getPreferredIconSize() {
-					return 24;
+					return APP_BUTTON_SIZE;
 				}
 
 				@Override
