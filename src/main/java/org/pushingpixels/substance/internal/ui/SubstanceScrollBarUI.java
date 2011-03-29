@@ -1149,8 +1149,8 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 				if ("font".equals(evt.getPropertyName())) {
 					SwingUtilities.invokeLater(new Runnable() {
 						@Override
-                        public void run() {
-							scrollbar.updateUI();
+						public void run() {
+              if ( scrollbar != null ) scrollbar.updateUI();
 						}
 					});
 				}
