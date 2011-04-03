@@ -39,9 +39,9 @@ dependencies {
     transitive = false
   }
 
-  compile group:'com.github.insubstantial', name:'halberd', version:version
-  compile group:'com.github.insubstantial', name:'plafwidget', version:version
-  compile group:'com.github.insubstantial', name:'plafplugin', version:version
+  compile group:'com.github.insubstantial', name:'trident', version:version
+  compile group:'com.github.insubstantial', name:'laf-widget', version:version
+  compile group:'com.github.insubstantial', name:'laf-plugin', version:version
   testCompile group:'com.jgoodies', name:'forms', version:'1.2.0'
   testCompile group:'org.swinglabs', name:'swingx', version:'1.6.1'
   toolsCompile group:'org.easytesting', name:'fest-swing', version:'1.2'
@@ -159,8 +159,6 @@ task testJar(type: Jar) {
     attributes(
       "Substance-Version": versionKey,
       "Substance-BuildStamp": timeStamp,
-      "Main-Class": "test.Check",
-      "Class-Path": "substance.jar ../lib/trident.jar ../lib/build/forms-1.2.0.jar ../lib/build/swingx.jar ../lib/build/substance-swingx.jar"
     )
   }
 }
@@ -174,8 +172,6 @@ task testLiteJar(type: Jar) {
     attributes(
       "Substance-Version": versionKey,
       "Substance-BuildStamp": timeStamp,
-      "Main-Class": "test.Check",
-      "Class-Path": "substance-lite.jar ../lib/trident.jar ../lib/build/forms-1.2.0.jar ../lib/build/swingx.jar ../lib/build/substance-swingx.jar"
     )
   }
 }
@@ -228,6 +224,7 @@ artifacts {
   archives javadocJar
   archives toolsJar
   archives liteJar
+  archives testJar
 }
 
 uploadArchives {
