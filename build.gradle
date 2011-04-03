@@ -46,6 +46,20 @@ task javadocJar(type: Jar) {
   classifier = 'javadoc'
 }
 
+task testJar(type: Jar) {
+  classifier = 'tst'
+
+  from sourceSets.test.classes
+
+  manifest {
+    attributes(
+      "Trident-Version": version,
+      "Trident-VersionName": versionKey,
+      "Trident-BuildStamp": timeStamp
+    )
+  }
+}
+
 artifacts {
   archives sourceJar
   archives javadocJar
