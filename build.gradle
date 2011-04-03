@@ -21,7 +21,7 @@ repositories {
 }
 
 dependencies {
-  compile group:'com.github.insubstantial', name:'halberd', version:version
+  compile group:'com.github.insubstantial', name:'trident', version:version
   compile files('lib/svnkit.jar') // unknown version of svnkit
   compile files('lib/batik-all.jar') // batik 1.7.  No maven deployments (?)
   testCompile group: 'com.jgoodies', name: 'forms', version: '1.2.0'
@@ -62,6 +62,20 @@ task sourceJar(type: Jar) {
 task javadocJar(type: Jar) {
   from javadoc.destinationDir
   classifier = 'javadoc'
+}
+
+task testJar(type: Jar) {
+  classifier = 'tst'
+
+  from sourceSets.test.classes
+
+  manifest {
+    attributes(
+      "Flamingo-Version": version,
+      "Flamingo-VersionName": versionKey,
+      "Flamingo-BuildStamp": timeStamp
+    )
+  }
 }
 
 artifacts {
