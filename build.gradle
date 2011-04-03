@@ -31,10 +31,15 @@ repositories {
 }
 
 dependencies {
-  compile group:'com.github.insubstantial', name:'insubstantial', version: version
-  compile group:'com.github.insubstantial', name:'peacock', version: version
-  //testCompile group:'com.github.insubstantial', name:'insubstantial', version: version, ext:'test'
-  toolsCompile group:'com.github.insubstantial', name:'insubstantial', version: version, ext:'tools'
+  compile group:'com.github.insubstantial', name:'substance', version: version
+  compile group:'com.github.insubstantial', name:'flamingo', version: version
+  testCompile files('lib/substance-6.2-tst-hack.jar')
+  testCompile files('lib/flamingo-6.2-tst-hack.jar')
+  testCompile files('lib/batik-all.jar')
+//  testCompile group:'com.github.insubstantial', name:'substance', version: version, ext: 'tst'
+//  testCompile group:'com.github.insubstantial', name:'flamingo', version: version, ext: 'tst'
+  testCompile group:'com.jgoodies', name:'forms', version:'1.2.0'
+  toolsCompile group:'com.github.insubstantial', name:'substance', version: version, ext:'tools'
   toolsCompile group:'org.easytesting', name:'fest-swing', version:'1.2'
 }
 
@@ -120,22 +125,22 @@ task liteJar(type: Jar) {
   }
 }
 
-//task testJar(type: Jar) {
-//  classifier = 'tst'
-//
-//  from sourceSets.test.classes
-//
-//  manifest {
-//    attributes(
-//      "Substance-Version": version,
-//      "Flamingo-Version": version,
-//      "Substance-VersionName": versionKey,
-//      "Flamingo-VersionName": versionKey,
-//      "Substance-BuildStamp": timeStamp
-//    )
-//  }
-//}
-//
+task testJar(type: Jar) {
+  classifier = 'tst'
+
+  from sourceSets.test.classes
+
+  manifest {
+    attributes(
+      "Substance-Version": version,
+      "Flamingo-Version": version,
+      "Substance-VersionName": versionKey,
+      "Flamingo-VersionName": versionKey,
+      "Substance-BuildStamp": timeStamp
+    )
+  }
+}
+
 //task testLiteJar(type: Jar) {
 //  classifier = 'tst-lite'
 //
