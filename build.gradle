@@ -21,7 +21,7 @@ repositories {
 }
 
 dependencies {
-  compile group:'com.github.insubstantial', name:'halberd', version:version
+  compile group:'com.github.insubstantial', name:'trident', version:version
   compile group:'asm', name:'asm-all', version:'2.2.3'
   compile group:'org.apache.ant', name:'ant', version:'1.7.0'
 }
