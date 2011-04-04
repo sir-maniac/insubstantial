@@ -50,7 +50,7 @@ jar {
 task sourceJar(type: Jar) {
   from sourceSets.main.java
   from sourceSets.main.resources
-  classifier = 'src'
+  classifier = 'sources'
 }
 
 task javadocJar(type: Jar) {
