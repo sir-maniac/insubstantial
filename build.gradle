@@ -1,5 +1,17 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'de.huxhorn.gradle:de.huxhorn.gradle.pgp-plugin:0.0.3'
+	}
+}
+
+
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'sign'
+apply plugin: de.huxhorn.gradle.pgp.PgpPlugin
 
 group = "com.github.insubstantial"
 version = "6.2"
@@ -193,7 +205,7 @@ task distroJar(type: Jar) {
 task sourceJar(type: Jar) {
   from sourceSets.main.java
   from sourceSets.main.resources
-  classifier = 'src'
+  classifier = 'sources'
 }
 
 task javadocJar(type: Jar) {
