@@ -2,8 +2,8 @@ apply plugin: 'java'
 apply plugin: 'maven'
 
 group = "com.github.insubstantial"
-version = "6.2-SNAPSHOT"
-versionKey = "6.2-invincible_SNAPSHOT"
+version = "6.2"
+versionKey = "6.2-invincible"
 release = "internal"
 timeStamp = new Date().format("MMMM d, yyyy HH:mm:ss z")
 
