@@ -1,0 +1,152 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'de.huxhorn.gradle:de.huxhorn.gradle.pgp-plugin:0.0.3'
+	}
+}
+
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'sign'
+apply plugin: de.huxhorn.gradle.pgp.PgpPlugin
+
+group = "com.github.insubstantial"
+version = "6.2"
+versionKey = "6.2-invincible"
+release = "internal"
+timeStamp = new Date().format("MMMM d, yyyy HH:mm:ss z")
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '0.9.2'
+}
+
+repositories {
+  mavenRepo name: 'sonatype staging', urls: 'https://oss.sonatype.org/content/groups/staging'
+  mavenCentral()
+  mavenRepo urls: new File(System.getProperty('user.home'), '.m2/repository').toURI().toString()
+}
+
+dependencies {
+  compile group:'com.github.insubstantial', name:'trident', version:version
+  compile files('lib/svnkit.jar') // unknown version of svnkit
+  compile files('lib/batik-all.jar') // batik 1.7.  No maven deployments (?)
+  testCompile group: 'com.jgoodies', name: 'forms', version: '1.2.0'
+  testCompile group:'junit', name:'junit', version:'4.3.1'
+  testCompile group:'org.easytesting', name:'fest-assert', version:'1.2'
+  testCompile group:'org.easytesting', name:'fest-reflect', version:'1.2'
+  testCompile group:'org.easytesting', name:'fest-swing', version:'1.2.1'
+  testCompile group:'org.easytesting', name:'fest-swing-junit', version:'1.2.1'
+  testCompile group:'org.easytesting', name:'fest-swing-junit-4.3.1', version:'1.2.1'
+  testCompile files('lib/js.jar') // ??? is this some old ver or rhino?  is it even needed?
+  testCompile files('lib/pdf-transcoder.jar') // ??? is this some old ver or rhino?  is it even needed?
+  testCompile files('lib/test/debug-1.0.jar')
+}
+
+test {
+  // there are some errors related to using Batik and running these GUI tests
+  // in gradle as opposed to Ant.
+  // but some of the tests came pre-broken!
+  enabled = false
+}
+
+jar {
+  manifest {
+    attributes(
+      "Flamingo-Version": version,
+      "Flamingo-VersionName": versionKey,
+      "Flamingo-BuildStamp": timeStamp
+    )
+  }
+}
+
+task sourceJar(type: Jar) {
+  from sourceSets.main.java
+  from sourceSets.main.resources
+  classifier = 'sources'
+}
+
+task javadocJar(type: Jar) {
+  dependsOn javadoc
+  from javadoc.destinationDir
+  classifier = 'javadoc'
+}
+
+task testJar(type: Jar) {
+  classifier = 'tst'
+
+  from sourceSets.test.classes
+
+  manifest {
+    attributes(
+      "Flamingo-Version": version,
+      "Flamingo-VersionName": versionKey,
+      "Flamingo-BuildStamp": timeStamp
+    )
+  }
+}
+
+artifacts {
+  archives sourceJar
+  archives javadocJar
+}
+
+uploadArchives {
+  try {
+    def x = [deployUsername, deployPassword]
+  } catch (Exception e) {
+    deployUsername = 'unset'
+    deployPassword = ''
+  }
+  repositories {
+    mavenDeployer {
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication userName: deployUsername, password: deployPassword
+      }
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication userName: deployUsername, password: deployPassword
+      }
+      pom.project {
+        modelVersion '4.0.0'
+        packaging 'jar'
+        name "peacock"
+        description "A fork of @kirilcool's flamingo project"
+        url "http://insubstantial.github.com/peacock"
+        licenses {
+          license {
+            name 'The BSD License'
+            url 'http://www.opensource.org/licenses/bsd-license.php'
+            distribution 'repo'
+          }
+        }
+        scm {
+          connection 'scm:git:git@github.com:Insubstantial/peacock.git'
+          developerConnection 'scm:git:git@github.com:Insubstantial/peacock.git'
+          url 'scm:git:git@github.com:Insubstantial/peacock.git'
+        }
+        developers {
+          developer {
+            name 'Kirill Grouchnikov'
+            email 'kirillcool@yahoo.com'
+            roles {
+              role 'author'
+              role 'developer'
+            }
+          }
+          developer {
+            name 'Danno Ferrin'
+            email 'danno.ferrin@shemnon.com'
+            roles {
+              role 'maintainer'
+            }
+          }
+        }
+      }
+    }
+  }
+}
