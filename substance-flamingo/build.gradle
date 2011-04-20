@@ -1,6 +1,3 @@
-dependsOn(":substance")
-dependsOn(":flamingo")
-
 configurations {
   testCompile { extendsFrom compile }
   toolsCompile { extendsFrom compile }

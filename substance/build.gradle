@@ -1,7 +1,3 @@
-dependsOn(":trident")
-dependsOn(":laf-widget")
-dependsOn(":laf-plugin")
-
 configurations {
   testCompile { extendsFrom compile }
   toolsCompile { extendsFrom compile }

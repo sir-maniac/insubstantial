@@ -1,5 +1,3 @@
-dependsOn(":substance")
-
 swingXVersion = "1.6.1"
 
 configurations {

@@ -1,5 +1,3 @@
-dependsOn(":trident")
-
 dependencies {
   compile project (":trident")
   compile files('lib/svnkit.jar') // unknown version of svnkit
