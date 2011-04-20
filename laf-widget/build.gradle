@@ -51,7 +51,7 @@ uploadArchives {
       pom.project {
         modelVersion '4.0.0'
         packaging 'jar'
-        name "plaf widget"
+        name "laf-widget"
         description "A fork of @kirilcool's laf-widget project"
         url "http://insubstantial.github.com/plafwidget"
         licenses {
@@ -69,9 +69,9 @@ uploadArchives {
           }
         }
         scm {
-          connection 'scm:git:git@github.com:Insubstantial/plafwidget.git'
-          developerConnection 'scm:git:git@github.com:Insubstantial/plafwidget.git'
-          url 'scm:git:git@github.com:Insubstantial/plafwidget.git'
+          connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+          developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+          url 'scm:git:git@github.com:Insubstantial/insubstantial.git'
         }
         developers {
           developer {

@@ -212,7 +212,7 @@ uploadArchives {
       pom.project {
         modelVersion '4.0.0'
         packaging 'jar'
-        name "halberd"
+        name "substance-flamingo"
         description "A fork of @kirilcool's substance project"
         url "http://insubstantial.github.com/insubstantialPeacock"
         licenses {
@@ -230,9 +230,9 @@ uploadArchives {
           }
         }
         scm {
-          connection 'scm:git:git@github.com:Insubstantial/insubstantialPeacock.git'
-          developerConnection 'scm:git:git@github.com:Insubstantial/insubstantialPeacock.git'
-          url 'scm:git:git@github.com:Insubstantial/insubstantialPeacock.git'
+          connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+          developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+          url 'scm:git:git@github.com:Insubstantial/insubstantial.git'
         }
         developers {
           developer {

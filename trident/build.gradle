@@ -62,7 +62,7 @@ uploadArchives {
       pom.project {
         modelVersion '4.0.0'
         packaging 'jar'
-        name "halberd"
+        name "trident"
         description "A fork of @kirilcool's trident project"
         url "http://insubstantial.github.com/halberd"
         licenses {
@@ -73,9 +73,9 @@ uploadArchives {
           }
         }
         scm {
-          connection 'scm:git:git@github.com:Insubstantial/halberd.git'
-          developerConnection 'scm:git:git@github.com:Insubstantial/halberd.git'
-          url 'scm:git:git@github.com:Insubstantial/halberd.git'
+          connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+          developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+          url 'scm:git:git@github.com:Insubstantial/insubstantial.git'
         }
         developers {
           developer {

@@ -82,7 +82,7 @@ uploadArchives {
       pom.project {
         modelVersion '4.0.0'
         packaging 'jar'
-        name "peacock"
+        name "flamingo"
         description "A fork of @kirilcool's flamingo project"
         url "http://insubstantial.github.com/peacock"
         licenses {
@@ -93,9 +93,9 @@ uploadArchives {
           }
         }
         scm {
-          connection 'scm:git:git@github.com:Insubstantial/peacock.git'
-          developerConnection 'scm:git:git@github.com:Insubstantial/peacock.git'
-          url 'scm:git:git@github.com:Insubstantial/peacock.git'
+          connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+          developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+          url 'scm:git:git@github.com:Insubstantial/insubstantial.git'
         }
         developers {
           developer {
