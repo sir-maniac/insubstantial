@@ -1,27 +1,6 @@
-buildscript {
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath 'de.huxhorn.gradle:de.huxhorn.gradle.pgp-plugin:0.0.3'
-	}
-}
+dependsOn(":substance")
 
-
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'sign'
-apply plugin: de.huxhorn.gradle.pgp.PgpPlugin
-
-group = "com.github.insubstantial"
-version = "6.2"
 swingXVersion = "1.6.1"
-versionKey = "6.2-invincible"
-release = "internal"
-timeStamp = new Date().format("MMMM d, yyyy HH:mm:ss z")
-
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
 
 configurations {
   testCompile { extendsFrom compile }
@@ -37,14 +16,8 @@ sourceSets {
   //}
 }
 
-repositories {
-  mavenRepo name: 'sonatype staging', urls: 'https://oss.sonatype.org/content/groups/staging'
-  mavenCentral()
-  mavenRepo urls: new File(System.getProperty('user.home'), '.m2/repository').toURI().toString()
-}
-
 dependencies {
-  compile group:'com.github.insubstantial', name:'substance', version: version
+  compile project(":substance")
   compile group:'org.swinglabs', name:'swingx', version: swingXVersion
   testCompile files('lib/substance-6.2-tst-hack.jar')
   testCompile group:'com.jgoodies', name:'forms', version:'1.2.0'

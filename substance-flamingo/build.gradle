@@ -1,26 +1,5 @@
-buildscript {
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath 'de.huxhorn.gradle:de.huxhorn.gradle.pgp-plugin:0.0.3'
-	}
-}
-
-
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'sign'
-apply plugin: de.huxhorn.gradle.pgp.PgpPlugin
-
-group = "com.github.insubstantial"
-version = "6.2"
-versionKey = "6.2-invincible"
-release = "internal"
-timeStamp = new Date().format("MMMM d, yyyy HH:mm:ss z")
-
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
+dependsOn(":substance")
+dependsOn(":flamingo")
 
 configurations {
   testCompile { extendsFrom compile }
@@ -36,22 +15,16 @@ sourceSets {
   //}
 }
 
-repositories {
-  mavenRepo name: 'sonatype staging', urls: 'https://oss.sonatype.org/content/groups/staging'
-  mavenCentral()
-  mavenRepo urls: new File(System.getProperty('user.home'), '.m2/repository').toURI().toString()
-}
-
 dependencies {
-  compile group:'com.github.insubstantial', name:'substance', version: version
-  compile group:'com.github.insubstantial', name:'flamingo', version: version
+  compile project(":substance")
+  compile project(":flamingo")
   testCompile files('lib/substance-6.2-tst-hack.jar')
   testCompile files('lib/flamingo-6.2-tst-hack.jar')
   testCompile files('lib/batik-all.jar')
 //  testCompile group:'com.github.insubstantial', name:'substance', version: version, ext: 'tst'
 //  testCompile group:'com.github.insubstantial', name:'flamingo', version: version, ext: 'tst'
   testCompile group:'com.jgoodies', name:'forms', version:'1.2.0'
-  toolsCompile group:'com.github.insubstantial', name:'substance', version: version, ext:'tools'
+  toolsCompile project(":substance")
   toolsCompile group:'org.easytesting', name:'fest-swing', version:'1.2'
 }
 

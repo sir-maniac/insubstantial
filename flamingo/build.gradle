@@ -1,39 +1,7 @@
-buildscript {
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath 'de.huxhorn.gradle:de.huxhorn.gradle.pgp-plugin:0.0.3'
-	}
-}
-
-
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'sign'
-apply plugin: de.huxhorn.gradle.pgp.PgpPlugin
-
-group = "com.github.insubstantial"
-version = "6.2"
-versionKey = "6.2-invincible"
-release = "internal"
-timeStamp = new Date().format("MMMM d, yyyy HH:mm:ss z")
-
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
-
-task wrapper(type: Wrapper) {
-  gradleVersion = '0.9.2'
-}
-
-repositories {
-  mavenRepo name: 'sonatype staging', urls: 'https://oss.sonatype.org/content/groups/staging'
-  mavenCentral()
-  mavenRepo urls: new File(System.getProperty('user.home'), '.m2/repository').toURI().toString()
-}
+dependsOn(":trident")
 
 dependencies {
-  compile group:'com.github.insubstantial', name:'trident', version:version
+  compile project (":trident")
   compile files('lib/svnkit.jar') // unknown version of svnkit
   compile files('lib/batik-all.jar') // batik 1.7.  No maven deployments (?)
   testCompile group: 'com.jgoodies', name: 'forms', version: '1.2.0'
