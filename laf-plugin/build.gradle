@@ -1,0 +1,116 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'de.huxhorn.gradle:de.huxhorn.gradle.pgp-plugin:0.0.3'
+	}
+}
+
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'sign'
+apply plugin: de.huxhorn.gradle.pgp.PgpPlugin
+
+group = "com.github.insubstantial"
+version = "6.2"
+versionKey = "6.2-invincible"
+release = "internal"
+timeStamp = new Date().format("MMMM d, yyyy HH:mm:ss z")
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '0.9.2'
+}
+
+jar {
+  manifest {
+    attributes(
+      "Laf-Plugin-Version": version,
+      "Laf-Plugin-VersionName": versionKey,
+      "Laf-Plugin-BuildStamp": timeStamp
+    )
+  }
+}
+
+task sourceJar(type: Jar) {
+  from sourceSets.main.java
+  from sourceSets.main.resources
+  classifier = 'sources'
+}
+
+task javadocJar(type: Jar) {
+  dependsOn javadoc
+  from javadoc.destinationDir
+  classifier = 'javadoc'
+}
+
+artifacts {
+  archives sourceJar
+  archives javadocJar
+}
+
+uploadArchives {
+  try {
+    def x = [deployUsername, deployPassword]
+  } catch (Exception e) {
+    deployUsername = 'unset'
+    deployPassword = ''
+  }
+  repositories {
+    mavenDeployer {
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication userName: deployUsername, password: deployPassword
+      }
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication userName: deployUsername, password: deployPassword
+      }
+      pom.project {
+        modelVersion '4.0.0'
+        packaging 'jar'
+        name "plaf plugin"
+        description "A fork of @kirilcool's laf-plugin project"
+        url "http://insubstantial.github.com/plafplugin"
+        licenses {
+          license {
+            name 'The BSD License'
+            url 'http://www.opensource.org/licenses/bsd-license.php'
+            distribution 'repo'
+            comments 'Covers LafPlugin'
+          }
+          license {
+            name 'The zlib/libpng License'
+            url 'http://www.opensource.org/licenses/zlib-license'
+            distribution 'repo'
+            comments 'Covers the XMLElement and XMLParseException classes'
+          }
+        }
+        scm {
+          connection 'scm:git:git@github.com:Insubstantial/plafplugin.git'
+          developerConnection 'scm:git:git@github.com:Insubstantial/plafplugin.git'
+          url 'scm:git:git@github.com:Insubstantial/plafplugin.git'
+        }
+        developers {
+          developer {
+            name 'Kirill Grouchnikov'
+            email 'kirillcool@yahoo.com'
+            roles {
+              role 'author'
+              role 'developer'
+            }
+          }
+          developer {
+            name 'Danno Ferrin'
+            email 'danno.ferrin@shemnon.com'
+            roles {
+              role 'maintainer'
+            }
+          }
+        }
+      }
+    }
+  }
+}
