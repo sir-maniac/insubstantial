@@ -172,22 +172,7 @@ task distroJar(type: Jar) {
 //uploadArchives.dependsOn << allSubstanceJars
 //assemble.dependsOn << allSubstanceJars
 
-task sourceJar(type: Jar) {
-  from sourceSets.main.java
-  from sourceSets.main.resources
-  classifier = 'sources'
-}
-
-task javadocJar(type: Jar) {
-  dependsOn javadoc
-  from javadoc.destinationDir
-  classifier = 'javadoc'
-}
-
 artifacts {
-  archives sourceJar
-  archives javadocJar
-  //archives toolsJar
   archives liteJar
 }
 

@@ -8,6 +8,11 @@ buildscript {
 }
 
 subprojects {
+  apply plugin: 'java'
+  apply plugin: 'maven'
+  apply plugin: 'sign'
+  apply plugin: de.huxhorn.gradle.pgp.PgpPlugin
+
   group = 'com.github.insubstantial'
   version = '6.3-SNAPSHOT'
   versionKey = "6.3-defender"
@@ -17,17 +22,28 @@ subprojects {
   sourceCompatibility = 1.6
   targetCompatibility = 1.6
 
-  apply plugin: 'java'
-  apply plugin: 'maven'
-  apply plugin: 'sign'
-  apply plugin: de.huxhorn.gradle.pgp.PgpPlugin
-
   repositories {
     mavenRepo name: 'sonatype staging', urls: 'https://oss.sonatype.org/content/groups/staging'
     mavenCentral()
     mavenRepo urls: new File(System.getProperty('user.home'), '.m2/repository').toURI().toString()
   }
 
+  task sourceJar(type: Jar) {
+    from sourceSets.main.java
+    from sourceSets.main.resources
+    classifier = 'sources'
+  }
+
+  task javadocJar(type: Jar) {
+    dependsOn javadoc
+    from javadoc.destinationDir
+    classifier = 'javadoc'
+  }
+
+  artifacts {
+    archives sourceJar
+    archives javadocJar
+  }
 }
 
 task wrapper(type: Wrapper) {

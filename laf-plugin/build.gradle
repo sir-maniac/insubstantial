@@ -8,23 +8,6 @@ jar {
   }
 }
 
-task sourceJar(type: Jar) {
-  from sourceSets.main.java
-  from sourceSets.main.resources
-  classifier = 'sources'
-}
-
-task javadocJar(type: Jar) {
-  dependsOn javadoc
-  from javadoc.destinationDir
-  classifier = 'javadoc'
-}
-
-artifacts {
-  archives sourceJar
-  archives javadocJar
-}
-
 uploadArchives {
   try {
     def x = [deployUsername, deployPassword]
