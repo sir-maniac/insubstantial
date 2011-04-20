@@ -1,0 +1,139 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'de.huxhorn.gradle:de.huxhorn.gradle.pgp-plugin:0.0.3'
+	}
+}
+
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'sign'
+apply plugin: de.huxhorn.gradle.pgp.PgpPlugin
+
+group = "com.github.insubstantial"
+version = "6.2"
+versionKey = "6.2-invincible"
+release = "internal"
+timeStamp = new Date().format("MMMM d, yyyy HH:mm:ss z")
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '0.9.2'
+}
+
+repositories {
+  mavenRepo name: 'sonatype staging', urls: 'https://oss.sonatype.org/content/groups/staging'
+  mavenCentral()
+  mavenRepo urls: new File(System.getProperty('user.home'), '.m2/repository').toURI().toString()
+}
+
+dependencies {
+  compile group: 'com.google.android', name: 'android', version: '2.3.1', transitive: false
+  compile group: 'org.eclipse.swt.win32.win32', name: 'x86', version: '3.3.0-v3346', transitive: false
+}
+
+jar {
+  manifest {
+    attributes(
+      "Trident-Version": version,
+      "Trident-VersionName": versionKey,
+      "Trident-BuildStamp": timeStamp
+    )
+  }
+}
+
+task sourceJar(type: Jar) {
+  from sourceSets.main.java
+  from sourceSets.main.resources
+  classifier = 'sources'
+}
+
+task javadocJar(type: Jar) {
+  dependsOn javadoc
+  from javadoc.destinationDir
+  classifier = 'javadoc'
+}
+
+task testJar(type: Jar) {
+  classifier = 'tst'
+
+  from sourceSets.test.classes
+
+  manifest {
+    attributes(
+      "Trident-Version": version,
+      "Trident-VersionName": versionKey,
+      "Trident-BuildStamp": timeStamp
+    )
+  }
+}
+
+artifacts {
+  archives sourceJar
+  archives javadocJar
+}
+
+uploadArchives {
+  try {
+    def x = [deployUsername, deployPassword]
+  } catch (Exception e) {
+    deployUsername = 'unset'
+    deployPassword = ''
+  }
+  repositories {
+    mavenDeployer {
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication userName: deployUsername, password: deployPassword
+      }
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication userName: deployUsername, password: deployPassword
+      }
+      pom.project {
+        modelVersion '4.0.0'
+        packaging 'jar'
+        name "halberd"
+        description "A fork of @kirilcool's trident project"
+        url "http://insubstantial.github.com/halberd"
+        licenses {
+          license {
+            name 'BSD License'
+            url 'http://www.opensource.org/licenses/bsd-license.php'
+            distribution 'repo'
+          }
+        }
+        scm {
+          connection 'scm:git:git@github.com:Insubstantial/halberd.git'
+          developerConnection 'scm:git:git@github.com:Insubstantial/halberd.git'
+          url 'scm:git:git@github.com:Insubstantial/halberd.git'
+        }
+        developers {
+          developer {
+            name 'Kirill Grouchnikov'
+            email 'kirillcool@yahoo.com'
+            roles {
+              role 'author'
+              role 'developer'
+            }
+          }
+          developer {
+            name 'Danno Ferrin'
+            email 'danno.ferrin@shemnon.com'
+            roles {
+              role 'maintainer'
+            }
+          }
+        }
+      }
+      // deal with a gradle bug where transitive=false is not passed into the generated POM
+      pom.whenConfigured {pom ->
+        pom.dependencies.each {dep -> dep.optional = true }
+      }
+    }
+  }
+}
+
