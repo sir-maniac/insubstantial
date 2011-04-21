@@ -10,8 +10,11 @@ buildscript {
 subprojects {
   apply plugin: 'java'
   apply plugin: 'maven'
-  apply plugin: 'sign'
-  apply plugin: de.huxhorn.gradle.pgp.PgpPlugin
+  try {
+    def test = pgpSecretKeyRingFile // exception will throw if not set
+    apply plugin: 'sign'
+    apply plugin: de.huxhorn.gradle.pgp.PgpPlugin
+  } catch (Exception ignore) {}
 
   group = 'com.github.insubstantial'
   version = '6.3-SNAPSHOT'
@@ -23,7 +26,7 @@ subprojects {
   targetCompatibility = 1.6
 
   repositories {
-    mavenRepo name: 'sonatype staging', urls: 'https://oss.sonatype.org/content/groups/staging'
+    mavenRepo urls: 'https://oss.sonatype.org/content/groups/staging'
     mavenCentral()
     mavenRepo urls: new File(System.getProperty('user.home'), '.m2/repository').toURI().toString()
   }
