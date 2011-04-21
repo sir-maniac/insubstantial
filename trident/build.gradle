@@ -6,9 +6,9 @@ dependencies {
 jar {
   manifest {
     attributes(
-      "Trident-Version": version,
-      "Trident-VersionName": versionKey,
-      "Trident-BuildStamp": timeStamp
+        "Trident-Version": version,
+        "Trident-VersionName": versionKey,
+        "Trident-BuildStamp": timeStamp
     )
   }
 }
@@ -20,12 +20,85 @@ task testJar(type: Jar) {
 
   manifest {
     attributes(
-      "Trident-Version": version,
-      "Trident-VersionName": versionKey,
-      "Trident-BuildStamp": timeStamp
+        "Trident-Version": version,
+        "Trident-VersionName": versionKey,
+        "Trident-BuildStamp": timeStamp
     )
   }
 }
+
+task baseJar(type: Jar) {
+  classifier = 'base'
+
+  from sourceSets.main.classes
+  exclude 'org/pushingpixels/trident/android/**'
+  exclude 'org/pushingpixels/trident/swing/**'
+  exclude 'org/pushingpixels/trident/swt/**'
+
+  manifest {
+    attributes(
+        "Trident-Version": version,
+        "Trident-VersionName": versionKey,
+        "Trident-BuildStamp": timeStamp
+    )
+  }
+}
+
+task androidJar(type: Jar) {
+  classifier = 'android'
+
+  from sourceSets.main.classes
+  exclude 'org/pushingpixels/trident/swing/**'
+  exclude 'org/pushingpixels/trident/swt/**'
+
+  manifest {
+    attributes(
+        "Trident-Version": version,
+        "Trident-VersionName": versionKey,
+        "Trident-BuildStamp": timeStamp
+    )
+  }
+}
+
+task swingJar(type: Jar) {
+  classifier = 'swing'
+
+  from sourceSets.main.classes
+  exclude 'org/pushingpixels/trident/android/**'
+  exclude 'org/pushingpixels/trident/swt/**'
+
+  manifest {
+    attributes(
+        "Trident-Version": version,
+        "Trident-VersionName": versionKey,
+        "Trident-BuildStamp": timeStamp
+    )
+  }
+}
+
+task swtJar(type: Jar) {
+  classifier = 'swt'
+
+  from sourceSets.main.classes
+  exclude 'org/pushingpixels/trident/android/**'
+  exclude 'org/pushingpixels/trident/swing/**'
+
+  manifest {
+    attributes(
+        "Trident-Version": version,
+        "Trident-VersionName": versionKey,
+        "Trident-BuildStamp": timeStamp
+    )
+  }
+}
+
+artifacts {
+  archives baseJar
+  archives androidJar
+  archives swingJar
+  archives swtJar
+}
+
 
 uploadArchives {
   try {
@@ -42,47 +115,55 @@ uploadArchives {
       repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
         authentication userName: deployUsername, password: deployPassword
       }
-      pom.project {
-        modelVersion '4.0.0'
-        packaging 'jar'
-        name "trident"
-        description "A fork of @kirilcool's trident project"
-        url "http://insubstantial.github.com/halberd"
-        licenses {
-          license {
-            name 'BSD License'
-            url 'http://www.opensource.org/licenses/bsd-license.php'
-            distribution 'repo'
-          }
-        }
-        scm {
-          connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-          developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-          url 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-        }
-        developers {
-          developer {
-            name 'Kirill Grouchnikov'
-            email 'kirillcool@yahoo.com'
-            roles {
-              role 'author'
-              role 'developer'
-            }
-          }
-          developer {
-            name 'Danno Ferrin'
-            email 'danno.ferrin@shemnon.com'
-            roles {
-              role 'maintainer'
-            }
-          }
-        }
-      }
-      // deal with a gradle bug where transitive=false is not passed into the generated POM
-      pom.whenConfigured {pom ->
-        pom.dependencies.each {dep -> dep.optional = true }
+      configurePOM(pom)
+    }
+  }
+}
+
+install {
+  configurePOM(repositories.mavenInstaller.pom)
+}
+
+private def configurePOM(def pom) {
+  pom.project {
+    modelVersion '4.0.0'
+    packaging 'jar'
+    name "trident"
+    description "A fork of @kirilcool's trident project"
+    url "http://insubstantial.github.com/halberd"
+    licenses {
+      license {
+        name 'BSD License'
+        url 'http://www.opensource.org/licenses/bsd-license.php'
+        distribution 'repo'
       }
     }
+    scm {
+      connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+      developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+      url 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+    }
+    developers {
+      developer {
+        name 'Kirill Grouchnikov'
+        email 'kirillcool@yahoo.com'
+        roles {
+          role 'author'
+          role 'developer'
+        }
+      }
+      developer {
+        name 'Danno Ferrin'
+        email 'danno.ferrin@shemnon.com'
+        roles {
+          role 'maintainer'
+        }
+      }
+    }
+  }
+  // deal with a gradle bug where transitive=false is not passed into the generated POM
+  pom.whenConfigured {cpom ->
+    cpom.dependencies*.scope = 'provided'
   }
 }
 
