@@ -53,6 +53,13 @@ import com.jgoodies.forms.builder.DefaultFormBuilder;
 public class NewCheckRibbon extends BasicCheckRibbon {
 	private JLabel saveLabel;
 
+    public NewCheckRibbon() {
+        super();
+        this.setTitle("Ribbon quite a bit longer title to check contextual tabs");
+    }
+
+
+
 	@Override
 	public void configureRibbon() {
 		super.configureRibbon();
