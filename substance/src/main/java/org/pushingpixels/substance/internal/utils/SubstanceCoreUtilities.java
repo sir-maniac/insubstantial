@@ -1929,7 +1929,9 @@ public class SubstanceCoreUtilities {
 	 *             If the component is created off Event Dispatch Thread.
 	 */
 	public static void testComponentCreationThreadingViolation(Component comp) {
-		if (!SwingUtilities.isEventDispatchThread()) {
+		if ((SubstanceCoreUtilities.reallyPrintThreadingExceptions() || SubstanceCoreUtilities.reallyThrowThreadingExceptions())
+            && !SwingUtilities.isEventDispatchThread())
+        {
 			UiThreadingViolationException uiThreadingViolationError = new UiThreadingViolationException(
 					"Component creation must be done on Event Dispatch Thread");
             if (reallyPrintThreadingExceptions()) {
@@ -1951,8 +1953,10 @@ public class SubstanceCoreUtilities {
 	 *             If the component is changing state off Event Dispatch Thread.
 	 */
 	public static void testComponentStateChangeThreadingViolation(Component comp) {
-		if (!SwingUtilities.isEventDispatchThread()) {
-			UiThreadingViolationException uiThreadingViolationError = new UiThreadingViolationException(
+        if ((SubstanceCoreUtilities.reallyPrintThreadingExceptions() || SubstanceCoreUtilities.reallyThrowThreadingExceptions())
+            && !SwingUtilities.isEventDispatchThread())
+        {
+            UiThreadingViolationException uiThreadingViolationError = new UiThreadingViolationException(
 					"Component state change must be done on Event Dispatch Thread");
             if (reallyPrintThreadingExceptions()) {
                 uiThreadingViolationError.printStackTrace(System.err);
@@ -1972,8 +1976,10 @@ public class SubstanceCoreUtilities {
 	 *             If the window is closed off Event Dispatch Thread.
 	 */
 	public static void testWindowCloseThreadingViolation(Window w) {
-		if (!SwingUtilities.isEventDispatchThread()) {
-			UiThreadingViolationException uiThreadingViolationError = new UiThreadingViolationException(
+        if ((SubstanceCoreUtilities.reallyPrintThreadingExceptions() || SubstanceCoreUtilities.reallyThrowThreadingExceptions())
+            && !SwingUtilities.isEventDispatchThread())
+        {
+            UiThreadingViolationException uiThreadingViolationError = new UiThreadingViolationException(
 					"Window close must be done on Event Dispatch Thread");
             if (reallyPrintThreadingExceptions()) {
                 uiThreadingViolationError.printStackTrace(System.err);

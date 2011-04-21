@@ -160,7 +160,9 @@ public class StateTransitionTracker {
 		}
 
 		void clear() {
-			if (!SwingUtilities.isEventDispatchThread()) {
+			if ((SubstanceCoreUtilities.reallyPrintThreadingExceptions() || SubstanceCoreUtilities.reallyThrowThreadingExceptions())
+                && !SwingUtilities.isEventDispatchThread())
+            {
 				UiThreadingViolationException uiThreadingViolationError = new UiThreadingViolationException(
 						"State tracking must be done on Event Dispatch Thread");
                 if (SubstanceCoreUtilities.reallyPrintThreadingExceptions()) {
