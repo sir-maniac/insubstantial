@@ -17,7 +17,7 @@ dependencies {
     transitive = false
   }
 
-  compile project(":trident")
+  compile project(":trident") {classifier = "swing"}
   compile project(":laf-widget") { transitive = false }
   compile project(":laf-plugin") { transitive = false }
   testCompile group: 'com.jgoodies', name: 'forms', version: '1.2.0'
@@ -259,9 +259,17 @@ private def configurePOM(def pom) {
 
   // deal with a gradle bug where transitive=false is not passed into the generated POM
   pom.whenConfigured {cpom ->
-    cpom.dependencies.each {
-      if (it.artifactId =~ /(laf|jcip)-/)
-        it.scope='provided'
+    cpom.dependencies.each {it
+      switch (it.artifactId) {
+        case 'laf-widget':
+        case 'laf-plugin':
+        case 'jcip-annotations':
+          it.scope = 'provided'
+          break;
+        case 'trident':
+          it.classifier = 'swing'
+          break
+      }
     }
   }
 
