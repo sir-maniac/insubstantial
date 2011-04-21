@@ -1,14 +1,14 @@
 dependencies {
-  compile project (":trident")
+  compile project(":trident")
   compile files('lib/svnkit.jar') // unknown version of svnkit
   compile files('lib/batik-all.jar') // batik 1.7.  No maven deployments (?)
   testCompile group: 'com.jgoodies', name: 'forms', version: '1.2.0'
-  testCompile group:'junit', name:'junit', version:'4.3.1'
-  testCompile group:'org.easytesting', name:'fest-assert', version:'1.2'
-  testCompile group:'org.easytesting', name:'fest-reflect', version:'1.2'
-  testCompile group:'org.easytesting', name:'fest-swing', version:'1.2.1'
-  testCompile group:'org.easytesting', name:'fest-swing-junit', version:'1.2.1'
-  testCompile group:'org.easytesting', name:'fest-swing-junit-4.3.1', version:'1.2.1'
+  testCompile group: 'junit', name: 'junit', version: '4.3.1'
+  testCompile group: 'org.easytesting', name: 'fest-assert', version: '1.2'
+  testCompile group: 'org.easytesting', name: 'fest-reflect', version: '1.2'
+  testCompile group: 'org.easytesting', name: 'fest-swing', version: '1.2.1'
+  testCompile group: 'org.easytesting', name: 'fest-swing-junit', version: '1.2.1'
+  testCompile group: 'org.easytesting', name: 'fest-swing-junit-4.3.1', version: '1.2.1'
   testCompile files('lib/js.jar') // ??? is this some old ver or rhino?  is it even needed?
   testCompile files('lib/pdf-transcoder.jar') // ??? is this some old ver or rhino?  is it even needed?
   testCompile files('lib/test/debug-1.0.jar')
@@ -24,9 +24,9 @@ test {
 jar {
   manifest {
     attributes(
-      "Flamingo-Version": version,
-      "Flamingo-VersionName": versionKey,
-      "Flamingo-BuildStamp": timeStamp
+        "Flamingo-Version": version,
+        "Flamingo-VersionName": versionKey,
+        "Flamingo-BuildStamp": timeStamp
     )
   }
 }
@@ -38,9 +38,9 @@ task testJar(type: Jar) {
 
   manifest {
     attributes(
-      "Flamingo-Version": version,
-      "Flamingo-VersionName": versionKey,
-      "Flamingo-BuildStamp": timeStamp
+        "Flamingo-Version": version,
+        "Flamingo-VersionName": versionKey,
+        "Flamingo-BuildStamp": timeStamp
     )
   }
 }
@@ -60,40 +60,48 @@ uploadArchives {
       repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
         authentication userName: deployUsername, password: deployPassword
       }
-      pom.project {
-        modelVersion '4.0.0'
-        packaging 'jar'
-        name "flamingo"
-        description "A fork of @kirilcool's flamingo project"
-        url "http://insubstantial.github.com/peacock"
-        licenses {
-          license {
-            name 'The BSD License'
-            url 'http://www.opensource.org/licenses/bsd-license.php'
-            distribution 'repo'
-          }
+      configurePOM(pom)
+    }
+  }
+}
+
+install {
+  configurePOM(repositories.mavenInstaller.pom)
+}
+
+private def configurePOM(def pom) {
+  pom.project {
+    modelVersion '4.0.0'
+    packaging 'jar'
+    name "flamingo"
+    description "A fork of @kirilcool's flamingo project"
+    url "http://insubstantial.github.com/peacock"
+    licenses {
+      license {
+        name 'The BSD License'
+        url 'http://www.opensource.org/licenses/bsd-license.php'
+        distribution 'repo'
+      }
+    }
+    scm {
+      connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+      developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+      url 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+    }
+    developers {
+      developer {
+        name 'Kirill Grouchnikov'
+        email 'kirillcool@yahoo.com'
+        roles {
+          role 'author'
+          role 'developer'
         }
-        scm {
-          connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-          developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-          url 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-        }
-        developers {
-          developer {
-            name 'Kirill Grouchnikov'
-            email 'kirillcool@yahoo.com'
-            roles {
-              role 'author'
-              role 'developer'
-            }
-          }
-          developer {
-            name 'Danno Ferrin'
-            email 'danno.ferrin@shemnon.com'
-            roles {
-              role 'maintainer'
-            }
-          }
+      }
+      developer {
+        name 'Danno Ferrin'
+        email 'danno.ferrin@shemnon.com'
+        roles {
+          role 'maintainer'
         }
       }
     }

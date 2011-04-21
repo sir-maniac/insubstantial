@@ -10,17 +10,17 @@ sourceSets {
   // gradle bug - cannont include two different classifiers of the same dependency
   //test
   //tools {
-    //compileClasspath = sourceSets.main.classes + sourceSets.test.classes + configurations.toolsCompile + configurations.testCompile
+  //compileClasspath = sourceSets.main.classes + sourceSets.test.classes + configurations.toolsCompile + configurations.testCompile
   //}
 }
 
 dependencies {
   compile project(":substance")
-  compile group:'org.swinglabs', name:'swingx', version: swingXVersion
+  compile group: 'org.swinglabs', name: 'swingx', version: swingXVersion
   testCompile files('lib/substance-6.2-tst-hack.jar')
-  testCompile group:'com.jgoodies', name:'forms', version:'1.2.0'
-  toolsCompile group:'com.github.insubstantial', name:'substance', version: version, ext:'tools'
-  toolsCompile group:'org.easytesting', name:'fest-swing', version:'1.2'
+  testCompile group: 'com.jgoodies', name: 'forms', version: '1.2.0'
+  toolsCompile group: 'com.github.insubstantial', name: 'substance', version: version, ext: 'tools'
+  toolsCompile group: 'org.easytesting', name: 'fest-swing', version: '1.2'
 }
 
 task augmentation(dependsOn: classes) {
@@ -78,10 +78,10 @@ jar {
 
   manifest {
     attributes(
-      "Substance-Version": version,
-      "SwingX-Version": swingXVersion,
-      "Substance-VersionName": versionKey,
-      "Substance-SwingX-BuildStamp": timeStamp
+        "Substance-Version": version,
+        "SwingX-Version": swingXVersion,
+        "Substance-VersionName": versionKey,
+        "Substance-SwingX-BuildStamp": timeStamp
     )
   }
 
@@ -94,11 +94,11 @@ task testJar(type: Jar) {
 
   manifest {
     attributes(
-      "Substance-Version": version,
-      "Flamingo-Version": version,
-      "Substance-VersionName": versionKey,
-      "Flamingo-VersionName": versionKey,
-      "Substance-BuildStamp": timeStamp
+        "Substance-Version": version,
+        "Flamingo-Version": version,
+        "Substance-VersionName": versionKey,
+        "Flamingo-VersionName": versionKey,
+        "Substance-BuildStamp": timeStamp
     )
   }
 }
@@ -117,10 +117,6 @@ task distroJar(type: Jar) {
   include "build.gradle"
 }
 
-//allSubstanceJars = [toolsJar, liteJar, testJar, testLiteJar, distroJar]
-
-//uploadArchives.dependsOn << allSubstanceJars
-//assemble.dependsOn << allSubstanceJars
 
 uploadArchives {
   try {
@@ -137,52 +133,57 @@ uploadArchives {
       repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
         authentication userName: deployUsername, password: deployPassword
       }
-      pom.project {
-        modelVersion '4.0.0'
-        packaging 'jar'
-        name "substance-swingx"
-        description "A fork of @kirilcool's substance project"
-        url "http://insubstantial.github.com/insubstantialSwingX"
-        licenses {
-          license {
-            name 'BSD License'
-            url 'http://www.opensource.org/licenses/bsd-license.php'
-            distribution 'repo'
-            comments "Does not cover the Xoetrope Color Wheel"
-          }
-          license {
-            name 'Mozilla Public License 1.1'
-            url 'http://www.opensource.org/licenses/mozilla1.1'
-            distribution 'repo'
-            comments "Covers the Xoetrope Color Wheel"
-          }
+      configurePOM(pom)
+    }
+  }
+}
+
+install {
+  configurePOM(repositories.mavenInstaller.pom)
+}
+
+private def configurePOM(def pom) {
+  pom.project {
+    modelVersion '4.0.0'
+    packaging 'jar'
+    name "substance-swingx"
+    description "A fork of @kirilcool's substance project"
+    url "http://insubstantial.github.com/insubstantialSwingX"
+    licenses {
+      license {
+        name 'BSD License'
+        url 'http://www.opensource.org/licenses/bsd-license.php'
+        distribution 'repo'
+        comments "Does not cover the Xoetrope Color Wheel"
+      }
+      license {
+        name 'Mozilla Public License 1.1'
+        url 'http://www.opensource.org/licenses/mozilla1.1'
+        distribution 'repo'
+        comments "Covers the Xoetrope Color Wheel"
+      }
+    }
+    scm {
+      connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+      developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+      url 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+    }
+    developers {
+      developer {
+        name 'Kirill Grouchnikov'
+        email 'kirillcool@yahoo.com'
+        roles {
+          role 'author'
+          role 'developer'
         }
-        scm {
-          connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-          developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-          url 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-        }
-        developers {
-          developer {
-            name 'Kirill Grouchnikov'
-            email 'kirillcool@yahoo.com'
-            roles {
-              role 'author'
-              role 'developer'
-            }
-          }
-          developer {
-            name 'Danno Ferrin'
-            email 'danno.ferrin@shemnon.com'
-            roles {
-              role 'maintainer'
-            }
-          }
+      }
+      developer {
+        name 'Danno Ferrin'
+        email 'danno.ferrin@shemnon.com'
+        roles {
+          role 'maintainer'
         }
       }
     }
   }
 }
-
-
-    

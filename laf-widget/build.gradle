@@ -1,15 +1,15 @@
 dependencies {
   compile project(":trident")
-  compile group:'asm', name:'asm-all', version:'2.2.3'
-  compile group:'org.apache.ant', name:'ant', version:'1.7.0'
+  compile group: 'asm', name: 'asm-all', version: '2.2.3'
+  compile group: 'org.apache.ant', name: 'ant', version: '1.7.0'
 }
 
 jar {
   manifest {
     attributes(
-      "Laf-Widget-Version": version,
-      "Laf-Widget-VersionName": versionKey,
-      "Laf-Widget-BuildStamp": timeStamp
+        "Laf-Widget-Version": version,
+        "Laf-Widget-VersionName": versionKey,
+        "Laf-Widget-BuildStamp": timeStamp
     )
   }
 }
@@ -29,47 +29,55 @@ uploadArchives {
       repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
         authentication userName: deployUsername, password: deployPassword
       }
-      pom.project {
-        modelVersion '4.0.0'
-        packaging 'jar'
-        name "laf-widget"
-        description "A fork of @kirilcool's laf-widget project"
-        url "http://insubstantial.github.com/plafwidget"
-        licenses {
-          license {
-            name 'The BSD License'
-            url 'http://www.opensource.org/licenses/bsd-license.php'
-            distribution 'repo'
-            comments 'Covers ASM, BlogOfBug, JibX, LafWidget, and Looks contributions'
-          }
-          license {
-            name 'CC BY-SA 2.5'
-            url 'http://creativecommons.org/licenses/by-sa/2.5/'
-            distribution 'repo'
-            comments 'Covers the TangoIcons'
-          }
+      configurePOM(pom)
+    }
+  }
+}
+
+install {
+  configurePOM(repositories.mavenInstaller.pom)
+}
+
+private def configurePOM(def pom) {
+  pom.project {
+    modelVersion '4.0.0'
+    packaging 'jar'
+    name "laf-widget"
+    description "A fork of @kirilcool's laf-widget project"
+    url "http://insubstantial.github.com/plafwidget"
+    licenses {
+      license {
+        name 'The BSD License'
+        url 'http://www.opensource.org/licenses/bsd-license.php'
+        distribution 'repo'
+        comments 'Covers ASM, BlogOfBug, JibX, LafWidget, and Looks contributions'
+      }
+      license {
+        name 'CC BY-SA 2.5'
+        url 'http://creativecommons.org/licenses/by-sa/2.5/'
+        distribution 'repo'
+        comments 'Covers the TangoIcons'
+      }
+    }
+    scm {
+      connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+      developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+      url 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+    }
+    developers {
+      developer {
+        name 'Kirill Grouchnikov'
+        email 'kirillcool@yahoo.com'
+        roles {
+          role 'author'
+          role 'developer'
         }
-        scm {
-          connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-          developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-          url 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-        }
-        developers {
-          developer {
-            name 'Kirill Grouchnikov'
-            email 'kirillcool@yahoo.com'
-            roles {
-              role 'author'
-              role 'developer'
-            }
-          }
-          developer {
-            name 'Danno Ferrin'
-            email 'danno.ferrin@shemnon.com'
-            roles {
-              role 'maintainer'
-            }
-          }
+      }
+      developer {
+        name 'Danno Ferrin'
+        email 'danno.ferrin@shemnon.com'
+        roles {
+          role 'maintainer'
         }
       }
     }
