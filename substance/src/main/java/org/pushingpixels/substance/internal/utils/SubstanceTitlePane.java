@@ -102,7 +102,7 @@ import org.pushingpixels.substance.internal.utils.icon.TransitionAwareIcon;
 
 /**
  * Title pane for <b>Substance</b> look and feel.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class SubstanceTitlePane extends JComponent {
@@ -203,7 +203,7 @@ public class SubstanceTitlePane extends JComponent {
 	/**
 	 * Client property to mark every child to be either leading or trailing. The
 	 * value must be one of {@link ExtraComponentKind}.
-	 * 
+	 *
 	 * @see #markExtraComponent(JComponent, ExtraComponentKind)
 	 * @see #getTitleTextRectangle()
 	 */
@@ -216,7 +216,7 @@ public class SubstanceTitlePane extends JComponent {
 
 	/**
 	 * Enumerates the types of children components.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	protected enum ExtraComponentKind {
@@ -228,12 +228,18 @@ public class SubstanceTitlePane extends JComponent {
 		/**
 		 * Trailing child components (right on LTR and left on RTL).
 		 */
-		TRAILING
+		TRAILING,
+
+        /**
+         * Middeling child compoennt, will jostle for position with the title text
+         * subclasses are responsible for the placement
+         */
+        MIDDLING,
 	}
 
 	/**
 	 * Panel that shows heap status and allows running the garbage collector.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static class HeapStatusPanel extends JPanel {
@@ -263,7 +269,7 @@ public class SubstanceTitlePane extends JComponent {
 
 		/**
 		 * Updates the values for <code>this</code> heap status panel.
-		 * 
+		 *
 		 * @param currHeapSizeKB
 		 *            The current heap size in kilobytes.
 		 * @param currTakenHeapSizeKB
@@ -281,7 +287,7 @@ public class SubstanceTitlePane extends JComponent {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see javax.swing.JComponent#paint(java.awt.Graphics)
 		 */
 		@Override
@@ -343,7 +349,7 @@ public class SubstanceTitlePane extends JComponent {
 
 		/**
 		 * Returns the preferred width of this panel.
-		 * 
+		 *
 		 * @return Preferred width of this panel.
 		 */
 		public int getPreferredWidth() {
@@ -396,7 +402,7 @@ public class SubstanceTitlePane extends JComponent {
 
 		/**
 		 * Simple constructor. Defined private for singleton.
-		 * 
+		 *
 		 * @see #getInstance()
 		 */
 		private HeapStatusThread() {
@@ -407,7 +413,7 @@ public class SubstanceTitlePane extends JComponent {
 
 		/**
 		 * Gets singleton instance of <code>this</code> thread.
-		 * 
+		 *
 		 * @return Singleton instance of <code>this</code> thread.
 		 */
 		public synchronized static HeapStatusThread getInstance() {
@@ -420,7 +426,7 @@ public class SubstanceTitlePane extends JComponent {
 
 		/**
 		 * Registers new heap status panel with <code>this</code> thread.
-		 * 
+		 *
 		 * @param panel
 		 *            Heap statuc panel.
 		 */
@@ -430,7 +436,7 @@ public class SubstanceTitlePane extends JComponent {
 
 		/**
 		 * Unregisters new heap status panel from <code>this</code> thread.
-		 * 
+		 *
 		 * @param panel
 		 *            Heap statuc panel.
 		 */
@@ -459,7 +465,7 @@ public class SubstanceTitlePane extends JComponent {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see java.lang.Thread#run()
 		 */
 		@Override
@@ -515,7 +521,7 @@ public class SubstanceTitlePane extends JComponent {
 
 	/**
 	 * Creates a new title pane.
-	 * 
+	 *
 	 * @param root
 	 *            Root pane.
 	 * @param ui
@@ -665,7 +671,7 @@ public class SubstanceTitlePane extends JComponent {
 
 	/**
 	 * Returns the decoration style of the <code>JRootPane</code>.
-	 * 
+	 *
 	 * @return Decoration style of the <code>JRootPane</code>.
 	 */
 	protected int getWindowDecorationStyle() {
@@ -674,7 +680,7 @@ public class SubstanceTitlePane extends JComponent {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.awt.Component#addNotify()
 	 */
 	@Override
@@ -705,7 +711,7 @@ public class SubstanceTitlePane extends JComponent {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.awt.Component#removeNotify()
 	 */
 	@Override
@@ -779,7 +785,7 @@ public class SubstanceTitlePane extends JComponent {
 	/**
 	 * Returns the <code>JMenuBar</code> displaying the appropriate system menu
 	 * items.
-	 * 
+	 *
 	 * @return <code>JMenuBar</code> displaying the appropriate system menu
 	 *         items.
 	 */
@@ -814,7 +820,7 @@ public class SubstanceTitlePane extends JComponent {
 	/**
 	 * Returns the <code>JMenu</code> displaying the appropriate menu items for
 	 * manipulating the Frame.
-	 * 
+	 *
 	 * @return <code>JMenu</code> displaying the appropriate menu items for
 	 *         manipulating the Frame.
 	 */
@@ -830,7 +836,7 @@ public class SubstanceTitlePane extends JComponent {
 
 	/**
 	 * Adds the necessary <code>JMenuItem</code>s to the specified menu.
-	 * 
+	 *
 	 * @param menu
 	 *            Menu.
 	 */
@@ -878,7 +884,7 @@ public class SubstanceTitlePane extends JComponent {
 	/**
 	 * Returns a <code>JButton</code> appropriate for placement on the
 	 * TitlePane.
-	 * 
+	 *
 	 * @return Title button.
 	 */
 	private JButton createTitleButton() {
@@ -994,7 +1000,7 @@ public class SubstanceTitlePane extends JComponent {
 	/**
 	 * Returns the <code>LayoutManager</code> that should be installed on the
 	 * <code>SubstanceTitlePane</code>.
-	 * 
+	 *
 	 * @return Layout manager.
 	 */
 	protected LayoutManager createLayout() {
@@ -1003,7 +1009,7 @@ public class SubstanceTitlePane extends JComponent {
 
 	/**
 	 * Updates state dependant upon the Window's active state.
-	 * 
+	 *
 	 * @param isActive
 	 *            if <code>true</code>, the window is in active state.
 	 */
@@ -1013,7 +1019,7 @@ public class SubstanceTitlePane extends JComponent {
 
 	/**
 	 * Sets the state of the Window.
-	 * 
+	 *
 	 * @param state
 	 *            Window state.
 	 */
@@ -1024,7 +1030,7 @@ public class SubstanceTitlePane extends JComponent {
 	/**
 	 * Sets the state of the window. If <code>updateRegardless</code> is true
 	 * and the state has not changed, this will update anyway.
-	 * 
+	 *
 	 * @param state
 	 *            Window state.
 	 * @param updateRegardless
@@ -1141,7 +1147,7 @@ public class SubstanceTitlePane extends JComponent {
 	/**
 	 * Updates the toggle button to contain the Icon <code>icon</code>, and
 	 * Action <code>action</code>.
-	 * 
+	 *
 	 * @param action
 	 *            Action.
 	 * @param icon
@@ -1156,7 +1162,7 @@ public class SubstanceTitlePane extends JComponent {
 	/**
 	 * Returns the Frame rendering in. This will return null if the
 	 * <code>JRootPane</code> is not contained in a <code>Frame</code>.
-	 * 
+	 *
 	 * @return Frame.
 	 */
 	private Frame getFrame() {
@@ -1172,7 +1178,7 @@ public class SubstanceTitlePane extends JComponent {
 	 * Returns the <code>Window</code> the <code>JRootPane</code> is contained
 	 * in. This will return null if there is no parent ancestor of the
 	 * <code>JRootPane</code>.
-	 * 
+	 *
 	 * @return Window.
 	 */
 	private Window getWindow() {
@@ -1181,7 +1187,7 @@ public class SubstanceTitlePane extends JComponent {
 
 	/**
 	 * Returns the String to display as the title.
-	 * 
+	 *
 	 * @return Display title.
 	 */
 	private String getTitle() {
@@ -1198,7 +1204,7 @@ public class SubstanceTitlePane extends JComponent {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
 	@Override
@@ -1230,8 +1236,8 @@ public class SubstanceTitlePane extends JComponent {
 		String theTitle = this.getTitle();
 
 		if (theTitle != null) {
-			Rectangle titleTextRect = this.getTitleTextRectangle();
-			FontMetrics fm = rootPane.getFontMetrics(g.getFont());
+            FontMetrics fm = rootPane.getFontMetrics(g.getFont());
+			Rectangle titleTextRect = this.getTitleTextRectangle(fm.stringWidth(theTitle));
 			int titleWidth = titleTextRect.width - 20;
 			String clippedTitle = SubstanceCoreUtilities.clipString(fm,
 					titleWidth, theTitle);
@@ -1282,7 +1288,7 @@ public class SubstanceTitlePane extends JComponent {
 	 * trailing (based on {@link #EXTRA_COMPONENT_KIND} client property). The
 	 * title text rectangle is the space between the leading group and the
 	 * trailing group.
-	 * 
+	 *
 	 * @return Rectangle of the title text.
 	 * @throws IllegalStateException
 	 *             If at least one child component of this title pane is not
@@ -1291,7 +1297,7 @@ public class SubstanceTitlePane extends JComponent {
 	 * @see #markExtraComponent(JComponent, ExtraComponentKind)
 	 * @see #EXTRA_COMPONENT_KIND
 	 */
-	protected Rectangle getTitleTextRectangle() {
+	protected Rectangle getTitleTextRectangle(int preferredWidth) {
 		JRootPane rootPane = this.getRootPane();
 		Window window = this.getWindow();
 		boolean leftToRight = (window == null) ? rootPane
@@ -1301,6 +1307,8 @@ public class SubstanceTitlePane extends JComponent {
 		if (leftToRight) {
 			int maxLeadingX = 0;
 			int minTrailingX = this.getWidth();
+            int maxMiddlingX = maxLeadingX;
+            int minMiddlingX = minTrailingX;
 
 			for (int i = 0; i < this.getComponentCount(); i++) {
 				Component child = this.getComponent(i);
@@ -1314,24 +1322,52 @@ public class SubstanceTitlePane extends JComponent {
 								+ child.getClass().getName()
 								+ " is not marked as leading or trailing");
 					}
-					if (kind == ExtraComponentKind.LEADING) {
-						int cx = child.getX() + child.getWidth();
-						if (cx > maxLeadingX)
-							maxLeadingX = cx;
-					} else {
-						int cx = child.getX();
-						if (cx < minTrailingX)
-							minTrailingX = cx;
-					}
+                    switch (kind) {
+                        case LEADING:
+                            int cx = child.getX() + child.getWidth();
+                            if (cx > maxLeadingX)
+                                maxLeadingX = cx;
+                            break;
+                        case MIDDLING:
+                            cx = child.getX();
+                            if (cx < minMiddlingX)
+                                minMiddlingX = cx;
+                            cx = child.getX() + child.getWidth();
+                            if (cx > maxMiddlingX)
+                                maxMiddlingX = cx;
+                            break;
+                        case TRAILING:
+                            cx = child.getX();
+                            if (cx < minTrailingX)
+                                minTrailingX = cx;
+                            break;
+                    }
 				}
 			}
-
-			int start = maxLeadingX + 10;
-			int end = minTrailingX - 5;
+            minMiddlingX = Math.max(minMiddlingX, maxLeadingX);
+            maxMiddlingX = Math.min(maxMiddlingX, minTrailingX);
+            int leadWidth = minMiddlingX - maxLeadingX - 15;
+            int trailWidth = minTrailingX - maxMiddlingX - 15;
+            int start, end;
+            if (maxMiddlingX <= minMiddlingX) {
+                start = maxLeadingX + 10;
+                end = minTrailingX - 5;
+            } else if ((preferredWidth > leadWidth)
+                && ((trailWidth > leadWidth) || (preferredWidth <= trailWidth)))
+            {
+                start = maxMiddlingX + 10;
+                end = minTrailingX - 5;
+            } else {
+                start = maxLeadingX + 10;
+                end = minMiddlingX - 5;
+            }
 			return new Rectangle(start, 0, end - start, this.getHeight());
 		} else {
 			int minLeadingX = this.getWidth();
 			int maxTrailingX = 0;
+            int maxMiddlingX = maxTrailingX;
+            int minMiddlingX = minLeadingX;
+
 
 			for (int i = 0; i < this.getComponentCount(); i++) {
 				Component child = this.getComponent(i);
@@ -1345,20 +1381,48 @@ public class SubstanceTitlePane extends JComponent {
 								+ child.getClass().getName()
 								+ " is not marked as leading or trailing");
 					}
-					if (kind == ExtraComponentKind.LEADING) {
-						int cx = child.getX();
-						if (cx < minLeadingX)
-							minLeadingX = cx;
-					} else {
-						int cx = child.getX() + child.getWidth();
-						if (cx > maxTrailingX)
-							maxTrailingX = cx;
-					}
+
+                    switch (kind) {
+                        case LEADING:
+                            int cx = child.getX();
+                            if (cx < minLeadingX)
+                                minLeadingX = cx;
+                            break;
+                        case MIDDLING:
+                            cx = child.getX();
+                            if (cx < minMiddlingX)
+                                minMiddlingX = cx;
+                            cx = child.getX() + child.getWidth();
+                            if (cx > maxMiddlingX)
+                                maxMiddlingX = cx;
+                            break;
+                        case TRAILING:
+                            cx = child.getX() + child.getWidth();
+                            if (cx > maxTrailingX)
+                                maxTrailingX = cx;
+                            break;
+                    }
 				}
 			}
 
-			int start = maxTrailingX + 5;
-			int end = minLeadingX - 10;
+            minMiddlingX = Math.max(minMiddlingX, maxTrailingX);
+            maxMiddlingX = Math.min(maxMiddlingX, minLeadingX);
+            int leadWidth = minLeadingX - maxMiddlingX- 15;
+            int trailWidth = minMiddlingX - maxTrailingX - 15;
+            int start, end;
+            if (maxMiddlingX <= minMiddlingX) {
+                start = maxTrailingX + 5;
+                end = minLeadingX - 10;
+            } else if ((preferredWidth > leadWidth)
+                && ((trailWidth > leadWidth) || (preferredWidth <= trailWidth)))
+            {
+                start = maxTrailingX+ 10;
+                end = minMiddlingX - 5;
+            } else {
+                start = maxMiddlingX + 5;
+                end = minLeadingX - 10;
+            }
+
 			return new Rectangle(start, 0, end - start, this.getHeight());
 		}
 	}
@@ -1538,13 +1602,13 @@ public class SubstanceTitlePane extends JComponent {
 
 	/**
 	 * Layout manager for the title pane.
-	 * 
+	 *
 	 * @author Kirill Graphics
 	 */
 	protected class TitlePaneLayout implements LayoutManager {
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String,
 		 * java.awt.Component)
 		 */
@@ -1554,7 +1618,7 @@ public class SubstanceTitlePane extends JComponent {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
 		 */
 		@Override
@@ -1563,7 +1627,7 @@ public class SubstanceTitlePane extends JComponent {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
 		 */
 		@Override
@@ -1574,7 +1638,7 @@ public class SubstanceTitlePane extends JComponent {
 
 		/**
 		 * Computes title pane height.
-		 * 
+		 *
 		 * @return Title pane height.
 		 */
 		private int computeHeight() {
@@ -1593,7 +1657,7 @@ public class SubstanceTitlePane extends JComponent {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
 		 */
 		@Override
@@ -1603,7 +1667,7 @@ public class SubstanceTitlePane extends JComponent {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
 		 */
 		@Override
@@ -1755,7 +1819,7 @@ public class SubstanceTitlePane extends JComponent {
 	 * Sets location for heap status logfile. Relevant if
 	 * {@link #setCanHaveHeapStatusPanel(boolean)} was called with
 	 * <code>true</code>.
-	 * 
+	 *
 	 * @param heapStatusLogfileName
 	 *            Logfile for the heap status panel.
 	 */
@@ -1783,7 +1847,7 @@ public class SubstanceTitlePane extends JComponent {
 	/**
 	 * Marks the specified child component with the specified extra component
 	 * kind.
-	 * 
+	 *
 	 * @param comp
 	 *            Child component.
 	 * @param kind

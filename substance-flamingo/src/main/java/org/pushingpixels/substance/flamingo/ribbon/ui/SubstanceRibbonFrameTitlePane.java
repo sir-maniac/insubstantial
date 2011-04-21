@@ -58,13 +58,13 @@ import org.pushingpixels.substance.internal.utils.*;
 /**
  * Custom title pane for {@link JRibbonFrame} running under Substance
  * look-and-feel.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 	/**
 	 * Custom component to paint the header of a single contextual task group.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	private class SubstanceContextualGroupComponent extends JComponent {
@@ -75,7 +75,7 @@ public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 
 		/**
 		 * Creates the new task group header component.
-		 * 
+		 *
 		 * @param taskGroup
 		 *            The associated contextual task group.
 		 */
@@ -87,7 +87,7 @@ public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 		 */
 		@Override
@@ -153,7 +153,7 @@ public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 
 	/**
 	 * The taskbar panel that holds the {@link JRibbon#getTaskbarComponents()}.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	private class TaskbarPanel extends JPanel {
@@ -170,7 +170,7 @@ public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 		 */
 		@Override
@@ -179,7 +179,7 @@ public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 
 		/**
 		 * Returns the outline of this taskbar panel.
-		 * 
+		 *
 		 * @param insets
 		 *            Insets.
 		 * @return The outline of this taskbar panel.
@@ -252,7 +252,7 @@ public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see javax.swing.JComponent#getPreferredSize()
 		 */
 		@Override
@@ -281,7 +281,7 @@ public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 
 	/**
 	 * Creates a new title pane for {@link JRibbonFrame}.
-	 * 
+	 *
 	 * @param root
 	 *            Root pane.
 	 * @param ui
@@ -297,7 +297,7 @@ public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.jvnet.substance.utils.SubstanceTitlePane#createLayout()
 	 */
 	@Override
@@ -307,7 +307,7 @@ public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.jvnet.substance.utils.SubstanceTitlePane#addNotify()
 	 */
 	@Override
@@ -331,7 +331,7 @@ public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.jvnet.substance.utils.SubstanceTitlePane#removeNotify()
 	 */
 	@Override
@@ -373,7 +373,7 @@ public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 			this.add(taskGroupComponent);
 			this.taskComponentMap.put(group, taskGroupComponent);
 			this.markExtraComponent(taskGroupComponent,
-					ExtraComponentKind.TRAILING);
+					ExtraComponentKind.MIDDLING);
 		}
 		// Taskbar components
 		this.taskbarPanel.removeAll();
@@ -386,13 +386,13 @@ public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 	/**
 	 * Custom layout manager for the title panes of {@link JRibbonFrame} under
 	 * decorated mode.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	protected class RibbonFrameTitlePaneLayout extends TitlePaneLayout {
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @seeorg.jvnet.substance.utils.SubstanceTitlePane.TitlePaneLayout#
 		 * layoutContainer(java.awt.Container)
 		 */
@@ -569,13 +569,13 @@ public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 
 	/**
 	 * Layout for the task bar.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	private class TaskbarLayout implements LayoutManager {
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see java.awt.LayoutManager#addLayoutComponent(java.lang.String,
 		 * java.awt.Component)
 		 */
@@ -585,7 +585,7 @@ public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see java.awt.LayoutManager#removeLayoutComponent(java.awt.Component)
 		 */
 		@Override
@@ -594,7 +594,7 @@ public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see java.awt.LayoutManager#preferredLayoutSize(java.awt.Container)
 		 */
 		@Override
@@ -612,7 +612,7 @@ public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see java.awt.LayoutManager#minimumLayoutSize(java.awt.Container)
 		 */
 		@Override
@@ -622,7 +622,7 @@ public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see java.awt.LayoutManager#layoutContainer(java.awt.Container)
 		 */
 		@Override
@@ -649,7 +649,7 @@ public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 	/**
 	 * Retrieves the {@link JRibbon} component of the associated
 	 * {@link JRibbonFrame}.
-	 * 
+	 *
 	 * @return {@link JRibbon} component of the associated {@link JRibbonFrame}.
 	 */
 	private JRibbon getRibbon() {
