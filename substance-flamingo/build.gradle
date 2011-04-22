@@ -5,21 +5,18 @@ configurations {
 
 sourceSets {
   main
-  // gradle bug - cannont include two different classifiers of the same dependency
-  //test
-  //tools {
-  //compileClasspath = sourceSets.main.classes + sourceSets.test.classes + configurations.toolsCompile + configurations.testCompile
-  //}
+  test
+  tools {
+    compileClasspath = sourceSets.main.classes + sourceSets.test.classes + configurations.toolsCompile + configurations.testCompile
+  }
 }
 
 dependencies {
   compile project(":substance")
   compile project(":flamingo")
-  testCompile files('lib/substance-6.2-tst-hack.jar')
-  testCompile files('lib/flamingo-6.2-tst-hack.jar')
+  testCompile project(":substance").sourceSets.test.classes
+  testCompile project(":flamingo").sourceSets.test.classes
   testCompile files('lib/batik-all.jar')
-//  testCompile group:'com.github.insubstantial', name:'substance', version: version, ext: 'tst'
-//  testCompile group:'com.github.insubstantial', name:'flamingo', version: version, ext: 'tst'
   testCompile group: 'com.jgoodies', name: 'forms', version: '1.2.0'
   toolsCompile project(":substance")
   toolsCompile group: 'org.easytesting', name: 'fest-swing', version: '1.2'
@@ -201,9 +198,8 @@ install {
 }
 
 private def configurePOM(def pom) {
+  configureBasePom(pom)
   pom.project {
-    modelVersion '4.0.0'
-    packaging 'jar'
     name "substance-flamingo"
     description "A fork of @kirilcool's substance project"
     url "http://insubstantial.github.com/insubstantialPeacock"
@@ -221,27 +217,16 @@ private def configurePOM(def pom) {
         comments "Covers the Xoetrope Color Wheel"
       }
     }
-    scm {
-      connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-      developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-      url 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-    }
-    developers {
-      developer {
-        name 'Kirill Grouchnikov'
-        email 'kirillcool@yahoo.com'
-        roles {
-          role 'author'
-          role 'developer'
-        }
-      }
-      developer {
-        name 'Danno Ferrin'
-        email 'danno.ferrin@shemnon.com'
-        roles {
-          role 'maintainer'
-        }
-      }
-    }
   }
+}
+
+task testSubstanceRibbon(type: JavaExec) {
+    main = 'test.substance.ribbon.NewCheckRibbon'
+    classpath = sourceSets.test.runtimeClasspath
+}
+
+task testSubstanceRibbonRTL(type: JavaExec) {
+    main = 'test.substance.ribbon.NewCheckRibbon'
+    classpath = sourceSets.test.runtimeClasspath
+    systemProperty "user.language", "iw"
 }

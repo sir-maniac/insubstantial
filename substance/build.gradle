@@ -213,9 +213,8 @@ install {
 }
 
 private def configurePOM(def pom) {
+  configureBasePom(pom)
   pom.project {
-    modelVersion '4.0.0'
-    packaging 'jar'
     name "substance"
     description "A fork of @kirilcool's substance project"
     url "http://insubstantial.github.com/insubstantial"
@@ -231,28 +230,6 @@ private def configurePOM(def pom) {
         url 'http://www.opensource.org/licenses/mozilla1.1'
         distribution 'repo'
         comments "Covers the Xoetrope Color Wheel"
-      }
-    }
-    scm {
-      connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-      developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-      url 'scm:git:git@github.com:Insubstantial/insubsntantial.git'
-    }
-    developers {
-      developer {
-        name 'Kirill Grouchnikov'
-        email 'kirillcool@yahoo.com'
-        roles {
-          role 'author'
-          role 'developer'
-        }
-      }
-      developer {
-        name 'Danno Ferrin'
-        email 'danno.ferrin@shemnon.com'
-        roles {
-          role 'maintainer'
-        }
       }
     }
   }

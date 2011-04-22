@@ -14,6 +14,11 @@ dependencies {
   testCompile files('lib/test/debug-1.0.jar')
 }
 
+sourceSets {
+  main
+  test
+}
+
 test {
   // there are some errors related to using Batik and running these GUI tests
   // in gradle as opposed to Ant.
@@ -70,41 +75,11 @@ install {
 }
 
 private def configurePOM(def pom) {
+  configureBasePom(pom)
   pom.project {
-    modelVersion '4.0.0'
-    packaging 'jar'
     name "flamingo"
     description "A fork of @kirilcool's flamingo project"
     url "http://insubstantial.github.com/peacock"
-    licenses {
-      license {
-        name 'The BSD License'
-        url 'http://www.opensource.org/licenses/bsd-license.php'
-        distribution 'repo'
-      }
-    }
-    scm {
-      connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-      developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-      url 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-    }
-    developers {
-      developer {
-        name 'Kirill Grouchnikov'
-        email 'kirillcool@yahoo.com'
-        roles {
-          role 'author'
-          role 'developer'
-        }
-      }
-      developer {
-        name 'Danno Ferrin'
-        email 'danno.ferrin@shemnon.com'
-        roles {
-          role 'maintainer'
-        }
-      }
-    }
   }
   // deal with a gradle bug where transitive=false is not passed into the generated POM
   pom.whenConfigured {cpom ->

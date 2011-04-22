@@ -33,9 +33,8 @@ install {
 }
 
 private def configurePOM(def pom) {
+  configureBasePom(pom)
   pom.project {
-    modelVersion '4.0.0'
-    packaging 'jar'
     name "laf-plugin"
     description "A fork of @kirilcool's laf-plugin project"
     url "http://insubstantial.github.com/plafplugin"
@@ -51,28 +50,6 @@ private def configurePOM(def pom) {
         url 'http://www.opensource.org/licenses/zlib-license'
         distribution 'repo'
         comments 'Covers the XMLElement and XMLParseException classes'
-      }
-    }
-    scm {
-      connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-      developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-      url 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-    }
-    developers {
-      developer {
-        name 'Kirill Grouchnikov'
-        email 'kirillcool@yahoo.com'
-        roles {
-          role 'author'
-          role 'developer'
-        }
-      }
-      developer {
-        name 'Danno Ferrin'
-        email 'danno.ferrin@shemnon.com'
-        roles {
-          role 'maintainer'
-        }
       }
     }
   }

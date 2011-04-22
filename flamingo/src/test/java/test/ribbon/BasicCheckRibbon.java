@@ -137,62 +137,25 @@ public class BasicCheckRibbon extends JRibbonFrame {
 					.getString("TestMenuItem.text"));
 			mf.setLocale(currLocale);
 
-			JCommandMenuButton menuButton1 = new JCommandMenuButton(mf
-					.format(new Object[] { "1" }), new EmptyResizableIcon(16));
-			menuButton1.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("Test menu item 1 activated");
-				}
-			});
-			menuButton1.setActionKeyTip("1");
-			this.addMenuButton(menuButton1);
-
-			JCommandMenuButton menuButton2 = new JCommandMenuButton(mf
-					.format(new Object[] { "2" }), new EmptyResizableIcon(16));
-			menuButton2.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("Test menu item 2 activated");
-				}
-			});
-			menuButton2.setActionKeyTip("2");
-			this.addMenuButton(menuButton2);
-
-			JCommandMenuButton menuButton3 = new JCommandMenuButton(mf
-					.format(new Object[] { "3" }), new EmptyResizableIcon(16));
-			menuButton3.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("Test menu item 3 activated");
-				}
-			});
-			menuButton3.setActionKeyTip("3");
-			this.addMenuButton(menuButton3);
-
-			this.addMenuSeparator();
-
-			JCommandMenuButton menuButton4 = new JCommandMenuButton(mf
-					.format(new Object[] { "4" }), new EmptyResizableIcon(16));
-			menuButton4.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("Test menu item 4 activated");
-				}
-			});
-			menuButton4.setActionKeyTip("4");
-			this.addMenuButton(menuButton4);
-
-			JCommandMenuButton menuButton5 = new JCommandMenuButton(mf
-					.format(new Object[] { "5" }), new EmptyResizableIcon(16));
-			menuButton5.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("Test menu item 5 activated");
-				}
-			});
-			menuButton5.setActionKeyTip("5");
-			this.addMenuButton(menuButton5);
+            for (final String s : new String[] {"1", "2", "3", null, "4", "5", null, "mm", "mmm", "mmmm", "mmmmm", "mmmmmm"}) {
+                if (s == null) {
+                    this.addMenuSeparator();
+                } else {
+                    JCommandMenuButton menuButton1 = new JCommandMenuButton(mf
+                            .format(new Object[] { s }), new EmptyResizableIcon(16));
+                    menuButton1.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            System.out.println("Test menu item " + s + " activated");
+                        }
+                    });
+                    menuButton1.setActionKeyTip(s);
+                    if (s.length() > 1) {
+                        menuButton1.setCommandButtonKind(CommandButtonKind.values()[s.length() % CommandButtonKind.values().length]);
+                    }
+                    this.addMenuButton(menuButton1);
+                }
+            }
 		}
 	}
 

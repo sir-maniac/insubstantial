@@ -39,9 +39,8 @@ install {
 }
 
 private def configurePOM(def pom) {
+  configureBasePom(pom)
   pom.project {
-    modelVersion '4.0.0'
-    packaging 'jar'
     name "laf-widget"
     description "A fork of @kirilcool's laf-widget project"
     url "http://insubstantial.github.com/plafwidget"
@@ -57,28 +56,6 @@ private def configurePOM(def pom) {
         url 'http://creativecommons.org/licenses/by-sa/2.5/'
         distribution 'repo'
         comments 'Covers the TangoIcons'
-      }
-    }
-    scm {
-      connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-      developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-      url 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-    }
-    developers {
-      developer {
-        name 'Kirill Grouchnikov'
-        email 'kirillcool@yahoo.com'
-        roles {
-          role 'author'
-          role 'developer'
-        }
-      }
-      developer {
-        name 'Danno Ferrin'
-        email 'danno.ferrin@shemnon.com'
-        roles {
-          role 'maintainer'
-        }
       }
     }
   }

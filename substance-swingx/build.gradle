@@ -7,17 +7,16 @@ configurations {
 
 sourceSets {
   main
-  // gradle bug - cannont include two different classifiers of the same dependency
-  //test
-  //tools {
-  //compileClasspath = sourceSets.main.classes + sourceSets.test.classes + configurations.toolsCompile + configurations.testCompile
-  //}
+  test
+  tools {
+    compileClasspath = sourceSets.main.classes + sourceSets.test.classes + configurations.toolsCompile + configurations.testCompile
+  }
 }
 
 dependencies {
   compile project(":substance")
   compile group: 'org.swinglabs', name: 'swingx', version: swingXVersion
-  testCompile files('lib/substance-6.2-tst-hack.jar')
+  testCompile project(":substance").sourceSets.test.classes
   testCompile group: 'com.jgoodies', name: 'forms', version: '1.2.0'
   toolsCompile group: 'com.github.insubstantial', name: 'substance', version: version, ext: 'tools'
   toolsCompile group: 'org.easytesting', name: 'fest-swing', version: '1.2'
@@ -143,9 +142,8 @@ install {
 }
 
 private def configurePOM(def pom) {
+  configureBasePom(pom)
   pom.project {
-    modelVersion '4.0.0'
-    packaging 'jar'
     name "substance-swingx"
     description "A fork of @kirilcool's substance project"
     url "http://insubstantial.github.com/insubstantialSwingX"
@@ -161,28 +159,6 @@ private def configurePOM(def pom) {
         url 'http://www.opensource.org/licenses/mozilla1.1'
         distribution 'repo'
         comments "Covers the Xoetrope Color Wheel"
-      }
-    }
-    scm {
-      connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-      developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-      url 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-    }
-    developers {
-      developer {
-        name 'Kirill Grouchnikov'
-        email 'kirillcool@yahoo.com'
-        roles {
-          role 'author'
-          role 'developer'
-        }
-      }
-      developer {
-        name 'Danno Ferrin'
-        email 'danno.ferrin@shemnon.com'
-        roles {
-          role 'maintainer'
-        }
       }
     }
   }

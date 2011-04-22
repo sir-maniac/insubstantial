@@ -125,41 +125,11 @@ install {
 }
 
 private def configurePOM(def pom) {
+  configureBasePom(pom)
   pom.project {
-    modelVersion '4.0.0'
-    packaging 'jar'
     name "trident"
     description "A fork of @kirilcool's trident project"
     url "http://insubstantial.github.com/halberd"
-    licenses {
-      license {
-        name 'BSD License'
-        url 'http://www.opensource.org/licenses/bsd-license.php'
-        distribution 'repo'
-      }
-    }
-    scm {
-      connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-      developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-      url 'scm:git:git@github.com:Insubstantial/insubstantial.git'
-    }
-    developers {
-      developer {
-        name 'Kirill Grouchnikov'
-        email 'kirillcool@yahoo.com'
-        roles {
-          role 'author'
-          role 'developer'
-        }
-      }
-      developer {
-        name 'Danno Ferrin'
-        email 'danno.ferrin@shemnon.com'
-        roles {
-          role 'maintainer'
-        }
-      }
-    }
   }
   // deal with a gradle bug where transitive=false is not passed into the generated POM
   pom.whenConfigured {cpom ->

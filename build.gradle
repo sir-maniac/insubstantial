@@ -25,6 +25,10 @@ subprojects {
   sourceCompatibility = 1.6
   targetCompatibility = 1.6
 
+  configurations {
+    maven { extendsFrom archives }
+  }
+
   repositories {
     mavenRepo urls: 'https://oss.sonatype.org/content/groups/staging'
     mavenCentral()
@@ -43,10 +47,63 @@ subprojects {
     classifier = 'javadoc'
   }
 
-//  artifacts {
-//    archives sourceJar
-//    archives javadocJar
-//  }
+  artifacts {
+    maven sourceJar
+    maven javadocJar
+  }
+
+  uploadArchives {
+    try {
+      def x = [deployUsername, deployPassword]
+    } catch (Exception e) {
+      deployUsername = 'unset'
+      deployPassword = ''
+    }
+    configuration = configurations.maven
+    repositories {
+      mavenDeployer {
+        snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+          authentication userName: deployUsername, password: deployPassword
+        }
+        repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+          authentication userName: deployUsername, password: deployPassword
+        }
+      }
+    }
+  }
+
+  install {
+    configuration = configurations.maven
+  }
+
+  configureBasePom = { pom ->
+    pom.project {
+      modelVersion '4.0.0'
+      packaging 'jar'
+      scm {
+        connection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+        developerConnection 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+        url 'scm:git:git@github.com:Insubstantial/insubstantial.git'
+      }
+      developers {
+        developer {
+          name 'Kirill Grouchnikov'
+          email 'kirillcool@yahoo.com'
+          roles {
+            role 'author'
+            role 'developer'
+          }
+        }
+        developer {
+          name 'Danno Ferrin'
+          email 'danno.ferrin@shemnon.com'
+          roles {
+            role 'maintainer'
+          }
+        }
+      }
+    }
+  }
 }
 
 task wrapper(type: Wrapper) {
