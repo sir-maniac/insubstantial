@@ -26,17 +26,6 @@ task augmentation(dependsOn: classes) {
   description = "Performs code augmentaiton for the laf-plugin and laf-widget libraries on the substance jar classes"
 
   doLast {
-    // Explode laf-plugin and laf-widget
-//        copy {
-//            from zipTree('lib/build/laf-plugin.jar')
-//            into sourceSets.main.classesDir
-//        }
-//        copy {
-//            from zipTree('lib/build/laf-widget.jar')
-//            into sourceSets.main.classesDir
-//        }
-
-
     augmentClassPath = configurations.toolsCompile.asPath + File.pathSeparator + configurations.compile.asPath
 
     ant.taskdef(name: 'delegate-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentTask", classpath: augmentClassPath)
@@ -46,12 +35,6 @@ task augmentation(dependsOn: classes) {
     ant.taskdef(name: 'container-ghosting-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentContainerGhostingTask", classpath: augmentClassPath)
 
     verboseAugmentation = false
-
-    //LAF augmentation
-    //ant.'laf-augment'(verbose: verboseAugmentaiton, mainlafclassname:"org.pushingpixels.substance.api.SubstanceLookAndFeel") {
-    //    classpathset(dir:sourceSets.main.classesDir)
-    //    delegate(name:"ViewportUI")
-    //}
 
     // Delegate augmentation
     ant.'delegate-update-augment'(verbose: verboseAugmentation, pattern: ".*UI\u002Eclass") {
@@ -89,7 +72,6 @@ jar {
 
 task liteJar(type: Jar) {
   dependsOn augmentation
-  //dependsOn toolsClasses
 
   classifier = 'lite'
 
@@ -120,57 +102,8 @@ task testJar(type: Jar) {
   }
 }
 
-//task testLiteJar(type: Jar) {
-//  classifier = 'tst-lite'
-//
-//  from sourceSets.test.classes
-//
-//  manifest {
-//    attributes(
-//      "Substance-Version": versionKey,
-//      "Substance-BuildStamp": timeStamp,
-//      "Main-Class": "test.Check",
-//      "Class-Path": "substance-lite.jar ../lib/trident.jar ../lib/build/forms-1.2.0.jar ../lib/build/swingx.jar ../lib/build/substance-swingx.jar"
-//    )
-//  }
-//}
-//
-//task toolsJar(type: Jar) {
-//  classifier = 'tools'
-//  from sourceSets.tools.classes
-//  manifest {
-//    attributes(
-//      "Substance-Version": versionKey,
-//      "Substance-BuildStamp": timeStamp
-//    )
-//  }
-////    the annotation factory class doesn't exist, ignore it?
-////    doLast {
-////        ant.apt(srcdir:sourceSets.tools.java.srcDirs.iterator().next(), classpath:"$libsDir/$archiveName", factory:"tools.apt.", compile:false)
-////    }
-//}
-
-task distroJar(type: Jar) {
-  //dependsOn toolsJar, liteJar, testJar, testLiteJar, jar
-  dependsOn liteJar, jar
-  classifier = 'all'
-  from(projectDir)
-  include "lib/**"
-  include "src/**"
-  include "www/**/*.html"
-  include "www/docs/**"
-  include "www/images/**"
-  include "gradle.properties"
-  include "build.gradle"
-}
-
-//allSubstanceJars = [toolsJar, liteJar, testJar, testLiteJar, distroJar]
-
-//uploadArchives.dependsOn << allSubstanceJars
-//assemble.dependsOn << allSubstanceJars
-
 artifacts {
-  archives liteJar
+  maven liteJar
 }
 
 uploadArchives {

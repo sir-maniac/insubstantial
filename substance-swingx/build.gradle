@@ -26,17 +26,6 @@ task augmentation(dependsOn: classes) {
   description = "Performs code augmentaiton for the laf-plugin and laf-widget libraries on the substance jar classes"
 
   doLast {
-    // Explode laf-plugin and laf-widget
-//        copy {
-//            from zipTree('lib/build/laf-plugin.jar')
-//            into sourceSets.main.classesDir
-//        }
-//        copy {
-//            from zipTree('lib/build/laf-widget.jar')
-//            into sourceSets.main.classesDir
-//        }
-
-
     augmentClassPath = configurations.toolsCompile.asPath + File.pathSeparator + configurations.compile.asPath
 
     ant.taskdef(name: 'delegate-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentTask", classpath: augmentClassPath)
@@ -46,12 +35,6 @@ task augmentation(dependsOn: classes) {
     ant.taskdef(name: 'container-ghosting-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentContainerGhostingTask", classpath: augmentClassPath)
 
     verboseAugmentation = false
-
-    //LAF augmentation
-    //ant.'laf-augment'(verbose: verboseAugmentaiton, mainlafclassname:"org.pushingpixels.substance.api.SubstanceLookAndFeel") {
-    //    classpathset(dir:sourceSets.main.classesDir)
-    //    delegate(name:"ViewportUI")
-    //}
 
     // Delegate augmentation
     ant.'delegate-update-augment'(verbose: verboseAugmentation, pattern: ".*UI\u002Eclass") {
@@ -73,7 +56,6 @@ task augmentation(dependsOn: classes) {
 
 jar {
   dependsOn augmentation
-  //dependsOn toolsClasses
 
   manifest {
     attributes(

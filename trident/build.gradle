@@ -93,10 +93,10 @@ task swtJar(type: Jar) {
 }
 
 artifacts {
-  archives baseJar
-  archives androidJar
-  archives swingJar
-  archives swtJar
+  maven baseJar
+  maven androidJar
+  maven swingJar
+  maven swtJar
 }
 
 
