@@ -8,7 +8,6 @@ jar {
     attributes(
         "Trident-Version": version,
         "Trident-VersionName": versionKey,
-        "Trident-BuildStamp": timeStamp
     )
   }
 }
@@ -22,7 +21,6 @@ task testJar(type: Jar) {
     attributes(
         "Trident-Version": version,
         "Trident-VersionName": versionKey,
-        "Trident-BuildStamp": timeStamp
     )
   }
 }
@@ -39,7 +37,6 @@ task baseJar(type: Jar) {
     attributes(
         "Trident-Version": version,
         "Trident-VersionName": versionKey,
-        "Trident-BuildStamp": timeStamp
     )
   }
 }
@@ -55,7 +52,6 @@ task androidJar(type: Jar) {
     attributes(
         "Trident-Version": version,
         "Trident-VersionName": versionKey,
-        "Trident-BuildStamp": timeStamp
     )
   }
 }
@@ -71,7 +67,6 @@ task swingJar(type: Jar) {
     attributes(
         "Trident-Version": version,
         "Trident-VersionName": versionKey,
-        "Trident-BuildStamp": timeStamp
     )
   }
 }
@@ -87,7 +82,6 @@ task swtJar(type: Jar) {
     attributes(
         "Trident-Version": version,
         "Trident-VersionName": versionKey,
-        "Trident-BuildStamp": timeStamp
     )
   }
 }

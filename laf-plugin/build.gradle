@@ -3,7 +3,6 @@ jar {
     attributes(
         "Laf-Plugin-Version": version,
         "Laf-Plugin-VersionName": versionKey,
-        "Laf-Plugin-BuildStamp": timeStamp
     )
   }
 }

@@ -71,7 +71,6 @@ jar {
         "Flamingo-Version": version,
         "Substance-VersionName": versionKey,
         "Flamingo-VersionName": versionKey,
-        "Substance-BuildStamp": timeStamp
     )
   }
 
@@ -88,7 +87,6 @@ task liteJar(type: Jar) {
         "Flamingo-Version": version,
         "Substance-VersionName": versionKey,
         "Flamingo-VersionName": versionKey,
-        "Substance-BuildStamp": timeStamp
     )
   }
 }
@@ -104,7 +102,6 @@ task testJar(type: Jar) {
         "Flamingo-Version": version,
         "Substance-VersionName": versionKey,
         "Flamingo-VersionName": versionKey,
-        "Substance-BuildStamp": timeStamp
     )
   }
 }

@@ -81,8 +81,8 @@ jar {
   manifest {
     attributes(
         "Substance-Distribution": "Full",
-        "Substance-Version": versionKey,
-        "Substance-BuildStamp": timeStamp
+        "Substance-Version": version,
+        "Substance-VersionName": versionKey,
     )
   }
 
@@ -106,8 +106,8 @@ task liteJar(type: Jar) {
   manifest {
     attributes(
         "Substance-Distribution": "Lite",
-        "Substance-Version": versionKey,
-        "Substance-BuildStamp": timeStamp
+        "Substance-Version": version,
+        "Substance-VersionName": versionKey,
     )
   }
 }
@@ -119,8 +119,8 @@ task testJar(type: Jar) {
 
   manifest {
     attributes(
-        "Substance-Version": versionKey,
-        "Substance-BuildStamp": timeStamp,
+        "Substance-Version": version,
+        "Substance-VersionName": versionKey,
     )
   }
 }
@@ -132,8 +132,8 @@ task testLiteJar(type: Jar) {
 
   manifest {
     attributes(
-        "Substance-Version": versionKey,
-        "Substance-BuildStamp": timeStamp,
+        "Substance-Version": version,
+        "Substance-VersionName": versionKey,
     )
   }
 }
@@ -144,8 +144,8 @@ task toolsJar(type: Jar) {
   from sourceSets.tools.classes
   manifest {
     attributes(
-        "Substance-Version": versionKey,
-        "Substance-BuildStamp": timeStamp
+        "Substance-Version": version,
+        "Substance-VersionName": versionKey,
     )
   }
 }

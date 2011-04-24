@@ -9,7 +9,6 @@ jar {
     attributes(
         "Laf-Widget-Version": version,
         "Laf-Widget-VersionName": versionKey,
-        "Laf-Widget-BuildStamp": timeStamp
     )
   }
 }

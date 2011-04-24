@@ -62,7 +62,6 @@ jar {
         "Substance-Version": version,
         "SwingX-Version": swingXVersion,
         "Substance-VersionName": versionKey,
-        "Substance-SwingX-BuildStamp": timeStamp
     )
   }
 
@@ -79,7 +78,6 @@ task testJar(type: Jar) {
         "Flamingo-Version": version,
         "Substance-VersionName": versionKey,
         "Flamingo-VersionName": versionKey,
-        "Substance-BuildStamp": timeStamp
     )
   }
 }

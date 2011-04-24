@@ -20,7 +20,6 @@ subprojects {
   version = '6.3-SNAPSHOT'
   versionKey = "6.3-defender"
   release = "internal"
-  timeStamp = new Date().format("MMMM d, yyyy HH:mm:ss z")
 
   sourceCompatibility = 1.6
   targetCompatibility = 1.6
