@@ -673,8 +673,6 @@ public class TreeDragAndDropWidget extends LafWidgetAdapter<JTree> {
 	 * 
 	 * @param aSourceString
 	 *            the String being dragged.
-	 * @param aPath
-	 *            the path to drop into.
 	 * @return true to allow the drop operation, false otherwise.
 	 */
 	private boolean mayDropHere(String aSourceString, JTree aTargetTree,

@@ -222,7 +222,7 @@ public class JImageComponent extends JPanel {
 								}
 							}
 							repaint();
-						} catch (Throwable thr) {
+						} catch (Throwable ignored) {
 						}
 					}
 

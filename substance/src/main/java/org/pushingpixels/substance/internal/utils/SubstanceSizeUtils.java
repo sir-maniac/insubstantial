@@ -791,7 +791,7 @@ public class SubstanceSizeUtils {
 
 	/**
 	 * Returns the tabbed pane content insets under the specified size. The
-	 * {@link SubstanceConstants.TabContentPaneBorderKind#SINGLE_FULL} is
+	 * {@link org.pushingpixels.substance.api.SubstanceConstants.TabContentPaneBorderKind#SINGLE_FULL} is
 	 * assumed.
 	 * 
 	 * @param fontSize
@@ -884,8 +884,6 @@ public class SubstanceSizeUtils {
 	/**
 	 * Returns the icon size of title pane buttons under the specified size.
 	 * 
-	 * @param fontSize
-	 *            Font size.
 	 * @return Icon size of title pane buttons under the specified size.
 	 */
 	public static int getTitlePaneIconSize() {

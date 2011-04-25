@@ -126,8 +126,6 @@ public class SubstanceColorSchemeUtilities {
 	 *            Component.
 	 * @param scheme
 	 *            Color scheme.
-	 * @param support
-	 *            Used to compute the colorized scheme.
 	 * @param isEnabled
 	 *            Indicates whether the component is enabled.
 	 * @return Colorized version of the specified color scheme.
@@ -313,8 +311,6 @@ public class SubstanceColorSchemeUtilities {
 	 * 
 	 * @param component
 	 *            Component.
-	 * @param associationKind
-	 *            Association kind.
 	 * @param componentState
 	 *            Component state.
 	 * @return Component color scheme.

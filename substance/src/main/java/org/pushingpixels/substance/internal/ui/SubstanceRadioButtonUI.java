@@ -163,10 +163,8 @@ public class SubstanceRadioButtonUI extends BasicRadioButtonUI implements
 	 * 
 	 * @param button
 	 *            Button (should be {@link JRadioButton}).
-	 * @param currState
-	 *            Current state of the checkbox.
-	 * @param prevState
-	 *            Previous state of the checkbox.
+	 * @param stateTransitionTracker
+	 *            state of the checkbox.
 	 * @return Matching icon.
 	 */
 	private static Icon getIcon(JToggleButton button,

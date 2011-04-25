@@ -92,8 +92,6 @@ public class UiDelegateUpdateAugmenter {
 		 *            Class visitor to recreate the non-augmented methods.
 		 * @param existingMethods
 		 *            Contains all method names.
-		 * @param existingFields
-		 *            Contains all field names.
 		 * @param updateMethod
 		 *            The <code>update</code> method to augment.
 		 */

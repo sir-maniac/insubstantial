@@ -91,8 +91,6 @@ public class SubstanceTextComponentBorder implements Border, UIResource {
 	 *            Component enabled status.
 	 * @param hasFocus
 	 *            Component focus ownership status.
-	 * @param alpha
-	 *            Alpha value.
 	 */
 	private void paintBorder(JComponent c, Graphics g, int x, int y, int width,
 			int height, boolean isEnabled, boolean hasFocus) {
@@ -128,7 +126,6 @@ public class SubstanceTextComponentBorder implements Border, UIResource {
 				ComponentState currState = modelStateInfo.getCurrModelState();
 				if (currState.isDisabled())
 					currState = ComponentState.DISABLED_SELECTED;
-
 				if (width * height < 100000) {
 					SubstanceColorScheme baseBorderScheme = SubstanceColorSchemeUtilities
 							.getColorScheme(componentForTransitions,

@@ -205,7 +205,7 @@ public class SubstanceTitlePane extends JComponent {
 	 * value must be one of {@link ExtraComponentKind}.
 	 *
 	 * @see #markExtraComponent(JComponent, ExtraComponentKind)
-	 * @see #getTitleTextRectangle()
+	 * @see #getTitleTextRectangle(int)
 	 */
 	protected static final String EXTRA_COMPONENT_KIND = "substancelaf.internal.titlePane.extraComponentKind";
 
@@ -1816,9 +1816,7 @@ public class SubstanceTitlePane extends JComponent {
 	}
 
 	/**
-	 * Sets location for heap status logfile. Relevant if
-	 * {@link #setCanHaveHeapStatusPanel(boolean)} was called with
-	 * <code>true</code>.
+	 * Sets location for heap status logfile.
 	 *
 	 * @param heapStatusLogfileName
 	 *            Logfile for the heap status panel.
@@ -1852,7 +1850,7 @@ public class SubstanceTitlePane extends JComponent {
 	 *            Child component.
 	 * @param kind
 	 *            Extra kind.
-	 * @see #getTitleTextRectangle()
+	 * @see #getTitleTextRectangle(int)
 	 * @see #EXTRA_COMPONENT_KIND
 	 */
 	protected void markExtraComponent(JComponent comp, ExtraComponentKind kind) {

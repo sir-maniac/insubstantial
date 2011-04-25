@@ -60,8 +60,6 @@ public class JFlowBandControlPanel extends AbstractBandControlPanel implements
 	/**
 	 * Creates a control panel for specified ribbon band.
 	 * 
-	 * @param ribbonBand
-	 *            Ribbon band.
 	 */
 	public JFlowBandControlPanel() {
 		super();
@@ -116,7 +114,7 @@ public class JFlowBandControlPanel extends AbstractBandControlPanel implements
 	/**
 	 * Adds new panel to <code>this</code> control panel.
 	 * 
-	 * @param panel
+	 * @param comp
 	 *            Panel to add
 	 */
 	public void addFlowComponent(JComponent comp) {

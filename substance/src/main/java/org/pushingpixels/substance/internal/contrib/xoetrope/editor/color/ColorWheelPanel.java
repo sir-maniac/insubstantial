@@ -512,7 +512,7 @@ public class ColorWheelPanel extends AbstractColorChooserPanel implements
 	/**
 	 * Get the chooser color
 	 * 
-	 * @param return
+	 * @return
 	 *            the chooser color
 	 */
 	public ModelColor getChooserColour() {
@@ -1338,9 +1338,9 @@ public class ColorWheelPanel extends AbstractColorChooserPanel implements
 	/**
 	 * Get the named system color
 	 * 
-	 * @param name
+	 * @param temp
 	 *            the color name
-	 * @retrun the color value or null if the name is not recognized
+	 * @return the color value or null if the name is not recognized
 	 */
 	public Color getSystemColor(String temp) {
 		Color clr = null;

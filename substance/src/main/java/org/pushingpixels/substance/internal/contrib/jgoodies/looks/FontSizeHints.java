@@ -48,7 +48,6 @@ import org.pushingpixels.lafwidget.utils.LookUtils;
  * @author Karsten Lentzsch
  * 
  * @see Options#setGlobalFontSizeHints(FontSizeHints)
- * @see FontUtils
  */
 public final class FontSizeHints {
 

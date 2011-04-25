@@ -46,8 +46,8 @@ import javax.swing.border.Border;
  * 
  * @author Andrej Golovnin
  * 
- * @see com.jgoodies.looks.common.ShadowPopupBorder
- * @see com.jgoodies.looks.common.ShadowPopupFactory
+ * see com.jgoodies.looks.common.ShadowPopupBorder
+ * see com.jgoodies.looks.common.ShadowPopupFactory
  */
 public final class ShadowPopup extends Popup {
 
@@ -268,7 +268,7 @@ public final class ShadowPopup extends Popup {
 	 * origin seems to be adjusted with the default screen device.
 	 * 
 	 * @see #show()
-	 * @see com.jgoodies.looks.common.ShadowPopupBorder
+	 * see com.jgoodies.looks.common.ShadowPopupBorder
 	 */
 	private void snapshot() {
 		try {

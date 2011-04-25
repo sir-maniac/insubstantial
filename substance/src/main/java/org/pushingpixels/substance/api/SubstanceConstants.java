@@ -466,9 +466,8 @@ public class SubstanceConstants {
 	 * Enumerates of image-based watermarks kinds.
 	 * 
 	 * @author Kirill Grouchnikov
-	 * @see SubstanceLookAndFeel#setImageWatermarkKind(org.pushingpixels.substance.utils.
-	 *      SubstanceConstants.ImageWatermarkKind)
-	 * @see SubstanceLookAndFeel#getImageWatermarkKind()
+	 * @see org.pushingpixels.substance.api.watermark.SubstanceImageWatermark#setKind(org.pushingpixels.substance.api.SubstanceConstants.ImageWatermarkKind)
+	 * @see org.pushingpixels.substance.api.watermark.SubstanceImageWatermark#getKind()
 	 */
 	public enum ImageWatermarkKind {
 		/**
@@ -643,7 +642,7 @@ public class SubstanceConstants {
 
 	/**
 	 * Enumerates configurable Substance-specific widget types for
-	 * {@link SubstanceLookAndFeel#setWidgetVisible(javax.swing.JRootPane, boolean, SubstanceWidgetType...)}
+	 * {@link SubstanceLookAndFeel#setWidgetVisible(javax.swing.JRootPane, boolean, org.pushingpixels.substance.api.SubstanceConstants.SubstanceWidgetType...)}
 	 * API.
 	 * 
 	 * @author Kirill Grouchnikov

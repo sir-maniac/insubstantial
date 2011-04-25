@@ -108,9 +108,9 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 		TransitionAwareUI {
 	/**
 	 * The second decrease button. Is shown under
-	 * {@link SubstanceConstants.ScrollPaneButtonPolicyKind#ADJACENT},
-	 * {@link SubstanceConstants.ScrollPaneButtonPolicyKind#MULTIPLE} and
-	 * {@link SubstanceConstants.ScrollPaneButtonPolicyKind#MULTIPLE_BOTH}
+	 * {@link org.pushingpixels.substance.api.SubstanceConstants.ScrollPaneButtonPolicyKind#ADJACENT},
+	 * {@link org.pushingpixels.substance.api.SubstanceConstants.ScrollPaneButtonPolicyKind#MULTIPLE} and
+	 * {@link org.pushingpixels.substance.api.SubstanceConstants.ScrollPaneButtonPolicyKind#MULTIPLE_BOTH}
 	 * modes.
 	 * 
 	 * @since version 3.1
@@ -119,7 +119,7 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 
 	/**
 	 * The second increase button. Is shown only under
-	 * {@link SubstanceConstants.ScrollPaneButtonPolicyKind#MULTIPLE_BOTH} mode.
+	 * {@link org.pushingpixels.substance.api.SubstanceConstants.ScrollPaneButtonPolicyKind#MULTIPLE_BOTH} mode.
 	 * 
 	 * @since version 3.1
 	 */
@@ -141,20 +141,6 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 	 */
 	private static LazyResettableHashMap<BufferedImage> thumbHorizontalMap = new LazyResettableHashMap<BufferedImage>(
 			"SubstanceScrollBarUI.thumbHorizontal");
-
-	/**
-	 * Stores computed images for full vertical tracks under
-	 * {@link DefaultControlBackgroundComposite}.
-	 */
-	private static LazyResettableHashMap<BufferedImage> trackFullVerticalMap = new LazyResettableHashMap<BufferedImage>(
-			"SubstanceScrollBarUI.trackFullVertical");
-
-	/**
-	 * Stores computed images for full horizontal tracks under
-	 * {@link DefaultControlBackgroundComposite}.
-	 */
-	private static LazyResettableHashMap<BufferedImage> trackFullHorizontalMap = new LazyResettableHashMap<BufferedImage>(
-			"SubstanceScrollBarUI.trackFullHorizontal");
 
 	/**
 	 * Mouse listener on the associated scroll bar.
@@ -192,9 +178,8 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 			"SubstanceScrollBarUI.trackVertical");
 
 	/**
-	 * Listener on adjustments made to the scrollbar model - this is for the
-	 * overlay mode (see {@link SubstanceLookAndFeel#OVERLAY_PROPERTY} and
-	 * repaiting both scrollbars with the viewport.
+	 * Listener on adjustments made to the scrollbar model - this is for
+     * repaiting both scrollbars with the viewport.
 	 * 
 	 * @since version 3.2
 	 */
@@ -244,11 +229,11 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 	 *            if <code>true</code>, the regular (upper / left) decrease
 	 *            button is created, if <code>false</code>, the additional
 	 *            (lower / right) decrease button is created for
-	 *            {@link SubstanceConstants.ScrollPaneButtonPolicyKind#ADJACENT}
+	 *            {@link org.pushingpixels.substance.api.SubstanceConstants.ScrollPaneButtonPolicyKind#ADJACENT}
 	 *            ,
-	 *            {@link SubstanceConstants.ScrollPaneButtonPolicyKind#MULTIPLE}
+	 *            {@link org.pushingpixels.substance.api.SubstanceConstants.ScrollPaneButtonPolicyKind#MULTIPLE}
 	 *            and
-	 *            {@link SubstanceConstants.ScrollPaneButtonPolicyKind#MULTIPLE_BOTH}
+	 *            {@link org.pushingpixels.substance.api.SubstanceConstants.ScrollPaneButtonPolicyKind#MULTIPLE_BOTH}
 	 *            kinds.
 	 * @return Decrease button.
 	 */
@@ -326,7 +311,7 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 	 *            if <code>true</code>, the regular (lower / right) increase
 	 *            button is created, if <code>false</code>, the additional
 	 *            (upper / left) increase button is created for
-	 *            {@link SubstanceConstants.ScrollPaneButtonPolicyKind#MULTIPLE_BOTH}
+	 *            {@link org.pushingpixels.substance.api.SubstanceConstants.ScrollPaneButtonPolicyKind#MULTIPLE_BOTH}
 	 *            kind.
 	 * @return Increase button.
 	 */
@@ -405,18 +390,10 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 	 * 
 	 * @param scrollBar
 	 *            Scroll bar.
-	 * @param trackBounds
-	 *            Track bounds.
-	 * @param compLeftState
-	 *            The state of the left button in the scroll bar.
-	 * @param compRightState
-	 *            The state of the closest right button in the scroll bar.
 	 * @param width
 	 *            Scroll track width.
 	 * @param height
 	 *            Scroll track height.
-	 * @param graphicsComposite
-	 *            Composite to apply before painting the track.
 	 * @return Horizontal track image.
 	 */
 	private static BufferedImage getTrackHorizontal(JScrollBar scrollBar,
@@ -466,8 +443,6 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 	 * 
 	 * @param scrollBar
 	 *            Scroll bar.
-	 * @param trackBounds
-	 *            Track bounds.
 	 * @param leftActiveButton
 	 *            The closest left button in the scroll bar. May be
 	 *            <code>null</code>.
@@ -478,8 +453,6 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 	 *            Scroll track width.
 	 * @param height
 	 *            Scroll track height.
-	 * @param graphicsComposite
-	 *            Composite to apply before painting the track.
 	 * @return Horizontal track image.
 	 */
 	private static void paintTrackBackHorizontal(Graphics g,
@@ -500,8 +473,6 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 	 * 
 	 * @param trackBounds
 	 *            Track bounds.
-	 * @param scrollBar
-	 *            Scroll bar.
 	 * @param topActiveButton
 	 *            The closest top button in the scroll bar. May be
 	 *            <code>null</code>.
@@ -527,20 +498,12 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 	/**
 	 * Returns the image for a vertical track.
 	 * 
-	 * @param trackBounds
-	 *            Track bounds.
 	 * @param scrollBar
 	 *            Scroll bar.
-	 * @param compTopState
-	 *            The state of the top button in the scroll bar.
-	 * @param compBottomState
-	 *            The state of the closest bottom button in the scroll bar.
 	 * @param width
 	 *            Scroll track width.
 	 * @param height
 	 *            Scroll track height.
-	 * @param graphicsComposite
-	 *            Composite to apply before painting the track.
 	 * @return Vertical track image.
 	 */
 	private static BufferedImage getTrackVertical(JScrollBar scrollBar,
@@ -590,8 +553,6 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 	/**
 	 * Returns the image for a vertical track.
 	 * 
-	 * @param trackBounds
-	 *            Track bounds.
 	 * @param scrollBar
 	 *            Scroll bar.
 	 * @param topActiveButton
@@ -604,8 +565,6 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 	 *            Scroll track width.
 	 * @param height
 	 *            Scroll track height.
-	 * @param graphicsComposite
-	 *            Composite to apply before painting the track.
 	 * @return Vertical track image.
 	 */
 	private static void paintTrackBackVertical(Graphics g,
@@ -701,18 +660,10 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 	 *            Thumb width.
 	 * @param height
 	 *            Thumb height.
-	 * @param kind
-	 *            Color scheme kind.
-	 * @param cyclePos
-	 *            Cycle position.
 	 * @param scheme
 	 *            The first color scheme.
-	 * @param scheme2
-	 *            The second color scheme.
 	 * @param borderScheme
 	 *            The first border color scheme.
-	 * @param borderScheme2
-	 *            The second border color scheme.
 	 * @return Image for vertical thumb.
 	 */
 	private static BufferedImage getThumbVertical(JScrollBar scrollBar,
@@ -842,18 +793,10 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 	 *            Thumb width.
 	 * @param height
 	 *            Thumb height.
-	 * @param kind
-	 *            Color scheme kind.
-	 * @param cyclePos
-	 *            Cycle position.
 	 * @param scheme
 	 *            The first color scheme.
-	 * @param scheme2
-	 *            The second color scheme.
 	 * @param borderScheme
 	 *            The first border color scheme.
-	 * @param borderScheme2
-	 *            The second border color scheme.
 	 * @return Image for horizontal thumb.
 	 */
 	private static BufferedImage getThumbHorizontal(JScrollBar scrollBar,
@@ -1392,7 +1335,7 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 
 	/**
 	 * Lays out the vertical scroll bar when the button policy is
-	 * {@link SubstanceConstants.ScrollPaneButtonPolicyKind#ADJACENT}.
+	 * {@link org.pushingpixels.substance.api.SubstanceConstants.ScrollPaneButtonPolicyKind#ADJACENT}.
 	 * 
 	 * @param sb
 	 *            Scroll bar.
@@ -1490,7 +1433,7 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 
 	/**
 	 * Lays out the vertical scroll bar when the button policy is
-	 * {@link SubstanceConstants.ScrollPaneButtonPolicyKind#ADJACENT}.
+	 * {@link org.pushingpixels.substance.api.SubstanceConstants.ScrollPaneButtonPolicyKind#ADJACENT}.
 	 * 
 	 * @param sb
 	 *            Scroll bar.
@@ -1586,7 +1529,7 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 
 	/**
 	 * Lays out the vertical scroll bar when the button policy is
-	 * {@link SubstanceConstants.ScrollPaneButtonPolicyKind#MULTIPLE}.
+	 * {@link org.pushingpixels.substance.api.SubstanceConstants.ScrollPaneButtonPolicyKind#MULTIPLE}.
 	 * 
 	 * @param sb
 	 *            Scroll bar.
@@ -1688,7 +1631,7 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 
 	/**
 	 * Lays out the vertical scroll bar when the button policy is
-	 * {@link SubstanceConstants.ScrollPaneButtonPolicyKind#MULTIPLE_BOTH}.
+	 * {@link org.pushingpixels.substance.api.SubstanceConstants.ScrollPaneButtonPolicyKind#MULTIPLE_BOTH}.
 	 * 
 	 * @param sb
 	 *            Scroll bar.
@@ -1795,7 +1738,7 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 
 	/**
 	 * Lays out the horizontal scroll bar when the button policy is
-	 * {@link SubstanceConstants.ScrollPaneButtonPolicyKind#ADJACENT}.
+	 * {@link org.pushingpixels.substance.api.SubstanceConstants.ScrollPaneButtonPolicyKind#ADJACENT}.
 	 * 
 	 * @param sb
 	 *            Scroll bar.
@@ -1917,7 +1860,7 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 
 	/**
 	 * Lays out the horizontal scroll bar when the button policy is
-	 * {@link SubstanceConstants.ScrollPaneButtonPolicyKind#NONE}.
+	 * {@link org.pushingpixels.substance.api.SubstanceConstants.ScrollPaneButtonPolicyKind#NONE}.
 	 * 
 	 * @param sb
 	 *            Scroll bar.
@@ -2038,7 +1981,7 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 
 	/**
 	 * Lays out the horizontal scroll bar when the button policy is
-	 * {@link SubstanceConstants.ScrollPaneButtonPolicyKind#MULTIPLE}.
+	 * {@link org.pushingpixels.substance.api.SubstanceConstants.ScrollPaneButtonPolicyKind#MULTIPLE}.
 	 * 
 	 * @param sb
 	 *            Scroll bar.
@@ -2164,7 +2107,7 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 
 	/**
 	 * Lays out the horizontal scroll bar when the button policy is
-	 * {@link SubstanceConstants.ScrollPaneButtonPolicyKind#MULTIPLE}.
+	 * {@link org.pushingpixels.substance.api.SubstanceConstants.ScrollPaneButtonPolicyKind#MULTIPLE}.
 	 * 
 	 * @param sb
 	 *            Scroll bar.
@@ -2306,9 +2249,6 @@ public class SubstanceScrollBarUI extends BasicScrollBarUI implements
 				+ thumbVerticalMap.size() + " thumb vertical");
 		sb.append("\t" + trackHorizontalMap.size() + " track horizontal, "
 				+ trackVerticalMap.size() + " track vertical");
-		sb.append("\t" + trackFullHorizontalMap.size()
-				+ " track full horizontal, " + trackFullVerticalMap.size()
-				+ " track full vertical");
 		return sb.toString();
 	}
 

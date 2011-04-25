@@ -181,8 +181,6 @@ public class BasicRibbonTaskToggleButtonUI extends BasicCommandToggleButtonUI {
 	 *            Graphics context.
 	 * @param toFill
 	 *            Rectangle to fill.
-	 * @param button
-	 *            The button itself.
 	 */
 	@Override
 	protected void paintButtonBackground(Graphics graphics, Rectangle toFill) {

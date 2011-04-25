@@ -143,7 +143,7 @@ abstract class SvgBatikIcon extends UserAgentAdapter implements Icon {
 		 *            the image to write
 		 * @param output
 		 *            the output where to store the image
-		 * @param TranscoderException
+		 * @throws TranscoderException
 		 *            if an error occured while storing the image
 		 */
 		@Override

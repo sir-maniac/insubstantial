@@ -1,4 +1,5 @@
 /*
+/*
  * Copyright (c) 2005-2010 Flamingo Kirill Grouchnikov. All Rights Reserved.
  *
  * Redistribution and use in source and binary forms, with or without 
@@ -98,13 +99,6 @@ public class JRibbonGallery extends JComponent {
 	 */
 	public static final String uiClassID = "RibbonGalleryUI";
 
-	/**
-	 * Action listener wired to all the buttons in this gallery. If
-	 * {@link #toDismissOnButtonClick} is <code>true</code>, the listener
-	 * dismissed this gallery.
-	 */
-	protected ActionListener dismissActionListener;
-
 	private String expandKeyTip;
 
 	private CommandButtonDisplayState buttonDisplayState;
@@ -175,7 +169,7 @@ public class JRibbonGallery extends JComponent {
 	 * Returns the UI object which implements the L&F for this component.
 	 * 
 	 * @return a <code>RibbonGalleryUI</code> object
-	 * @see #setUI
+	 * @see #setUI(RibbonGalleryUI)
 	 */
 	public RibbonGalleryUI getUI() {
 		return (RibbonGalleryUI) ui;
@@ -187,7 +181,7 @@ public class JRibbonGallery extends JComponent {
 	 * 
 	 * @return the string "RibbonGalleryUI"
 	 * @see JComponent#getUIClassID
-	 * @see UIDefaults#getUI
+	 * @see UIDefaults#getUI(javax.swing.JComponent)
 	 */
 	@Override
 	public String getUIClassID() {
@@ -227,8 +221,6 @@ public class JRibbonGallery extends JComponent {
 		buttonGroup.getValue().add(button);
 		button.setDisplayState(this.buttonDisplayState);
 
-		button.addActionListener(this.dismissActionListener);
-
 		super.add(button);
 	}
 
@@ -242,8 +234,6 @@ public class JRibbonGallery extends JComponent {
 	private void removeGalleryButton(JCommandToggleButton button) {
 		this.buttons.remove(button);
 		this.buttonSelectionGroup.remove(button);
-
-		button.removeActionListener(this.dismissActionListener);
 
 		super.remove(button);
 	}

@@ -42,8 +42,8 @@ import org.pushingpixels.substance.internal.contrib.jgoodies.looks.Options;
  * shadow border to all popups except ComboBox popups. It is installed by the
  * JGoodies Plastic L&amp;F, as well as by the JGoodies Windows L&amp;F during
  * the Look&amp;Feel initialization, see
- * {@link com.jgoodies.looks.plastic.PlasticLookAndFeel#initialize} and
- * {@link com.jgoodies.looks.windows.WindowsLookAndFeel#initialize}.
+ * {link com.jgoodies.looks.plastic.PlasticLookAndFeel#initialize} and
+ * {link com.jgoodies.looks.windows.WindowsLookAndFeel#initialize}.
  * <p>
  * 
  * This factory shall not be used on platforms that provide native drop shadows,
@@ -75,7 +75,7 @@ public final class ShadowPopupFactory extends PopupFactory {
 	 * effect. The two following constants define the names of these client
 	 * properties.
 	 * 
-	 * @see com.jgoodies.looks.common.ShadowPopupBorder
+	 * see com.jgoodies.looks.common.ShadowPopupBorder
 	 */
 	static final String PROP_HORIZONTAL_BACKGROUND = "jgoodies.hShadowBg";
 	static final String PROP_VERTICAL_BACKGROUND = "jgoodies.vShadowBg";

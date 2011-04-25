@@ -581,13 +581,8 @@ class TimelineEngine {
 	 * Returns an existing running timeline that matches the specified
 	 * parameters.
 	 * 
-	 * @param timelineKind
-	 *            Timeline kind.
-	 * @param object
-	 *            Component.
-	 * @param secondaryId
-	 *            Secondary id. Relevant for such components as tabbed panes
-	 *            (where animation is performed on different tabs).
+	 * @param timeline
+	 *            Timeline
 	 * @return An existing running timeline that matches the specified
 	 *         parameters.
 	 */

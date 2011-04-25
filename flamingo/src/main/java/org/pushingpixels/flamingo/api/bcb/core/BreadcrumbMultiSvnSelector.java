@@ -125,8 +125,8 @@ public class BreadcrumbMultiSvnSelector extends JBreadcrumbBar<String> {
 	 * <p>
 	 * It is {@link CountDownLatch#countDown()} in the
 	 * <code>SwingWorker.done()</code> that wraps the connection. The
-	 * {@link BreadcrumbBarCallBack#getPathChoices(BreadcrumbItem[])} and
-	 * {@link BreadcrumbBarCallBack#getLeafs(BreadcrumbItem[])} call
+	 * {@link BreadcrumbBarCallBack#getPathChoices(java.util.List)} and
+	 * {@link BreadcrumbBarCallBack#getLeafs(java.util.List)} call
 	 * {@link CountDownLatch#await()} on the same latch that blocks until the
 	 * connection is done. Since both these methods should be wrapped off EDT in
 	 * a separate {@link SwingWorker}, this doesn't block the UI.

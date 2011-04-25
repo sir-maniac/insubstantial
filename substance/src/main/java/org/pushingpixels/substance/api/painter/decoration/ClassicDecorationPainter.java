@@ -121,10 +121,6 @@ public class ClassicDecorationPainter implements SubstanceDecorationPainter {
 	 *            Width.
 	 * @param height
 	 *            Height.
-	 * @param leftTitleX
-	 *            Title start poisition.
-	 * @param rightTitleX
-	 *            Title end position.
 	 * @param scheme
 	 *            Substance color scheme for painting the area.
 	 */

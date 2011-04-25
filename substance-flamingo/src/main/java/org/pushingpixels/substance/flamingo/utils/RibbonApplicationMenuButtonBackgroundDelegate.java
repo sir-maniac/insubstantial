@@ -55,7 +55,7 @@ import org.pushingpixels.substance.internal.utils.*;
 public class RibbonApplicationMenuButtonBackgroundDelegate {
 	/**
 	 * Cache for background images. Each time
-	 * {@link #getBackground(AbstractButton, SubstanceButtonShaper, SubstanceFillPainter, int, int)}
+	 * {@link #getFullAlphaBackground(org.pushingpixels.flamingo.internal.ui.ribbon.appmenu.JRibbonApplicationMenuButton, org.pushingpixels.substance.api.painter.fill.SubstanceFillPainter, org.pushingpixels.substance.api.painter.border.SubstanceBorderPainter, int, int)}
 	 * is called, it checks <code>this</code> map to see if it already contains
 	 * such background. If so, the background from the map is returned.
 	 */
@@ -67,8 +67,6 @@ public class RibbonApplicationMenuButtonBackgroundDelegate {
 	 * 
 	 * @param menuButton
 	 *            Button.
-	 * @param shaper
-	 *            Button shaper.
 	 * @param painter
 	 *            Button gradient painter.
 	 * @param borderPainter

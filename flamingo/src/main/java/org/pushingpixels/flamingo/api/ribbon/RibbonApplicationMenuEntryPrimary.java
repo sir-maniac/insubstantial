@@ -49,7 +49,7 @@ import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
  * 
  * <ul>
  * <li>Associated {@link ActionListener} passed to the
- * {@link RibbonApplicationMenuEntryPrimary#RibbonApplicationMenuEntryPrimary(ResizableIcon, String, ActionListener, CommandButtonKind)}
+ * {@link RibbonApplicationMenuEntryPrimary#RibbonApplicationMenuEntryPrimary(org.pushingpixels.flamingo.api.common.icon.ResizableIcon, String, java.awt.event.ActionListener, org.pushingpixels.flamingo.api.common.JCommandButton.CommandButtonKind)}
  * . When this entry is armed (with mouse rollover or via keyboard navigation),
  * the contents of the secondary area are cleared. The <code>Quit</code> menu
  * item is an example of such a primary menu entry.</li>

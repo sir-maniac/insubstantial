@@ -42,11 +42,11 @@ import org.pushingpixels.substance.api.skin.BusinessSkin;
 
 /**
  * Test application that shows the use of the
- * {@link SubstanceLookAndFeel#setSkin(org.pushingpixels.substance.skin.SubstanceSkin)}
+ * {@link SubstanceLookAndFeel#setSkin(org.pushingpixels.substance.api.SubstanceSkin)}
  * API.
  * 
  * @author Kirill Grouchnikov
- * @see SubstanceLookAndFeel#setSkin(org.pushingpixels.substance.skin.SubstanceSkin)
+ * @see SubstanceLookAndFeel#setSkin(org.pushingpixels.substance.api.SubstanceSkin)
  */
 public class SetSkin_Instance extends JFrame {
 	/**

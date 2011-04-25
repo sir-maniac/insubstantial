@@ -61,7 +61,8 @@ public class AbstractImageBorder {
     /** 
      * Paints the border around the specified component
      * 
-     * @param c The component to paint the border on 
+     * @param compWidth width of the target component
+     * @param compHeight height of the target component
      * @param g The graphics context
      * @param x The x offset
      * @param y The y offset
@@ -123,7 +124,8 @@ public class AbstractImageBorder {
    * its own paint if the border lends itself to having a centre area over-painted
    *
    * @param g2 The graphics context
-   * @param c The component
+   * @param compWidth width of the target component
+   * @param compHeight height of the target component
    */
   public void paintCenter(Graphics2D g2, int compWidth,int compHeight){
     int imageWidth = borderImage.getWidth();

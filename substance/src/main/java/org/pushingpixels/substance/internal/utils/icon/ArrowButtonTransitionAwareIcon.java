@@ -149,8 +149,6 @@ public class ArrowButtonTransitionAwareIcon implements Icon {
 	/**
 	 * Returns the icon to be painted for the current state of the button.
 	 * 
-	 * @param button
-	 *            Arrow button.
 	 * @return Icon to be painted.
 	 */
 	private Icon getIconToPaint() {

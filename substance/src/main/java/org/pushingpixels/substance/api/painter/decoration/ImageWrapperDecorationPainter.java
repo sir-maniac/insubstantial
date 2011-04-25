@@ -32,7 +32,7 @@ package org.pushingpixels.substance.api.painter.decoration;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.LinkedHashMap;
-import java.util.Map.Entry;
+import java.util.Map;
 
 import org.pushingpixels.lafwidget.LafWidgetUtilities;
 import org.pushingpixels.substance.api.*;
@@ -78,7 +78,7 @@ public abstract class ImageWrapperDecorationPainter implements
 
 		this.colorizedTileMap = new LinkedHashMap<String, Image>() {
 			@Override
-			protected boolean removeEldestEntry(Entry<String, Image> eldest) {
+			protected boolean removeEldestEntry(Map.Entry<String, Image> eldest) {
 				return this.size() > 10;
 			}
 		};
@@ -152,9 +152,6 @@ public abstract class ImageWrapperDecorationPainter implements
 	 * 
 	 * @param graphics
 	 *            Graphics context.
-	 * @param parent
-	 *            Component ancestor for computing the correct offset of the
-	 *            background painting.
 	 * @param comp
 	 *            Component.
 	 * @param decorationAreaType

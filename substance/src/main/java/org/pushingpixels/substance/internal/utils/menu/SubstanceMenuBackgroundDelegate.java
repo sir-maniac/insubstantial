@@ -69,10 +69,6 @@ public class SubstanceMenuBackgroundDelegate {
 	 *            Graphic context.
 	 * @param menuItem
 	 *            Menu item.
-	 * @param bgColor
-	 *            Current background color.
-	 * @param borderAlpha
-	 *            Border alpha.
 	 * @param textOffset
 	 *            The offset of the menu item text.
 	 */

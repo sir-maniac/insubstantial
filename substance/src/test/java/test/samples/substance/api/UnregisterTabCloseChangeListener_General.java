@@ -41,12 +41,12 @@ import org.pushingpixels.substance.api.tabbed.TabCloseListener;
 
 /**
  * Test application that shows the use of the
- * {@link SubstanceLookAndFeel#unregisterTabCloseChangeListener(org.pushingpixels.substance.tabbed.BaseTabCloseListener)}
+ * {@link SubstanceLookAndFeel#unregisterTabCloseChangeListener(org.pushingpixels.substance.api.tabbed.BaseTabCloseListener)}
  * API with registering a tab close listener that listens on single tab closing
  * on a specific tabbed pane.
  * 
  * @author Kirill Grouchnikov
- * @see SubstanceLookAndFeel#unregisterTabCloseChangeListener(org.pushingpixels.substance.tabbed.BaseTabCloseListener)
+ * @see SubstanceLookAndFeel#unregisterTabCloseChangeListener(org.pushingpixels.substance.api.tabbed.BaseTabCloseListener)
  */
 public class UnregisterTabCloseChangeListener_General extends JFrame {
 	/**

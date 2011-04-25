@@ -352,7 +352,6 @@ public final class LookUtils {
 	 * 
 	 * @return true if the toolkit provides native drop shadows
 	 * 
-	 * @see Options#isPopupDropShadowActive()
 	 */
 	public static boolean getToolkitUsesNativeDropShadows() {
 		return IS_OS_MAC;

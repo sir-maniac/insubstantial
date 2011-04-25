@@ -220,8 +220,8 @@ public final class FontPolicies {
 	 * or <code>null</code> if no custom font set has been defined for this
 	 * Look&amp;Feel.
 	 * 
-	 * @param the
-	 *            name of the Look&amp;Feel, one of <code>"Plastic"</code> or
+	 * @param lafName
+	 *            the name of the Look&amp;Feel, one of <code>"Plastic"</code> or
 	 *            <code>"Windows"</code>
 	 * @return a custom FontPolicy - if any - or otherwise <code>null</code>
 	 */
@@ -245,8 +245,8 @@ public final class FontPolicies {
 	 * name, or <code>null</code> if no custom policy has been defined for this
 	 * Look&amp;Feel.
 	 * 
-	 * @param the
-	 *            name of the Look&amp;Feel, one of <code>"Plastic"</code> or
+	 * @param lafName
+	 *            the name of the Look&amp;Feel, one of <code>"Plastic"</code> or
 	 *            <code>"Windows"</code>
 	 * @return a custom FontPolicy - if any - or otherwise <code>null</code>
 	 */

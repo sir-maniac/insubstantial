@@ -30,9 +30,8 @@
 package org.pushingpixels.substance.api.trait;
 
 /**
- * Base interface for Substance traits info, like {@link ThemeInfo},
- * {@link WatermarkInfo} etc.
- * 
+ * Base interface for Substance traits info, like {@link org.pushingpixels.substance.api.skin.SkinInfo}.
+ *
  * @author Kirill Grouchnikov
  */
 public interface SubstanceTraitInfo {

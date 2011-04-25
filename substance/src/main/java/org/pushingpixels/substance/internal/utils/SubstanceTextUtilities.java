@@ -308,8 +308,6 @@ public class SubstanceTextUtilities {
 	 *            Mnemonic index.
 	 * @param state
 	 *            Component state.
-	 * @param prevState
-	 *            Component previous state.
 	 * @param textAlpha
 	 *            Alpha channel for painting the text.
 	 */

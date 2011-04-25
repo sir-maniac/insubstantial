@@ -44,8 +44,8 @@ import javax.swing.border.AbstractBorder;
  * @author Karsten Lentzsch
  * @author Andrej Golovnin
  * 
- * @see ShadowPopup
- * @see ShadowPopupFactory
+ * see ShadowPopup
+ * see ShadowPopupFactory
  */
 public final class ShadowPopupBorder extends AbstractBorder {
 

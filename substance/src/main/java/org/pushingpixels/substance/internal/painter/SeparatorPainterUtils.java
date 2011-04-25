@@ -78,8 +78,6 @@ public class SeparatorPainterUtils {
 	 *            Component.
 	 * @param graphics
 	 *            Graphics context.
-	 * @param scheme
-	 *            Color scheme.
 	 * @param width
 	 *            Separator width.
 	 * @param height

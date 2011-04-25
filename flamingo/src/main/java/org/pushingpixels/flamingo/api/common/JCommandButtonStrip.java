@@ -291,7 +291,7 @@ public class JCommandButtonStrip extends JComponent {
 	 * Returns the UI object which implements the L&F for this component.
 	 * 
 	 * @return a <code>ButtonStripUI</code> object
-	 * @see #setUI
+	 * @see #setUI(org.pushingpixels.flamingo.internal.ui.common.CommandButtonStripUI)
 	 */
 	public CommandButtonStripUI getUI() {
 		return (CommandButtonStripUI) ui;
@@ -303,7 +303,7 @@ public class JCommandButtonStrip extends JComponent {
 	 * 
 	 * @return the string "ButtonStripUI"
 	 * @see JComponent#getUIClassID
-	 * @see UIDefaults#getUI
+	 * @see UIDefaults#getUI(javax.swing.JComponent)
 	 */
 	@Override
 	public String getUIClassID() {

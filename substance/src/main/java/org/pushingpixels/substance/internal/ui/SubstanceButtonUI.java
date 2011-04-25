@@ -467,8 +467,6 @@ public class SubstanceButtonUI extends BasicButtonUI implements
 	/**
 	 * Tracks possible usage of glowing icon.
 	 * 
-	 * @param b
-	 *            Button.
 	 */
 	protected void trackGlowingIcon() {
 		Icon currIcon = this.button.getIcon();

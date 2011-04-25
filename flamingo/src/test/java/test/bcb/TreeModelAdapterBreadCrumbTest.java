@@ -76,8 +76,6 @@ public class TreeModelAdapterBreadCrumbTest extends JFrame {
 		 * 
 		 * @param file
 		 *            Node file
-		 * @param isFileSystemRoot
-		 *            Indicates whether the file is a file system root.
 		 * @param parent
 		 *            Parent node.
 		 */

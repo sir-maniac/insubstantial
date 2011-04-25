@@ -70,7 +70,7 @@ import org.pushingpixels.trident.Timeline.TimelineState;
 public class ButtonBackgroundDelegate {
 	/**
 	 * Cache for background images. Each time
-	 * {@link #getBackground(AbstractButton, SubstanceButtonShaper, SubstanceFillPainter, int, int)}
+	 * {@link #getFullAlphaBackground(javax.swing.AbstractButton, javax.swing.ButtonModel, org.pushingpixels.substance.api.shaper.SubstanceButtonShaper, org.pushingpixels.substance.api.painter.fill.SubstanceFillPainter, org.pushingpixels.substance.api.painter.border.SubstanceBorderPainter, int, int)}
 	 * is called, it checks <code>this</code> map to see if it already contains
 	 * such background. If so, the background from the map is returned.
 	 */

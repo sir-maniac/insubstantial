@@ -62,7 +62,7 @@ import org.pushingpixels.substance.internal.utils.icon.TransitionAware;
 public class CommandButtonBackgroundDelegate {
 	/**
 	 * Cache for background images. Each time
-	 * {@link #getBackground(AbstractButton, SubstanceButtonShaper, SubstanceFillPainter, int, int)}
+	 * {@link #getFullAlphaBackground(org.pushingpixels.flamingo.api.common.AbstractCommandButton, javax.swing.ButtonModel, org.pushingpixels.substance.api.painter.fill.SubstanceFillPainter, org.pushingpixels.substance.api.painter.border.SubstanceBorderPainter, int, int, org.pushingpixels.substance.internal.animation.StateTransitionTracker, boolean)}
 	 * is called, it checks <code>this</code> map to see if it already contains
 	 * such background. If so, the background from the map is returned.
 	 */
@@ -74,8 +74,6 @@ public class CommandButtonBackgroundDelegate {
 	 * 
 	 * @param commandButton
 	 *            Button.
-	 * @param shaper
-	 *            Button shaper.
 	 * @param fillPainter
 	 *            Button fill painter.
 	 * @param borderPainter

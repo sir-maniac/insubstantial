@@ -109,7 +109,7 @@ public class RibbonApplicationMenu {
 	 * {@link #addMenuEntry(RibbonApplicationMenuEntryPrimary)} and
 	 * {@link #addFooterEntry(RibbonApplicationMenuEntryFooter)}.
 	 * 
-	 * @see #setFrozen(boolean)
+	 * @see #setFrozen()
 	 * @see #addMenuEntry(RibbonApplicationMenuEntryPrimary)
 	 * @see #addFooterEntry(RibbonApplicationMenuEntryFooter)
 	 */
@@ -243,7 +243,7 @@ public class RibbonApplicationMenu {
 	 * Returns the default callback of this ribbon application menu.
 	 * 
 	 * @return The default callback of this ribbon application menu.
-	 * @see #setDefaultCallback(PrimaryRolloverCallback)
+	 * @see #setDefaultCallback(org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryPrimary.PrimaryRolloverCallback)
 	 */
 	public PrimaryRolloverCallback getDefaultCallback() {
 		return defaultCallback;

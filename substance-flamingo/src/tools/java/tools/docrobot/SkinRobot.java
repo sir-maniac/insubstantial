@@ -153,8 +153,6 @@ public abstract class SkinRobot {
 	/**
 	 * Creates the screenshot and saves it on the disk.
 	 * 
-	 * @param count
-	 *            Sequence number for the screenshot.
 	 */
 	public void makeScreenshot() {
 		BufferedImage bi = new BufferedImage(ribbonFrame.getWidth(),

@@ -57,8 +57,6 @@ public class NoiseFactory {
 	 *            Y stretch factor.
 	 * @param hasConstantZ
 	 *            Indication whether the Z is constant.
-	 * @param noiseFilter
-	 *            Noise filter to apply.
 	 * @param toBlur
 	 *            Indication whether the resulting image should be blurred.
 	 * @param isPreview

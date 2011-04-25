@@ -389,7 +389,7 @@ public abstract class SubstanceLookAndFeel extends BasicLookAndFeel {
 	 * matching frame / dialog will be animated (in case that the frame / dialog
 	 * have decorated title pane). In case the root pane belongs to a
 	 * {@link JInternalFrame} and that frame is iconified (to a
-	 * {@link JInternalFrame.JDesktopIcon}), the close button of the its desktop
+	 * {@link javax.swing.JInternalFrame.JDesktopIcon}), the close button of the its desktop
 	 * icon is animated as well.</li>
 	 * <li>{@link JComponent} in a {@link JTabbedPane}. Based on the
 	 * {@link #TABBED_PANE_CLOSE_BUTTONS_MODIFIED_ANIMATION} property presence,
@@ -1426,7 +1426,7 @@ public abstract class SubstanceLookAndFeel extends BasicLookAndFeel {
 	 *         {@link UIDefaults} - if any, or the default Substance font
 	 *         policy.
 	 * 
-	 * @see #setFontPolicy
+	 * @see #setFontPolicy(org.pushingpixels.substance.api.fonts.FontPolicy)
 	 * @see FontPolicies
 	 * @see FontPolicies#customSettingsPolicy(FontPolicy)
 	 */
@@ -2250,7 +2250,7 @@ public abstract class SubstanceLookAndFeel extends BasicLookAndFeel {
 	/**
 	 * Returns the immediate decoration area type of the specified component.
 	 * The component is checked for the registered decoration area type. If
-	 * {@link #setDecorationType(JComponent, DecorationAreaType, boolean)} was
+	 * {@link #setDecorationType(javax.swing.JComponent, DecorationAreaType)} was
 	 * not called on this component, this method returns <code>null</code>.
 	 * 
 	 * @param comp

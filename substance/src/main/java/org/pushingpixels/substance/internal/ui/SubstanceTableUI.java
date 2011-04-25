@@ -2050,8 +2050,8 @@ public class SubstanceTableUI extends BasicTableUI implements
 		 * Handles various mouse move events and initiates the fade animation if
 		 * necessary.
 		 * 
-		 * @param e
-		 *            Mouse event.
+		 * @param mousePoint
+		 *            Mouse point.
 		 */
 		private void handleMouseMove(Point mousePoint) {
 			// synchronized (SubstanceTableUI.this.table) {
@@ -2170,8 +2170,8 @@ public class SubstanceTableUI extends BasicTableUI implements
 	/**
 	 * Synchronizes the current selection state.
 	 * 
-	 * @param e
-	 *            Selection event.
+	 * @param enforceNoAnimations
+	 *            Whether to force no animations.
 	 */
 	// @SuppressWarnings("unchecked")
 	protected void syncSelection(boolean enforceNoAnimations) {

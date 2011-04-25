@@ -295,10 +295,10 @@ public class LafWidgetSupport {
 	/**
 	 * Paints password strength marker. Is used in the
 	 * {@link PasswordStrengthCheckerWidget} widget. The default implementation
-	 * uses orange color for {@link LafConstants.PasswordStrength#WEAK}
-	 * passwords, yellow color for {@link LafConstants.PasswordStrength#MEDIUM}
+	 * uses orange color for {@link org.pushingpixels.lafwidget.utils.LafConstants.PasswordStrength#WEAK}
+	 * passwords, yellow color for {@link org.pushingpixels.lafwidget.utils.LafConstants.PasswordStrength#MEDIUM}
 	 * passwords and green color for
-	 * {@link LafConstants.PasswordStrength#STRONG} passwords.
+	 * {@link org.pushingpixels.lafwidget.utils.LafConstants.PasswordStrength#STRONG} passwords.
 	 * 
 	 * @param g
 	 *            Graphics context.

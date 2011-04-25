@@ -227,7 +227,7 @@ public class JColorSchemeComponent extends JPanel {
 	 * 
 	 * @param l
 	 *            Change listener to add.
-	 * @see #removeChangeListener(ChangeListener)
+	 * @see #addStateChangeListener(StateChangeListener)
 	 */
 	public void addStateChangeListener(StateChangeListener l) {
 		this.listenerList.add(StateChangeListener.class, l);
@@ -239,7 +239,7 @@ public class JColorSchemeComponent extends JPanel {
 	 * 
 	 * @param l
 	 *            Change listener to remove.
-	 * @see #addChangeListener(ChangeListener)
+	 * @see #addStateChangeListener(StateChangeListener)
 	 */
 	public void removeStateChangeListener(StateChangeListener l) {
 		this.listenerList.remove(StateChangeListener.class, l);

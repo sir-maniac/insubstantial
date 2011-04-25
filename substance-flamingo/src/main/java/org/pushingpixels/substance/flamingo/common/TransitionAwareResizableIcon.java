@@ -124,10 +124,6 @@ public class TransitionAwareResizableIcon implements ResizableIcon {
 	 * 
 	 * @param button
 	 *            Associated command button.
-	 * @param buttonModel
-	 *            Associated model.
-	 * @param extraModelKey
-	 *            Extra model key.
 	 * @param delegate
 	 *            Delegate to compute the actual icons.
 	 * @param initialDim

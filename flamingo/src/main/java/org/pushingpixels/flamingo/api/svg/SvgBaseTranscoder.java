@@ -94,8 +94,6 @@ abstract class SvgBaseTranscoder {
 	/**
 	 * Creates a new transcoder.
 	 * 
-	 * @param uri
-	 *            URI of the SVG image.
 	 * @param javaClassname
 	 *            Classname for the generated Java2D code.
 	 */

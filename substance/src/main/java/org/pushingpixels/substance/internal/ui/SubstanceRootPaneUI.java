@@ -790,7 +790,7 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 	 * returns null, it implies there is no need to render window decorations.
 	 * This method is <b>for internal use only</b>.
 	 * 
-	 * @see #setTitlePane
+	 * @see #setTitlePane(javax.swing.JRootPane, javax.swing.JComponent)
 	 * @return Title pane.
 	 */
 	public JComponent getTitlePane() {

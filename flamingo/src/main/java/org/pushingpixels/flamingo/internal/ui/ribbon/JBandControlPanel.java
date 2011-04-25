@@ -333,8 +333,6 @@ public class JBandControlPanel extends AbstractBandControlPanel implements
 	/**
 	 * Creates a control panel for specified ribbon band.
 	 * 
-	 * @param ribbonBand
-	 *            Ribbon band.
 	 */
 	public JBandControlPanel() {
 		super();

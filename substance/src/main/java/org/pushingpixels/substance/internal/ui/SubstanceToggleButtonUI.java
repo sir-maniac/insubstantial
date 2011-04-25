@@ -398,8 +398,6 @@ public class SubstanceToggleButtonUI extends BasicToggleButtonUI implements
 	/**
 	 * Tracks possible usage of glowing icon.
 	 * 
-	 * @param b
-	 *            Button.
 	 */
 	protected void trackGlowingIcon() {
 		Icon currIcon = this.toggleButton.getIcon();

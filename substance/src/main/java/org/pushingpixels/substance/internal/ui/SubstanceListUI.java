@@ -103,7 +103,7 @@ public class SubstanceListUI extends BasicListUI implements
 
 	/**
 	 * Property listener that listens to the
-	 * {@link SubstanceLookAndFeel#WATERMARK_TO_BLEED} property.
+	 * {@link SubstanceLookAndFeel#WATERMARK_VISIBLE} property.
 	 */
 	protected PropertyChangeListener substancePropertyChangeListener;
 

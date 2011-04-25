@@ -89,7 +89,7 @@ public interface CommandButtonLayoutManager extends PropertyChangeListener {
 		/**
 		 * The popup area. A mouse click in this area will trigger the listener
 		 * associated with the command button popup model
-		 * {@link JCommandButton#setPopupCallback(org.jvnet.flamingo.common.popup.PopupPanelCallback)}
+		 * {@link JCommandButton#setPopupCallback(org.pushingpixels.flamingo.api.common.popup.PopupPanelCallback)}
 		 */
 		public Rectangle popupClickArea;
 

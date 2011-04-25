@@ -565,7 +565,7 @@ public class JRibbon extends JComponent {
 	 * Returns the UI object which implements the L&F for this component.
 	 * 
 	 * @return a <code>RibbonUI</code> object
-	 * @see #setUI
+	 * @see #setUI(javax.swing.plaf.ComponentUI)
 	 */
 	public RibbonUI getUI() {
 		return (RibbonUI) ui;

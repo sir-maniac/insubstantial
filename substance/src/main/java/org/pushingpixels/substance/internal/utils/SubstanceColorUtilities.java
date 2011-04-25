@@ -84,21 +84,7 @@ public class SubstanceColorUtilities {
 
 	/**
 	 * Returns the color of the top portion of fill in control backgrounds.
-	 * 
-	 * @param scheme1
-	 *            The first color scheme.
-	 * @param scheme2
-	 *            The second color scheme.
-	 * @param cycleCoef
-	 *            Cycle position. Is used for rollover and pulsation effects.
-	 *            Must be in 0.0 .. 1.0 range.
-	 * @param useCyclePosAsInterpolation
-	 *            Indicates the algorithm to use for computing various colors.
-	 *            If <code>true</code>, the <code>cyclePos</code> is used to
-	 *            interpolate colors between different color components of both
-	 *            color schemes. If <code>false</code>, the
-	 *            <code>cyclePos</code> is used to interpolate colors between
-	 *            different color components of the first color scheme.
+	 *
 	 * @return The color of the top portion of fill in control backgrounds.
 	 */
 	public static Color getTopFillColor(SubstanceColorScheme scheme) {
@@ -110,20 +96,6 @@ public class SubstanceColorUtilities {
 	/**
 	 * Returns the color of the middle portion of fill in control backgrounds.
 	 * 
-	 * @param scheme1
-	 *            The first color scheme.
-	 * @param scheme2
-	 *            The second color scheme.
-	 * @param cycleCoef
-	 *            Cycle position. Is used for rollover and pulsation effects.
-	 *            Must be in 0.0 .. 1.0 range.
-	 * @param useCyclePosAsInterpolation
-	 *            Indicates the algorithm to use for computing various colors.
-	 *            If <code>true</code>, the <code>cyclePos</code> is used to
-	 *            interpolate colors between different color components of both
-	 *            color schemes. If <code>false</code>, the
-	 *            <code>cyclePos</code> is used to interpolate colors between
-	 *            different color components of the first color scheme.
 	 * @return The color of the middle portion of fill in control backgrounds.
 	 */
 	public static Color getMidFillColor(SubstanceColorScheme scheme) {
@@ -133,20 +105,6 @@ public class SubstanceColorUtilities {
 	/**
 	 * Returns the color of the bottom portion of fill in control backgrounds.
 	 * 
-	 * @param scheme1
-	 *            The first color scheme.
-	 * @param scheme2
-	 *            The second color scheme.
-	 * @param cycleCoef
-	 *            Cycle position. Is used for rollover and pulsation effects.
-	 *            Must be in 0.0 .. 1.0 range.
-	 * @param useCyclePosAsInterpolation
-	 *            Indicates the algorithm to use for computing various colors.
-	 *            If <code>true</code>, the <code>cyclePos</code> is used to
-	 *            interpolate colors between different color components of both
-	 *            color schemes. If <code>false</code>, the
-	 *            <code>cyclePos</code> is used to interpolate colors between
-	 *            different color components of the first color scheme.
 	 * @return The color of the bottom portion of fill in control backgrounds.
 	 */
 	public static Color getBottomFillColor(SubstanceColorScheme scheme) {
@@ -156,20 +114,6 @@ public class SubstanceColorUtilities {
 	/**
 	 * Returns the color of the top portion of shine in control backgrounds.
 	 * 
-	 * @param scheme1
-	 *            The first color scheme.
-	 * @param scheme2
-	 *            The second color scheme.
-	 * @param cycleCoef
-	 *            Cycle position. Is used for rollover and pulsation effects.
-	 *            Must be in 0.0 .. 1.0 range.
-	 * @param useCyclePosAsInterpolation
-	 *            Indicates the algorithm to use for computing various colors.
-	 *            If <code>true</code>, the <code>cyclePos</code> is used to
-	 *            interpolate colors between different color components of both
-	 *            color schemes. If <code>false</code>, the
-	 *            <code>cyclePos</code> is used to interpolate colors between
-	 *            different color components of the first color scheme.
 	 * @return The color of the top portion of shine in control backgrounds.
 	 */
 	public static Color getTopShineColor(SubstanceColorScheme scheme) {
@@ -179,20 +123,6 @@ public class SubstanceColorUtilities {
 	/**
 	 * Returns the color of the bottom portion of shine in control backgrounds.
 	 * 
-	 * @param scheme1
-	 *            The first color scheme.
-	 * @param scheme2
-	 *            The second color scheme.
-	 * @param cycleCoef
-	 *            Cycle position. Is used for rollover and pulsation effects.
-	 *            Must be in 0.0 .. 1.0 range.
-	 * @param useCyclePosAsInterpolation
-	 *            Indicates the algorithm to use for computing various colors.
-	 *            If <code>true</code>, the <code>cyclePos</code> is used to
-	 *            interpolate colors between different color components of both
-	 *            color schemes. If <code>false</code>, the
-	 *            <code>cyclePos</code> is used to interpolate colors between
-	 *            different color components of the first color scheme.
 	 * @return The color of the bottom portion of shine in control backgrounds.
 	 */
 	public static Color getBottomShineColor(SubstanceColorScheme scheme) {
@@ -565,10 +495,8 @@ public class SubstanceColorUtilities {
 	 * 
 	 * @param component
 	 *            Component.
-	 * @param state
-	 *            Component current state.
-	 * @param prevState
-	 *            Component previous state.
+	 * @param modelStateInfo
+     *            The mode state info
 	 * @return The foreground text color of the specified component.
 	 */
 	public static Color getForegroundColor(Component component,
@@ -789,8 +717,8 @@ public class SubstanceColorUtilities {
 	 * Returns the default background color for the components of the specified
 	 * class.
 	 * 
-	 * @param componentClass
-	 *            Component class.
+	 * @param toTreatAsTextComponent
+	 *            if the component is to be colored as a text component.
 	 * @param skin
 	 *            Skin.
 	 * @param isDisabled

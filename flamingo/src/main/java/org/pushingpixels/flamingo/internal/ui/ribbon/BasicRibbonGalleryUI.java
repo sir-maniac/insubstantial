@@ -701,8 +701,6 @@ public class BasicRibbonGalleryUI extends RibbonGalleryUI {
 	 * 
 	 * @param graphics
 	 *            Graphics context.
-	 * @param toFill
-	 *            Rectangle for the background.
 	 */
 	protected void paintRibbonGalleryBorder(Graphics graphics) {
 		Graphics2D g2d = (Graphics2D) graphics.create();

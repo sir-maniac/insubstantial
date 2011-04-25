@@ -89,7 +89,7 @@ public class RichToolTipManager extends MouseAdapter implements
 	 * Returns the initial delay value.
 	 * 
 	 * @return an integer representing the initial delay value, in milliseconds
-	 * @see #setInitialDelay
+	 * @see #setInitialDelay(int)
 	 */
 	public int getInitialDelay() {
 		return initialDelayTimer.getInitialDelay();
@@ -112,7 +112,7 @@ public class RichToolTipManager extends MouseAdapter implements
 	 * 
 	 * @return an integer representing the dismissal delay value, in
 	 *         milliseconds
-	 * @see #setDismissDelay
+	 * @see #setDismissDelay(int)
 	 */
 	public int getDismissDelay() {
 		return dismissTimer.getInitialDelay();

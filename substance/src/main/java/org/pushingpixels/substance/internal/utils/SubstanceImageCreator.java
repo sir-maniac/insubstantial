@@ -107,12 +107,8 @@ public final class SubstanceImageCreator {
 	 *            Border height.
 	 * @param radius
 	 *            Border radius.
-	 * @param borderScheme1
-	 *            First border color scheme.
-	 * @param borderScheme2
-	 *            Second border color scheme.
-	 * @param cyclePos
-	 *            Cycle position for interpolating the border color schemes.
+	 * @param borderScheme
+	 *            border color scheme.
 	 */
 	public static void paintBorder(Component c, Graphics2D graphics, int x,
 			int y, int width, int height, float radius,
@@ -248,8 +244,6 @@ public final class SubstanceImageCreator {
 	/**
 	 * Retrieves check mark image.
 	 * 
-	 * @param button
-	 *            Button for the check mark.
 	 * @param dimension
 	 *            Check mark dimension.
 	 * @param isEnabled
@@ -1050,7 +1044,6 @@ public final class SubstanceImageCreator {
 	 * @param flipSides
 	 *            If <code>true</code>, the drawn halves of the first and the
 	 *            second layers above will be swapped.
-	 * @return Composite background for the specified parameters.
 	 */
 	public static void paintCompositeRoundedBackground(JComponent component,
 			Graphics g, int width, int height, int cornerRadius,
@@ -1424,8 +1417,6 @@ public final class SubstanceImageCreator {
 	 *            Border height.
 	 * @param borderColorScheme
 	 *            Border color scheme.
-	 * @param cyclePos
-	 *            Interpolation cycle.
 	 */
 	public static void paintSimpleBorder(Component c, Graphics2D g2d,
 			int width, int height, SubstanceColorScheme borderColorScheme) {
@@ -1608,9 +1599,6 @@ public final class SubstanceImageCreator {
 	 *            Component.
 	 * @param colorScheme
 	 *            Color scheme.
-	 * @param alwaysUseActive
-	 *            Indicates whether the active color scheme should always be
-	 *            used.
 	 * @param width
 	 *            Drag bumps width.
 	 * @param height
@@ -1692,14 +1680,8 @@ public final class SubstanceImageCreator {
 	 *            Height of the bump dots area.
 	 * @param isHorizontal
 	 *            Indicates whether the dots are horizontal.
-	 * @param componentState
-	 *            Split pane divider state.
-	 * @param colorScheme1
+	 * @param colorScheme
 	 *            First color scheme.
-	 * @param colorScheme2
-	 *            Second color scheme.
-	 * @param interpolationCyclePos
-	 *            Interpolation cycle.
 	 */
 	public static void paintSplitDividerBumpImage(Graphics g,
 			SubstanceSplitPaneDivider divider, int x, int y, int width,
@@ -2345,8 +2327,6 @@ public final class SubstanceImageCreator {
 	 *            The original image.
 	 * @param colorScheme
 	 *            Color scheme.
-	 * @param toSaturate
-	 *            Indicates whether the resulting image should be saturated.
 	 * @return Scheme-based version of the original icon.
 	 */
 	public static BufferedImage getColorSchemeImage(BufferedImage original,

@@ -62,7 +62,7 @@ public class SubstanceScrollPaneUI extends BasicScrollPaneUI {
 	/**
 	 * Property change listener on
 	 * {@link SubstanceLookAndFeel#SCROLL_PANE_BUTTONS_POLICY},
-	 * {@link SubstanceLookAndFeel#WATERMARK_TO_BLEED} and
+	 * {@link SubstanceLookAndFeel#WATERMARK_VISIBLE} and
 	 * <code>layoutManager</code> properties.
 	 */
 	protected PropertyChangeListener substancePropertyChangeListener;

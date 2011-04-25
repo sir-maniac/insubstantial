@@ -182,7 +182,7 @@ public class JRibbonComponent extends RichToolTipManager.JTrackableComponent {
 	 * Returns the UI object which implements the L&F for this component.
 	 * 
 	 * @return a <code>RibbonUI</code> object
-	 * @see #setUI
+	 * @see #setUI(javax.swing.plaf.ComponentUI)
 	 */
 	public RibbonComponentUI getUI() {
 		return (RibbonComponentUI) ui;

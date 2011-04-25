@@ -1751,9 +1751,7 @@ public class SubstanceCoreUtilities {
 	/**
 	 * Returns the arrow icon.
 	 * 
-	 * @param comp
-	 *            Component.
-	 * @param component
+	 * @param button
 	 *            Button.
 	 * @param orientation
 	 *            Arrow orientation.
@@ -1769,8 +1767,6 @@ public class SubstanceCoreUtilities {
 	 * 
 	 * @param comp
 	 *            Component.
-	 * @param component
-	 *            Button.
 	 * @param orientation
 	 *            Arrow orientation.
 	 * @return Arrow icon.

@@ -125,8 +125,6 @@ public class TransitionAwareIcon implements Icon {
 	 * 
 	 * @param comp
 	 *            Associated component.
-	 * @param model
-	 *            Associated model.
 	 * @param delegate
 	 *            Delegate to compute the actual icons.
 	 */

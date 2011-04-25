@@ -216,7 +216,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	 * Returns the UI object which implements the L&F for this component.
 	 * 
 	 * @return a <code>RibbonBandUI</code> object
-	 * @see #setUI
+	 * @see #setUI(org.pushingpixels.flamingo.internal.ui.ribbon.RibbonBandUI)
 	 */
 	public RibbonBandUI getUI() {
 		return (RibbonBandUI) ui;

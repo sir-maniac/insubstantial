@@ -159,7 +159,7 @@ public class JBreadcrumbBar<T> extends JComponent {
 	 * Returns the UI object which implements the L&F for this component.
 	 * 
 	 * @return a <code>BreadcrumbBarUI</code> object
-	 * @see #setUI
+	 * @see #setUI(org.pushingpixels.flamingo.internal.ui.bcb.BreadcrumbBarUI)
 	 */
 	public BreadcrumbBarUI getUI() {
 		return (BreadcrumbBarUI) ui;
@@ -171,7 +171,7 @@ public class JBreadcrumbBar<T> extends JComponent {
 	 * 
 	 * @return the string "BreadcrumbBarUI"
 	 * @see JComponent#getUIClassID
-	 * @see UIDefaults#getUI
+	 * @see UIDefaults#getUI(javax.swing.JComponent)
 	 */
 	@Override
 	public String getUIClassID() {

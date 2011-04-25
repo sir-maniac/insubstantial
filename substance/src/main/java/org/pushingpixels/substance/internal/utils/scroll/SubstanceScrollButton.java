@@ -64,8 +64,6 @@ public class SubstanceScrollButton extends JButton implements UIResource,
 	/**
 	 * Simple constructor.
 	 * 
-	 * @param scrollBarIcon
-	 *            The icon.
 	 * @param orientation
 	 *            The button icon arrow orientation.
 	 */

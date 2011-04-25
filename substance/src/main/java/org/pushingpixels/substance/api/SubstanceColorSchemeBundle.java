@@ -279,8 +279,6 @@ public class SubstanceColorSchemeBundle {
 	 * Returns the color scheme of the specified component in the specified
 	 * component state.
 	 * 
-	 * @param comp
-	 *            Component.
 	 * @param componentState
 	 *            Component state.
 	 * @return The color scheme of the component in the specified component
@@ -461,8 +459,6 @@ public class SubstanceColorSchemeBundle {
 	 * Returns the color scheme to be used for painting the specified visual
 	 * area of the component under the specified component state.
 	 * 
-	 * @param comp
-	 *            Component.
 	 * @param associationKind
 	 *            Color scheme association kind.
 	 * @param componentState

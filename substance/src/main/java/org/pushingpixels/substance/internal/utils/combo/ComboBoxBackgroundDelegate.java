@@ -67,7 +67,7 @@ import org.pushingpixels.substance.internal.utils.SubstanceSizeUtils;
 public class ComboBoxBackgroundDelegate {
 	/**
 	 * Cache for background images. Each time
-	 * {@link #getBackground(AbstractButton, SubstanceButtonShaper, SubstanceFillPainter, int, int)}
+	 * {@link #getFullAlphaBackground(javax.swing.JComboBox, javax.swing.ButtonModel, org.pushingpixels.substance.api.painter.fill.SubstanceFillPainter, org.pushingpixels.substance.api.painter.border.SubstanceBorderPainter, int, int)}
 	 * is called, it checks <code>this</code> map to see if it already contains
 	 * such background. If so, the background from the map is returned.
 	 */
@@ -77,12 +77,10 @@ public class ComboBoxBackgroundDelegate {
 	/**
 	 * Retrieves the background for the specified button.
 	 * 
-	 * @param button
-	 *            Button.
+	 * @param combo
+	 *            combo box.
 	 * @param model
 	 *            Button model.
-	 * @param shaper
-	 *            Button shaper.
 	 * @param fillPainter
 	 *            Button fill painter.
 	 * @param borderPainter
@@ -216,8 +214,8 @@ public class ComboBoxBackgroundDelegate {
 	 * 
 	 * @param g
 	 *            Graphic context.
-	 * @param button
-	 *            Button to update.
+	 * @param combo
+	 *            Combo Box to update.
 	 */
 	public void updateBackground(Graphics g, JComboBox combo,
 			ButtonModel comboModel) {

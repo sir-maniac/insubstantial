@@ -120,10 +120,8 @@ public class SubstanceCheckBoxUI extends SubstanceRadioButtonUI {
 	 * 
 	 * @param button
 	 *            Button (should be {@link JCheckBox}).
-	 * @param currState
-	 *            Current state of the checkbox.
-	 * @param prevState
-	 *            Previous state of the checkbox.
+	 * @param stateTransitionTracker
+	 *            state of the checkbox.
 	 * @return Matching icon.
 	 */
 	private static Icon getIcon(JToggleButton button,

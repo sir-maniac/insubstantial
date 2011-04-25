@@ -49,12 +49,6 @@ public class ComponentPluginManager extends PluginManager {
 	 * 
 	 * @param xmlName
 	 *            The name of XML file that contains plugin configuration.
-	 * @param mainTag
-	 *            The main tag in the XML configuration file.
-	 * @param pluginTag
-	 *            The tag that corresponds to a single plugin kind. Specifies
-	 *            the plugin kind that will be located in
-	 *            {@link #getAvailablePlugins(boolean)}.
 	 */
 	public ComponentPluginManager(String xmlName) {
 		super(xmlName, LafComponentPlugin.TAG_MAIN,

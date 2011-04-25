@@ -65,7 +65,7 @@ import org.pushingpixels.substance.internal.animation.TransitionAwareUI;
 public class PairwiseButtonBackgroundDelegate {
 	/**
 	 * Cache for background images for pairwise backgrounds. Each time
-	 * {@link #getPairwiseBackground(AbstractButton, int, int, Side)} is called,
+	 * {@link #getPairwiseFullAlphaBackground(javax.swing.AbstractButton, org.pushingpixels.substance.api.painter.fill.SubstanceFillPainter, org.pushingpixels.substance.api.shaper.SubstanceButtonShaper, int, int, org.pushingpixels.substance.api.SubstanceConstants.Side, org.pushingpixels.substance.api.SubstanceColorScheme, org.pushingpixels.substance.api.SubstanceColorScheme, boolean)} is called,
 	 * it checks <code>this</code> map to see if it already contains such
 	 * background. If so, the background from the map is returned.
 	 */
@@ -80,8 +80,6 @@ public class PairwiseButtonBackgroundDelegate {
 	 *            Graphics context.
 	 * @param button
 	 *            Button.
-	 * @param painter
-	 *            Gradient painter.
 	 * @param width
 	 *            Button width.
 	 * @param height
@@ -204,8 +202,6 @@ public class PairwiseButtonBackgroundDelegate {
 	 * 
 	 * @param button
 	 *            Button.
-	 * @param kind
-	 *            Color scheme kind.
 	 * @param fillPainter
 	 *            Gradient painter.
 	 * @param width
@@ -214,14 +210,10 @@ public class PairwiseButtonBackgroundDelegate {
 	 *            Button height.
 	 * @param side
 	 *            Button orientation.
-	 * @param cyclePos
-	 *            Cycle position.
 	 * @param colorScheme
 	 *            The fill color scheme.
 	 * @param borderScheme
 	 *            The border color scheme.
-	 * @param graphicsComposite
-	 *            Composite to apply before painting the button.
 	 * @param toIgnoreOpenSides
 	 *            If <code>true</code>, the open side setting (controlled by the
 	 *            {@link SubstanceLookAndFeel#BUTTON_OPEN_SIDE_PROPERTY} is

@@ -758,14 +758,8 @@ public class SubstanceTabbedPaneUI extends BasicTabbedPaneUI {
 	 *            Tab width.
 	 * @param height
 	 *            Tab height.
-	 * @param isSelected
-	 *            Indication whether the tab is selected.
-	 * @param cyclePos
-	 *            Tab cycle position (for rollover effects).
 	 * @param tabPlacement
 	 *            Tab placement.
-	 * @param side
-	 *            Tab open side.
 	 * @param fillScheme
 	 *            Color scheme for coloring the background.
 	 * @param borderScheme
@@ -835,8 +829,8 @@ public class SubstanceTabbedPaneUI extends BasicTabbedPaneUI {
 
 	/**
 	 * Retrieves tab background that will be shown on the screen. Unlike
-	 * {@link #getTabBackground(JTabbedPane, int, int, boolean, float, int, SubstanceColorScheme, SubstanceColorScheme, SubstanceColorScheme, SubstanceColorScheme, boolean)}
-	 * , the result is rotated as necessary (for {@link SwingConstants#LEFT} and
+	 *
+     * , the result is rotated as necessary (for {@link SwingConstants#LEFT} and
 	 * {@link SwingConstants#RIGHT} placement) and blended for selected tabs.
 	 * 
 	 * @param tabPane
@@ -849,8 +843,6 @@ public class SubstanceTabbedPaneUI extends BasicTabbedPaneUI {
 	 *            Tab height.
 	 * @param isSelected
 	 *            Indication whether the tab is selected.
-	 * @param cyclePos
-	 *            Tab cycle position (for rollover effects).
 	 * @param tabPlacement
 	 *            Tab placement.
 	 * @param side
@@ -859,8 +851,6 @@ public class SubstanceTabbedPaneUI extends BasicTabbedPaneUI {
 	 *            Color scheme for coloring the background.
 	 * @param borderScheme
 	 *            Color scheme for coloring the border.
-	 * @param paintOnlyBorder
-	 *            If <code>true</code>, only the border will be painted.
 	 * @return Tab background of specified parameters.
 	 */
 	private static BufferedImage getFinalTabBackgroundImage(
@@ -949,19 +939,13 @@ public class SubstanceTabbedPaneUI extends BasicTabbedPaneUI {
 	 *            Close button width.
 	 * @param height
 	 *            Close button height.
-	 * @param cyclePos
-	 *            Tab cycle position (for rollover effects).
 	 * @param toPaintBorder
 	 *            Indication whether the button background (including contour)
 	 *            needs to be painted.
 	 * @param fillScheme
 	 *            Color scheme for coloring the background.
-	 * @param fillScheme2
-	 *            Second color scheme for coloring the background.
 	 * @param markScheme
 	 *            Color scheme for painting the close mark.
-	 * @param markScheme2
-	 *            Second color scheme for painting the close mark.
 	 * @return Image of the close button of specified parameters.
 	 */
 	private static BufferedImage getCloseButtonImage(JTabbedPane tabPane,

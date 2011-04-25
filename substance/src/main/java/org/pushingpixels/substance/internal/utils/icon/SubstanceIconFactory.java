@@ -468,14 +468,10 @@ public class SubstanceIconFactory {
 		/**
 		 * Retrieves icon that matches the specified state of the slider thumb.
 		 * 
-		 * @param state
-		 *            Slider state.
-		 * @param prevState
-		 *            The previous slider state.
 		 * @param slider
 		 *            The slider itself.
-		 * @param sliderIcon
-		 *            The slider icon.
+		 * @param stateTransitionTracker
+		 *            the state.
 		 * @return Icon that matches the specified state of the slider thumb.
 		 */
 		private Icon getIcon(JSlider slider,
@@ -676,14 +672,10 @@ public class SubstanceIconFactory {
 		/**
 		 * Retrieves icon that matches the specified state of the slider thumb.
 		 * 
-		 * @param state
-		 *            Slider state.
-		 * @param prevState
-		 *            The previous slider state.
 		 * @param slider
 		 *            The slider itself.
-		 * @param sliderIcon
-		 *            The slider icon.
+		 * @param stateTransitionTracker
+		 *            state of the slider.
 		 * @return Icon that matches the specified state of the slider thumb.
 		 */
 		private Icon getIcon(JSlider slider,
@@ -888,14 +880,6 @@ public class SubstanceIconFactory {
 		/**
 		 * Retrieves icon that matches the specified state of the slider thumb.
 		 * 
-		 * @param state
-		 *            Slider state.
-		 * @param prevState
-		 *            The previous slider state.
-		 * @param slider
-		 *            The slider itself.
-		 * @param sliderIcon
-		 *            The slider icon.
 		 * @return Icon that matches the specified state of the slider thumb.
 		 */
 		private static Icon getIcon(JTree tree, boolean isCollapsed) {

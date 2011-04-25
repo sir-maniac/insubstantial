@@ -48,7 +48,8 @@ public class DefaultKDEFontPolicy implements FontPolicy {
 	/**
 	 * method to check if current user session is KDE
 	 * 
-	 * @return {@Code true} if KDE session is currently running.
+	 * @return true
+     * if KDE session is currently running.
 	 */
 	public static boolean isKDERunning() {
 		// KDE_FULL_SESSION=true

@@ -109,9 +109,6 @@ public class MatteDecorationPainter implements SubstanceDecorationPainter {
 	 * 
 	 * @param graphics
 	 *            Graphics context.
-	 * @param parent
-	 *            Component ancestor for computing the correct offset of the
-	 *            background painting.
 	 * @param comp
 	 *            Component.
 	 * @param width

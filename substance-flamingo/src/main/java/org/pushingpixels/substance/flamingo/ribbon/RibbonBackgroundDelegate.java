@@ -58,7 +58,7 @@ import org.pushingpixels.substance.internal.utils.*;
 public class RibbonBackgroundDelegate {
 	/**
 	 * Cache for background images of ribbon buttons. Each time
-	 * {@link #getTaskToggleButtonBackground(AbstractButton, int, int)} is
+	 * {@link #getTaskToggleButtonBackground(org.pushingpixels.flamingo.internal.ui.ribbon.JRibbonTaskToggleButton, int, int)} is
 	 * called with <code>isRoundCorners</code> equal to <code>true</code>, it
 	 * checks <code>this</code> map to see if it already contains such
 	 * background. If so, the background from the map is returned.
@@ -262,8 +262,6 @@ public class RibbonBackgroundDelegate {
 	 *            Graphic context.
 	 * @param button
 	 *            Button to update.
-	 * @param cycleCount
-	 *            Cycle count for transition effects.
 	 */
 	public void updateTaskToggleButtonBackground(Graphics g,
 			JRibbonTaskToggleButton button) {

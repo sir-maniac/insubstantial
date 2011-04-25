@@ -130,7 +130,7 @@ public class Spline implements TimelineEase {
 
 	/**
 	 * Utility function: When we are evaluating the spline, we only care about
-	 * the Y values. See {@link getXY getXY} for the details.
+	 * the Y values. See {@link #getXY(float)} for the details.
 	 */
 	private float getY(float t) {
 		FloatPoint xy;

@@ -1116,8 +1116,8 @@ public class BasicRibbonUI extends RibbonUI {
 		/**
 		 * Returns the outline of this taskbar panel.
 		 * 
-		 * @param insets
-		 *            Insets.
+		 * @param taskbarPanel
+		 *            the taskbar panel to outline
 		 * @return The outline of this taskbar panel.
 		 */
 		protected Shape getOutline(TaskbarPanel taskbarPanel) {

@@ -40,13 +40,12 @@ import org.pushingpixels.substance.api.tabbed.VetoableTabCloseListener;
 
 /**
  * Test application that shows the use of the
- * {@link SubstanceLookAndFeel#registerTabCloseChangeListener(JTabbedPane, org.pushingpixels.substance.tabbed.BaseTabCloseListener)}
+ * {@link SubstanceLookAndFeel#registerTabCloseChangeListener(javax.swing.JTabbedPane, org.pushingpixels.substance.api.tabbed.BaseTabCloseListener)}
  * API with registering a vetoable tab close listener that listens on single tab
  * closing on a specific tabbed pane.
  * 
  * @author Kirill Grouchnikov
- * @see SubstanceLookAndFeel#registerTabCloseChangeListener(JTabbedPane,
- *      org.pushingpixels.substance.tabbed.BaseTabCloseListener)
+ * @see SubstanceLookAndFeel#registerTabCloseChangeListener(javax.swing.JTabbedPane, org.pushingpixels.substance.api.tabbed.BaseTabCloseListener)
  */
 public class RegisterTabCloseChangeListener_SpecificSingleVetoable extends
 		JFrame {
