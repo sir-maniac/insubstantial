@@ -5,10 +5,15 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.UIManager;
 
-import junit.framework.TestCase;
-
+import org.fest.assertions.Assertions;
+import org.fest.swing.core.MouseButton;
+import org.fest.swing.edt.GuiActionRunner;
+import org.fest.swing.edt.GuiTask;
+import org.fest.swing.junit.testcase.FestSwingJUnitTestCase;
+import org.junit.Test;
 import org.pushingpixels.flamingo.api.common.*;
 import org.pushingpixels.flamingo.api.common.icon.*;
 import org.pushingpixels.flamingo.api.common.popup.*;
@@ -21,7 +26,7 @@ import org.pushingpixels.flamingo.internal.utils.RenderingUtils;
 import test.common.SamplePopupMenu;
 import test.svg.transcoded.*;
 
-public class RibbonMinimizedTestCase extends TestCase {
+public class RibbonMinimizedTestCase extends FestSwingJUnitTestCase {
     private JRibbonFrame ribbonFrame;
 
     private JRibbon ribbon;
@@ -32,7 +37,7 @@ public class RibbonMinimizedTestCase extends TestCase {
 
             for (int groupIndex = 0; groupIndex < 4; groupIndex++) {
                 String iconGroupName = "Styles " + groupIndex;
-                addButtonGroup(iconGroupName, groupIndex);
+                this.addButtonGroup(iconGroupName, groupIndex);
                 for (int i = 0; i < 15; i++) {
                     final int index = i;
                     ResizableIcon fontIcon = new font_x_generic();
@@ -210,119 +215,138 @@ public class RibbonMinimizedTestCase extends TestCase {
     }
 
     @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-        SwingUtilities.invokeAndWait(new Runnable() { @Override public void run() {
+    protected void onSetUp() {
 
-            ribbonFrame = new JRibbonFrame();
-            ribbon = ribbonFrame.getRibbon();
+        GuiActionRunner.execute(new GuiTask() {
+            @Override
+            protected void executeInEDT() throws Throwable {
 
-            RibbonTask task = new RibbonTask("Task", getClipboardBand());
+                ribbonFrame = new JRibbonFrame();
+                ribbon = ribbonFrame.getRibbon();
 
-            ribbon.addTask(task);
+                RibbonTask task = new RibbonTask("Task", getClipboardBand());
 
-            Rectangle r = GraphicsEnvironment.getLocalGraphicsEnvironment()
-                    .getMaximumWindowBounds();
-            ribbonFrame.setPreferredSize(new Dimension(r.width, r.height / 2));
-            ribbonFrame.pack();
-            ribbonFrame.setLocation(r.x, r.y);
-            ribbonFrame.setVisible(true);
-            ribbonFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        }});
+                ribbon.addTask(task);
+
+                Rectangle r = GraphicsEnvironment.getLocalGraphicsEnvironment()
+                        .getMaximumWindowBounds();
+                ribbonFrame.setPreferredSize(new Dimension(r.width, r.height / 2));
+                ribbonFrame.pack();
+                ribbonFrame.setLocation(r.x, r.y);
+                ribbonFrame.setVisible(true);
+                ribbonFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            }
+        });
     }
 
-    public void testMinimizeWithAPI() throws Exception {
-        SwingUtilities.invokeAndWait(new Runnable() { @Override public void run() {
-            assertFalse(ribbon.isMinimized());
-
-            ribbon.setMinimized(true);
-            assertTrue(ribbon.isMinimized());
-        }});
+    public void assertTrue(boolean bool) {
+        Assertions.assertThat(bool).isTrue();
     }
 
-    public void testMinimizeWithKeyboard() throws Exception {
+    public void assertFalse(boolean bool) {
+        Assertions.assertThat(bool).isFalse();
+    }
+
+    public void assertNotNull(Object obj) {
+        Assertions.assertThat(obj).isNotNull();
+    }
+
+    @Test
+    public void minimizeWithAPI() throws Exception {
         assertFalse(ribbon.isMinimized());
 
-        Robot robot = new Robot();
-        // wait between events to allow the Ctrl+F1 to be handled by Swing
-        // and get to the ribbon
-        robot.setAutoDelay(300);
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_F1);
-        robot.keyRelease(KeyEvent.VK_F1);
-        robot.keyRelease(KeyEvent.VK_CONTROL);
+        minimizeRibbonViaAPI();
         assertTrue(ribbon.isMinimized());
     }
 
-    public void testMinimizeWithMouse() throws Exception {
+    private void minimizeRibbonViaAPI() {
+        GuiActionRunner.execute(new GuiTask() {
+            @Override
+            protected void executeInEDT() throws Throwable {
+                ribbon.setMinimized(true);
+            }
+        });
+    }
+
+    @Test
+    public void minimizeWithKeyboard() throws Exception {
+        assertFalse(ribbon.isMinimized());
+
+        // wait between events to allow the Ctrl+F1 to be handled by Swing
+        // and get to the ribbon
+        robot().settings().delayBetweenEvents(300);
+        robot().pressKey(KeyEvent.VK_CONTROL);
+        robot().pressKey(KeyEvent.VK_F1);
+        robot().releaseKey(KeyEvent.VK_F1);
+        robot().releaseKey(KeyEvent.VK_CONTROL);
+        assertTrue(ribbon.isMinimized());
+    }
+
+    @Test
+    public void minimizeWithMouse() throws Exception {
         assertFalse(ribbon.isMinimized());
 
         JRibbonTaskToggleButton taskButton = getTaskButton(ribbon, "Task");
         assertNotNull(taskButton);
 
-        Robot robot = new Robot();
         // set enough delay to emulate double mouse click
-        robot.setAutoDelay(20);
+        robot().settings().delayBetweenEvents(20);
         // move the mouse to the center of the task toggle button
         Point taskButtonLoc = taskButton.getLocationOnScreen();
-        robot.mouseMove(taskButtonLoc.x + taskButton.getWidth() / 2,
+        robot().moveMouse(taskButtonLoc.x + taskButton.getWidth() / 2,
                 taskButtonLoc.y + taskButton.getHeight() / 2);
         // emulate double click
-        robot.mousePress(InputEvent.BUTTON1_MASK);
-        robot.mouseRelease(InputEvent.BUTTON1_MASK);
-        robot.mousePress(InputEvent.BUTTON1_MASK);
-        robot.mouseRelease(InputEvent.BUTTON1_MASK);
+        robot().pressMouse(MouseButton.LEFT_BUTTON);
+        robot().releaseMouse(MouseButton.LEFT_BUTTON);
+        robot().pressMouse(MouseButton.LEFT_BUTTON);
+        robot().releaseMouse(MouseButton.LEFT_BUTTON);
+        robot().waitForIdle();
         assertTrue(ribbon.isMinimized());
     }
 
-    public void testMinimizeAndPopup() throws Exception {
-        SwingUtilities.invokeAndWait(new Runnable() { @Override public void run() {
-            try {
-                ribbon.setMinimized(true);
+    @Test
+    public void minimizeAndPopup() throws Exception {
+        minimizeRibbonViaAPI();
 
-                JRibbonTaskToggleButton taskButton = getTaskButton(ribbon, "Task");
-                assertNotNull(taskButton);
+        JRibbonTaskToggleButton taskButton = getTaskButton(ribbon, "Task");
+        assertNotNull(taskButton);
 
-                Robot robot = new Robot();
-                // move the mouse to the center of the task toggle button
-                Point taskButtonLoc = taskButton.getLocationOnScreen();
-                robot.mouseMove(taskButtonLoc.x + taskButton.getWidth() / 2,
-                        taskButtonLoc.y + taskButton.getHeight() / 2);
+        // move the mouse to the center of the task toggle button
+        Point taskButtonLoc = taskButton.getLocationOnScreen();
+        robot().moveMouse(taskButtonLoc.x + taskButton.getWidth() / 2,
+                taskButtonLoc.y + taskButton.getHeight() / 2);
 
-                // mouse press should show the ribbon in popup
-                robot.mousePress(InputEvent.BUTTON1_MASK);
-                Thread.sleep(100);
-                assertTrue(ribbon.isMinimized());
-                //FIXME this is a variance from Office, the ribbon should show on mouse down not mouse click
-                assertFalse(FlamingoUtilities
-                        .isShowingMinimizedRibbonInPopup(ribbon));
+        // mouse press should show the ribbon in popup
+        robot().pressMouse(MouseButton.LEFT_BUTTON);
+        robot().waitForIdle();
+        assertTrue(ribbon.isMinimized());
+        // this is a variance from Office 2007, Flamingo registers on click, office on mouse down
+//        assertTrue(FlamingoUtilities
+//                .isShowingMinimizedRibbonInPopup(ribbon));
 
-                // mouse release should not affect the state of the ribbon
-                robot.mouseRelease(InputEvent.BUTTON1_MASK);
-                Thread.sleep(100);
-                assertTrue(ribbon.isMinimized());
-                assertTrue(FlamingoUtilities
-                        .isShowingMinimizedRibbonInPopup(ribbon));
+        // mouse release should not affect the state of the ribbon
+        robot().releaseMouse(MouseButton.LEFT_BUTTON);
+        assertTrue(ribbon.isMinimized());
+        assertTrue(FlamingoUtilities
+                .isShowingMinimizedRibbonInPopup(ribbon));
 
-                Thread.sleep(100);
+        Thread.sleep(500); // we have to out wait the double click
 
-                // mouse press should hide the ribbon in popup
-                robot.mousePress(InputEvent.BUTTON1_MASK);
-                Thread.sleep(100);
-                assertTrue(ribbon.isMinimized());
-                assertFalse(FlamingoUtilities
-                        .isShowingMinimizedRibbonInPopup(ribbon));
+        // mouse press should hide the ribbon in popup
+        robot().pressMouse(MouseButton.LEFT_BUTTON);
+        robot().waitForIdle();
+        assertTrue(ribbon.isMinimized());
+        // this is a variance from Office 2007, Flamingo registers on click, office on mouse down
+//        assertFalse(FlamingoUtilities
+//                .isShowingMinimizedRibbonInPopup(ribbon));
 
-                // mouse release should not affect the state of the ribbon
-                robot.mouseRelease(InputEvent.BUTTON1_MASK);
-                assertTrue(ribbon.isMinimized());
-                assertFalse(FlamingoUtilities
-                        .isShowingMinimizedRibbonInPopup(ribbon));
+        // mouse release should not affect the state of the ribbon
+        robot().releaseMouse(MouseButton.LEFT_BUTTON);
+        robot().waitForIdle();
+        assertTrue(ribbon.isMinimized());
+        assertFalse(FlamingoUtilities
+                .isShowingMinimizedRibbonInPopup(ribbon));
 
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }});
     }
 
     private static JRibbonTaskToggleButton getTaskButton(Component c,
@@ -345,164 +369,152 @@ public class RibbonMinimizedTestCase extends TestCase {
         return null;
     }
 
-    public void testCommandButtonPopupInMinimizedRibbon() throws Exception {
-        SwingUtilities.invokeAndWait(new Runnable() { @Override public void run() {
-            try {
-                ribbon.setMinimized(true);
+    @Test
+    public void commandButtonPopupInMinimizedRibbon() throws Exception {
+        minimizeRibbonViaAPI();
 
-                JRibbonTaskToggleButton taskButton = getTaskButton(ribbon, "Task");
-                assertNotNull(taskButton);
+        JRibbonTaskToggleButton taskButton = getTaskButton(ribbon, "Task");
+        assertNotNull(taskButton);
 
-                Robot robot = new Robot();
-                // move the mouse to the center of the task toggle button
-                Point taskButtonLoc = taskButton.getLocationOnScreen();
-                robot.mouseMove(taskButtonLoc.x + taskButton.getWidth() / 2,
-                        taskButtonLoc.y + taskButton.getHeight() / 2);
+        // move the mouse to the center of the task toggle button
+        Point taskButtonLoc = taskButton.getLocationOnScreen();
+        robot().moveMouse(taskButtonLoc.x + taskButton.getWidth() / 2,
+                taskButtonLoc.y + taskButton.getHeight() / 2);
 
-                // mouse press should show the ribbon in popup
-                robot.mousePress(InputEvent.BUTTON1_MASK);
-                Thread.sleep(200);
-                robot.mouseRelease(InputEvent.BUTTON1_MASK);
-                Thread.sleep(100);
-                assertTrue(ribbon.isMinimized());
-                assertTrue(FlamingoUtilities
-                        .isShowingMinimizedRibbonInPopup(ribbon));
+        // mouse press should show the ribbon in popup
+        robot().pressMouse(MouseButton.LEFT_BUTTON);
+        Thread.sleep(200);
+        robot().releaseMouse(MouseButton.LEFT_BUTTON);
+        robot().waitForIdle();
+        assertTrue(ribbon.isMinimized());
+        assertTrue(FlamingoUtilities
+                .isShowingMinimizedRibbonInPopup(ribbon));
 
-                List<PopupPanelManager.PopupInfo> popups = PopupPanelManager
-                        .defaultManager().getShownPath();
-                assertTrue(popups.size() > 0);
+        List<PopupPanelManager.PopupInfo> popups = PopupPanelManager
+                .defaultManager().getShownPath();
+        assertTrue(popups.size() > 0);
 
-                JPopupPanel currPopupPanel = popups.get(popups.size() - 1)
-                        .getPopupPanel();
-                JCommandButton cutButton = getCommandButton(currPopupPanel, "Cut");
-                assertNotNull(cutButton);
+        JPopupPanel currPopupPanel = popups.get(popups.size() - 1)
+                .getPopupPanel();
+        JCommandButton cutButton = getCommandButton(currPopupPanel, "Cut");
+        assertNotNull(cutButton);
 
-                Point cutButtonLoc = cutButton.getLocationOnScreen();
-                Rectangle cutPopupArea = cutButton.getUI().getLayoutInfo().popupClickArea;
+        Point cutButtonLoc = cutButton.getLocationOnScreen();
+        Rectangle cutPopupArea = cutButton.getUI().getLayoutInfo().popupClickArea;
 
-                // bring the popup of the cut button
-                robot.mouseMove(cutButtonLoc.x + cutPopupArea.x + cutPopupArea.width
-                        / 2, cutButtonLoc.y + cutPopupArea.y + cutPopupArea.height / 2);
-                robot.mousePress(InputEvent.BUTTON1_MASK);
-                Thread.sleep(100);
-                robot.mouseRelease(InputEvent.BUTTON1_MASK);
-                // ribbon should be minimized
-                assertTrue(ribbon.isMinimized());
-                // and showing in popup
-                assertTrue(FlamingoUtilities
-                        .isShowingMinimizedRibbonInPopup(ribbon));
-                // and cut button should show its popup
-                assertTrue(cutButton.getPopupModel().isPopupShowing());
+        // bring the popup of the cut button
+        robot().moveMouse(cutButtonLoc.x + cutPopupArea.x + cutPopupArea.width
+                / 2, cutButtonLoc.y + cutPopupArea.y + cutPopupArea.height / 2);
+        robot().pressMouse(MouseButton.LEFT_BUTTON);
+        Thread.sleep(100);
+        robot().releaseMouse(MouseButton.LEFT_BUTTON);
+        // ribbon should be minimized
+        assertTrue(ribbon.isMinimized());
+        // and showing in popup
+        assertTrue(FlamingoUtilities
+                .isShowingMinimizedRibbonInPopup(ribbon));
+        // and cut button should show its popup
+        assertTrue(cutButton.getPopupModel().isPopupShowing());
 
-                // click in the popup area once again
-                robot.mousePress(InputEvent.BUTTON1_MASK);
-                Thread.sleep(100);
-                robot.mouseRelease(InputEvent.BUTTON1_MASK);
-                // ribbon should be minimized
-                assertTrue(ribbon.isMinimized());
-                // and showing in popup
-                assertTrue(FlamingoUtilities
-                        .isShowingMinimizedRibbonInPopup(ribbon));
-                // and cut button should not show its popup
-                assertFalse(cutButton.getPopupModel().isPopupShowing());
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }});
+        // click in the popup area once again
+        robot().pressMouse(MouseButton.LEFT_BUTTON);
+        Thread.sleep(100);
+        robot().releaseMouse(MouseButton.LEFT_BUTTON);
+        // ribbon should be minimized
+        assertTrue(ribbon.isMinimized());
+        // and showing in popup
+        assertTrue(FlamingoUtilities
+                .isShowingMinimizedRibbonInPopup(ribbon));
+        // and cut button should not show its popup
+        assertFalse(cutButton.getPopupModel().isPopupShowing());
     }
 
-    public void testCommandButtonPopupInMinimizedRibbon2() throws Exception {
-        SwingUtilities.invokeAndWait(new Runnable() { @Override public void run() {
-            try {
-                ribbon.setMinimized(true);
+    @Test
+    public void commandButtonPopupInMinimizedRibbon2() throws Exception {
+        minimizeRibbonViaAPI();
 
-                JRibbonTaskToggleButton taskButton = getTaskButton(ribbon, "Task");
-                assertNotNull(taskButton);
+        JRibbonTaskToggleButton taskButton = getTaskButton(ribbon, "Task");
+        assertNotNull(taskButton);
 
-                Robot robot = new Robot();
-                // move the mouse to the center of the task toggle button
-                Point taskButtonLoc = taskButton.getLocationOnScreen();
-                robot.mouseMove(taskButtonLoc.x + taskButton.getWidth() / 2,
-                        taskButtonLoc.y + taskButton.getHeight() / 2);
+        // move the mouse to the center of the task toggle button
+        Point taskButtonLoc = taskButton.getLocationOnScreen();
+        robot().moveMouse(taskButtonLoc.x + taskButton.getWidth() / 2,
+                taskButtonLoc.y + taskButton.getHeight() / 2);
 
-                // mouse press should show the ribbon in popup
-                robot.mousePress(InputEvent.BUTTON1_MASK);
-                Thread.sleep(200);
-                robot.mouseRelease(InputEvent.BUTTON1_MASK);
-                Thread.sleep(100);
-                assertTrue(ribbon.isMinimized());
-                assertTrue(FlamingoUtilities
-                        .isShowingMinimizedRibbonInPopup(ribbon));
+        // mouse press should show the ribbon in popup
+        robot().pressMouse(MouseButton.LEFT_BUTTON);
+        Thread.sleep(200);
+        robot().releaseMouse(MouseButton.LEFT_BUTTON);
+        robot().waitForIdle();
+        assertTrue(ribbon.isMinimized());
+        assertTrue(FlamingoUtilities
+                .isShowingMinimizedRibbonInPopup(ribbon));
 
-                List<PopupPanelManager.PopupInfo> popups = PopupPanelManager
-                        .defaultManager().getShownPath();
-                assertTrue(popups.size() > 0);
+        List<PopupPanelManager.PopupInfo> popups = PopupPanelManager
+                .defaultManager().getShownPath();
+        assertTrue(popups.size() > 0);
 
-                JPopupPanel currPopupPanel = popups.get(popups.size() - 1)
-                        .getPopupPanel();
-                JCommandButton cutButton = getCommandButton(currPopupPanel, "Cut");
-                assertNotNull(cutButton);
-                JCommandButton pasteButton = getCommandButton(currPopupPanel, "Paste");
-                assertNotNull(pasteButton);
+        JPopupPanel currPopupPanel = popups.get(popups.size() - 1)
+                .getPopupPanel();
+        JCommandButton cutButton = getCommandButton(currPopupPanel, "Cut");
+        assertNotNull(cutButton);
+        JCommandButton pasteButton = getCommandButton(currPopupPanel, "Paste");
+        assertNotNull(pasteButton);
 
-                Point cutButtonLoc = cutButton.getLocationOnScreen();
-                Rectangle cutPopupArea = cutButton.getUI().getLayoutInfo().popupClickArea;
-                Point pasteButtonLoc = pasteButton.getLocationOnScreen();
-                Rectangle pastePopupArea = pasteButton.getUI().getLayoutInfo().popupClickArea;
+        Point cutButtonLoc = cutButton.getLocationOnScreen();
+        Rectangle cutPopupArea = cutButton.getUI().getLayoutInfo().popupClickArea;
+        Point pasteButtonLoc = pasteButton.getLocationOnScreen();
+        Rectangle pastePopupArea = pasteButton.getUI().getLayoutInfo().popupClickArea;
 
-                robot.setAutoDelay(500);
+        robot().settings().delayBetweenEvents(500);
 
-                // bring the popup of the cut button
-                robot.mouseMove(cutButtonLoc.x + cutPopupArea.x + cutPopupArea.width
-                        / 2, cutButtonLoc.y + cutPopupArea.y + cutPopupArea.height / 2);
-                robot.mousePress(InputEvent.BUTTON1_MASK);
-                Thread.sleep(100);
-                robot.mouseRelease(InputEvent.BUTTON1_MASK);
-                // ribbon should be minimized
-                assertTrue(ribbon.isMinimized());
-                // and showing in popup
-                assertTrue(FlamingoUtilities
-                        .isShowingMinimizedRibbonInPopup(ribbon));
-                // and cut button should show its popup
-                assertTrue(cutButton.getPopupModel().isPopupShowing());
-                // and paste button should not show its popup
-                assertFalse(pasteButton.getPopupModel().isPopupShowing());
+        // bring the popup of the cut button
+        robot().moveMouse(cutButtonLoc.x + cutPopupArea.x + cutPopupArea.width
+                / 2, cutButtonLoc.y + cutPopupArea.y + cutPopupArea.height / 2);
+        robot().pressMouse(MouseButton.LEFT_BUTTON);
+        Thread.sleep(100);
+        robot().releaseMouse(MouseButton.LEFT_BUTTON);
+        // ribbon should be minimized
+        assertTrue(ribbon.isMinimized());
+        // and showing in popup
+        assertTrue(FlamingoUtilities
+                .isShowingMinimizedRibbonInPopup(ribbon));
+        // and cut button should show its popup
+        assertTrue(cutButton.getPopupModel().isPopupShowing());
+        // and paste button should not show its popup
+        assertFalse(pasteButton.getPopupModel().isPopupShowing());
 
-                // click in the popup area of paste button
-                Thread.sleep(100);
-                robot.mouseMove(pasteButtonLoc.x + pastePopupArea.x
-                        + pastePopupArea.width / 2, pasteButtonLoc.y + pastePopupArea.y
-                        + pastePopupArea.height / 2);
-                robot.mousePress(InputEvent.BUTTON1_MASK);
-                Thread.sleep(100);
-                robot.mouseRelease(InputEvent.BUTTON1_MASK);
-                // ribbon should be minimized
-                assertTrue(ribbon.isMinimized());
-                // and showing in popup
-                assertTrue(FlamingoUtilities
-                        .isShowingMinimizedRibbonInPopup(ribbon));
-                // and cut button should not show its popup
-                assertFalse(cutButton.getPopupModel().isPopupShowing());
-                // and paste button should show its popup
-                assertTrue(pasteButton.getPopupModel().isPopupShowing());
+        // click in the popup area of paste button
+        Thread.sleep(100);
+        robot().moveMouse(pasteButtonLoc.x + pastePopupArea.x
+                + pastePopupArea.width / 2, pasteButtonLoc.y + pastePopupArea.y
+                + pastePopupArea.height / 2);
+        robot().pressMouse(MouseButton.LEFT_BUTTON);
+        Thread.sleep(100);
+        robot().releaseMouse(MouseButton.LEFT_BUTTON);
+        // ribbon should be minimized
+        assertTrue(ribbon.isMinimized());
+        // and showing in popup
+        assertTrue(FlamingoUtilities
+                .isShowingMinimizedRibbonInPopup(ribbon));
+        // and cut button should not show its popup
+        assertFalse(cutButton.getPopupModel().isPopupShowing());
+        // and paste button should show its popup
+        assertTrue(pasteButton.getPopupModel().isPopupShowing());
 
-                // click in the popup area once again
-                robot.mousePress(InputEvent.BUTTON1_MASK);
-                Thread.sleep(100);
-                robot.mouseRelease(InputEvent.BUTTON1_MASK);
-                // ribbon should be minimized
-                assertTrue(ribbon.isMinimized());
-                // and showing in popup
-                assertTrue(FlamingoUtilities
-                        .isShowingMinimizedRibbonInPopup(ribbon));
-                // and cut button should not show its popup
-                assertFalse(cutButton.getPopupModel().isPopupShowing());
-                // and paste button should not show its popup
-                assertFalse(pasteButton.getPopupModel().isPopupShowing());
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }});
+        // click in the popup area once again
+        robot().pressMouse(MouseButton.LEFT_BUTTON);
+        Thread.sleep(100);
+        robot().releaseMouse(MouseButton.LEFT_BUTTON);
+        // ribbon should be minimized
+        assertTrue(ribbon.isMinimized());
+        // and showing in popup
+        assertTrue(FlamingoUtilities
+                .isShowingMinimizedRibbonInPopup(ribbon));
+        // and cut button should not show its popup
+        assertFalse(cutButton.getPopupModel().isPopupShowing());
+        // and paste button should not show its popup
+        assertFalse(pasteButton.getPopupModel().isPopupShowing());
     }
 
     private static JCommandButton getCommandButton(Component c, String title) {
