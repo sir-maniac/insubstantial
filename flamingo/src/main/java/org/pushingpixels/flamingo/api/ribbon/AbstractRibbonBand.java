@@ -127,6 +127,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	 * as a part of the UI delegate in {@link BasicRibbonBandUI}.
 	 * 
 	 * @see #getIcon()
+	 * @see #setIcon(ResizableIcon)
 	 */
 	private ResizableIcon icon;
 
@@ -216,7 +217,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	 * Returns the UI object which implements the L&F for this component.
 	 * 
 	 * @return a <code>RibbonBandUI</code> object
-	 * @see #setUI(org.pushingpixels.flamingo.internal.ui.ribbon.RibbonBandUI)
+	 * @see #setUI(RibbonBandUI)
 	 */
 	public RibbonBandUI getUI() {
 		return (RibbonBandUI) ui;
@@ -256,25 +257,41 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 		return uiClassID;
 	}
 
+    /**
+     * Returns the icon for the collapsed state.
+     *
+     * @return The icon for the collapsed state.
+     * @see #AbstractRibbonBand(String, ResizableIcon, ActionListener,
+     *      AbstractBandControlPanel)
+     */
+    public ResizableIcon getIcon() {
+        return this.icon;
+    }
+
+    /**
+     * Changes the icon for the collapsed state of this ribbon band. Fires a <code>icon</code>
+     * property change event.
+     *
+     * @param icon
+     *            The new icon for the collapsed state.
+     * @see #AbstractRibbonBand(String, ResizableIcon, ActionListener,
+     *      AbstractBandControlPanel)
+     * @see #getIcon()
+     */
+    public void setIcon(ResizableIcon icon) {
+        ResizableIcon old = this.icon;
+        this.icon = icon;
+        this.firePropertyChange("icon", old, this.icon);
+    }
+
 	/**
 	 * Returns the title of <code>this</code> band.
-	 * 
+	 *
 	 * @return Title of <code>this</code> band.
 	 * @see #setTitle(String)
 	 */
 	public String getTitle() {
 		return this.title;
-	}
-
-	/**
-	 * Returns the icon for the collapsed state.
-	 * 
-	 * @return The icon for the collapsed state.
-	 * @see #AbstractRibbonBand(String, ResizableIcon, ActionListener,
-	 *      AbstractBandControlPanel)
-	 */
-	public ResizableIcon getIcon() {
-		return this.icon;
 	}
 
 	/**

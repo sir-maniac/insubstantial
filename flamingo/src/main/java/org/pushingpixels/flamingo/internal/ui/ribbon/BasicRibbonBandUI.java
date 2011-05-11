@@ -62,7 +62,7 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 	/**
 	 * The associated ribbon band.
 	 */
-	protected AbstractRibbonBand ribbonBand;
+	protected AbstractRibbonBand<AbstractBandControlPanel> ribbonBand;
 
 	/**
 	 * The button for collapsed state.
@@ -162,7 +162,8 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 	 */
 	@Override
 	public void installUI(JComponent c) {
-		this.ribbonBand = (AbstractRibbonBand) c;
+        //noinspection unchecked
+        this.ribbonBand = (AbstractRibbonBand<AbstractBandControlPanel>) c;
 
 		this.rolloverTimeline = new Timeline(this);
 		this.rolloverTimeline.addPropertyToInterpolate("rolloverAmount", 0.0f,
@@ -273,27 +274,28 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 		this.propertyChangeListener = new PropertyChangeListener() {
 			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
-				if ("title".equals(evt.getPropertyName()))
+				if ("title".equals(evt.getPropertyName())) {
+                    collapsedButton.setText((String) evt.getNewValue());
 					ribbonBand.repaint();
-				if ("expandButtonKeyTip".equals(evt.getPropertyName())) {
+                } else if ("icon".equals(evt.getPropertyName())) {
+                    collapsedButton.setIcon((ResizableIcon) evt.getNewValue());
+					ribbonBand.repaint();
+                } else if ("expandButtonKeyTip".equals(evt.getPropertyName())) {
 					if (expandButton != null) {
 						expandButton
 								.setActionKeyTip((String) evt.getNewValue());
 					}
-				}
-				if ("expandButtonRichTooltip".equals(evt.getPropertyName())) {
+				} else if ("expandButtonRichTooltip".equals(evt.getPropertyName())) {
 					if (expandButton != null) {
 						expandButton.setActionRichTooltip((RichTooltip) evt
 								.getNewValue());
 					}
-				}
-				if ("collapsedStateKeyTip".equals(evt.getPropertyName())) {
+				} else if ("collapsedStateKeyTip".equals(evt.getPropertyName())) {
 					if (collapsedButton != null) {
 						collapsedButton.setPopupKeyTip((String) evt
 								.getNewValue());
 					}
-				}
-				if ("expandActionListener".equals(evt.getPropertyName())) {
+				} else if ("expandActionListener".equals(evt.getPropertyName())) {
 					ActionListener oldListener = (ActionListener) evt
 							.getOldValue();
 					ActionListener newListener = (ActionListener) evt
@@ -305,21 +307,18 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 						ribbonBand.remove(expandButton);
 						expandButton = null;
 						ribbonBand.revalidate();
-					}
-					if ((oldListener == null) && (newListener != null)) {
+					} else if ((oldListener == null) && (newListener != null)) {
 						// need to add
 						expandButton = createExpandButton();
 						configureExpandButton();
 						ribbonBand.add(expandButton);
 						ribbonBand.revalidate();
-					}
-					if ((oldListener != null) && (newListener != null)) {
+					} else if ((oldListener != null) && (newListener != null)) {
 						// need to reconfigure
 						expandButton.removeActionListener(oldListener);
 						expandButton.addActionListener(newListener);
 					}
-				}
-				if ("componentOrientation".equals(evt.getPropertyName())) {
+				} else if ("componentOrientation".equals(evt.getPropertyName())) {
 					if (expandButton != null) {
 						syncExpandButtonIcon();
 					}
@@ -537,7 +536,7 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 				// + ":" + c.getHeight());
 
 				if (collapsedButton.getPopupCallback() == null) {
-					final AbstractRibbonBand popupBand = ribbonBand.cloneBand();
+					final AbstractRibbonBand<AbstractBandControlPanel> popupBand = ribbonBand.cloneBand();
 					popupBand.setControlPanel(ribbonBand.getControlPanel());
 					List<RibbonBandResizePolicy> resizePolicies = ribbonBand
 							.getResizePolicies();
@@ -961,7 +960,19 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 	 * 
 	 * @return The expand button of the matching ribbon band.
 	 */
+    @Deprecated
 	public AbstractCommandButton getExpandButton() {
 		return this.expandButton;
+	}
+
+	/**
+	 * This method is for unit tests only and should not be called by the
+	 * application code.
+	 *
+	 * @return The expand button of the matching ribbon band.
+	 */
+    @Deprecated
+	public AbstractCommandButton getCollapsedButton() {
+		return this.collapsedButton;
 	}
 }
