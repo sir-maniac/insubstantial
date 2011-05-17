@@ -137,7 +137,7 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see javax.swing.plaf.ComponentUI#createUI(javax.swing.JComponent)
 	 */
 	public static ComponentUI createUI(JComponent comp) {
@@ -156,7 +156,7 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see javax.swing.plaf.basic.BasicTreeUI#installDefaults()
 	 */
 	@Override
@@ -187,7 +187,7 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see javax.swing.plaf.basic.BasicTreeUI#uninstallDefaults()
 	 */
 	@Override
@@ -198,7 +198,7 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see javax.swing.plaf.basic.BasicTreeUI#paintRow(java.awt.Graphics,
 	 * java.awt.Rectangle, java.awt.Insets, java.awt.Rectangle,
 	 * javax.swing.tree.TreePath, int, boolean, boolean, boolean)
@@ -394,7 +394,7 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * javax.swing.plaf.basic.BasicTreeUI#paintExpandControl(java.awt.Graphics,
 	 * java.awt.Rectangle, java.awt.Insets, java.awt.Rectangle,
@@ -418,7 +418,7 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 	/**
 	 * Paints the expand control of the specified row.
-	 * 
+	 *
 	 * @param g
 	 *            Graphics context.
 	 * @param clipBounds
@@ -459,7 +459,7 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * javax.swing.plaf.basic.BasicTreeUI#paintHorizontalPartOfLeg(java.awt.
 	 * Graphics, java.awt.Rectangle, java.awt.Insets, java.awt.Rectangle,
@@ -473,7 +473,7 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * javax.swing.plaf.basic.BasicTreeUI#paintVerticalPartOfLeg(java.awt.Graphics
 	 * , java.awt.Rectangle, java.awt.Insets, javax.swing.tree.TreePath)
@@ -485,7 +485,7 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see javax.swing.plaf.basic.BasicTreeUI#createDefaultCellRenderer()
 	 */
 	@Override
@@ -495,7 +495,7 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see javax.swing.plaf.basic.BasicTreeUI#installListeners()
 	 */
 	@Override
@@ -556,7 +556,7 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see javax.swing.plaf.basic.BasicTreeUI#uninstallListeners()
 	 */
 	@Override
@@ -582,7 +582,7 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 	/**
 	 * ID of a single tree path.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	@SuppressWarnings("unchecked")
@@ -594,7 +594,7 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 		/**
 		 * Creates a tree path ID.
-		 * 
+		 *
 		 * @param path
 		 *            Tree path.
 		 */
@@ -604,7 +604,7 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see java.lang.Comparable#compareTo(java.lang.Object)
 		 */
 		@Override
@@ -629,7 +629,7 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see java.lang.Object#equals(java.lang.Object)
 		 */
 		@Override
@@ -639,7 +639,7 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see java.lang.Object#hashCode()
 		 */
 		@Override
@@ -656,13 +656,13 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 	/**
 	 * Selection listener for selection animation effects.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	protected class MyTreeSelectionListener implements TreeSelectionListener {
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see
 		 * javax.swing.event.TreeSelectionListener#valueChanged(javax.swing.
 		 * event.TreeSelectionEvent)
@@ -709,7 +709,7 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 	/**
 	 * Repaints a single path during the fade animation cycle.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	protected class PathRepaintCallback extends UIThreadTimelineCallbackAdapter {
@@ -725,7 +725,7 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 		/**
 		 * Creates a new animation repaint callback.
-		 * 
+		 *
 		 * @param tree
 		 *            Associated tree.
 		 * @param treePath
@@ -788,7 +788,7 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 	/**
 	 * Listener for rollover animation effects.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	private class RolloverFadeListener implements MouseListener,
@@ -841,7 +841,7 @@ public class SubstanceTreeUI extends BasicTreeUI {
 		/**
 		 * Handles various mouse move events and initiates the fade animation if
 		 * necessary.
-		 * 
+		 *
 		 * @param e
 		 *            Mouse event.
 		 */
@@ -903,13 +903,13 @@ public class SubstanceTreeUI extends BasicTreeUI {
 
 	/**
 	 * Listener for selecting the entire rows.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	private class RowSelectionListener extends MouseAdapter {
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see
 		 * java.awt.event.MouseAdapter#mousePressed(java.awt.event.MouseEvent)
 		 */
@@ -1095,27 +1095,29 @@ public class SubstanceTreeUI extends BasicTreeUI {
 					if (background == null)
 						background = tree.getBackground();
 					bounds = treeState.getBounds(path, boundsBuffer);
-					bounds.x += insets.left;
-					bounds.y += insets.top;
-					if (!isWatermarkBleed) {
-						g2d.setColor(background);
-						g2d.fillRect(paintBounds.x, bounds.y,
-								paintBounds.width, bounds.height);
-					} else {
-						if (this.tree.getComponentOrientation().isLeftToRight()) {
-							BackgroundPaintingUtils.fillAndWatermark(g2d,
-									this.tree, background, new Rectangle(
-											paintBounds.x, bounds.y,
-											paintBounds.width, bounds.height));
+					if(bounds != null){
+						bounds.x += insets.left;
+						bounds.y += insets.top;
+						if (!isWatermarkBleed) {
+							g2d.setColor(background);
+							g2d.fillRect(paintBounds.x, bounds.y,
+									paintBounds.width, bounds.height);
 						} else {
-							BackgroundPaintingUtils.fillAndWatermark(g2d,
-									this.tree, background, new Rectangle(
-											paintBounds.x, bounds.y,
-											paintBounds.width, bounds.height));
+							if (this.tree.getComponentOrientation().isLeftToRight()) {
+								BackgroundPaintingUtils.fillAndWatermark(g2d,
+										this.tree, background, new Rectangle(
+												paintBounds.x, bounds.y,
+												paintBounds.width, bounds.height));
+							} else {
+								BackgroundPaintingUtils.fillAndWatermark(g2d,
+										this.tree, background, new Rectangle(
+												paintBounds.x, bounds.y,
+												paintBounds.width, bounds.height));
+							}
 						}
+						if ((bounds.y + bounds.height) >= endY)
+							done = true;
 					}
-					if ((bounds.y + bounds.height) >= endY)
-						done = true;
 				} else {
 					done = true;
 				}
