@@ -29,20 +29,29 @@
  */
 package org.pushingpixels.substance.flamingo.ribbon.ui;
 
-import java.awt.*;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.swing.*;
-import javax.swing.plaf.*;
-
-import org.pushingpixels.flamingo.api.ribbon.*;
-import org.pushingpixels.flamingo.internal.ui.ribbon.*;
+import org.pushingpixels.flamingo.api.ribbon.AbstractRibbonBand;
+import org.pushingpixels.flamingo.api.ribbon.RibbonContextualTaskGroup;
+import org.pushingpixels.flamingo.api.ribbon.RibbonTask;
+import org.pushingpixels.flamingo.internal.ui.ribbon.BasicRibbonUI;
+import org.pushingpixels.flamingo.internal.ui.ribbon.JRibbonRootPane;
+import org.pushingpixels.flamingo.internal.ui.ribbon.JRibbonTaskToggleButton;
 import org.pushingpixels.flamingo.internal.utils.FlamingoUtilities;
 import org.pushingpixels.substance.api.*;
 import org.pushingpixels.substance.api.painter.border.SubstanceBorderPainter;
-import org.pushingpixels.substance.internal.painter.*;
-import org.pushingpixels.substance.internal.utils.*;
+import org.pushingpixels.substance.internal.painter.BackgroundPaintingUtils;
+import org.pushingpixels.substance.internal.painter.DecorationPainterUtils;
+import org.pushingpixels.substance.internal.painter.SeparatorPainterUtils;
+import org.pushingpixels.substance.internal.utils.SubstanceColorSchemeUtilities;
+import org.pushingpixels.substance.internal.utils.SubstanceCoreUtilities;
+import org.pushingpixels.substance.internal.utils.SubstanceSizeUtils;
+
+import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.UIResource;
+import java.awt.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * UI for ribbon in <b>Substance</b> look and feel.
@@ -50,6 +59,13 @@ import org.pushingpixels.substance.internal.utils.*;
  * @author Kirill Grouchnikov
  */
 public class SubstanceRibbonUI extends BasicRibbonUI {
+
+    /**
+     * This component extends across the full width of the tab row
+     * so that header backgrounds can be properly painted
+     */
+    protected JComponent tabPanelHeaderBackground;
+
 	/**
 	 * Panel for hosting task toggle buttons.
 	 * 
@@ -142,6 +158,20 @@ public class SubstanceRibbonUI extends BasicRibbonUI {
 		}
 	}
 
+    protected class SubstanceRibbonLayout extends BasicRibbonUI.RibbonLayout  {
+
+        @Override
+        public void layoutContainer(Container c) {
+            super.layoutContainer(c);
+
+            tabPanelHeaderBackground.setBounds(
+                0, taskToggleButtonsScrollablePanel.getY(),
+                ribbon.getWidth(), taskToggleButtonsScrollablePanel.getHeight()
+            );
+            ribbon.setComponentZOrder(tabPanelHeaderBackground, ribbon.getComponentCount() - 1);
+        }
+    }
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -190,6 +220,12 @@ public class SubstanceRibbonUI extends BasicRibbonUI {
 	@Override
 	protected void installComponents() {
 		super.installComponents();
+
+        tabPanelHeaderBackground = new JPanel();
+        ribbon.add(tabPanelHeaderBackground);
+        SubstanceLookAndFeel.setDecorationType(this.tabPanelHeaderBackground,
+                DecorationAreaType.HEADER);
+
 		SubstanceLookAndFeel.setDecorationType(this.taskBarPanel,
 				DecorationAreaType.PRIMARY_TITLE_PANE);
 		SubstanceLookAndFeel.setDecorationType(this.ribbon,
@@ -200,9 +236,15 @@ public class SubstanceRibbonUI extends BasicRibbonUI {
 
 	@Override
 	protected void uninstallComponents() {
+        this.ribbon.remove(tabPanelHeaderBackground);
 		DecorationPainterUtils.clearDecorationType(this.taskBarPanel);
 		super.uninstallComponents();
 	}
+
+    @Override
+    protected LayoutManager createLayoutManager() {
+        return new SubstanceRibbonLayout();
+    }
 
 	/*
 	 * (non-Javadoc)
