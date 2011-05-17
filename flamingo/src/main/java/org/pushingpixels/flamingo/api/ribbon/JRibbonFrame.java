@@ -81,6 +81,7 @@ public class JRibbonFrame extends JFrame {
 
 	private boolean wasSetIconImagesCalled;
 
+    protected Executor setAppIconExecutor = Executors.newSingleThreadExecutor();
 	/**
 	 * Custom layout manager that enforces the {@link JRibbon} location at
 	 * {@link BorderLayout#NORTH}.
@@ -552,7 +553,7 @@ public class JRibbonFrame extends JFrame {
 	}
 
 	public synchronized void setApplicationIcon(final ResizableIcon icon) {
-		new Thread() {
+		setAppIconExecutor.execute(new Runnable() {
 			@Override
 			public void run() {
 				// still loading?
@@ -578,7 +579,7 @@ public class JRibbonFrame extends JFrame {
 				}
 				setApplicationAndMenuButtonIcon(icon);
 			}
-		}.start();
+		});
 	}
 
 	private void setApplicationAndMenuButtonIcon(final ResizableIcon icon) {
