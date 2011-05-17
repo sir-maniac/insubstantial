@@ -639,7 +639,7 @@ public class BasicRibbonUI extends RibbonUI {
 	 * 
 	 * @author Kirill Grouchnikov
 	 */
-	private class RibbonLayout implements LayoutManager {
+	protected class RibbonLayout implements LayoutManager {
 		/*
 		 * (non-Javadoc)
 		 * 
