@@ -603,8 +603,11 @@ public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 			int pw = 0;
 			int gap = getTaskBarLayoutGap(c);
 			for (Component regComp : getRibbon().getTaskbarComponents()) {
-				pw += regComp.getPreferredSize().width;
-				pw += gap;
+                // Do not add layout space for non-visible components
+                if (regComp.isVisible()){
+				    pw += regComp.getPreferredSize().width;
+				    pw += gap;
+                }
 			}
 			return new Dimension(pw + ins.left + ins.right, c.getParent()
 					.getHeight());
@@ -632,16 +635,19 @@ public class SubstanceRibbonFrameTitlePane extends SubstanceTitlePane {
 			boolean ltr = getComponentOrientation().isLeftToRight();
 			int x = ltr ? ins.left : c.getWidth() - ins.right;
 			for (Component regComp : getRibbon().getTaskbarComponents()) {
-				int pw = regComp.getPreferredSize().width;
-				if (ltr) {
-					regComp.setBounds(x, ins.top, pw, c.getHeight() - ins.top
-							- ins.bottom);
-					x += (pw + gap);
-				} else {
-					regComp.setBounds(x - pw, ins.top, pw, c.getHeight()
-							- ins.top - ins.bottom);
-					x -= (pw + gap);
-				}
+                // Do not add layout space for non-visible components
+                if (regComp.isVisible()){
+                    int pw = regComp.getPreferredSize().width;
+                    if (ltr) {
+                        regComp.setBounds(x, ins.top, pw, c.getHeight() - ins.top
+                                - ins.bottom);
+                        x += (pw + gap);
+                    } else {
+                        regComp.setBounds(x - pw, ins.top, pw, c.getHeight()
+                                - ins.top - ins.bottom);
+                        x -= (pw + gap);
+                    }
+                }
 			}
 		}
 	}
