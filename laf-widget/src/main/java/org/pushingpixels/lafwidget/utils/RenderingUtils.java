@@ -29,6 +29,8 @@
  */
 package org.pushingpixels.lafwidget.utils;
 
+import org.eclipse.swt.graphics.Device;
+
 import java.awt.*;
 import java.awt.print.PrinterGraphics;
 import java.util.*;
@@ -110,12 +112,18 @@ public class RenderingUtils {
 			return null;
 		}
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		GraphicsDevice device = g2.getDeviceConfiguration().getDevice();
-		String deviceId = device.getIDstring();
+        String deviceId = "";
+		GraphicsConfiguration config = g2.getDeviceConfiguration();
+        if (config != null) {
+            GraphicsDevice device = config.getDevice();
+            if (device != null) {
+                deviceId = device.getIDstring();
+            }
+        }
 		if (!desktopHintsCache.containsKey(deviceId)) {
 			Map desktopHints = (Map) toolkit
 					.getDesktopProperty(PROP_DESKTOPHINTS + '.'
-							+ device.getIDstring());
+							+ deviceId);
 			if (desktopHints == null) {
 				desktopHints = (Map) toolkit
 						.getDesktopProperty(PROP_DESKTOPHINTS);
