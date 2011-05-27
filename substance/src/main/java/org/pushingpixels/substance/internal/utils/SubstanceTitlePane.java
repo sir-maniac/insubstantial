@@ -474,8 +474,8 @@ public class SubstanceTitlePane extends JComponent {
 				try {
 					// update every 0.5 seconds
 					Thread.sleep(500);
-				} catch (InterruptedException ie) {
-				}
+				} catch (InterruptedException ignore) {
+                }
 				if (!SubstanceWidgetManager.getInstance().isAllowedAnywhere(
 						SubstanceWidgetType.TITLE_PANE_HEAP_STATUS))
 					continue;
@@ -501,8 +501,7 @@ public class SubstanceTitlePane extends JComponent {
 						pw.println(this.format.format(new Date()) + " "
 								+ this.takenHeapSizeKB + "KB / "
 								+ this.heapSizeKB + "KB");
-					} catch (IOException ioe) {
-
+					} catch (IOException ignore) {
 					} finally {
 						if (pw != null) {
 							pw.close();
@@ -768,6 +767,10 @@ public class SubstanceTitlePane extends JComponent {
 					|| (decorationStyle == JRootPane.QUESTION_DIALOG)
 					|| (decorationStyle == JRootPane.WARNING_DIALOG)) {
 				this.createActions();
+                this.menuBar = this.createMenuBar();
+                if (this.menuBar != null) {
+                    this.add(this.menuBar);
+                }
 				this.createButtons();
 				this.add(this.closeButton);
 			}
@@ -828,9 +831,9 @@ public class SubstanceTitlePane extends JComponent {
 		JMenu menu = new JMenu("");
 		menu.setOpaque(false);
 		menu.setBackground(null);
-		if (this.getWindowDecorationStyle() == JRootPane.FRAME) {
+		//if (this.getWindowDecorationStyle() == JRootPane.FRAME) {
 			this.addMenuItems(menu);
-		}
+		//}
 		return menu;
 	}
 
@@ -841,42 +844,44 @@ public class SubstanceTitlePane extends JComponent {
 	 *            Menu.
 	 */
 	private void addMenuItems(JMenu menu) {
-		menu.add(this.restoreAction);
+        if (this.getWindowDecorationStyle() == JRootPane.FRAME) {
+            menu.add(this.restoreAction);
 
-		menu.add(this.iconifyAction);
+            menu.add(this.iconifyAction);
 
-		if (Toolkit.getDefaultToolkit().isFrameStateSupported(
-				Frame.MAXIMIZED_BOTH)) {
-			menu.add(this.maximizeAction);
-		}
+            if (Toolkit.getDefaultToolkit().isFrameStateSupported(
+                    Frame.MAXIMIZED_BOTH)) {
+                menu.add(this.maximizeAction);
+            }
 
-		if (SubstanceCoreUtilities.toShowExtraWidgets(rootPane)) {
-			menu.addSeparator();
-			JMenu skinMenu = new JMenu(SubstanceCoreUtilities
-					.getResourceBundle(rootPane).getString("SystemMenu.skins"));
-			Map<String, SkinInfo> allSkins = SubstanceLookAndFeel.getAllSkins();
-			for (Map.Entry<String, SkinInfo> skinEntry : allSkins.entrySet()) {
-				final String skinClassName = skinEntry.getValue()
-						.getClassName();
-				JMenuItem jmiSkin = new JMenuItem(skinEntry.getKey());
-				jmiSkin.addActionListener(new ActionListener() {
-					@Override
-                    public void actionPerformed(ActionEvent e) {
-						SwingUtilities.invokeLater(new Runnable() {
-							@Override
-                            public void run() {
-								SubstanceLookAndFeel.setSkin(skinClassName);
-							}
-						});
-					}
-				});
+            if (SubstanceCoreUtilities.toShowExtraWidgets(rootPane)) {
+                menu.addSeparator();
+                JMenu skinMenu = new JMenu(SubstanceCoreUtilities
+                        .getResourceBundle(rootPane).getString("SystemMenu.skins"));
+                Map<String, SkinInfo> allSkins = SubstanceLookAndFeel.getAllSkins();
+                for (Map.Entry<String, SkinInfo> skinEntry : allSkins.entrySet()) {
+                    final String skinClassName = skinEntry.getValue()
+                            .getClassName();
+                    JMenuItem jmiSkin = new JMenuItem(skinEntry.getKey());
+                    jmiSkin.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            SwingUtilities.invokeLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    SubstanceLookAndFeel.setSkin(skinClassName);
+                                }
+                            });
+                        }
+                    });
 
-				skinMenu.add(jmiSkin);
-			}
-			menu.add(skinMenu);
-		}
+                    skinMenu.add(jmiSkin);
+                }
+                menu.add(skinMenu);
+            }
 
-		menu.addSeparator();
+		    menu.addSeparator();
+        }
 
 		menu.add(this.closeAction);
 	}
@@ -1633,7 +1638,8 @@ public class SubstanceTitlePane extends JComponent {
 		@Override
         public Dimension preferredLayoutSize(Container c) {
 			int height = this.computeHeight();
-			return new Dimension(height, height);
+            //noinspection SuspiciousNameCombination
+            return new Dimension(height, height);
 		}
 
 		/**
@@ -1646,13 +1652,9 @@ public class SubstanceTitlePane extends JComponent {
 					.getFontMetrics(SubstanceTitlePane.this.getFont());
 			int fontHeight = fm.getHeight();
 			fontHeight += 7;
-			int iconHeight = 0;
-			if (SubstanceTitlePane.this.getWindowDecorationStyle() == JRootPane.FRAME) {
-				iconHeight = SubstanceSizeUtils.getTitlePaneIconSize();
-			}
+			int iconHeight = SubstanceSizeUtils.getTitlePaneIconSize();
 
-			int finalHeight = Math.max(fontHeight, iconHeight);
-			return finalHeight;
+            return Math.max(fontHeight, iconHeight);
 		}
 
 		/*
@@ -1679,7 +1681,7 @@ public class SubstanceTitlePane extends JComponent {
 
 			int w = SubstanceTitlePane.this.getWidth();
 			int x;
-			int y = 3;
+			int y;
 			int spacing;
 			int buttonHeight;
 			int buttonWidth;
@@ -1699,8 +1701,6 @@ public class SubstanceTitlePane extends JComponent {
 
 			// assumes all buttons have the same dimensions
 			// these dimensions include the borders
-
-			x = leftToRight ? w : 0;
 
 			spacing = 5;
 			x = leftToRight ? spacing : w - buttonWidth - spacing;
@@ -1788,10 +1788,10 @@ public class SubstanceTitlePane extends JComponent {
 					SubstanceTitlePane.this.repaint();
 					SubstanceTitlePane.this.setToolTipText((String) pce
 							.getNewValue());
-				} else if ("componentOrientation" == name) {
+				} else if ("componentOrientation".equals(name)) {
 					revalidate();
 					repaint();
-				} else if ("iconImage" == name) {
+				} else if ("iconImage".equals(name)) {
 					updateAppIcon();
 					revalidate();
 					repaint();
