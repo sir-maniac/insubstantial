@@ -1866,14 +1866,17 @@ public class SubstanceTitlePane extends JComponent {
 			this.appIcon = null;
 			return;
 		}
-		java.util.List<Image> icons = window.getIconImages();
+		this.appIcon = null;
+		while (window != null && appIcon == null) {
+			java.util.List<Image> icons = window.getIconImages();
 
-		if (icons.size() == 0) {
-			this.appIcon = null;
-		} else {
-			int prefSize = SubstanceSizeUtils.getTitlePaneIconSize();
-			this.appIcon = SubstanceCoreUtilities.getScaledIconImage(icons,
-					prefSize, prefSize);
+			if (icons.size() == 0) {
+				window = window.getOwner();
+			} else {
+				int prefSize = SubstanceSizeUtils.getTitlePaneIconSize();
+				this.appIcon = SubstanceCoreUtilities.getScaledIconImage(icons,
+						prefSize, prefSize);
+			}
 		}
 	}
 
