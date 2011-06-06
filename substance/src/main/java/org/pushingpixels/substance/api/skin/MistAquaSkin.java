@@ -29,10 +29,7 @@
  */
 package org.pushingpixels.substance.api.skin;
 
-import org.pushingpixels.substance.api.DecorationAreaType;
-import org.pushingpixels.substance.api.SubstanceColorScheme;
-import org.pushingpixels.substance.api.SubstanceColorSchemeBundle;
-import org.pushingpixels.substance.api.SubstanceSkin;
+import org.pushingpixels.substance.api.*;
 import org.pushingpixels.substance.api.colorscheme.AquaColorScheme;
 import org.pushingpixels.substance.api.colorscheme.LightGrayColorScheme;
 import org.pushingpixels.substance.api.colorscheme.MetallicColorScheme;
@@ -42,6 +39,8 @@ import org.pushingpixels.substance.api.painter.decoration.MatteDecorationPainter
 import org.pushingpixels.substance.api.painter.fill.MatteFillPainter;
 import org.pushingpixels.substance.api.painter.highlight.ClassicHighlightPainter;
 import org.pushingpixels.substance.api.shaper.StandardButtonShaper;
+
+import javax.swing.UIManager;
 
 /**
  * <code>Mist Aqua</code> skin. This class is experimental.
@@ -81,12 +80,17 @@ public class MistAquaSkin extends SubstanceSkin {
 				DecorationAreaType.HEADER, DecorationAreaType.FOOTER,
 				DecorationAreaType.TOOLBAR);
 
+        this.registerAsDecorationArea(disabledScheme,
+                DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE,
+                DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE);
+
 		this.buttonShaper = new StandardButtonShaper();
 		this.fillPainter = new MatteFillPainter();
 		this.borderPainter = new ClassicBorderPainter();
 
 		this.decorationPainter = new MatteDecorationPainter();
 		this.highlightPainter = new ClassicHighlightPainter();
+        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.TRUE);
 	}
 
 	/*

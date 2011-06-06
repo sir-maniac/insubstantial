@@ -39,6 +39,8 @@ import org.pushingpixels.substance.api.painter.highlight.ClassicHighlightPainter
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
 import org.pushingpixels.substance.api.watermark.SubstanceCrosshatchWatermark;
 
+import javax.swing.UIManager;
+
 /**
  * <code>Raven</code> skin. This class is part of officially supported API.
  * 
@@ -140,6 +142,10 @@ public class RavenSkin extends SubstanceSkin {
 				DecorationAreaType.HEADER, DecorationAreaType.FOOTER,
 				DecorationAreaType.GENERAL, DecorationAreaType.TOOLBAR);
 
+        this.registerAsDecorationArea(disabledScheme,
+                DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE,
+                DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE);
+
 		this.watermarkScheme = activeScheme.shade(0.4);
 
 		this.buttonShaper = new ClassicButtonShaper();
@@ -148,6 +154,7 @@ public class RavenSkin extends SubstanceSkin {
 		this.decorationPainter = new ArcDecorationPainter();
 		this.highlightPainter = new ClassicHighlightPainter();
 		this.borderPainter = new GlassBorderPainter();
+        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.TRUE);
 	}
 
 	/*

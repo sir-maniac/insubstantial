@@ -31,11 +31,7 @@ package org.pushingpixels.substance.api.skin;
 
 import java.awt.Color;
 
-import org.pushingpixels.substance.api.ComponentState;
-import org.pushingpixels.substance.api.DecorationAreaType;
-import org.pushingpixels.substance.api.SubstanceColorScheme;
-import org.pushingpixels.substance.api.SubstanceColorSchemeBundle;
-import org.pushingpixels.substance.api.SubstanceSkin;
+import org.pushingpixels.substance.api.*;
 import org.pushingpixels.substance.api.colorscheme.EbonyColorScheme;
 import org.pushingpixels.substance.api.colorscheme.LightGrayColorScheme;
 import org.pushingpixels.substance.api.colorscheme.MetallicColorScheme;
@@ -47,6 +43,8 @@ import org.pushingpixels.substance.api.painter.fill.ClassicFillPainter;
 import org.pushingpixels.substance.api.painter.highlight.ClassicHighlightPainter;
 import org.pushingpixels.substance.api.painter.overlay.TopShadowOverlayPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
+
+import javax.swing.UIManager;
 
 /**
  * <code>Business Black Steel</code> skin. This class is part of officially
@@ -140,6 +138,7 @@ public class BusinessBlackSteelSkin extends SubstanceSkin {
 		this.highlightPainter = new ClassicHighlightPainter();
 
 		this.borderPainter = new ClassicBorderPainter();
+        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.FALSE);
 	}
 
 	/*

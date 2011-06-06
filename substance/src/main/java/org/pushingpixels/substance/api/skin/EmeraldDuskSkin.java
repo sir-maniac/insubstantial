@@ -29,17 +29,15 @@
  */
 package org.pushingpixels.substance.api.skin;
 
-import org.pushingpixels.substance.api.ComponentState;
-import org.pushingpixels.substance.api.DecorationAreaType;
-import org.pushingpixels.substance.api.SubstanceColorScheme;
-import org.pushingpixels.substance.api.SubstanceColorSchemeBundle;
-import org.pushingpixels.substance.api.SubstanceSkin;
+import org.pushingpixels.substance.api.*;
 import org.pushingpixels.substance.api.colorscheme.CharcoalColorScheme;
 import org.pushingpixels.substance.api.painter.border.GlassBorderPainter;
 import org.pushingpixels.substance.api.painter.decoration.ArcDecorationPainter;
 import org.pushingpixels.substance.api.painter.fill.GlassFillPainter;
 import org.pushingpixels.substance.api.painter.highlight.ClassicHighlightPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
+
+import javax.swing.UIManager;
 
 /**
  * <code>Emerald Dusk</code> skin. This class is part of officially supported
@@ -83,6 +81,7 @@ public class EmeraldDuskSkin extends SubstanceSkin {
 		this.decorationPainter = new ArcDecorationPainter();
 		this.borderPainter = new GlassBorderPainter();
 		this.highlightPainter = new ClassicHighlightPainter();
+        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.FALSE);
 	}
 
 	/*

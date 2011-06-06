@@ -1018,11 +1018,24 @@ public class SubstanceTitlePane extends JComponent {
 	 * @param isActive
 	 *            if <code>true</code>, the window is in active state.
 	 */
-	private void setActive(boolean isActive) {
+	void setActive(boolean isActive) {
+        if (UIManager.getBoolean(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE)) {
+            DecorationAreaType type = SubstanceLookAndFeel.getDecorationType(this);
+            if (isActive) {
+                if (type == DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE) {
+                    type = DecorationAreaType.PRIMARY_TITLE_PANE;
+                }
+            } else {
+                if (type == DecorationAreaType.PRIMARY_TITLE_PANE) {
+                    type = DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE;
+                }
+            }
+            SubstanceLookAndFeel.setDecorationType(this, type);
+        }
 		this.getRootPane().repaint();
 	}
 
-	/**
+    /**
 	 * Sets the state of the Window.
 	 *
 	 * @param state

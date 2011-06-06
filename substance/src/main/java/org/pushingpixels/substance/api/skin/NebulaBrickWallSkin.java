@@ -30,7 +30,10 @@
 package org.pushingpixels.substance.api.skin;
 
 import org.pushingpixels.substance.api.DecorationAreaType;
+import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.colorscheme.OrangeColorScheme;
+
+import javax.swing.UIManager;
 
 /**
  * <code>Nebula Brick Wall</code> skin. This class is part of officially

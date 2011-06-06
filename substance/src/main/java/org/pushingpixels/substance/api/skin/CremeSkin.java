@@ -30,12 +30,18 @@
 package org.pushingpixels.substance.api.skin;
 
 import org.pushingpixels.substance.api.*;
-import org.pushingpixels.substance.api.colorscheme.*;
-import org.pushingpixels.substance.api.painter.border.*;
+import org.pushingpixels.substance.api.colorscheme.CremeColorScheme;
+import org.pushingpixels.substance.api.colorscheme.LightAquaColorScheme;
+import org.pushingpixels.substance.api.colorscheme.LightGrayColorScheme;
+import org.pushingpixels.substance.api.painter.border.ClassicBorderPainter;
+import org.pushingpixels.substance.api.painter.border.CompositeBorderPainter;
+import org.pushingpixels.substance.api.painter.border.DelegateBorderPainter;
 import org.pushingpixels.substance.api.painter.decoration.ArcDecorationPainter;
 import org.pushingpixels.substance.api.painter.fill.ClassicFillPainter;
 import org.pushingpixels.substance.api.painter.highlight.ClassicHighlightPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
+
+import javax.swing.UIManager;
 
 /**
  * <code>Creme</code> skin. This class is part of officially supported API.
@@ -70,6 +76,10 @@ public class CremeSkin extends SubstanceSkin {
 				DecorationAreaType.HEADER, DecorationAreaType.FOOTER,
 				DecorationAreaType.GENERAL, DecorationAreaType.TOOLBAR);
 
+        this.registerAsDecorationArea(disabledScheme,
+                DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE,
+                DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE);
+
 		setSelectedTabFadeStart(0.2);
 		setSelectedTabFadeEnd(0.4);
 
@@ -87,6 +97,7 @@ public class CremeSkin extends SubstanceSkin {
 								return scheme.tint(0.9f);
 							}
 						}));
+        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.TRUE);
 	}
 
 	/*

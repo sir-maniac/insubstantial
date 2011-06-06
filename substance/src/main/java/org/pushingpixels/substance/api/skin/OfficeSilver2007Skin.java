@@ -39,6 +39,8 @@ import org.pushingpixels.substance.api.painter.highlight.ClassicHighlightPainter
 import org.pushingpixels.substance.api.painter.overlay.BottomLineOverlayPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
 
+import javax.swing.UIManager;
+
 /**
  * <code>Office Silver 2007</code> skin. This class is part of officially
  * supported API.
@@ -253,6 +255,7 @@ public class OfficeSilver2007Skin extends SubstanceSkin {
 						ColorSchemeSingleColorQuery.ULTRALIGHT });
 
 		this.highlightPainter = new ClassicHighlightPainter();
+        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.FALSE);
 	}
 
 	/*

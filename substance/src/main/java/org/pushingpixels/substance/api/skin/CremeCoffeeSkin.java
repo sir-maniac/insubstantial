@@ -29,11 +29,7 @@
  */
 package org.pushingpixels.substance.api.skin;
 
-import org.pushingpixels.substance.api.ColorSchemeTransform;
-import org.pushingpixels.substance.api.DecorationAreaType;
-import org.pushingpixels.substance.api.SubstanceColorScheme;
-import org.pushingpixels.substance.api.SubstanceColorSchemeBundle;
-import org.pushingpixels.substance.api.SubstanceSkin;
+import org.pushingpixels.substance.api.*;
 import org.pushingpixels.substance.api.colorscheme.CremeColorScheme;
 import org.pushingpixels.substance.api.colorscheme.LightGrayColorScheme;
 import org.pushingpixels.substance.api.painter.border.CompositeBorderPainter;
@@ -43,6 +39,8 @@ import org.pushingpixels.substance.api.painter.decoration.ArcDecorationPainter;
 import org.pushingpixels.substance.api.painter.fill.MatteFillPainter;
 import org.pushingpixels.substance.api.painter.highlight.ClassicHighlightPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
+
+import javax.swing.UIManager;
 
 /**
  * <code>Creme Coffee</code> skin. This class is part of officially supported
@@ -80,6 +78,10 @@ public class CremeCoffeeSkin extends SubstanceSkin {
 				DecorationAreaType.HEADER, DecorationAreaType.FOOTER,
 				DecorationAreaType.GENERAL, DecorationAreaType.TOOLBAR);
 
+        this.registerAsDecorationArea(disabledScheme,
+                DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE,
+                DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE);
+
 		this.buttonShaper = new ClassicButtonShaper();
 		this.fillPainter = new MatteFillPainter();
 		this.decorationPainter = new ArcDecorationPainter();
@@ -94,6 +96,7 @@ public class CremeCoffeeSkin extends SubstanceSkin {
 								return scheme.tint(0.8f);
 							}
 						}));
+        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.TRUE);
 	}
 
 	/*

@@ -44,6 +44,8 @@ import org.pushingpixels.substance.api.watermark.SubstanceCrosshatchWatermark;
 import org.pushingpixels.substance.api.watermark.SubstanceWatermark;
 import org.pushingpixels.substance.internal.utils.SubstanceCoreUtilities;
 
+import javax.swing.UIManager;
+
 /**
  * <code>Mariner</code> skin. This class is part of officially supported API.
  * 
@@ -266,6 +268,7 @@ public class MarinerSkin extends SubstanceSkin {
 		this.highlightBorderPainter = new ClassicBorderPainter();
 
 		this.watermarkScheme = schemes.get("Mariner Watermark");
+        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.FALSE);
 	}
 
 	/*

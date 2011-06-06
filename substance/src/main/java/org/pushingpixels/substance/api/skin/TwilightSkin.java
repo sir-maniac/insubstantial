@@ -39,6 +39,8 @@ import org.pushingpixels.substance.api.painter.highlight.ClassicHighlightPainter
 import org.pushingpixels.substance.api.painter.overlay.*;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
 
+import javax.swing.UIManager;
+
 /**
  * <code>Twilight</code> skin. This class is part of officially supported API.
  * 
@@ -246,6 +248,7 @@ public class TwilightSkin extends SubstanceSkin {
 								return scheme.tint(0.3);
 							}
 						}));
+        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.FALSE);
 	}
 
 	@Override

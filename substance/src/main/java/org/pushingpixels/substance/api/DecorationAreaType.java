@@ -54,11 +54,23 @@ public final class DecorationAreaType {
 	public final static DecorationAreaType PRIMARY_TITLE_PANE = new DecorationAreaType(
 			"Primary title pane");
 
+    /**
+     * Title pane of top-level windows (frames, dialogs) when not active.
+     */
+    public final static DecorationAreaType PRIMARY_TITLE_PANE_INACTIVE = new DecorationAreaType(
+            "Primary title pane Inactive");
+
+    /**
+     * Title pane of non top-level windows (internal frames, desktop icons).
+     */
+    public final static DecorationAreaType SECONDARY_TITLE_PANE = new DecorationAreaType(
+            "Secondary title pane");
+
 	/**
-	 * Title pane of non top-level windows (internal frames, desktop icons).
+	 * Title pane of non top-level windows (internal frames, desktop icons) when not active.
 	 */
-	public final static DecorationAreaType SECONDARY_TITLE_PANE = new DecorationAreaType(
-			"Secondary title pane");
+	public final static DecorationAreaType SECONDARY_TITLE_PANE_INACTIVE = new DecorationAreaType(
+			"Secondary title pane Inactive");
 
 	/**
 	 * Tool bar.

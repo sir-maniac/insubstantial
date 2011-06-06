@@ -485,6 +485,32 @@ public abstract class SubstanceLookAndFeel extends BasicLookAndFeel {
 	 */
 	public final static String WINDOW_MODIFIED = "windowModified";
 
+    /**
+     * <p>UIManager property name for specifying that whether any JRootPane with
+     * Substance window decorations should be attentive to the active or selected
+     * state of the respective JFrame or JInternalFrame. This property can only be
+     * specified in the {@link UIManager} for this release. The value should be
+     * either {@link Boolean#TRUE} or {@link Boolean#FALSE}.  The initial value
+     * depends on the specific skin chosen and will be false if not specified.
+     * </p>
+     *
+     * <p>When active this property will cause the title pane and borders of
+     * JFrames and JInternal frames to toggle between {DecorationAreaType#PRIMARY_TITLE_PANE}
+     * / {DecorationAreaType#PRIMARY_TITLE_PANE_INACTIVE} or {DecorationAreaType#SECONDARY_TITLE_PANE}
+     * / {DecorationAreaType#SECONDARY_TITLE_PANE_INACTIVE} respectively when the
+     * respective containers active or selected property changes.  If the Title pane of the
+     * window decoration is change to any other DecorationAreaType, then the type will not
+     * be toggled.</p>
+     *
+     * <code>
+	 * UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, <br>
+	 * &nbsp;&nbsp;Boolean.TRUE);<br>
+     * </code>
+     *
+     * @since version 6.3
+     */
+    public final static String WINDOW_AUTO_DEACTIVATE = "windowAutoDeactivate";
+
 	/**
 	 * Client property name for adding close buttons on tabs. This property can
 	 * be specified on a single tab component, on a {@link JTabbedPane} itself

@@ -31,14 +31,7 @@ package org.pushingpixels.substance.api.skin;
 
 import java.awt.Color;
 
-import org.pushingpixels.substance.api.ColorSchemeAssociationKind;
-import org.pushingpixels.substance.api.ColorSchemeSingleColorQuery;
-import org.pushingpixels.substance.api.ColorSchemeTransform;
-import org.pushingpixels.substance.api.ComponentState;
-import org.pushingpixels.substance.api.DecorationAreaType;
-import org.pushingpixels.substance.api.SubstanceColorScheme;
-import org.pushingpixels.substance.api.SubstanceColorSchemeBundle;
-import org.pushingpixels.substance.api.SubstanceSkin;
+import org.pushingpixels.substance.api.*;
 import org.pushingpixels.substance.api.painter.border.ClassicBorderPainter;
 import org.pushingpixels.substance.api.painter.border.CompositeBorderPainter;
 import org.pushingpixels.substance.api.painter.border.DelegateFractionBasedBorderPainter;
@@ -52,6 +45,8 @@ import org.pushingpixels.substance.api.painter.overlay.BottomShadowOverlayPainte
 import org.pushingpixels.substance.api.painter.overlay.TopBezelOverlayPainter;
 import org.pushingpixels.substance.api.painter.overlay.TopLineOverlayPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
+
+import javax.swing.UIManager;
 
 /**
  * <code>Gemini</code> skin. This class is part of officially supported API.
@@ -273,6 +268,7 @@ public class GeminiSkin extends SubstanceSkin {
 		this.borderPainter = new CompositeBorderPainter("Gemini",
 				outerBorderPainter, innerBorderPainter);
 		this.highlightBorderPainter = new ClassicBorderPainter();
+        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.FALSE);
 	}
 
 	/**

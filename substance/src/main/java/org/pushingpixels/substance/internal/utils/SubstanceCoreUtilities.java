@@ -440,6 +440,29 @@ public class SubstanceCoreUtilities {
 				.getClientProperty(SubstanceLookAndFeel.WINDOW_MODIFIED));
 	}
 
+    public static boolean isPaintRootPaneActivated(JRootPane rp) {
+        if (!UIManager.getBoolean(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE)) {
+            return true;
+        }
+        Component c = rp.getParent();
+        if (c instanceof JInternalFrame) {
+            return ((JInternalFrame)c).isSelected();
+        } else if (c instanceof Window) {
+            return ((Window)c).isActive();
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean isSecondaryWindow(JRootPane rp) {
+        Component c = rp.getParent();
+        if (c instanceof JInternalFrame) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 	/**
 	 * Checks whether the specified tab has a close button.
 	 * 

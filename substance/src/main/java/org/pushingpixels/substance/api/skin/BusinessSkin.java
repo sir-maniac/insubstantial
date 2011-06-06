@@ -29,12 +29,7 @@
  */
 package org.pushingpixels.substance.api.skin;
 
-import org.pushingpixels.substance.api.ColorSchemeTransform;
-import org.pushingpixels.substance.api.ComponentState;
-import org.pushingpixels.substance.api.DecorationAreaType;
-import org.pushingpixels.substance.api.SubstanceColorScheme;
-import org.pushingpixels.substance.api.SubstanceColorSchemeBundle;
-import org.pushingpixels.substance.api.SubstanceSkin;
+import org.pushingpixels.substance.api.*;
 import org.pushingpixels.substance.api.colorscheme.MetallicColorScheme;
 import org.pushingpixels.substance.api.painter.border.ClassicBorderPainter;
 import org.pushingpixels.substance.api.painter.border.CompositeBorderPainter;
@@ -44,6 +39,8 @@ import org.pushingpixels.substance.api.painter.decoration.BrushedMetalDecoration
 import org.pushingpixels.substance.api.painter.fill.ClassicFillPainter;
 import org.pushingpixels.substance.api.painter.highlight.ClassicHighlightPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
+
+import javax.swing.UIManager;
 
 /**
  * <code>Business</code> skin. This class is part of officially supported API.
@@ -90,6 +87,10 @@ public class BusinessSkin extends SubstanceSkin {
 				DecorationAreaType.SECONDARY_TITLE_PANE,
 				DecorationAreaType.HEADER, DecorationAreaType.FOOTER);
 
+        this.registerAsDecorationArea(disabledScheme,
+                DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE,
+                DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE);
+
 		SubstanceSkin.ColorSchemes kitchenSkinSchemes = SubstanceSkin
 				.getColorSchemes("org/pushingpixels/substance/api/skin/kitchen-sink.colorschemes");
 		this
@@ -119,6 +120,7 @@ public class BusinessSkin extends SubstanceSkin {
 		this.decorationPainter = decorationPainter;
 
 		this.highlightPainter = new ClassicHighlightPainter();
+        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.TRUE);
 	}
 
 	/*

@@ -31,6 +31,7 @@ package org.pushingpixels.substance.internal.utils.border;
 
 import java.awt.*;
 
+import javax.swing.JRootPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.AbstractBorder;
 import javax.swing.plaf.UIResource;
@@ -71,8 +72,26 @@ public class SubstancePaneBorder extends AbstractBorder implements UIResource {
 		if (skin == null)
 			return;
 
+
+        JRootPane rootPane = SwingUtilities.getRootPane(c);
+        DecorationAreaType type = SubstanceLookAndFeel.getDecorationType(rootPane);
+        if ((type == null) || (type == DecorationAreaType.NONE)) {
+            if (SubstanceCoreUtilities.isPaintRootPaneActivated(rootPane)) {
+                if (SubstanceCoreUtilities.isSecondaryWindow(rootPane)) {
+                    type = DecorationAreaType.SECONDARY_TITLE_PANE;
+                } else  {
+                    type = DecorationAreaType.PRIMARY_TITLE_PANE;
+                }
+            } else {
+                if (SubstanceCoreUtilities.isSecondaryWindow(rootPane)) {
+                    type = DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE;
+                } else  {
+                    type = DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE;
+                }
+            }
+        }
 		SubstanceColorScheme scheme = skin
-				.getBackgroundColorScheme(DecorationAreaType.PRIMARY_TITLE_PANE);
+				.getBackgroundColorScheme(type);
 		Component titlePaneComp = SubstanceLookAndFeel
 				.getTitlePaneComponent(SwingUtilities.windowForComponent(c));
 		SubstanceColorScheme borderScheme = skin.getColorScheme(titlePaneComp,

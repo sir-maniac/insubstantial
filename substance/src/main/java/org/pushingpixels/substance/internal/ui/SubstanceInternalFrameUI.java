@@ -125,24 +125,22 @@ public class SubstanceInternalFrameUI extends BasicInternalFrameUI {
 					SubstanceDesktopIconUI ui = (SubstanceDesktopIconUI) jdi
 							.getUI();
 					ui.uninstallIfNecessary(jdi);
-				}
-
-				if ("background".equals(evt.getPropertyName())) {
+				} else if ("background".equals(evt.getPropertyName())) {
 					Color newBackgr = (Color) evt.getNewValue();
 					if (!(newBackgr instanceof UIResource)) {
 						getTitlePane().setBackground(newBackgr);
 						frame.getDesktopIcon().setBackground(newBackgr);
 					}
-				}
-
-				if ("ancestor".equals(evt.getPropertyName())) {
+				} else if ("ancestor".equals(evt.getPropertyName())) {
 					// fix for issue 344 - reopening an internal frame
 					// that has been closed.
 					JDesktopIcon jdi = frame.getDesktopIcon();
 					SubstanceDesktopIconUI ui = (SubstanceDesktopIconUI) jdi
 							.getUI();
 					ui.installIfNecessary(jdi);
-				}
+				} else if (JInternalFrame.IS_SELECTED_PROPERTY.equals(evt.getPropertyName())) {
+                    titlePane.setActive((Boolean)evt.getNewValue());
+                }
 			}
 		};
 		this.frame.addPropertyChangeListener(this.substancePropertyListener);

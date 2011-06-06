@@ -92,7 +92,9 @@ public class SubstanceInternalFrameTitlePane extends
 		super(f);
 		this.setToolTipText(f.getTitle());
 		SubstanceLookAndFeel.setDecorationType(this,
-				DecorationAreaType.SECONDARY_TITLE_PANE);
+                SubstanceCoreUtilities.isPaintRootPaneActivated(f.getRootPane())
+				    ? DecorationAreaType.SECONDARY_TITLE_PANE
+                    : DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE);
 	}
 
 	/*
@@ -207,6 +209,28 @@ public class SubstanceInternalFrameTitlePane extends
 		this.uninstallListeners();
 		this.putClientProperty(UNINSTALLED, Boolean.TRUE);
 	}
+    /**
+     * Updates state dependant upon the Window's active state.
+     *
+     * @param isActive
+     *            if <code>true</code>, the window is in active state.
+     */
+    public void setActive(boolean isActive) {
+        if (UIManager.getBoolean(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE)) {
+            DecorationAreaType type = SubstanceLookAndFeel.getDecorationType(this);
+            if (isActive) {
+                if (type == DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE) {
+                    type = DecorationAreaType.SECONDARY_TITLE_PANE;
+                }
+            } else {
+                if (type == DecorationAreaType.SECONDARY_TITLE_PANE) {
+                    type = DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE;
+                }
+            }
+            SubstanceLookAndFeel.setDecorationType(this, type);
+        }
+        this.getRootPane().repaint();
+    }
 
 	/*
 	 * (non-Javadoc)

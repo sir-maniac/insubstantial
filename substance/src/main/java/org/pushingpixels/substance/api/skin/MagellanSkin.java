@@ -31,15 +31,7 @@ package org.pushingpixels.substance.api.skin;
 
 import java.awt.Color;
 
-import org.pushingpixels.substance.api.ColorSchemeAssociationKind;
-import org.pushingpixels.substance.api.ColorSchemeSingleColorQuery;
-import org.pushingpixels.substance.api.ColorSchemeTransform;
-import org.pushingpixels.substance.api.ComponentState;
-import org.pushingpixels.substance.api.ComponentStateFacet;
-import org.pushingpixels.substance.api.DecorationAreaType;
-import org.pushingpixels.substance.api.SubstanceColorScheme;
-import org.pushingpixels.substance.api.SubstanceColorSchemeBundle;
-import org.pushingpixels.substance.api.SubstanceSkin;
+import org.pushingpixels.substance.api.*;
 import org.pushingpixels.substance.api.painter.border.ClassicBorderPainter;
 import org.pushingpixels.substance.api.painter.border.CompositeBorderPainter;
 import org.pushingpixels.substance.api.painter.border.DelegateBorderPainter;
@@ -53,6 +45,8 @@ import org.pushingpixels.substance.api.painter.overlay.BottomShadowOverlayPainte
 import org.pushingpixels.substance.api.painter.overlay.TopBezelOverlayPainter;
 import org.pushingpixels.substance.api.painter.overlay.TopLineOverlayPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
+
+import javax.swing.UIManager;
 
 /**
  * <code>Magellan</code> skin. This class is part of officially supported API.
@@ -293,5 +287,6 @@ public class MagellanSkin extends SubstanceSkin {
 		this.highlightPainter = new ClassicHighlightPainter();
 		this.decorationPainter = new MatteDecorationPainter();
 		this.buttonShaper = new ClassicButtonShaper();
+        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.FALSE);
 	}
 }

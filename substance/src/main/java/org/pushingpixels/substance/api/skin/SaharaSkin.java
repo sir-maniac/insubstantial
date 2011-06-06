@@ -29,10 +29,7 @@
  */
 package org.pushingpixels.substance.api.skin;
 
-import org.pushingpixels.substance.api.DecorationAreaType;
-import org.pushingpixels.substance.api.SubstanceColorScheme;
-import org.pushingpixels.substance.api.SubstanceColorSchemeBundle;
-import org.pushingpixels.substance.api.SubstanceSkin;
+import org.pushingpixels.substance.api.*;
 import org.pushingpixels.substance.api.colorscheme.DesertSandColorScheme;
 import org.pushingpixels.substance.api.colorscheme.LightGrayColorScheme;
 import org.pushingpixels.substance.api.colorscheme.MetallicColorScheme;
@@ -42,6 +39,8 @@ import org.pushingpixels.substance.api.painter.decoration.ClassicDecorationPaint
 import org.pushingpixels.substance.api.painter.fill.ClassicFillPainter;
 import org.pushingpixels.substance.api.painter.highlight.ClassicHighlightPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
+
+import javax.swing.UIManager;
 
 /**
  * <code>Sahara</code> skin. This class is part of officially supported API.
@@ -73,6 +72,10 @@ public class SaharaSkin extends SubstanceSkin {
 				DecorationAreaType.PRIMARY_TITLE_PANE,
 				DecorationAreaType.SECONDARY_TITLE_PANE);
 
+        this.registerAsDecorationArea(enabledScheme,
+                DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE,
+                DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE);
+
 		SubstanceSkin.ColorSchemes kitchenSinkSchemes = SubstanceSkin
 				.getColorSchemes("org/pushingpixels/substance/api/skin/kitchen-sink.colorschemes");
 		this.registerAsDecorationArea(kitchenSinkSchemes
@@ -84,6 +87,7 @@ public class SaharaSkin extends SubstanceSkin {
 		this.borderPainter = new ClassicBorderPainter();
 		this.decorationPainter = new ClassicDecorationPainter();
 		this.highlightPainter = new ClassicHighlightPainter();
+        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.TRUE);
 	}
 
 	/*

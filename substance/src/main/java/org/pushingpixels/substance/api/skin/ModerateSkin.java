@@ -29,10 +29,7 @@
  */
 package org.pushingpixels.substance.api.skin;
 
-import org.pushingpixels.substance.api.DecorationAreaType;
-import org.pushingpixels.substance.api.SubstanceColorScheme;
-import org.pushingpixels.substance.api.SubstanceColorSchemeBundle;
-import org.pushingpixels.substance.api.SubstanceSkin;
+import org.pushingpixels.substance.api.*;
 import org.pushingpixels.substance.api.colorscheme.LightGrayColorScheme;
 import org.pushingpixels.substance.api.colorscheme.MetallicColorScheme;
 import org.pushingpixels.substance.api.colorscheme.SteelBlueColorScheme;
@@ -41,6 +38,8 @@ import org.pushingpixels.substance.api.painter.decoration.ClassicDecorationPaint
 import org.pushingpixels.substance.api.painter.fill.GlassFillPainter;
 import org.pushingpixels.substance.api.painter.highlight.ClassicHighlightPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
+
+import javax.swing.UIManager;
 
 /**
  * <code>Moderate</code> skin. This class is part of officially supported API.
@@ -77,6 +76,10 @@ public class ModerateSkin extends SubstanceSkin {
 				DecorationAreaType.PRIMARY_TITLE_PANE,
 				DecorationAreaType.SECONDARY_TITLE_PANE);
 
+		this.registerAsDecorationArea(enabledScheme,
+				DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE,
+				DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE);
+
 		this.registerAsDecorationArea(kitchenSinkSchemes
 				.get("LightGray General Watermark"),
 				DecorationAreaType.GENERAL, DecorationAreaType.HEADER);
@@ -86,6 +89,7 @@ public class ModerateSkin extends SubstanceSkin {
 		this.decorationPainter = new ClassicDecorationPainter();
 		this.borderPainter = new ClassicBorderPainter();
 		this.highlightPainter = new ClassicHighlightPainter();
+        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.TRUE);
 	}
 
 	/*
