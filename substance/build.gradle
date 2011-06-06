@@ -231,3 +231,14 @@ private def configurePOM(def pom) {
   }
 
 }
+
+
+task jitterbug(type: JavaExec) {
+    main = 'tools.jitterbug.JitterbugEditor'
+    classpath = sourceSets.tools.compileClasspath + sourceSets.tools.runtimeClasspath
+}
+
+task testCheck(type: JavaExec) {
+  main = 'test.Check'
+  classpath = sourceSets.test.runtimeClasspath
+}

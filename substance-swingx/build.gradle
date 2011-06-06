@@ -143,3 +143,9 @@ private def configurePOM(def pom) {
     }
   }
 }
+
+task testCheckX(type: JavaExec) {
+  main = 'test.Check'
+  classpath = sourceSets.test.runtimeClasspath
+  debug = true
+}

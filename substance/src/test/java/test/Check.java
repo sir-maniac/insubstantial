@@ -49,7 +49,7 @@ import org.pushingpixels.substance.api.SubstanceConstants.Side;
 import org.pushingpixels.substance.api.SubstanceConstants.TabCloseKind;
 import org.pushingpixels.substance.api.fonts.FontSet;
 import org.pushingpixels.substance.api.skin.SkinChangeListener;
-import org.pushingpixels.substance.api.skin.SubstanceGeminiLookAndFeel;
+import org.pushingpixels.substance.api.skin.SubstanceModerateLookAndFeel;
 import org.pushingpixels.substance.api.tabbed.*;
 
 import test.check.*;
@@ -649,7 +649,7 @@ public class Check extends JFrame {
 					if (!hasLafSpecified) {
 						out(" CREATING LAF ");
 						long time0 = System.currentTimeMillis();
-						LookAndFeel laf = new SubstanceGeminiLookAndFeel();
+						LookAndFeel laf = new SubstanceModerateLookAndFeel();
 						long time1 = System.currentTimeMillis();
 						out(" LAF CREATED " + (time1 - time0));
 						out(" SETTING LAF ");
