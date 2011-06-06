@@ -93,6 +93,7 @@ public class ControlPanelFactory {
 
 		builder.appendSeparator("Title pane settings");
 		final JCheckBox markAsModified = new JCheckBox("Marked modified");
+        markAsModified.setOpaque(false);
 		markAsModified.setSelected(false);
 		markAsModified.addActionListener(new ActionListener() {
 			@Override
@@ -105,6 +106,7 @@ public class ControlPanelFactory {
 		builder.append("Modified", markAsModified);
 
 		final JCheckBox heapPanel = new JCheckBox("Has heap panel");
+        heapPanel.setOpaque(false);
 		heapPanel.setSelected(false);
 		heapPanel.addActionListener(new ActionListener() {
 			@Override
@@ -137,6 +139,7 @@ public class ControlPanelFactory {
 
 		final JCheckBox useThemedDefaultIconsCheckBox = new JCheckBox(
 				"use themed icons");
+        useThemedDefaultIconsCheckBox.setOpaque(false);
 		useThemedDefaultIconsCheckBox.addActionListener(new ActionListener() {
 			@Override
             public void actionPerformed(ActionEvent e) {
@@ -158,6 +161,7 @@ public class ControlPanelFactory {
 
 		final JCheckBox useConstantThemesOnDialogs = new JCheckBox(
 				"use constant themes");
+        useConstantThemesOnDialogs.setOpaque(false);
 		useConstantThemesOnDialogs.setSelected(SubstanceLookAndFeel
 				.isToUseConstantThemesOnDialogs());
 		useConstantThemesOnDialogs.addActionListener(new ActionListener() {
@@ -306,6 +310,7 @@ public class ControlPanelFactory {
 		builder.appendSeparator("Custom animations");
 		final JCheckBox allowFocusLoopAnimations = new JCheckBox(
 				"Allow animation");
+        allowFocusLoopAnimations.setOpaque(false);
 		allowFocusLoopAnimations
 				.setSelected(AnimationConfigurationManager.getInstance()
 						.isAnimationAllowed(AnimationFacet.FOCUS_LOOP_ANIMATION, null));
@@ -325,6 +330,7 @@ public class ControlPanelFactory {
 
 		final JCheckBox allowGlowIconAnimations = new JCheckBox(
 				"Allow animation");
+        allowGlowIconAnimations.setOpaque(false);
 		allowGlowIconAnimations.addActionListener(new ActionListener() {
 			@Override
             public void actionPerformed(ActionEvent e) {
@@ -341,6 +347,7 @@ public class ControlPanelFactory {
 
 		final JCheckBox allowGhostIconAnimations = new JCheckBox(
 				"Allow animation");
+        allowGhostIconAnimations.setOpaque(false);
 		allowGhostIconAnimations.addActionListener(new ActionListener() {
 			@Override
             public void actionPerformed(ActionEvent e) {
@@ -357,6 +364,7 @@ public class ControlPanelFactory {
 
 		final JCheckBox allowGhostPressAnimations = new JCheckBox(
 				"Allow animation");
+        allowGhostPressAnimations.setOpaque(false);
 		allowGhostPressAnimations.addActionListener(new ActionListener() {
 			@Override
             public void actionPerformed(ActionEvent e) {
@@ -373,7 +381,7 @@ public class ControlPanelFactory {
 
 		builder.appendSeparator("Toolbar");
 		final JCheckBox isToolbarFlat = new JCheckBox("Is flat");
-
+        isToolbarFlat.setOpaque(false);
 		isToolbarFlat.setSelected(true);
 		isToolbarFlat.addActionListener(new ActionListener() {
 			@Override
@@ -387,6 +395,7 @@ public class ControlPanelFactory {
 
 		builder.appendSeparator("Menu bar");
 		final JCheckBox menuSearch = new JCheckBox("Has menu search");
+        menuSearch.setOpaque(false);
 		menuSearch.setSelected(false);
 		menuSearch.addActionListener(new ActionListener() {
 			@Override
@@ -399,6 +408,7 @@ public class ControlPanelFactory {
 		builder.append("Menu search", menuSearch);
 
 		final JCheckBox menuLocale = new JCheckBox("Has custom locale");
+        menuLocale.setOpaque(false);
 		menuLocale.setSelected(false);
 		menuLocale.addActionListener(new ActionListener() {
 			@Override
