@@ -5,6 +5,7 @@ import java.util.Locale;
 
 import javax.swing.Icon;
 import javax.swing.UIDefaults;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.*;
 import javax.swing.plaf.basic.BasicBorders;
@@ -47,7 +48,7 @@ public class SkinUtilities {
 				.getEnabledColorScheme(DecorationAreaType.NONE);
 		SubstanceColorScheme mainDisabledScheme = skin
 				.getDisabledColorScheme(DecorationAreaType.NONE);
-		Color controlText = new ColorUIResource(
+		Color control = new ColorUIResource(
 				mainActiveScheme.getLightColor());
 		Color foregroundColor = SubstanceColorUtilities
 				.getForegroundColor(mainEnabledScheme);
@@ -207,8 +208,102 @@ public class SkinUtilities {
 		};
 
 		Object[] defaults = new Object[] {
+                "activeCaption",
+                new ColorUIResource(skin.getBackgroundColorScheme(DecorationAreaType.PRIMARY_TITLE_PANE).getBackgroundFillColor()),
+
+                "activeCaptionBorder",
+                new ColorUIResource(skin.getColorScheme(DecorationAreaType.PRIMARY_TITLE_PANE, ColorSchemeAssociationKind.BORDER, ComponentState.ENABLED).getBackgroundFillColor()),
+
+                "activeCaptionText",
+                SubstanceColorUtilities.getForegroundColor(skin.getBackgroundColorScheme(
+								DecorationAreaType.PRIMARY_TITLE_PANE)),
+
 				"control",
-				controlText,
+                new ColorUIResource(mainEnabledScheme.getBackgroundFillColor()),
+
+                "controlDkShadow",
+                new ColorUIResource(mainEnabledScheme.getUltraDarkColor()),
+
+                "controlHighlight",
+                new ColorUIResource(mainEnabledScheme.getLightColor()),
+
+                "controlLtHighlight",
+                new ColorUIResource(mainEnabledScheme.getExtraLightColor()),
+
+                "controlShadow",
+                new ColorUIResource(mainEnabledScheme.getDarkColor()),
+
+                "controlText",
+                new ColorUIResource(mainEnabledScheme.getForegroundColor()),
+
+                "desktop",
+                SubstanceColorUtilities.getDefaultBackgroundColor(false, skin,
+						false),
+
+                "inactiveCaption",
+                new ColorUIResource(skin.getBackgroundColorScheme(
+                        UIManager.getBoolean(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE)
+                                ? DecorationAreaType.PRIMARY_TITLE_PANE
+                                : DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE
+                        ).getBackgroundFillColor()),
+
+                "inactiveCaptionBorder",
+                new ColorUIResource(skin.getColorScheme(
+                        UIManager.getBoolean(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE)
+                                ? DecorationAreaType.PRIMARY_TITLE_PANE
+                                : DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE,
+                        ColorSchemeAssociationKind.BORDER, ComponentState.ENABLED).getBackgroundFillColor()),
+
+                "inactiveCaptionText",
+                SubstanceColorUtilities.getForegroundColor(skin.getBackgroundColorScheme(
+                        UIManager.getBoolean(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE)
+                                ? DecorationAreaType.PRIMARY_TITLE_PANE
+                                : DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE)),
+
+                "info", // tooltip
+                SubstanceColorUtilities.getDefaultBackgroundColor(false, skin,
+                        false),
+
+                "infoText",
+                foregroundColor,
+
+                "menu",
+                SubstanceColorUtilities.getDefaultBackgroundColor(false, skin,
+                        false),
+
+                "menuText",
+                foregroundColor,
+
+                "scrollbar",
+                SubstanceColorUtilities.getDefaultBackgroundColor(false, skin,
+						false),
+
+                "text",
+                SubstanceColorUtilities.getDefaultBackgroundColor(true, skin,
+                        false),
+
+                "textHighlight",
+                selectionTextBackgroundColor,
+
+                "textHighlightText",
+                selectionTextForegroundColor,
+
+                "textInactiveText",
+                disabledTextComponentForegroundColor,
+
+                "textText",
+                foregroundColor,
+
+                "window",
+                SubstanceColorUtilities.getDefaultBackgroundColor(false, skin,
+						false),
+
+                "windowBorder",
+                control,
+
+                "windowText",
+                foregroundColor,
+
 
 				"Button.defaultButtonFollowsFocus",
 				Boolean.FALSE,
