@@ -53,13 +53,8 @@ public class CommandButtonLayoutManagerMedium implements
 	}
 
 	private boolean hasIcon(AbstractCommandButton button) {
-		if (button.getIcon() != null)
-			return true;
-		if (Boolean.TRUE.equals(button
-				.getClientProperty(BasicCommandPopupMenuUI.FORCE_ICON)))
-			return true;
-		return false;
-	}
+        return button.getIcon() != null || Boolean.TRUE.equals(button.getClientProperty(BasicCommandPopupMenuUI.FORCE_ICON));
+    }
 
 	@Override
 	public Dimension getPreferredSize(AbstractCommandButton commandButton) {
@@ -240,12 +235,14 @@ public class CommandButtonLayoutManagerMedium implements
 				x += layoutHGap;
 			}
 
+            int verticalSeparatorWidth = new JSeparator(JSeparator.VERTICAL)
+                    .getPreferredSize().width;
 			if (hasPopupIcon) {
 				if (hasText && hasIcon) {
 					x += 2 * layoutHGap;
 				}
 
-				result.popupActionRect.x = x;
+                result.popupActionRect.x = commandButton.getWidth() - 1 - labelHeight / 2 - 3*layoutHGap + verticalSeparatorWidth;
 				result.popupActionRect.y = (height - labelHeight) / 2 - 1;
 				result.popupActionRect.width = 1 + labelHeight / 2;
 				result.popupActionRect.height = labelHeight + 2;
@@ -254,9 +251,7 @@ public class CommandButtonLayoutManagerMedium implements
 				x += 2 * layoutHGap;
 			}
 
-			int xBorderBetweenActionAndPopup = 0;
-			int verticalSeparatorWidth = new JSeparator(JSeparator.VERTICAL)
-					.getPreferredSize().width;
+			int xBorderBetweenActionAndPopup;
 			// compute the action and popup click areas
 			switch (buttonKind) {
 			case ACTION_ONLY:
@@ -277,10 +272,6 @@ public class CommandButtonLayoutManagerMedium implements
 				// 1. break before popup icon if button has text or icon
 				// 2. no break (all popup) if button has no text and no icon
 				if (hasText || hasIcon) {
-					// shift popup action rectangle to the right to
-					// accomodate the vertical separator
-					result.popupActionRect.x += verticalSeparatorWidth;
-
 					xBorderBetweenActionAndPopup = result.popupActionRect.x - 2
 							* layoutHGap;
 
@@ -316,15 +307,13 @@ public class CommandButtonLayoutManagerMedium implements
 				// 1. break after icon if button has icon
 				// 2. no break (all popup) if button has no icon
 				if (hasIcon) {
-					// shift text rectangle and popup action rectangle to the
-					// right
+					// shift text rectangle to the right
 					// to accomodate the vertical separator
 					if (result.textLayoutInfoList != null) {
 						for (TextLayoutInfo textLayoutInfo : result.textLayoutInfoList) {
 							textLayoutInfo.textRect.x += verticalSeparatorWidth;
 						}
 					}
-					result.popupActionRect.x += verticalSeparatorWidth;
 
 					xBorderBetweenActionAndPopup = result.iconRect.x
 							+ result.iconRect.width + layoutHGap;
@@ -404,6 +393,7 @@ public class CommandButtonLayoutManagerMedium implements
 
 				result.popupActionRect.width = 1 + labelHeight / 2;
 				result.popupActionRect.x = x - result.popupActionRect.width;
+                result.popupActionRect.x = layoutHGap*2;
 				result.popupActionRect.y = (height - labelHeight) / 2 - 1;
 				result.popupActionRect.height = labelHeight + 2;
 				x -= result.popupActionRect.width;
@@ -411,7 +401,7 @@ public class CommandButtonLayoutManagerMedium implements
 				x -= 2 * layoutHGap;
 			}
 
-			int xBorderBetweenActionAndPopup = 0;
+			int xBorderBetweenActionAndPopup;
 			int verticalSeparatorWidth = new JSeparator(JSeparator.VERTICAL)
 					.getPreferredSize().width;
 			// compute the action and popup click areas
@@ -436,7 +426,6 @@ public class CommandButtonLayoutManagerMedium implements
 				if (hasText || hasIcon) {
 					// shift popup action rectangle to the left to
 					// accomodate the vertical separator
-					result.popupActionRect.x -= verticalSeparatorWidth;
 
 					xBorderBetweenActionAndPopup = result.popupActionRect.x
 							+ result.popupActionRect.width + 2 * layoutHGap;
@@ -480,7 +469,6 @@ public class CommandButtonLayoutManagerMedium implements
 							textLayoutInfo.textRect.x -= verticalSeparatorWidth;
 						}
 					}
-					result.popupActionRect.x -= verticalSeparatorWidth;
 
 					xBorderBetweenActionAndPopup = result.iconRect.x
 							- layoutHGap;
