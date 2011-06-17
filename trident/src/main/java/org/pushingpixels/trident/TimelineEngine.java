@@ -29,13 +29,17 @@
  */
 package org.pushingpixels.trident;
 
-import java.util.*;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-
+import net.jcip.annotations.GuardedBy;
 import org.pushingpixels.trident.Timeline.TimelineState;
 import org.pushingpixels.trident.TimelineScenario.TimelineScenarioState;
 import org.pushingpixels.trident.callback.RunOnUIThread;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 /**
  * The Trident timeline engine. This is the main entry point to play
@@ -80,6 +84,8 @@ class TimelineEngine {
 	private Set<TimelineScenario> runningScenarios;
 
 	long lastIterationTimeStamp;
+    long scheduledPulseShutdown = Long.MAX_VALUE;
+    boolean callbackWasIdle;
 
 	/**
 	 * Identifies a main object and an optional secondary ID.
@@ -160,13 +166,17 @@ class TimelineEngine {
 		}
 	}
 
+    private final Object threadSemaphore = new Object();
+
 	/**
 	 * The timeline thread.
 	 */
+    @GuardedBy ("threadSemaphore")
 	TridentAnimationThread animatorThread;
 
 	private BlockingQueue<Runnable> callbackQueue;
 
+    @GuardedBy ("threadSemaphore")
 	private TimelineCallbackThread callbackThread;
 
 	class TridentAnimationThread extends Thread {
@@ -183,14 +193,21 @@ class TimelineEngine {
 		 */
 		@Override
 		public final void run() {
-			TridentConfig.PulseSource pulseSource = TridentConfig.getInstance()
-					.getPulseSource();
-			lastIterationTimeStamp = System.currentTimeMillis();
-			while (true) {
-				pulseSource.waitUntilNextPulse();
-				updateTimelines();
-				// engine.currLoopId++;
-			}
+            try {
+                TridentConfig.PulseSource pulseSource = TridentConfig.getInstance()
+                        .getPulseSource();
+                lastIterationTimeStamp = System.currentTimeMillis();
+                while (!isTimelinesEmpty() || (lastIterationTimeStamp < scheduledPulseShutdown)) {
+                    pulseSource.waitUntilNextPulse();
+                    updateTimelines();
+                    // engine.currLoopId++;
+                }
+            } finally {
+                synchronized (threadSemaphore) {
+                    animatorThread = null;
+                    checkAnimatorThread();
+                }
+            }
 		}
 
 		@Override
@@ -199,6 +216,13 @@ class TimelineEngine {
 			super.interrupt();
 		}
 	}
+
+
+    private void checkAnimatorThread() {
+         if (!isTimelinesEmpty()) {
+             getAnimatorThread();
+         }
+    }
 
 	private class TimelineCallbackThread extends Thread {
 		public TimelineCallbackThread() {
@@ -209,16 +233,43 @@ class TimelineEngine {
 
 		@Override
 		public void run() {
-			while (true) {
-				try {
-					Runnable runnable = callbackQueue.take();
-					runnable.run();
-				} catch (Throwable t) {
-					t.printStackTrace();
-				}
-			}
+            try {
+                while (true) {
+                    try {
+                        Runnable runnable = callbackQueue.poll(30, TimeUnit.SECONDS);  // half a minute, twice to shut down
+                        if (runnable != null) {
+                            callbackWasIdle = false;
+                            runnable.run();
+                        } else if (callbackWasIdle) {
+                            break;
+                        } else {
+                            callbackWasIdle = true;
+                        }
+                    } catch (Error e) {
+                        e.printStackTrace();
+                        throw e;
+                    } catch (RuntimeException re) {
+                        re.printStackTrace();
+                        throw re;
+                    } catch (InterruptedException ie) {
+                        break;
+                    }
+                }
+            } finally {
+                synchronized (threadSemaphore) {
+                    callbackThread = null;
+                    checkCallbackThread();
+                }
+            }
 		}
 	}
+
+    private void checkCallbackThread() {
+         if (!callbackQueue.isEmpty()) {
+             getCallbackThread();
+         }
+    }
+
 
 	/**
 	 * Simple constructor. Defined private for singleton.
@@ -251,254 +302,267 @@ class TimelineEngine {
 	 */
 	void updateTimelines() {
 		synchronized (LOCK) {
-			if ((this.runningTimelines.size() == 0)
-					&& (this.runningScenarios.size() == 0)) {
-				this.lastIterationTimeStamp = System.currentTimeMillis();
-				return;
-			}
+            try {
+                if (isTimelinesEmpty()) {
+                    return;
+                }
 
-			long passedSinceLastIteration = (System.currentTimeMillis() - this.lastIterationTimeStamp);
-			if (passedSinceLastIteration < 0) {
-				// ???
-				passedSinceLastIteration = 0;
-			}
-			if (DEBUG_MODE) {
-				System.out.println("Elapsed since last iteration: "
-						+ passedSinceLastIteration + "ms");
-			}
+                long passedSinceLastIteration = (System.currentTimeMillis() - this.lastIterationTimeStamp);
+                if (passedSinceLastIteration < 0) {
+                    // ???
+                    passedSinceLastIteration = 0;
+                }
+                if (DEBUG_MODE) {
+                    System.out.println("Elapsed since last iteration: "
+                            + passedSinceLastIteration + "ms");
+                }
 
-			// System.err.println("Periodic update on "
-			// + this.runningTimelines.size() + " timelines; "
-			// + passedSinceLastIteration + " ms passed since last");
-			// for (Timeline t : runningTimelines) {
-			// if (t.mainObject != null
-			// && t.mainObject.getClass().getName().indexOf(
-			// "ProgressBar") >= 0) {
-			// continue;
-			// }
-			// System.err.println("\tTimeline @"
-			// + t.hashCode()
-			// + " ["
-			// + t.getName()
-			// + "] on "
-			// + (t.mainObject == null ? "null" : t.mainObject
-			// .getClass().getName()));
-			// }
-			for (Iterator<Timeline> itTimeline = this.runningTimelines
-					.iterator(); itTimeline.hasNext();) {
-				Timeline timeline = itTimeline.next();
-				if (timeline.getState() == TimelineState.SUSPENDED)
-					continue;
+                // System.err.println("Periodic update on "
+                // + this.runningTimelines.size() + " timelines; "
+                // + passedSinceLastIteration + " ms passed since last");
+                // for (Timeline t : runningTimelines) {
+                // if (t.mainObject != null
+                // && t.mainObject.getClass().getName().indexOf(
+                // "ProgressBar") >= 0) {
+                // continue;
+                // }
+                // System.err.println("\tTimeline @"
+                // + t.hashCode()
+                // + " ["
+                // + t.getName()
+                // + "] on "
+                // + (t.mainObject == null ? "null" : t.mainObject
+                // .getClass().getName()));
+                // }
+                for (Iterator<Timeline> itTimeline = this.runningTimelines
+                        .iterator(); itTimeline.hasNext();) {
+                    Timeline timeline = itTimeline.next();
+                    if (timeline.getState() == TimelineState.SUSPENDED)
+                        continue;
 
-				boolean timelineWasInReadyState = false;
-				if (timeline.getState() == TimelineState.READY) {
-					if ((timeline.timeUntilPlay - passedSinceLastIteration) > 0) {
-						// still needs to wait in the READY state
-						timeline.timeUntilPlay -= passedSinceLastIteration;
-						continue;
-					}
+                    boolean timelineWasInReadyState = false;
+                    if (timeline.getState() == TimelineState.READY) {
+                        if ((timeline.timeUntilPlay - passedSinceLastIteration) > 0) {
+                            // still needs to wait in the READY state
+                            timeline.timeUntilPlay -= passedSinceLastIteration;
+                            continue;
+                        }
 
-					// can go from READY to PLAYING
-					timelineWasInReadyState = true;
-					timeline.popState();
-					this.callbackCallTimelineStateChanged(timeline,
-							TimelineState.READY);
-				}
+                        // can go from READY to PLAYING
+                        timelineWasInReadyState = true;
+                        timeline.popState();
+                        this.callbackCallTimelineStateChanged(timeline,
+                                TimelineState.READY);
+                    }
 
-				boolean hasEnded = false;
-				if (DEBUG_MODE) {
-					System.out.println("Processing " + timeline.id + "["
-							+ timeline.mainObject.getClass().getSimpleName()
-							+ "] from " + timeline.durationFraction
-							+ ". Callback - "
-							+ (timeline.callback == null ? "no" : "yes"));
-				}
-				// Component comp = entry.getKey();
+                    boolean hasEnded = false;
+                    if (DEBUG_MODE) {
+                        System.out.println("Processing " + timeline.id + "["
+                                + timeline.mainObject.getClass().getSimpleName()
+                                + "] from " + timeline.durationFraction
+                                + ". Callback - "
+                                + (timeline.callback == null ? "no" : "yes"));
+                    }
+                    // Component comp = entry.getKey();
 
-				// at this point, the timeline must be playing
-				switch (timeline.getState()) {
-				case PLAYING_FORWARD:
-					if (!timelineWasInReadyState) {
-						timeline.durationFraction = timeline.durationFraction
-								+ (float) passedSinceLastIteration
-								/ (float) timeline.duration;
-					}
-					timeline.timelinePosition = timeline.ease
-							.map(timeline.durationFraction);
-					if (DEBUG_MODE) {
-						System.out
-								.println("Timeline position: "
-										+ ((long) (timeline.durationFraction * timeline.duration))
-										+ "/" + timeline.duration + " = "
-										+ timeline.durationFraction);
-					}
-					if (timeline.durationFraction > 1.0f) {
-						timeline.durationFraction = 1.0f;
-						timeline.timelinePosition = 1.0f;
-						if (timeline.isLooping) {
-							boolean stopLoopingAnimation = timeline.toCancelAtCycleBreak;
-							int loopsToLive = timeline.repeatCount;
-							if (loopsToLive > 0) {
-								loopsToLive--;
-								stopLoopingAnimation = stopLoopingAnimation
-										|| (loopsToLive == 0);
-								timeline.repeatCount = loopsToLive;
-							}
-							if (stopLoopingAnimation) {
-								// end looping animation
-								hasEnded = true;
-								itTimeline.remove();
-							} else {
-								if (timeline.repeatBehavior == Timeline.RepeatBehavior.REVERSE) {
-									timeline
-											.replaceState(TimelineState.PLAYING_REVERSE);
-									if (timeline.cycleDelay > 0) {
-										timeline.pushState(TimelineState.READY);
-										timeline.timeUntilPlay = timeline.cycleDelay;
-									}
-									this.callbackCallTimelineStateChanged(
-											timeline,
-											TimelineState.PLAYING_FORWARD);
-								} else {
-									timeline.durationFraction = 0.0f;
-									timeline.timelinePosition = 0.0f;
-									if (timeline.cycleDelay > 0) {
-										timeline.pushState(TimelineState.READY);
-										timeline.timeUntilPlay = timeline.cycleDelay;
-										this.callbackCallTimelineStateChanged(
-												timeline,
-												TimelineState.PLAYING_FORWARD);
-									} else {
-										// it's still playing forward, but lets
-										// the app code know
-										// that the new loop has begun
-										this.callbackCallTimelineStateChanged(
-												timeline,
-												TimelineState.PLAYING_FORWARD);
-									}
-								}
-							}
-						} else {
-							hasEnded = true;
-							itTimeline.remove();
-						}
-					}
-					break;
-				case PLAYING_REVERSE:
-					if (!timelineWasInReadyState) {
-						timeline.durationFraction = timeline.durationFraction
-								- (float) passedSinceLastIteration
-								/ (float) timeline.duration;
-					}
-					timeline.timelinePosition = timeline.ease
-							.map(timeline.durationFraction);
-					// state.timelinePosition = state.timelinePosition
-					// - stepFactor
-					// * state.fadeStep.getNextStep(state.timelineKind,
-					// state.timelinePosition,
-					// state.isPlayingForward, state.isLooping);
-					if (DEBUG_MODE) {
-						System.out
-								.println("Timeline position: "
-										+ ((long) (timeline.durationFraction * timeline.duration))
-										+ "/" + timeline.duration + " = "
-										+ timeline.durationFraction);
-					}
-					if (timeline.durationFraction < 0) {
-						timeline.durationFraction = 0.0f;
-						timeline.timelinePosition = 0.0f;
-						if (timeline.isLooping) {
-							boolean stopLoopingAnimation = timeline.toCancelAtCycleBreak;
-							int loopsToLive = timeline.repeatCount;
-							if (loopsToLive > 0) {
-								loopsToLive--;
-								stopLoopingAnimation = stopLoopingAnimation
-										|| (loopsToLive == 0);
-								timeline.repeatCount = loopsToLive;
-							}
-							if (stopLoopingAnimation) {
-								// end looping animation
-								hasEnded = true;
-								itTimeline.remove();
-							} else {
-								timeline
-										.replaceState(TimelineState.PLAYING_FORWARD);
-								if (timeline.cycleDelay > 0) {
-									timeline.pushState(TimelineState.READY);
-									timeline.timeUntilPlay = timeline.cycleDelay;
-								}
-								this.callbackCallTimelineStateChanged(timeline,
-										TimelineState.PLAYING_REVERSE);
-							}
-						} else {
-							hasEnded = true;
-							itTimeline.remove();
-						}
-					}
-					break;
-				default:
-					throw new IllegalStateException("Timeline cannot be in "
-							+ timeline.getState() + " state");
-				}
-				if (hasEnded) {
-					if (DEBUG_MODE) {
-						System.out.println("Ending " + timeline.id + " on "
-								// + timeline.timelineKind.toString()
-								+ " in state " + timeline.getState().name()
-								+ " at position " + timeline.durationFraction);
-					}
-					TimelineState oldState = timeline.getState();
-					timeline.replaceState(TimelineState.DONE);
-					this.callbackCallTimelineStateChanged(timeline, oldState);
-					timeline.popState();
-					if (timeline.getState() != TimelineState.IDLE) {
-						throw new IllegalStateException(
-								"Timeline should be IDLE at this point");
-					}
-					this.callbackCallTimelineStateChanged(timeline,
-							TimelineState.DONE);
-				} else {
-					if (DEBUG_MODE) {
-						System.out.println("Calling " + timeline.id + " on "
-						// + timeline.timelineKind.toString() + " at "
-								+ timeline.durationFraction);
-					}
-					this.callbackCallTimelinePulse(timeline);
-				}
-			}
+                    // at this point, the timeline must be playing
+                    switch (timeline.getState()) {
+                    case PLAYING_FORWARD:
+                        if (!timelineWasInReadyState) {
+                            timeline.durationFraction = timeline.durationFraction
+                                    + (float) passedSinceLastIteration
+                                    / (float) timeline.duration;
+                        }
+                        timeline.timelinePosition = timeline.ease
+                                .map(timeline.durationFraction);
+                        if (DEBUG_MODE) {
+                            System.out
+                                    .println("Timeline position: "
+                                            + ((long) (timeline.durationFraction * timeline.duration))
+                                            + "/" + timeline.duration + " = "
+                                            + timeline.durationFraction);
+                        }
+                        if (timeline.durationFraction > 1.0f) {
+                            timeline.durationFraction = 1.0f;
+                            timeline.timelinePosition = 1.0f;
+                            if (timeline.isLooping) {
+                                boolean stopLoopingAnimation = timeline.toCancelAtCycleBreak;
+                                int loopsToLive = timeline.repeatCount;
+                                if (loopsToLive > 0) {
+                                    loopsToLive--;
+                                    stopLoopingAnimation = stopLoopingAnimation
+                                            || (loopsToLive == 0);
+                                    timeline.repeatCount = loopsToLive;
+                                }
+                                if (stopLoopingAnimation) {
+                                    // end looping animation
+                                    hasEnded = true;
+                                    itTimeline.remove();
+                                } else {
+                                    if (timeline.repeatBehavior == Timeline.RepeatBehavior.REVERSE) {
+                                        timeline
+                                                .replaceState(TimelineState.PLAYING_REVERSE);
+                                        if (timeline.cycleDelay > 0) {
+                                            timeline.pushState(TimelineState.READY);
+                                            timeline.timeUntilPlay = timeline.cycleDelay;
+                                        }
+                                        this.callbackCallTimelineStateChanged(
+                                                timeline,
+                                                TimelineState.PLAYING_FORWARD);
+                                    } else {
+                                        timeline.durationFraction = 0.0f;
+                                        timeline.timelinePosition = 0.0f;
+                                        if (timeline.cycleDelay > 0) {
+                                            timeline.pushState(TimelineState.READY);
+                                            timeline.timeUntilPlay = timeline.cycleDelay;
+                                            this.callbackCallTimelineStateChanged(
+                                                    timeline,
+                                                    TimelineState.PLAYING_FORWARD);
+                                        } else {
+                                            // it's still playing forward, but lets
+                                            // the app code know
+                                            // that the new loop has begun
+                                            this.callbackCallTimelineStateChanged(
+                                                    timeline,
+                                                    TimelineState.PLAYING_FORWARD);
+                                        }
+                                    }
+                                }
+                            } else {
+                                hasEnded = true;
+                                itTimeline.remove();
+                            }
+                        }
+                        break;
+                    case PLAYING_REVERSE:
+                        if (!timelineWasInReadyState) {
+                            timeline.durationFraction = timeline.durationFraction
+                                    - (float) passedSinceLastIteration
+                                    / (float) timeline.duration;
+                        }
+                        timeline.timelinePosition = timeline.ease
+                                .map(timeline.durationFraction);
+                        // state.timelinePosition = state.timelinePosition
+                        // - stepFactor
+                        // * state.fadeStep.getNextStep(state.timelineKind,
+                        // state.timelinePosition,
+                        // state.isPlayingForward, state.isLooping);
+                        if (DEBUG_MODE) {
+                            System.out
+                                    .println("Timeline position: "
+                                            + ((long) (timeline.durationFraction * timeline.duration))
+                                            + "/" + timeline.duration + " = "
+                                            + timeline.durationFraction);
+                        }
+                        if (timeline.durationFraction < 0) {
+                            timeline.durationFraction = 0.0f;
+                            timeline.timelinePosition = 0.0f;
+                            if (timeline.isLooping) {
+                                boolean stopLoopingAnimation = timeline.toCancelAtCycleBreak;
+                                int loopsToLive = timeline.repeatCount;
+                                if (loopsToLive > 0) {
+                                    loopsToLive--;
+                                    stopLoopingAnimation = stopLoopingAnimation
+                                            || (loopsToLive == 0);
+                                    timeline.repeatCount = loopsToLive;
+                                }
+                                if (stopLoopingAnimation) {
+                                    // end looping animation
+                                    hasEnded = true;
+                                    itTimeline.remove();
+                                } else {
+                                    timeline
+                                            .replaceState(TimelineState.PLAYING_FORWARD);
+                                    if (timeline.cycleDelay > 0) {
+                                        timeline.pushState(TimelineState.READY);
+                                        timeline.timeUntilPlay = timeline.cycleDelay;
+                                    }
+                                    this.callbackCallTimelineStateChanged(timeline,
+                                            TimelineState.PLAYING_REVERSE);
+                                }
+                            } else {
+                                hasEnded = true;
+                                itTimeline.remove();
+                            }
+                        }
+                        break;
+                    default:
+                        throw new IllegalStateException("Timeline cannot be in "
+                                + timeline.getState() + " state");
+                    }
+                    if (hasEnded) {
+                        if (DEBUG_MODE) {
+                            System.out.println("Ending " + timeline.id + " on "
+                                    // + timeline.timelineKind.toString()
+                                    + " in state " + timeline.getState().name()
+                                    + " at position " + timeline.durationFraction);
+                        }
+                        TimelineState oldState = timeline.getState();
+                        timeline.replaceState(TimelineState.DONE);
+                        this.callbackCallTimelineStateChanged(timeline, oldState);
+                        timeline.popState();
+                        if (timeline.getState() != TimelineState.IDLE) {
+                            throw new IllegalStateException(
+                                    "Timeline should be IDLE at this point");
+                        }
+                        this.callbackCallTimelineStateChanged(timeline,
+                                TimelineState.DONE);
+                    } else {
+                        if (DEBUG_MODE) {
+                            System.out.println("Calling " + timeline.id + " on "
+                            // + timeline.timelineKind.toString() + " at "
+                                    + timeline.durationFraction);
+                        }
+                        this.callbackCallTimelinePulse(timeline);
+                    }
+                }
 
-			if (this.runningScenarios.size() > 0) {
-				// System.err.println(Thread.currentThread().getName()
-				// + " : updating");
-				for (Iterator<TimelineScenario> it = this.runningScenarios
-						.iterator(); it.hasNext();) {
-					TimelineScenario scenario = it.next();
-					if (scenario.state == TimelineScenarioState.DONE) {
-						it.remove();
-						this.callbackCallTimelineScenarioEnded(scenario);
-						continue;
-					}
-					Set<TimelineScenario.TimelineScenarioActor> readyActors = scenario
-							.getReadyActors();
-					if (readyActors != null) {
-						// if (readyActors.size() > 0)
-						// System.out.println("Scenario : " + scenario.state +
-						// ":"
-						// + readyActors.size());
-						for (TimelineScenario.TimelineScenarioActor readyActor : readyActors) {
-							readyActor.play();
-						}
-					}
-				}
-			}
-			// System.err.println("Periodic update done");
-
-			// this.nothingTracked = (this.runningTimelines.size() == 0);
-			this.lastIterationTimeStamp = System.currentTimeMillis();
+                if (this.runningScenarios.size() > 0) {
+                    // System.err.println(Thread.currentThread().getName()
+                    // + " : updating");
+                    for (Iterator<TimelineScenario> it = this.runningScenarios
+                            .iterator(); it.hasNext();) {
+                        TimelineScenario scenario = it.next();
+                        if (scenario.state == TimelineScenarioState.DONE) {
+                            it.remove();
+                            this.callbackCallTimelineScenarioEnded(scenario);
+                            continue;
+                        }
+                        Set<TimelineScenario.TimelineScenarioActor> readyActors = scenario
+                                .getReadyActors();
+                        if (readyActors != null) {
+                            // if (readyActors.size() > 0)
+                            // System.out.println("Scenario : " + scenario.state +
+                            // ":"
+                            // + readyActors.size());
+                            for (TimelineScenario.TimelineScenarioActor readyActor : readyActors) {
+                                readyActor.play();
+                            }
+                        }
+                    }
+                }
+                // System.err.println("Periodic update done");
+            } finally {
+                this.lastIterationTimeStamp = System.currentTimeMillis();
+            }
 		}
 	}
 
-	private void callbackCallTimelineStateChanged(final Timeline timeline,
+    private boolean isTimelinesEmpty() {
+        boolean empty = (this.runningTimelines.size() == 0)
+            && (this.runningScenarios.size() == 0);
+        if (empty) {
+            if (scheduledPulseShutdown == Long.MAX_VALUE) {
+                scheduledPulseShutdown = lastIterationTimeStamp + 60000; // one minute;
+            }
+        } else {
+            scheduledPulseShutdown = Long.MAX_VALUE;
+        }
+        return empty;
+    }
+
+
+    private void callbackCallTimelineStateChanged(final Timeline timeline,
 			final TimelineState oldState) {
 		final TimelineState newState = timeline.getState();
 		final float durationFraction = timeline.durationFraction;
@@ -529,7 +593,8 @@ class TimelineEngine {
 				}
 			}
 		};
-		this.callbackQueue.add(callbackRunnable);
+		this.callbackQueue.offer(callbackRunnable);
+        checkCallbackThread();
 	}
 
 	private void callbackCallTimelinePulse(final Timeline timeline) {
@@ -563,7 +628,8 @@ class TimelineEngine {
 				}
 			}
 		};
-		this.callbackQueue.add(callbackRunnable);
+		this.callbackQueue.offer(callbackRunnable);
+        checkCallbackThread();
 	}
 
 	private void callbackCallTimelineScenarioEnded(
@@ -575,6 +641,7 @@ class TimelineEngine {
 			}
 		};
 		this.callbackQueue.offer(callbackRunnable);
+        checkCallbackThread();
 	}
 
 	/**
@@ -602,10 +669,10 @@ class TimelineEngine {
 	 */
 	private void addTimeline(Timeline timeline) {
 		synchronized (LOCK) {
-			FullObjectID cid = new FullObjectID(timeline.mainObject,
-					timeline.secondaryId);
-			timeline.fullObjectID = cid;
+            timeline.fullObjectID = new FullObjectID(timeline.mainObject,
+                    timeline.secondaryId);
 			this.runningTimelines.add(timeline);
+            checkAnimatorThread();
 			// this.nothingTracked = false;
 			if (DEBUG_MODE) {
 				System.out.println("Added (" + timeline.id + ") on "
@@ -675,6 +742,7 @@ class TimelineEngine {
 			// System.err.println(Thread.currentThread().getName() +
 			// " : adding");
 			this.runningScenarios.add(scenario);
+            checkAnimatorThread();
 			for (TimelineScenario.TimelineScenarioActor readyActor : readyActors) {
 				readyActor.play();
 			}
@@ -800,11 +868,13 @@ class TimelineEngine {
 	 * @return The animator thread.
 	 */
 	private TridentAnimationThread getAnimatorThread() {
-		if (this.animatorThread == null) {
-			this.animatorThread = new TridentAnimationThread();
-			this.animatorThread.start();
-		}
-		return this.animatorThread;
+        synchronized (threadSemaphore) {
+            if (this.animatorThread == null) {
+                this.animatorThread = new TridentAnimationThread();
+                this.animatorThread.start();
+            }
+            return this.animatorThread;
+        }
 	}
 
 	/**
@@ -813,11 +883,13 @@ class TimelineEngine {
 	 * @return The animator thread.
 	 */
 	private TimelineCallbackThread getCallbackThread() {
-		if (this.callbackThread == null) {
-			this.callbackThread = new TimelineCallbackThread();
-			this.callbackThread.start();
-		}
-		return this.callbackThread;
+        synchronized (threadSemaphore) {
+            if (this.callbackThread == null) {
+                this.callbackThread = new TimelineCallbackThread();
+                this.callbackThread.start();
+            }
+            return this.callbackThread;
+        }
 	}
 
 	/**
