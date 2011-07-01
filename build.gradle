@@ -17,7 +17,7 @@ subprojects {
   } catch (Exception ignore) {}
 
   group = 'com.github.insubstantial'
-  version = '6.3-SNAPSHOT'
+  version = '6.3'
   versionKey = "6.3-defender"
   release = "internal"
 
