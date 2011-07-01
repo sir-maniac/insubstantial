@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jnlp spec="1.0+" codebase="https://substance.dev.java.net/webstart/"
+<jnlp spec="1.0+" codebase="http://insubstantial.github.com/insubstantial/substance/webstart/"
  href="substance-core.jnlp">
 <information>
   <title>Substance core jar</title>
-  <vendor>https://substance.dev.java.net/</vendor>
+  <vendor>http://github.com/Insubstantial</vendor>
   <offline-allowed/> 
 </information>
 <offline-allowed/>

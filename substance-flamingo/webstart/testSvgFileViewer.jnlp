@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jnlp spec="1.0+" codebase="https://substance-flamingo.dev.java.net/webstart/"
+<jnlp spec="1.0+" codebase="http://insubstantial.github.com/insubstantial/substance-flamingo/webstart/"
  href="testSvgFileViewer.jnlp">
 <information>
   <title>SVG File Viewer demo - Substance look and feel</title>
-  <vendor>https://substance-flamingo.dev.java.net/</vendor>
+  <vendor>http://github.com/Insubstantial</vendor>
   <description>SVG File Viewer demo - Substance look and feel</description> 
   <description kind="short">SVG File Viewer demo - Substance look and feel</description> 
   <offline-allowed/> 

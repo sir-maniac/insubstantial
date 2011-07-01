@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jnlp spec="1.0+" codebase="https://flamingo.dev.java.net/webstart/"
+<jnlp spec="1.0+" codebase="http://insubstantial.github.com/insubstantial/flamingo/webstart/"
  href="flamingo-core.jnlp">
 <information>
   <title>Flamingo core jar</title>
-  <vendor>https://flamingo.dev.java.net/</vendor>
+  <vendor>http://github.com/Insubstantial</vendor>
   <offline-allowed/> 
 </information>
 <offline-allowed/>

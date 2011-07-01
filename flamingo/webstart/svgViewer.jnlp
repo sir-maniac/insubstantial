@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jnlp spec="1.0+" codebase="https://flamingo.dev.java.net/webstart/"
+<jnlp spec="1.0+" codebase="http://insubstantial.github.com/insubstantial/flamingo/webstart/"
  href="svgViewer.jnlp">
 <information>
   <title>SVG viewer</title>
-  <vendor>https://flamingo.dev.java.net/</vendor>
+  <vendor>http://github.com/Insubstantial</vendor>
   <description>SVG viewer</description> 
   <description kind="short">SVG viewer</description> 
   <offline-allowed/> 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jnlp spec="1.0+" codebase="https://flamingo.dev.java.net/webstart/"
+<jnlp spec="1.0+" codebase="http://insubstantial.github.com/insubstantial/flamingo/webstart/"
  href="testFileExplorer.jnlp">
 <information>
   <title>Local File Browser</title>
-  <vendor>https://flamingo.dev.java.net/</vendor>
+  <vendor>http://github.com/Insubstantial</vendor>
   <description>Local File Browser</description> 
   <description kind="short">Local File Browser</description> 
   <offline-allowed/> 

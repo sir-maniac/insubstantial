@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jnlp spec="1.0+" codebase="https://substance.dev.java.net/webstart/"
+<jnlp spec="1.0+" codebase="http://insubstantial.github.com/insubstantial/substance/webstart/"
  href="Issue447.jnlp">
 <information>
   <title>Substance look and feel demo</title>
-  <vendor>https://substance.dev.java.net/</vendor>
+  <vendor>http://github.com/Insubstantial</vendor>
   <description>Substance look and feel demo</description> 
   <description kind="short">Substance look and feel demo</description> 
   <offline-allowed/> 

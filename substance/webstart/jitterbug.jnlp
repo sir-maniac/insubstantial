@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jnlp spec="1.0+" codebase="https://substance.dev.java.net/webstart/"
+<jnlp spec="1.0+" codebase="http://insubstantial.github.com/insubstantial/substance/webstart/"
  href="jitterbug.jnlp">
 <information>
   <title>Jitterbug color scheme editor for Substance look-and-feel</title>
-  <vendor>Kirill Grouchnikov</vendor>
+  <vendor>http://github.com/Insubstantial</vendor>
   <description>Jitterbug color scheme editor for Substance look-and-feel</description> 
   <description kind="short">Jitterbug color scheme editor</description> 
   <offline-allowed/> 
