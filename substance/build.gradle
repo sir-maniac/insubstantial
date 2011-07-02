@@ -75,8 +75,8 @@ jar {
 
   exclude 'org/pushingpixels/lafwidget/ant/**'
 
-  from zipTree('lib/build/laf-plugin.jar')
-  from zipTree('lib/build/laf-widget.jar')
+  from project(":laf-plugin").sourceSets.main.classes
+  from project(":laf-widget").sourceSets.main.classes
 
   manifest {
     attributes(
