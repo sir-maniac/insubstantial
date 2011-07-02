@@ -15,9 +15,9 @@
 <resources>
   <property name="jnlp.packEnabled" value="true"/>
   <j2se version="1.6+" />
-  <jar href="flamingo-tst.jar"/>
-  <jar href="flamingo.jar"/>
-  <extension name="common-forms" href="https://pushingpixels.dev.java.net/webstart/common-forms.jnlp"/>
+  <jar href="flamingo-6.3-tst.jar"/>
+  <jar href="flamingo-6.3.jar"/>
+  <jar href="http://insubstantial.github.com/insubstantial/libs/forms-1.2.0.jar"/>
 </resources>
 <application-desc main-class="test.ribbon.BasicCheckRibbon" />
 </jnlp>

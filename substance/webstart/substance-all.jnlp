@@ -13,9 +13,9 @@
 <resources>
   <property name="jnlp.packEnabled" value="true"/>
   <j2se version="1.6+" />
-  <jar href="substance-tst.jar"/>
-  <jar href="substance.jar"/>
-  <jar href="substance-tools.jar"/>
+  <jar href="substance-6.3-tst.jar"/>
+  <jar href="substance-6.3.jar"/>
+  <jar href="substance-6.3-tools.jar"/>
 </resources>
 <component-desc/>
 </jnlp>

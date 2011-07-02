@@ -15,8 +15,8 @@
 <resources>
   <property name="jnlp.packEnabled" value="true"/>
   <j2se version="1.6+" />
-  <jar href="trident-tst.jar"/>
-  <jar href="trident.jar"/>
+  <jar href="trident-6.3-tst.jar"/>
+  <jar href="trident-6.3.jar"/>
 </resources>
 <application-desc main-class="test.swing.StarDust" />
 </jnlp>

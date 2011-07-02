@@ -15,12 +15,12 @@
 <resources>
   <property name="jnlp.packEnabled" value="true"/>
   <j2se version="1.6+" />
-  <jar href="substance-swingx-tst.jar"/>
-  <jar href="substance-swingx.jar"/>
+  <jar href="substance-swingx-6.3-tst.jar"/>
+  <jar href="substance-swingx-6.3.jar"/>
   <jar href="swingx.jar"/>
-  <extension name="trident-core" href="https://kenai.com/svn/trident~source/www/webstart/trident-core.jnlp"/>
-  <extension name="common-forms" href="https://pushingpixels.dev.java.net/webstart/common-forms.jnlp"/>
-  <extension name="substance-all" href="https://substance.dev.java.net/webstart/substance-all.jnlp"/>
+  <jar href="http://insubstantial.github.com/insubstantial/libs/forms-1.2.0.jar"/>
+  <extension name="trident-core" href="http://insubstantial.github.com/insubstantial/trident/webstart/trident-core.jnlp"/>
+  <extension name="substance-all" href="http://insubstantial.github.com/insubstantial/substance/webstart/substance-all.jnlp"/>
 </resources>
 <application-desc main-class="test.TestSwingXFrame" />
 </jnlp>

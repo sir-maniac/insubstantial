@@ -15,8 +15,9 @@
 <resources>
   <property name="jnlp.packEnabled" value="true"/>
   <j2se version="1.6+" />
-  <jar href="substance-tst.jar"/>
-  <jar href="substance.jar"/>
+  <jar href="substance-6.3-tst.jar"/>
+  <jar href="substance-6.3.jar"/>
+  <extension name="trident-core" href="http://insubstantial.github.com/insubstantial/trident/webstart/trident-core.jnlp"/>
 </resources>
 <application-desc main-class="test.issues.Issue447" />
 </jnlp>

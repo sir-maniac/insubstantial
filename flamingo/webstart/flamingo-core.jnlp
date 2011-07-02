@@ -13,7 +13,7 @@
 <resources>
   <property name="jnlp.packEnabled" value="true"/>
   <j2se version="1.6+" />
-  <jar href="flamingo.jar"/>
+  <jar href="flamingo-6.3.jar"/>
 </resources>
 <component-desc/>
 </jnlp>
