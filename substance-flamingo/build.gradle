@@ -107,7 +107,7 @@ task testJar(type: Jar) {
 }
 
 artifacts {
-  maven liteJar
+  archives liteJar
 }
 
 uploadArchives {
@@ -139,7 +139,7 @@ private def configurePOM(def pom) {
   pom.project {
     name "substance-flamingo"
     description "A fork of @kirilcool's substance project"
-    url "http://insubstantial.github.com/insubstantialPeacock"
+    url "http://insubstantial.github.com/insubstantial/substance-flamingo/"
     licenses {
       license {
         name 'BSD License'

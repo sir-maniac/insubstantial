@@ -126,7 +126,7 @@ private def configurePOM(def pom) {
   pom.project {
     name "substance-swingx"
     description "A fork of @kirilcool's substance project"
-    url "http://insubstantial.github.com/insubstantialSwingX"
+    url "http://insubstantial.github.com/insubstantial/substance-swingx/"
     licenses {
       license {
         name 'BSD License'

@@ -11,9 +11,12 @@ subprojects {
   apply plugin: 'java'
   apply plugin: 'maven'
   try {
-    def test = pgpSecretKeyRingFile // exception will throw if not set
+    // to upload to sonatype:
+    // gradle -Drelease=true -Dsign=true clean build upload -PpgpKeyId=FFFFFFFF
+    def test = pgpKeyId // exception will throw if not set
     apply plugin: 'sign'
     apply plugin: de.huxhorn.gradle.pgp.PgpPlugin
+
   } catch (Exception ignore) {}
 
   group = 'com.github.insubstantial'
@@ -47,8 +50,8 @@ subprojects {
   }
 
   artifacts {
-    maven sourceJar
-    maven javadocJar
+    archives sourceJar
+    archives javadocJar
   }
 
   uploadArchives {

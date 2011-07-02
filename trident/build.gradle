@@ -88,10 +88,10 @@ task swtJar(type: Jar) {
 }
 
 artifacts {
-  maven baseJar
-  maven androidJar
-  maven swingJar
-  maven swtJar
+  archives baseJar
+  archives androidJar
+  archives swingJar
+  archives swtJar
 }
 
 
@@ -125,7 +125,14 @@ private def configurePOM(def pom) {
   pom.project {
     name "trident"
     description "A fork of @kirilcool's trident project"
-    url "http://insubstantial.github.com/halberd"
+    url "https://github.com/Insubstantial/insubstantial/tree/master/trident"
+    licenses {
+      license {
+        name 'The BSD License'
+        url 'http://www.opensource.org/licenses/bsd-license.php'
+        distribution 'repo'
+      }
+    }
   }
   // deal with a gradle bug where transitive=false is not passed into the generated POM
   pom.whenConfigured {cpom ->
