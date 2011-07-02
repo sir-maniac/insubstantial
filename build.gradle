@@ -20,8 +20,8 @@ subprojects {
   } catch (Exception ignore) {}
 
   group = 'com.github.insubstantial'
-  version = '6.3'
-  versionKey = "6.3-defender"
+  version = '7.0-SNAPSHOT'
+  versionKey = "7.0-Unconquered"
   release = "internal"
 
   sourceCompatibility = 1.6
