@@ -15,6 +15,7 @@
   <j2se version="1.6+" />
   <jar href="flamingo-6.3-tst.jar"/>
   <jar href="flamingo-6.3.jar"/>
+  <extension name="trident-core" href="http://insubstantial.github.com/insubstantial/trident/webstart/trident-core.jnlp"/>
   <jar href="http://insubstantial.github.com/insubstantial/libs/svnkit.jar"/>
   <jar href="http://insubstantial.github.com/insubstantial/libs/batik/batik-all.jar"/>
   <jar href="http://insubstantial.github.com/insubstantial/libs/batik/js.jar"/>

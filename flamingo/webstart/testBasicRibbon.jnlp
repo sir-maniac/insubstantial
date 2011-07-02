@@ -18,6 +18,7 @@
   <jar href="flamingo-6.3-tst.jar"/>
   <jar href="flamingo-6.3.jar"/>
   <jar href="http://insubstantial.github.com/insubstantial/libs/forms-1.2.0.jar"/>
+  <extension name="trident-core" href="http://insubstantial.github.com/insubstantial/trident/webstart/trident-core.jnlp"/>
 </resources>
 <application-desc main-class="test.ribbon.BasicCheckRibbon" />
 </jnlp>
