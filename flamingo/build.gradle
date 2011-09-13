@@ -1,4 +1,5 @@
-import javax.swing.SwingUtilities
+apply plugin: 'idea'
+apply plugin: 'eclipse'
 
 dependencies {
   compile project(":trident")

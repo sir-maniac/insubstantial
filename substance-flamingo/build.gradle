@@ -1,3 +1,6 @@
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
 configurations {
   testCompile { extendsFrom compile }
   toolsCompile { extendsFrom compile }
