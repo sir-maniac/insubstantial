@@ -29,17 +29,11 @@
  */
 package org.pushingpixels.flamingo.api.common;
 
-import java.util.concurrent.ExecutorService;
-
-import org.pushingpixels.flamingo.api.svg.SvgBatikResizableIcon;
-
 /**
- * This interface is used for asynchronously-loaded contents. For example, the
- * {@link SvgBatikResizableIcon} uses the {@link ExecutorService} to load the
- * SVG image in the background. When the image is loaded, the component that
- * contains this image ({@link JCommandButton} for example) is notified to
- * repaint itself.
- * 
+ * This interface is used for asynchronously-loaded contents. When the image
+ * is loaded, the component that contains this image ({@link JCommandButton}
+ * for example) is notified to repaint itself.
+ *
  * @author Kirill Grouchnikov.
  */
 public interface AsynchronousLoading {

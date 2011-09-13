@@ -53,7 +53,7 @@ abstract class IcoWrapperIcon implements Icon, AsynchronousLoading {
 	/**
 	 * The input stream of the original image.
 	 */
-	protected InputStream icoInputStream;
+	protected final InputStream icoInputStream;
 
 	/**
 	 * Image planes of the original ICO image.
@@ -81,10 +81,10 @@ abstract class IcoWrapperIcon implements Icon, AsynchronousLoading {
 	protected EventListenerList listenerList = new EventListenerList();
 
 	/**
-	 * Create a new SVG icon.
+	 * Create a new ICO icon.
 	 * 
 	 * @param inputStream
-	 *            The input stream to read the SVG document from.
+	 *            The input stream to read the ICO bits from.
 	 * @param w
 	 *            The width of the icon.
 	 * @param h
@@ -100,7 +100,7 @@ abstract class IcoWrapperIcon implements Icon, AsynchronousLoading {
 			protected boolean removeEldestEntry(
 					Map.Entry<String, BufferedImage> eldest) {
 				return size() > 5;
-			};
+			}
 		};
 		this.renderImage(this.width, this.height);
 	}
@@ -372,7 +372,7 @@ class Ico {
 		} finally {
 			try {
 				is.close();
-			} catch (IOException ioe) {
+			} catch (IOException ignored) {
 			}
 		}
 	}

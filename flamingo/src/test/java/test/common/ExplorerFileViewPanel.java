@@ -41,7 +41,6 @@ import javax.swing.filechooser.FileSystemView;
 import org.pushingpixels.flamingo.api.bcb.JBreadcrumbBar;
 import org.pushingpixels.flamingo.api.common.*;
 import org.pushingpixels.flamingo.api.common.icon.*;
-import org.pushingpixels.flamingo.api.svg.SvgBatikResizableIcon;
 
 /**
  * Panel that hosts image-based buttons.
@@ -70,7 +69,7 @@ public class ExplorerFileViewPanel<T> extends AbstractFileViewPanel<T> {
 	 * @param startingDimension
 	 * 		Initial dimension for image icons.
 	 * @param progressListener
-	 * 		Progress listener to report back on loaded SVG images.
+	 * 		Progress listener to report back on loaded ico images.
 	 */
 	public ExplorerFileViewPanel(JBreadcrumbBar<T> bar, int startingDimension,
 			ProgressListener progressListener) {
@@ -88,7 +87,7 @@ public class ExplorerFileViewPanel<T> extends AbstractFileViewPanel<T> {
 	 * @param startingState
 	 * 		Initial state for image icons.
 	 * @param progressListener
-	 * 		Progress listener to report back on loaded SVG images.
+	 * 		Progress listener to report back on loaded ico images.
 	 */
 	public ExplorerFileViewPanel(JBreadcrumbBar<T> bar,
 			CommandButtonDisplayState startingState, ProgressListener progressListener) {
@@ -153,14 +152,6 @@ public class ExplorerFileViewPanel<T> extends AbstractFileViewPanel<T> {
 				|| (ext.compareTo("gif") == 0) || (ext.compareTo("png") == 0)
 				|| (ext.compareTo("bmp") == 0)) {
 			return ImageWrapperResizableIcon.getIcon(stream, dimension);
-		}
-
-		if (ext.compareTo("svg") == 0) {
-			return SvgBatikResizableIcon.getSvgIcon(stream, dimension);
-		}
-
-		if (ext.compareTo("svgz") == 0) {
-			return SvgBatikResizableIcon.getSvgzIcon(stream, dimension);
 		}
 
 		if (ext.compareTo("ico") == 0) {

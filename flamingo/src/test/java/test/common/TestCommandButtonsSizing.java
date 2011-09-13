@@ -16,10 +16,10 @@ import org.pushingpixels.flamingo.api.common.CommandButtonDisplayState;
 import org.pushingpixels.flamingo.api.common.JCommandButton;
 import org.pushingpixels.flamingo.api.common.JCommandButton.CommandButtonKind;
 import org.pushingpixels.flamingo.api.common.icon.FilteredResizableIcon;
+import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
 import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
 import org.pushingpixels.flamingo.api.common.popup.JPopupPanel;
 import org.pushingpixels.flamingo.api.common.popup.PopupPanelCallback;
-import org.pushingpixels.flamingo.api.svg.SvgBatikResizableIcon;
 
 import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.forms.layout.FormLayout;
@@ -132,9 +132,9 @@ public class TestCommandButtonsSizing extends JPanel {
 	private JCommandButton createActionOnlyButton(String text,
 			CommandButtonDisplayState state,
 			CommandButtonKind commandButtonKind, int fontSize) {
-		ResizableIcon mainPasteIcon = SvgBatikResizableIcon.getSvgIcon(
-				TestCommandButtons.class.getClassLoader().getResource(
-						"test/svg/edit-paste.svg"), new Dimension(32, 32));
+		ResizableIcon mainPasteIcon = ImageWrapperResizableIcon.getIcon(
+                TestCommandButtons.class.getClassLoader().getResource(
+                        "utest/common/edit-paste.png"), new Dimension(32, 32));
 		JCommandButton mainButton = new JCommandButton(text, mainPasteIcon);
 		mainButton.setDisabledIcon(new FilteredResizableIcon(mainPasteIcon,
 				new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY),

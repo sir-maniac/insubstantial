@@ -17,9 +17,9 @@ import org.junit.Test;
 import org.pushingpixels.flamingo.api.common.*;
 import org.pushingpixels.flamingo.api.common.JCommandButton.CommandButtonKind;
 import org.pushingpixels.flamingo.api.common.icon.EmptyResizableIcon;
+import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
 import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
 import org.pushingpixels.flamingo.api.common.popup.*;
-import org.pushingpixels.flamingo.api.svg.SvgBatikResizableIcon;
 
 public class SplitCommandButtonTestCase extends FestSwingJUnitTestCase {
 	JFrame buttonFrame;
@@ -33,10 +33,10 @@ public class SplitCommandButtonTestCase extends FestSwingJUnitTestCase {
 	@Before
 	public void onSetUp() {
 		URL resource = SplitCommandButtonTestCase.class.getClassLoader()
-				.getResource("utest/common/edit-paste.svg");
+				.getResource("utest/common/edit-paste.png");
 		Assertions.assertThat(resource).isNotNull();
-		final ResizableIcon icon = SvgBatikResizableIcon.getSvgIcon(resource,
-				new Dimension(32, 32));
+		final ResizableIcon icon = ImageWrapperResizableIcon.getIcon(resource,
+                new Dimension(32, 32));
 		Pause.pause(new Condition("Waiting to load the SVG icon") {
 			@Override
 			public boolean test() {
@@ -115,7 +115,7 @@ public class SplitCommandButtonTestCase extends FestSwingJUnitTestCase {
 					@Override
 					protected Rectangle executeInEDT() throws Throwable {
 						return button.getUI().getLayoutInfo().actionClickArea;
-					};
+					}
 				});
 		// click the action area
 		robot().click(button, AWT.centerOf(actionClickArea));
@@ -139,7 +139,7 @@ public class SplitCommandButtonTestCase extends FestSwingJUnitTestCase {
 					@Override
 					protected Rectangle executeInEDT() throws Throwable {
 						return button.getUI().getLayoutInfo().actionClickArea;
-					};
+					}
 				});
 		Assertions.assertThat(actionClickArea).isNotNull();
 		robot().moveMouse(button, AWT.centerOf(actionClickArea));
@@ -176,7 +176,7 @@ public class SplitCommandButtonTestCase extends FestSwingJUnitTestCase {
 					@Override
 					protected Rectangle executeInEDT() throws Throwable {
 						return button.getUI().getLayoutInfo().popupClickArea;
-					};
+					}
 				});
 		Assertions.assertThat(popupClickArea).isNotNull();
 		// click the popup area
@@ -218,7 +218,7 @@ public class SplitCommandButtonTestCase extends FestSwingJUnitTestCase {
 					@Override
 					protected Rectangle executeInEDT() throws Throwable {
 						return button.getUI().getLayoutInfo().popupClickArea;
-					};
+					}
 				});
 		// click the popup area
 		robot().click(button, AWT.centerOf(popupClickArea));
@@ -265,7 +265,7 @@ public class SplitCommandButtonTestCase extends FestSwingJUnitTestCase {
 					@Override
 					protected Rectangle executeInEDT() throws Throwable {
 						return button.getUI().getLayoutInfo().popupClickArea;
-					};
+					}
 				});
 		Assertions.assertThat(popupClickArea).isNotNull();
 		// click the popup area
@@ -302,7 +302,7 @@ public class SplitCommandButtonTestCase extends FestSwingJUnitTestCase {
 					@Override
 					protected Rectangle executeInEDT() throws Throwable {
 						return button.getUI().getLayoutInfo().popupClickArea;
-					};
+					}
 				});
 		Assertions.assertThat(popupClickArea).isNotNull();
 		// click the popup area
@@ -339,7 +339,7 @@ public class SplitCommandButtonTestCase extends FestSwingJUnitTestCase {
 					@Override
 					protected Rectangle executeInEDT() throws Throwable {
 						return button.getUI().getLayoutInfo().popupClickArea;
-					};
+					}
 				});
 		// click the popup area
 		Assertions.assertThat(popupClickArea).isNotNull();
@@ -402,7 +402,7 @@ public class SplitCommandButtonTestCase extends FestSwingJUnitTestCase {
 					@Override
 					protected Rectangle executeInEDT() throws Throwable {
 						return button.getUI().getLayoutInfo().popupClickArea;
-					};
+					}
 				});
 		Assertions.assertThat(popupClickArea).isNotNull();
 		for (int i = 0; i < MENU_BUTTON_COUNT; i++) {
@@ -464,7 +464,7 @@ public class SplitCommandButtonTestCase extends FestSwingJUnitTestCase {
 					@Override
 					protected Rectangle executeInEDT() throws Throwable {
 						return button.getUI().getLayoutInfo().popupClickArea;
-					};
+					}
 				});
 		// click the popup area
 		robot().click(button, AWT.centerOf(popupClickArea));
@@ -532,7 +532,7 @@ public class SplitCommandButtonTestCase extends FestSwingJUnitTestCase {
 					@Override
 					protected Rectangle executeInEDT() throws Throwable {
 						return button.getUI().getLayoutInfo().actionClickArea;
-					};
+					}
 				});
 		// click the action area
 		robot().click(button, AWT.centerOf(actionClickArea));
@@ -609,14 +609,14 @@ public class SplitCommandButtonTestCase extends FestSwingJUnitTestCase {
 					@Override
 					protected Rectangle executeInEDT() throws Throwable {
 						return button.getUI().getLayoutInfo().actionClickArea;
-					};
+					}
 				});
 		Rectangle popupClickArea = GuiActionRunner
 				.execute(new GuiQuery<Rectangle>() {
 					@Override
 					protected Rectangle executeInEDT() throws Throwable {
 						return button.getUI().getLayoutInfo().popupClickArea;
-					};
+					}
 				});
 		// click the action area
 		robot().click(button, AWT.centerOf(actionClickArea));
@@ -703,7 +703,7 @@ public class SplitCommandButtonTestCase extends FestSwingJUnitTestCase {
 					@Override
 					protected Rectangle executeInEDT() throws Throwable {
 						return button.getUI().getLayoutInfo().actionClickArea;
-					};
+					}
 				});
 		Assertions.assertThat(actionClickArea).isNotNull();
 		robot().pressMouse(button, AWT.centerOf(actionClickArea));
@@ -730,7 +730,7 @@ public class SplitCommandButtonTestCase extends FestSwingJUnitTestCase {
 					@Override
 					protected Rectangle executeInEDT() throws Throwable {
 						return button.getUI().getLayoutInfo().actionClickArea;
-					};
+					}
 				});
 		Assertions.assertThat(actionClickArea).isNotNull();
 		robot().pressMouse(button, AWT.centerOf(actionClickArea));

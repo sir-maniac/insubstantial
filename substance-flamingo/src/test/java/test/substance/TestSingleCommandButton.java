@@ -1,26 +1,18 @@
 package test.substance;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.net.URL;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JToggleButton;
-import javax.swing.SwingUtilities;
-
+import com.jgoodies.forms.builder.DefaultFormBuilder;
+import com.jgoodies.forms.layout.FormLayout;
 import org.pushingpixels.flamingo.api.common.AsynchronousLoadListener;
 import org.pushingpixels.flamingo.api.common.CommandButtonDisplayState;
 import org.pushingpixels.flamingo.api.common.JCommandButton;
 import org.pushingpixels.flamingo.api.common.JCommandButton.CommandButtonKind;
 import org.pushingpixels.flamingo.api.common.JCommandToggleButton;
-import org.pushingpixels.flamingo.api.svg.SvgBatikResizableIcon;
+import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.skin.OfficeSilver2007Skin;
 
-import com.jgoodies.forms.builder.DefaultFormBuilder;
-import com.jgoodies.forms.layout.FormLayout;
+import javax.swing.*;
+import java.awt.*;
 
 public class TestSingleCommandButton extends JFrame {
 
@@ -29,9 +21,9 @@ public class TestSingleCommandButton extends JFrame {
 		DefaultFormBuilder builder = new DefaultFormBuilder(lm);
 		builder.setDefaultDialogBorder();
 
-		SvgBatikResizableIcon svgIcon = SvgBatikResizableIcon.getSvgIcon(
-				TestCommandButtonSizes.class.getClassLoader().getResource(
-						"test/svg/font-x-generic.svg"), new Dimension(16, 16));
+		ImageWrapperResizableIcon svgIcon = ImageWrapperResizableIcon.getIcon(
+                TestCommandButtonSizes.class.getClassLoader().getResource(
+                        "test/substance/edit-paste.png"), new Dimension(16, 16));
 		svgIcon.addAsynchronousLoadListener(new AsynchronousLoadListener() {
 			@Override
 			public void completed(boolean success) {

@@ -15,8 +15,8 @@ import org.fest.swing.timing.Pause;
 import org.junit.Before;
 import org.junit.Test;
 import org.pushingpixels.flamingo.api.common.*;
+import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
 import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
-import org.pushingpixels.flamingo.api.svg.SvgBatikResizableIcon;
 
 public class CommandToggleButtonGroupTestCase extends FestSwingJUnitTestCase {
 	JFrame buttonFrame;
@@ -34,10 +34,10 @@ public class CommandToggleButtonGroupTestCase extends FestSwingJUnitTestCase {
 		for (int i = 0; i < COUNT; i++) {
 			URL iconUrl = CommandToggleButtonGroupTestCase.class
 					.getClassLoader().getResource(
-							"utest/common/edit-" + iconNames[i] + ".svg");
+							"utest/common/edit-" + iconNames[i] + ".png");
 			Assertions.assertThat(iconUrl).isNotNull();
-			icons[i] = SvgBatikResizableIcon.getSvgIcon(iconUrl, new Dimension(
-					32, 32));
+			icons[i] = ImageWrapperResizableIcon.getIcon(iconUrl, new Dimension(
+                    32, 32));
 		}
 		Pause.pause(new Condition("Waiting to load the SVG icons") {
 			@Override
@@ -97,9 +97,8 @@ public class CommandToggleButtonGroupTestCase extends FestSwingJUnitTestCase {
 				})).isNull();
 
 		for (int i = 0; i < COUNT; i++) {
-			final int indexToSelect = i;
 
-			robot().click(buttons[indexToSelect]);
+            robot().click(buttons[i]);
 			robot().waitForIdle();
 
 			Assertions.assertThat(
@@ -121,7 +120,7 @@ public class CommandToggleButtonGroupTestCase extends FestSwingJUnitTestCase {
 								return buttons[index].getActionModel()
 										.isSelected();
 							}
-						})).isEqualTo(indexToSelect == index);
+						})).isEqualTo(i == index);
 			}
 		}
 	}
@@ -234,10 +233,10 @@ public class CommandToggleButtonGroupTestCase extends FestSwingJUnitTestCase {
 
 		// create a new button
 		URL cutIconUrl = CommandToggleButtonTestCase.class.getClassLoader()
-				.getResource("utest/common/edit-cut.svg");
+				.getResource("utest/common/edit-cut.png");
 		Assertions.assertThat(cutIconUrl).isNotNull();
-		final ResizableIcon cutIcon = SvgBatikResizableIcon.getSvgIcon(
-				cutIconUrl, new Dimension(16, 16));
+		final ResizableIcon cutIcon = ImageWrapperResizableIcon.getIcon(
+                cutIconUrl, new Dimension(16, 16));
 		Pause.pause(new Condition("Waiting to load the SVG icon") {
 			@Override
 			public boolean test() {
@@ -343,10 +342,10 @@ public class CommandToggleButtonGroupTestCase extends FestSwingJUnitTestCase {
 
 		// create a new button
 		URL cutIconUrl = CommandToggleButtonTestCase.class.getClassLoader()
-				.getResource("utest/common/edit-cut.svg");
+				.getResource("utest/common/edit-cut.png");
 		Assertions.assertThat(cutIconUrl).isNotNull();
-		final ResizableIcon cutIcon = SvgBatikResizableIcon.getSvgIcon(
-				cutIconUrl, new Dimension(16, 16));
+		final ResizableIcon cutIcon = ImageWrapperResizableIcon.getIcon(
+                cutIconUrl, new Dimension(16, 16));
 		Pause.pause(new Condition("Waiting to load the SVG icon") {
 			@Override
 			public boolean test() {
@@ -433,10 +432,10 @@ public class CommandToggleButtonGroupTestCase extends FestSwingJUnitTestCase {
 
 		// create a new button
 		URL cutIconUrl = CommandToggleButtonTestCase.class.getClassLoader()
-				.getResource("utest/common/edit-cut.svg");
+				.getResource("utest/common/edit-cut.png");
 		Assertions.assertThat(cutIconUrl).isNotNull();
-		final ResizableIcon cutIcon = SvgBatikResizableIcon.getSvgIcon(
-				cutIconUrl, new Dimension(16, 16));
+		final ResizableIcon cutIcon = ImageWrapperResizableIcon.getIcon(
+                cutIconUrl, new Dimension(16, 16));
 		Pause.pause(new Condition("Waiting to load the SVG icon") {
 			@Override
 			public boolean test() {
@@ -561,10 +560,10 @@ public class CommandToggleButtonGroupTestCase extends FestSwingJUnitTestCase {
 
 		// create a new button
 		URL cutIconUrl = CommandToggleButtonTestCase.class.getClassLoader()
-				.getResource("utest/common/edit-cut.svg");
+				.getResource("utest/common/edit-cut.png");
 		Assertions.assertThat(cutIconUrl).isNotNull();
-		final ResizableIcon cutIcon = SvgBatikResizableIcon.getSvgIcon(
-				cutIconUrl, new Dimension(16, 16));
+		final ResizableIcon cutIcon = ImageWrapperResizableIcon.getIcon(
+                cutIconUrl, new Dimension(16, 16));
 		Pause.pause(new Condition("Waiting to load the SVG icon") {
 			@Override
 			public boolean test() {

@@ -16,8 +16,8 @@ import org.fest.swing.timing.Pause;
 import org.junit.Before;
 import org.junit.Test;
 import org.pushingpixels.flamingo.api.common.*;
+import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
 import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
-import org.pushingpixels.flamingo.api.svg.SvgBatikResizableIcon;
 
 public class CommandToggleButtonTestCase extends FestSwingJUnitTestCase {
 	JFrame buttonFrame;
@@ -28,10 +28,10 @@ public class CommandToggleButtonTestCase extends FestSwingJUnitTestCase {
 	@Before
 	public void onSetUp() {
 		URL resource = CommandToggleButtonTestCase.class.getClassLoader()
-				.getResource("utest/common/edit-paste.svg");
+				.getResource("utest/common/edit-paste.png");
 		Assertions.assertThat(resource).isNotNull();
-		final ResizableIcon icon = SvgBatikResizableIcon.getSvgIcon(resource,
-				new Dimension(32, 32));
+		final ResizableIcon icon = ImageWrapperResizableIcon.getIcon(resource,
+                new Dimension(32, 32));
 		Pause.pause(new Condition("Waiting to load the SVG icon") {
 			@Override
 			public boolean test() {
@@ -319,9 +319,9 @@ public class CommandToggleButtonTestCase extends FestSwingJUnitTestCase {
 				});
 
 		URL cutIconUrl = CommandToggleButtonTestCase.class.getClassLoader()
-				.getResource("utest/common/edit-cut.svg");
+				.getResource("utest/common/edit-cut.png");
 		Assertions.assertThat(cutIconUrl).isNotNull();
-		final ResizableIcon cutIcon = SvgBatikResizableIcon.getSvgIcon(
+		final ResizableIcon cutIcon = ImageWrapperResizableIcon.getIcon(
 				cutIconUrl, new Dimension(16, 16));
 		Pause.pause(new Condition("Waiting to load the SVG icon") {
 			@Override
