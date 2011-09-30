@@ -1,7 +1,7 @@
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 
-swingXVersion = "1.6.1"
+swingXVersion = "1.6.2-2"
 
 configurations {
   testCompile { extendsFrom compile }
@@ -18,7 +18,7 @@ sourceSets {
 
 dependencies {
   compile project(":substance")
-  compile group: 'org.swinglabs', name: 'swingx', version: swingXVersion
+  compile group: 'org.swinglabs', name: 'swingx-core', version: swingXVersion
   testCompile project(":substance").sourceSets.test.classes
   testCompile group: 'com.jgoodies', name: 'forms', version: '1.2.0'
   toolsCompile group: 'com.github.insubstantial', name: 'substance', version: version, ext: 'tools'
