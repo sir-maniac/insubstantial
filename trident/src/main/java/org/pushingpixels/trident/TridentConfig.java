@@ -116,6 +116,9 @@ public class TridentConfig {
 							} catch (NoClassDefFoundError ncdfe) {
 								// trying to initialize a plugin with a missing
 								// class
+							} catch (ClassNotFoundException ncdfe) {
+								// trying to initialize a plugin with a missing
+								// class
 							}
 						}
 						if ("PropertyInterpolatorSource".compareTo(key) == 0) {
@@ -157,7 +160,7 @@ public class TridentConfig {
 					if (reader != null) {
 						try {
 							reader.close();
-						} catch (IOException ioe) {
+						} catch (IOException ignored) {
 						}
 					}
 				}
@@ -190,13 +193,11 @@ public class TridentConfig {
 				for (Object value : values) {
 					if (!basePropertyClass.isAssignableFrom(value.getClass())) {
 						hasMatch = false;
-						continue;
 					}
 				}
 				if (hasMatch)
 					return interpolator;
-			} catch (NoClassDefFoundError ncdfe) {
-				continue;
+			} catch (NoClassDefFoundError ignore) {
 			}
 		}
 		return null;

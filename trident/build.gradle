@@ -8,6 +8,8 @@ dependencies {
 }
 
 jar {
+  exclude 'META-INF/trident-plugin-*.properties'
+
   manifest {
     attributes(
         "Trident-Version": version,
@@ -29,6 +31,9 @@ task testJar(type: Jar) {
   }
 }
 
+
+stripper = {part -> {it -> it - part}}
+
 task baseJar(type: Jar) {
   classifier = 'base'
 
@@ -36,6 +41,12 @@ task baseJar(type: Jar) {
   exclude 'org/pushingpixels/trident/android/**'
   exclude 'org/pushingpixels/trident/swing/**'
   exclude 'org/pushingpixels/trident/swt/**'
+  exclude 'META-INF/trident-plugin.properties'
+  exclude 'META-INF/trident-plugin-android.properties'
+  //exclude 'META-INF/trident-plugin-base.properties'
+  exclude 'META-INF/trident-plugin-swing.properties'
+  exclude 'META-INF/trident-plugin-swt.properties'
+  rename stripper('-base')
 
   manifest {
     attributes(
@@ -51,6 +62,12 @@ task androidJar(type: Jar) {
   from sourceSets.main.classes
   exclude 'org/pushingpixels/trident/swing/**'
   exclude 'org/pushingpixels/trident/swt/**'
+  exclude 'META-INF/trident-plugin.properties'
+  //exclude 'META-INF/trident-plugin-android.properties'
+  exclude 'META-INF/trident-plugin-base.properties'
+  exclude 'META-INF/trident-plugin-swing.properties'
+  exclude 'META-INF/trident-plugin-swt.properties'
+  rename stripper('-android')
 
   manifest {
     attributes(
@@ -66,6 +83,12 @@ task swingJar(type: Jar) {
   from sourceSets.main.classes
   exclude 'org/pushingpixels/trident/android/**'
   exclude 'org/pushingpixels/trident/swt/**'
+  exclude 'META-INF/trident-plugin.properties'
+  exclude 'META-INF/trident-plugin-android.properties'
+  exclude 'META-INF/trident-plugin-base.properties'
+  //exclude 'META-INF/trident-plugin-swing.properties'
+  exclude 'META-INF/trident-plugin-swt.properties'
+  rename stripper('-swing')
 
   manifest {
     attributes(
@@ -81,6 +104,12 @@ task swtJar(type: Jar) {
   from sourceSets.main.classes
   exclude 'org/pushingpixels/trident/android/**'
   exclude 'org/pushingpixels/trident/swing/**'
+  exclude 'META-INF/trident-plugin.properties'
+  exclude 'META-INF/trident-plugin-android.properties'
+  exclude 'META-INF/trident-plugin-base.properties'
+  exclude 'META-INF/trident-plugin-swing.properties'
+  //exclude 'META-INF/trident-plugin-swt.properties'
+  rename stripper('-swt')
 
   manifest {
     attributes(
