@@ -240,11 +240,14 @@ public class SliderPanel extends ControllablePanel implements Deferrable {
 		titledHorizontal.setBorder(BorderFactory.createTitledBorder("Title"));
 		horPanel.add(titledHorizontal);
 
-		JSlider coloredLabels = getSliderWithColoredLabels();
+		JSlider coloredLabels = getSliderWithColoredLabels(false);
 		horPanel.add(coloredLabels);
 
-		JSlider htmlLabels = getSliderWithHTMLLabels();
+		JSlider htmlLabels = getSliderWithHTMLLabels(false);
 		horPanel.add(htmlLabels);
+
+		JSlider bigLabels = getSliderWithLongWords(false);
+		horPanel.add(bigLabels);
 
 		mainPanel.add(horPanel, BorderLayout.WEST);
 
@@ -352,6 +355,15 @@ public class SliderPanel extends ControllablePanel implements Deferrable {
 				.applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		verPanel.add(disVerticalRTL);
 
+        coloredLabels = getSliderWithColoredLabels(true);
+        verPanel.add(coloredLabels);
+
+        htmlLabels = getSliderWithHTMLLabels(true);
+        verPanel.add(htmlLabels);
+
+        bigLabels = getSliderWithLongWords(true);
+		verPanel.add(bigLabels);
+
 		FormLayout lm = new FormLayout("fill:pref:grow", "");
 		DefaultFormBuilder builder = new DefaultFormBuilder(lm,
 				new ScrollablePanel());
@@ -421,8 +433,8 @@ public class SliderPanel extends ControllablePanel implements Deferrable {
 		this.isInitialized = true;
 	}
 
-	private JSlider getSliderWithColoredLabels() {
-		JSlider coloredLabels = new JSlider();
+	private JSlider getSliderWithColoredLabels(boolean vert) {
+		JSlider coloredLabels = new JSlider(vert ? JSlider.VERTICAL : JSlider.HORIZONTAL);
 		coloredLabels.setMinimum(0);
 		coloredLabels.setMaximum(2);
 		coloredLabels.setMajorTickSpacing(1);
@@ -441,8 +453,8 @@ public class SliderPanel extends ControllablePanel implements Deferrable {
 		return coloredLabels;
 	}
 
-	private JSlider getSliderWithHTMLLabels() {
-		JSlider htmlLabels = new JSlider();
+	private JSlider getSliderWithHTMLLabels(boolean vert) {
+        JSlider htmlLabels = new JSlider(vert ? JSlider.VERTICAL : JSlider.HORIZONTAL);
 		htmlLabels.setMinimum(0);
 		htmlLabels.setMaximum(2);
 		htmlLabels.setMajorTickSpacing(1);
@@ -461,6 +473,24 @@ public class SliderPanel extends ControllablePanel implements Deferrable {
 		htmlLabels.setLabelTable(labels);
 		return htmlLabels;
 	}
+
+    private JSlider getSliderWithLongWords(boolean vert) {
+        JSlider bigWorksSlider = new JSlider(vert ? JSlider.VERTICAL : JSlider.HORIZONTAL);
+        bigWorksSlider.setMinimum(0);
+        bigWorksSlider.setMaximum(30);
+        bigWorksSlider.setMajorTickSpacing(1);
+        bigWorksSlider.setPaintLabels(true);
+        Hashtable labels = new Hashtable();
+        labels.put(9,  new JLabel("establish"));
+        labels.put(12, new JLabel("disestablish"));
+        labels.put(16, new JLabel("disestablishment"));
+        labels.put(20, new JLabel("antidisestablishment"));
+        labels.put(23, new JLabel("antidisestablishmentary"));
+        labels.put(25, new JLabel("antidisestablishmentarian"));
+        labels.put(28, new JLabel("antidisestablishmentarianism"));
+        bigWorksSlider.setLabelTable(labels);
+        return bigWorksSlider;
+    }
 
 	/**
 	 * Runs the specified configuration command on all sliders in the specified
