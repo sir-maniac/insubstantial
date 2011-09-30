@@ -1331,7 +1331,7 @@ public class BasicRibbonUI extends RibbonUI {
 			int bandGap = getBandGap();
 
 			// the top row - task bar components
-			int x = 0;
+			int x;
 			int y = 0;
 
 			RibbonTask selectedTask = ribbon.getSelectedTask();
@@ -1872,22 +1872,44 @@ public class BasicRibbonUI extends RibbonUI {
 								int y = ribbon.getLocationOnScreen().y
 										+ ribbon.getHeight();
 
-								// make sure that the popup stays in
-								// bounds
-								Rectangle scrBounds = ribbon
-										.getGraphicsConfiguration().getBounds();
+                                // make sure that the popup stays in bounds
+
+                                // first, get the graphics config of where the mouse pointer curently is at
+                                PointerInfo pi = MouseInfo.getPointerInfo();
+                                GraphicsDevice gd = pi.getDevice();
+                                GraphicsConfiguration mgc = null;
+                                for (GraphicsConfiguration gc : gd.getConfigurations()) {
+                                    if (gc.getBounds().contains(pi.getLocation())) {
+                                        mgc = gc;
+                                        break;
+                                    }
+                                }
+                                if (mgc == null) {
+                                    mgc = ribbon.getGraphicsConfiguration();
+                                }
+                                Rectangle scrBounds = mgc.getBounds();
 								int pw = popupPanel.getPreferredSize().width;
+
+                                // falling off the left?  trim and shift
+                                if (x < scrBounds.x) {
+                                    pw = pw - scrBounds.x + x;
+                                    x = scrBounds.x;
+                                }
+
+                                // falling off the right?  trim it's width
 								if ((x + pw) > (scrBounds.x + scrBounds.width)) {
-									x = scrBounds.x + scrBounds.width - pw;
+                                    pw = scrBounds.width + scrBounds.x - x;
 								}
+
+                                // falling off the bottom?  flip it above the tabs
 								int ph = popupPanel.getPreferredSize().height;
 								if ((y + ph) > (scrBounds.y + scrBounds.height)) {
-									y = scrBounds.y + scrBounds.height - ph;
+                                    y = ribbon.getLocationOnScreen().y - prefHeight;
 								}
 
 								// get the popup and show it
 								popupPanel.setPreferredSize(new Dimension(
-										ribbon.getWidth(), prefHeight));
+                                        pw, prefHeight));
 								Popup popup = PopupFactory.getSharedInstance()
 										.getPopup(taskToggleButton, popupPanel,
 												x, y);
