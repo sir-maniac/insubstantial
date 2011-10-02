@@ -1615,7 +1615,7 @@ public class BasicCheckRibbon extends JRibbonFrame {
 						System.exit(0);
 					}
 				});
-		amFooterExit.setEnabled(false);
+		amFooterExit.setEnabled(true);
 		applicationMenu.addFooterEntry(amFooterProps);
 		applicationMenu.addFooterEntry(amFooterExit);
 
@@ -1634,7 +1634,7 @@ public class BasicCheckRibbon extends JRibbonFrame {
 			appMenuRichTooltip.setFooterImage(ImageIO
 					.read(BasicCheckRibbon.class
 							.getResource("/test/ribbon/help-browser.png")));
-		} catch (IOException ioe) {
+		} catch (IOException ignored) {
 		}
 		appMenuRichTooltip.addFooterSection(resourceBundle
 				.getString("AppMenu.tooltip.footer1"));
@@ -1744,7 +1744,7 @@ public class BasicCheckRibbon extends JRibbonFrame {
 						Random random = new Random();
 						int len = minLength
 								+ random.nextInt(maxLength - minLength);
-						String newTitle = new String();
+						String newTitle = "";
 						String letters = "abcdefghijklmnopqrstubvwxyz       ";
 						for (int i = 0; i < len; i++) {
 							newTitle += letters.charAt(random.nextInt(letters
@@ -1930,7 +1930,7 @@ public class BasicCheckRibbon extends JRibbonFrame {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		try {
 			UIManager.setLookAndFeel(new MetalLookAndFeel());
-		} catch (Exception exc) {
+		} catch (Exception ignored) {
 		}
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -2010,7 +2010,7 @@ public class BasicCheckRibbon extends JRibbonFrame {
 				if (e.isPopupTrigger()) {
 					processPopup(e);
 				}
-			};
+			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {

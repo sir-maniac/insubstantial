@@ -37,6 +37,7 @@ import javax.swing.Icon;
 import javax.swing.JComponent;
 import javax.swing.plaf.ComponentUI;
 
+import org.pushingpixels.flamingo.api.ribbon.JRibbon;
 import org.pushingpixels.flamingo.internal.ui.ribbon.appmenu.BasicRibbonApplicationMenuButtonUI;
 import org.pushingpixels.flamingo.internal.ui.ribbon.appmenu.JRibbonApplicationMenuButton;
 import org.pushingpixels.lafwidget.LafWidgetUtilities;
@@ -58,7 +59,12 @@ import org.pushingpixels.substance.internal.utils.SubstanceCoreUtilities;
 public class SubstanceRibbonApplicationMenuButtonUI extends
 		BasicRibbonApplicationMenuButtonUI implements
 		ActionPopupTransitionAwareUI {
-	/**
+
+    public SubstanceRibbonApplicationMenuButtonUI(JRibbon ribbon) {
+        super(ribbon);
+    }
+
+    /**
 	 * Model change listener for ghost image effects.
 	 */
 	private GhostingListener substanceModelChangeListener;
@@ -68,8 +74,15 @@ public class SubstanceRibbonApplicationMenuButtonUI extends
 	 */
 	protected CommandButtonVisualStateTracker substanceVisualStateTracker;
 
-	public static ComponentUI createUI(JComponent c) {
-		return new SubstanceRibbonApplicationMenuButtonUI();
+	public static ComponentUI createUI(JComponent component) {
+        if (component instanceof JRibbon) {
+            return new SubstanceRibbonApplicationMenuButtonUI((JRibbon) component);
+        } else if (component instanceof JRibbonApplicationMenuButton) {
+            return new SubstanceRibbonApplicationMenuButtonUI(
+                    ((JRibbonApplicationMenuButton) component).getRibbon());
+        }
+        throw new IllegalArgumentException(
+                "creating a BasicRibbonApplicationMenuButtonUI requires a JRibbon");
 	}
 
 	/*

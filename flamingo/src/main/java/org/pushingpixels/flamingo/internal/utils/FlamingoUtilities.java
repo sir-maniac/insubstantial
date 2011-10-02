@@ -121,7 +121,7 @@ public class FlamingoUtilities {
 	 */
 	public static ResizableIcon getCommandButtonPopupActionIcon(
 			JCommandButton commandButton) {
-		JCommandButton.CommandButtonPopupOrientationKind popupOrientationKind = ((JCommandButton) commandButton)
+		JCommandButton.CommandButtonPopupOrientationKind popupOrientationKind = commandButton
 				.getPopupOrientationKind();
 		switch (popupOrientationKind) {
 		case DOWNWARD:
@@ -434,6 +434,14 @@ public class FlamingoUtilities {
 		return false;
 	}
 
+	/**
+	 * Handles updating the application menu button icon image. If
+	 * <code>ribbonFrame</code> does not have an application menu button nothing
+	 * is performed.
+	 * 
+	 * @param ribbonFrame
+	 *            the ribbon frame containing the application icon
+	 */
 	public static void updateRibbonFrameIconImages(JRibbonFrame ribbonFrame) {
 		JRibbonApplicationMenuButton appMenuButton = getApplicationMenuButton(ribbonFrame);
 		if (appMenuButton == null) {
@@ -446,6 +454,16 @@ public class FlamingoUtilities {
 		}
 	}
 
+	/**
+	 * Recursively searches the <code>comp</code> child components for a
+	 * <code>JRibbonApplicationMenuButton</code> and returns it. If nothing is
+	 * found <code>null</code> is returned.
+	 * 
+	 * @param comp
+	 *            the component to recursively search
+	 * @return the <code>JRibbonApplicationMenuButton</code>, or
+	 *         <code>null</code> if not found
+	 */
 	public static JRibbonApplicationMenuButton getApplicationMenuButton(
 			Component comp) {
 		if (comp instanceof JRibbonApplicationMenuButton)
@@ -562,19 +580,22 @@ public class FlamingoUtilities {
 				// create the trace message
 				StringBuilder builder = new StringBuilder();
 				builder.append("Inconsistent preferred widths\n");
-				builder.append("Ribbon band '" + ribbonBand.getTitle()
-						+ "' has the following resize policies\n");
-				for (int j = 0; j < resizePolicies.size(); j++) {
-					RibbonBandResizePolicy policy = resizePolicies.get(j);
-					int width = policy.getPreferredWidth(height, 4);
-					builder.append("\t" + policy.getClass().getName()
-							+ " with preferred width " + width + "\n");
-				}
-				builder.append(policy1.getClass().getName()
-						+ " with pref width " + width1
-						+ " is followed by resize policy "
-						+ policy2.getClass().getName()
-						+ " with larger pref width\n");
+                builder.append("Ribbon band '");
+                builder.append(ribbonBand.getTitle());
+                builder.append("' has the following resize policies\n");
+                for (RibbonBandResizePolicy policy : resizePolicies) {
+                    int width = policy.getPreferredWidth(height, 4);
+                    builder.append("\t");
+                    builder.append(policy.getClass().getName());
+                    builder.append(" with preferred width ");
+                    builder.append(width).append("\n");
+                }
+                builder.append(policy1.getClass().getName());
+                builder.append(" with pref width ");
+                builder.append(width1);
+                builder.append(" is followed by resize policy ");
+                builder.append(policy2.getClass().getName());
+                builder.append(" with larger pref width\n");
 
 				throw new IllegalStateException(builder.toString());
 			}
