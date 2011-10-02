@@ -76,11 +76,6 @@ jar {
   dependsOn augmentation
   dependsOn toolsClasses
 
-  exclude 'org/pushingpixels/lafwidget/ant/**'
-
-  from project(":laf-plugin").sourceSets.main.classes
-  from project(":laf-widget").sourceSets.main.classes
-
   manifest {
     attributes(
         "Substance-Distribution": "Full",
@@ -174,6 +169,7 @@ artifacts {
 uploadArchives {
   try {
     def x = [deployUsername, deployPassword]
+    x.toString()
   } catch (Exception e) {
     deployUsername = 'unset'
     deployPassword = ''
