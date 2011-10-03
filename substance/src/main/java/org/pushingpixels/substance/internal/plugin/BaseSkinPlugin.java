@@ -99,6 +99,7 @@ public class BaseSkinPlugin implements SubstanceSkinPlugin {
 		result.add(create(MistSilverSkin.NAME, MistSilverSkin.class, false));
 		result.add(create(MistAquaSkin.NAME, MistAquaSkin.class, false));
 		result.add(create(AutumnSkin.NAME, AutumnSkin.class, false));
+		result.add(create(CeruleanSkin.NAME, CeruleanSkin.class, false));
 		result.add(create(CremeCoffeeSkin.NAME, CremeCoffeeSkin.class, false));
 		result.add(create(DustSkin.NAME, DustSkin.class, false));
 		result.add(create(DustCoffeeSkin.NAME, DustCoffeeSkin.class, false));

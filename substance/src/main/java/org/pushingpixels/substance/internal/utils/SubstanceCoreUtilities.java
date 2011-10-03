@@ -444,6 +444,9 @@ public class SubstanceCoreUtilities {
         if (!UIManager.getBoolean(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE)) {
             return true;
         }
+        if (rp == null) {
+            return false;
+        }
         Component c = rp.getParent();
         if (c instanceof JInternalFrame) {
             return ((JInternalFrame)c).isSelected();

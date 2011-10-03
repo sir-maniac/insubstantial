@@ -109,7 +109,7 @@ public class SubstanceInternalFrameTitlePane extends
 			this.setForeground(SubstanceColorUtilities
 					.getForegroundColor(SubstanceCoreUtilities.getSkin(
 							this.frame).getActiveColorScheme(
-							DecorationAreaType.SECONDARY_TITLE_PANE)));
+                                    getThisDecorationType())));
 		}
 		// this.wasClosable = this.frame.isClosable();
 	}
@@ -250,6 +250,23 @@ public class SubstanceInternalFrameTitlePane extends
 		}
 	}
 
+    public DecorationAreaType getThisDecorationType() {
+        // clamp it to active or inactive
+        DecorationAreaType dat = SubstanceLookAndFeel.getDecorationType(this);
+        if ((dat == DecorationAreaType.PRIMARY_TITLE_PANE)
+             || (dat == DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE)
+             || (dat == DecorationAreaType.SECONDARY_TITLE_PANE)
+             || (dat == DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE))
+        {
+            return dat;
+        } else {
+            return DecorationAreaType.SECONDARY_TITLE_PANE;
+        }
+
+    }
+
+
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -275,8 +292,7 @@ public class SubstanceInternalFrameTitlePane extends
 		int height = this.getHeight() + 2;
 
 		SubstanceColorScheme scheme = SubstanceCoreUtilities
-				.getSkin(this.frame).getEnabledColorScheme(
-						DecorationAreaType.SECONDARY_TITLE_PANE);
+				.getSkin(this.frame).getEnabledColorScheme(getThisDecorationType());
 		JInternalFrame hostFrame = (JInternalFrame) SwingUtilities
 				.getAncestorOfClass(JInternalFrame.class, this);
 		JComponent hostForColorization = hostFrame;
@@ -449,9 +465,8 @@ public class SubstanceInternalFrameTitlePane extends
 										SubstanceCoreUtilities
 												.getSkin(
 														SubstanceInternalFrameTitlePane.this)
-												.getBackgroundColorScheme(
-														DecorationAreaType.SECONDARY_TITLE_PANE));
-					}
+												.getBackgroundColorScheme(getThisDecorationType()));
+                                                        }
 				}, "substance.internalFrame.restoreIcon");
 		Icon maximizeIcon = new TransitionAwareIcon(this.maxButton,
 				new TransitionAwareIcon.Delegate() {
@@ -464,8 +479,7 @@ public class SubstanceInternalFrameTitlePane extends
 										SubstanceCoreUtilities
 												.getSkin(
 														SubstanceInternalFrameTitlePane.this)
-												.getBackgroundColorScheme(
-														DecorationAreaType.SECONDARY_TITLE_PANE));
+												.getBackgroundColorScheme(getThisDecorationType()));
 					}
 				}, "substance.internalFrame.maxIcon");
 		Icon minimizeIcon = new TransitionAwareIcon(this.iconButton,
@@ -479,8 +493,7 @@ public class SubstanceInternalFrameTitlePane extends
 										SubstanceCoreUtilities
 												.getSkin(
 														SubstanceInternalFrameTitlePane.this)
-												.getBackgroundColorScheme(
-														DecorationAreaType.SECONDARY_TITLE_PANE));
+												.getBackgroundColorScheme(getThisDecorationType()));
 					}
 				}, "substance.internalFrame.minIcon");
 		Icon closeIcon = new TransitionAwareIcon(this.closeButton,
@@ -494,8 +507,7 @@ public class SubstanceInternalFrameTitlePane extends
 										SubstanceCoreUtilities
 												.getSkin(
 														SubstanceInternalFrameTitlePane.this)
-												.getBackgroundColorScheme(
-														DecorationAreaType.SECONDARY_TITLE_PANE));
+												.getBackgroundColorScheme(getThisDecorationType()));
 					}
 				}, "substance.internalFrame.closeIcon");
 		if (this.frame.isIcon()) {

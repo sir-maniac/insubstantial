@@ -38,6 +38,7 @@ import javax.swing.border.EmptyBorder;
 
 import org.pushingpixels.flamingo.api.ribbon.*;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
+import org.pushingpixels.substance.api.skin.CeruleanSkin;
 import org.pushingpixels.substance.api.skin.OfficeBlue2007Skin;
 
 import test.ribbon.BasicCheckRibbon;
@@ -132,7 +133,7 @@ public class SmallCheckRibbon extends BasicCheckRibbon {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
             public void run() {
-				SubstanceLookAndFeel.setSkin(new OfficeBlue2007Skin());
+				SubstanceLookAndFeel.setSkin(new CeruleanSkin());
 
 				SmallCheckRibbon c = new SmallCheckRibbon();
 				c.configureRibbon();

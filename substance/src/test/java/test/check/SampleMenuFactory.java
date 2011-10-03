@@ -429,6 +429,10 @@ public class SampleMenuFactory {
 								"org.pushingpixels.substance.api.skin.SubstanceBusinessBlueSteelLookAndFeel"));
 		substanceMenus
 				.add(SubstanceLafChanger
+						.getMenuItem(frame, "Cerulean",
+								"org.pushingpixels.substance.api.skin.SubstanceCeruleanLookAndFeel"));
+		substanceMenus
+				.add(SubstanceLafChanger
 						.getMenuItem(frame, "Creme",
 								"org.pushingpixels.substance.api.skin.SubstanceCremeLookAndFeel"));
 		substanceMenus

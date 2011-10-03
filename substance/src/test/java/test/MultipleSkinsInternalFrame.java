@@ -54,7 +54,7 @@ public class MultipleSkinsInternalFrame {
 						{ new AutumnSkin(), new BusinessSkin(),
 								new BusinessBlueSteelSkin(),
 								new BusinessBlackSteelSkin() },
-						{ new NebulaSkin(), new CremeSkin(),
+						{ new NebulaSkin(), new CeruleanSkin(), new CremeSkin(),
 								new CremeCoffeeSkin(), new ModerateSkin() },
 						{ new OfficeSilver2007Skin(), new SaharaSkin(),
 								new MistAquaSkin(), new NebulaBrickWallSkin() },

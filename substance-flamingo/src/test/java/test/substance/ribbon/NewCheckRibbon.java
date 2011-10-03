@@ -43,6 +43,7 @@ import javax.swing.*;
 import org.pushingpixels.substance.api.DecorationAreaType;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.SubstanceConstants.SubstanceWidgetType;
+import org.pushingpixels.substance.api.skin.CeruleanSkin;
 import org.pushingpixels.substance.api.skin.OfficeBlack2007Skin;
 import org.pushingpixels.substance.flamingo.ribbon.gallery.oob.SubstanceRibbonTask;
 
@@ -189,7 +190,7 @@ public class NewCheckRibbon extends BasicCheckRibbon {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
             public void run() {
-				SubstanceLookAndFeel.setSkin(new OfficeBlack2007Skin());
+				SubstanceLookAndFeel.setSkin(new CeruleanSkin());
 				NewCheckRibbon c = new NewCheckRibbon();
 				c.configureRibbon();
 				c.applyComponentOrientation(ComponentOrientation

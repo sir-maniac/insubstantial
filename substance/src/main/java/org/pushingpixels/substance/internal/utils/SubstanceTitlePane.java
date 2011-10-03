@@ -1220,6 +1220,21 @@ public class SubstanceTitlePane extends JComponent {
 		return null;
 	}
 
+    public DecorationAreaType getThisDecorationType() {
+        // clamp it to active or inactive
+        DecorationAreaType dat = SubstanceLookAndFeel.getDecorationType(this);
+        if ((dat == DecorationAreaType.PRIMARY_TITLE_PANE)
+             || (dat == DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE)
+             || (dat == DecorationAreaType.SECONDARY_TITLE_PANE)
+             || (dat == DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE))
+        {
+            return dat;
+        } else {
+            return DecorationAreaType.PRIMARY_TITLE_PANE;
+        }
+
+    }
+
 	/*
 	 * (non-Javadoc)
 	 *
@@ -1248,7 +1263,7 @@ public class SubstanceTitlePane extends JComponent {
 							"Substance delegate used when Substance is not the current LAF");
 		}
 		SubstanceColorScheme scheme = skin
-				.getEnabledColorScheme(DecorationAreaType.PRIMARY_TITLE_PANE);
+				.getEnabledColorScheme(getThisDecorationType());
 
 		int xOffset = 0;
 		String theTitle = this.getTitle();
@@ -1456,11 +1471,9 @@ public class SubstanceTitlePane extends JComponent {
 			super(SubstanceCoreUtilities.getResourceBundle(rootPane).getString(
 					"SystemMenu.close"), SubstanceImageCreator.getCloseIcon(
 					SubstanceCoreUtilities.getSkin(rootPane)
-							.getActiveColorScheme(
-									DecorationAreaType.PRIMARY_TITLE_PANE),
+							.getActiveColorScheme(getThisDecorationType()),
 					SubstanceCoreUtilities.getSkin(rootPane)
-							.getBackgroundColorScheme(
-									DecorationAreaType.PRIMARY_TITLE_PANE)));
+							.getBackgroundColorScheme(getThisDecorationType())));
 		}
 
 		@Override
@@ -1490,11 +1503,11 @@ public class SubstanceTitlePane extends JComponent {
 									SubstanceCoreUtilities
 											.getSkin(rootPane)
 											.getActiveColorScheme(
-													DecorationAreaType.PRIMARY_TITLE_PANE),
+													getThisDecorationType()),
 									SubstanceCoreUtilities
 											.getSkin(rootPane)
 											.getBackgroundColorScheme(
-													DecorationAreaType.PRIMARY_TITLE_PANE)));
+													getThisDecorationType())));
 		}
 
 		@Override
@@ -1523,11 +1536,11 @@ public class SubstanceTitlePane extends JComponent {
 									SubstanceCoreUtilities
 											.getSkin(rootPane)
 											.getActiveColorScheme(
-													DecorationAreaType.PRIMARY_TITLE_PANE),
+													getThisDecorationType()),
 									SubstanceCoreUtilities
 											.getSkin(rootPane)
 											.getBackgroundColorScheme(
-													DecorationAreaType.PRIMARY_TITLE_PANE)));
+													getThisDecorationType())));
 		}
 
 		@Override
@@ -1564,11 +1577,11 @@ public class SubstanceTitlePane extends JComponent {
 									SubstanceCoreUtilities
 											.getSkin(rootPane)
 											.getActiveColorScheme(
-													DecorationAreaType.PRIMARY_TITLE_PANE),
+													getThisDecorationType()),
 									SubstanceCoreUtilities
 											.getSkin(rootPane)
 											.getEnabledColorScheme(
-													DecorationAreaType.PRIMARY_TITLE_PANE)));
+													getThisDecorationType())));
 		}
 
 		@Override
