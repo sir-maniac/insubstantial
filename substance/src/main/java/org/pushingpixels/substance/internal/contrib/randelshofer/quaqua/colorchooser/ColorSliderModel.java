@@ -14,14 +14,13 @@
 
 package org.pushingpixels.substance.internal.contrib.randelshofer.quaqua.colorchooser;
 
-import java.awt.*;
-import java.awt.color.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.plaf.*;
-import java.io.*;
-import java.util.*;
+import javax.swing.DefaultBoundedRangeModel;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.Color;
+import java.util.Iterator;
+import java.util.LinkedList;
 /**
  * Abstract super class for ColorModels which can be used in conjunction with
  * ColorSliderUI user interface delegates.
@@ -88,6 +87,7 @@ public abstract class ColorSliderModel {
         }
         if ( ! (slider.getUI() instanceof ColorSliderUI)) {
             slider.setUI(new ColorSliderUI(slider));
+            slider.createStandardLabels(16);
         }
         slider.setModel(getBoundedRangeModel(component));
         slider.putClientProperty("ColorSliderModel", this);

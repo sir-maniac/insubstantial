@@ -14,17 +14,19 @@
 
 package org.pushingpixels.substance.internal.contrib.randelshofer.quaqua.colorchooser;
 
-import java.awt.*;
-import java.io.*;
-import javax.swing.*;
-import javax.swing.text.*;
-import javax.swing.event.*;
-import javax.swing.border.*;
-import javax.swing.colorchooser.*;
-import javax.swing.plaf.*;
+import org.pushingpixels.substance.internal.contrib.randelshofer.quaqua.VisualMargin;
 
-import org.pushingpixels.substance.internal.contrib.randelshofer.quaqua.*;
-import org.pushingpixels.substance.internal.contrib.randelshofer.quaqua.util.*;
+import javax.swing.Icon;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import javax.swing.colorchooser.AbstractColorChooserPanel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.plaf.UIResource;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Insets;
 
 /**
  * A color chooser with CMYK color sliders.

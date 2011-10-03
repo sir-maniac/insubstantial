@@ -14,20 +14,20 @@
 
 package org.pushingpixels.substance.internal.contrib.randelshofer.quaqua.colorchooser;
 
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-
-import javax.swing.*;
-import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicSliderUI;
-
 import org.pushingpixels.substance.internal.animation.StateTransitionTracker;
 import org.pushingpixels.substance.internal.animation.TransitionAwareUI;
 import org.pushingpixels.substance.internal.contrib.randelshofer.quaqua.QuaquaUtilities;
 import org.pushingpixels.substance.internal.contrib.randelshofer.quaqua.VisualMargin;
 import org.pushingpixels.substance.internal.utils.RolloverControlListener;
+
+import javax.swing.*;
+import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicSliderUI;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Hashtable;
 
 /**
  * A UI delegate for color sliders. The track of the slider visualizes how
@@ -45,8 +45,9 @@ import org.pushingpixels.substance.internal.utils.RolloverControlListener;
 public class ColorSliderUI extends BasicSliderUI implements TransitionAwareUI {
 	private final static Color foreground = new Color(0x949494);
 	private final static Color trackBackground = new Color(0xffffff);
-	private ColorTrackImageProducer colorTrackImageProducer;
-	private Image colorTrackImage;
+
+    protected Integer componentIndex;
+    protected ColorSliderModel colorSliderModel;
 
 	/**
 	 * Surrogate button model for tracking the thumb transitions.
@@ -88,6 +89,8 @@ public class ColorSliderUI extends BasicSliderUI implements TransitionAwareUI {
 
 		this.stateTransitionTracker = new StateTransitionTracker(b,
 				this.thumbModel);
+
+        b.setLabelTable(new Hashtable());
 	}
 
 	public static ComponentUI createUI(JComponent b) {
@@ -262,14 +265,11 @@ public class ColorSliderUI extends BasicSliderUI implements TransitionAwareUI {
 		 */
 		g.setColor(foreground);
 
-		maj = slider.getMajorTickSpacing();
-		min = slider.getMinorTickSpacing();
-
 		if (slider.getOrientation() == JSlider.HORIZONTAL) {
 			g.translate(0, tickBounds.y);
 
 			int value = slider.getMinimum();
-			int xPos = 0;
+			int xPos;
 
 			if (slider.getMinorTickSpacing() > 0) {
 				while (value <= slider.getMaximum()) {
@@ -294,7 +294,7 @@ public class ColorSliderUI extends BasicSliderUI implements TransitionAwareUI {
 			g.translate(tickBounds.x, 0);
 
 			int value = slider.getMinimum();
-			int yPos = 0;
+			int yPos;
 
 			if (slider.getMinorTickSpacing() > 0) {
 				int offset = 0;
@@ -368,38 +368,33 @@ public class ColorSliderUI extends BasicSliderUI implements TransitionAwareUI {
 
 	public void paintColorTrack(Graphics g, int x, int y, int width,
 			int height, int buffer) {
-		// g.setColor(Color.black);
-		// g.fillRect(x, y, width, height);
-		if (colorTrackImageProducer == null
-				|| colorTrackImageProducer.getWidth() != width
-				|| colorTrackImageProducer.getHeight() != height) {
-			if (colorTrackImage != null) {
-				colorTrackImage.flush();
-			}
-			colorTrackImageProducer = new ColorTrackImageProducer(width,
-					height, buffer + 2,
-					slider.getOrientation() == JSlider.HORIZONTAL);
-			if (slider.getClientProperty("ColorSliderModel") != null) {
-				colorTrackImageProducer
-						.setColorSliderModel((ColorSliderModel) slider
-								.getClientProperty("ColorSliderModel"));
-			}
-			if (slider.getClientProperty("ColorComponentIndex") != null) {
-				colorTrackImageProducer
-						.setColorComponentIndex((Integer) slider
-                                .getClientProperty("ColorComponentIndex"));
-			}
-			colorTrackImageProducer.generateColorTrack();
-			colorTrackImage = slider.createImage(colorTrackImageProducer);
-		} else {
-			colorTrackImageProducer.regenerateColorTrack();
-		}
-		g.drawImage(colorTrackImage, x, y, slider);
+        int x2 = x;
+        int y2 = y;
+        if (slider.getOrientation() == JSlider.HORIZONTAL) {
+            x2 += width;
+        } else {
+            y2 += height;
+        }
+
+        if (componentIndex == null) {
+            componentIndex = (Integer) slider.getClientProperty("ColorComponentIndex");
+        }
+        if (colorSliderModel == null) {
+            colorSliderModel = (ColorSliderModel) slider.getClientProperty("ColorSliderModel");
+        }
+
+
+        Graphics2D gg = (Graphics2D) g.create();
+        gg.setPaint(new LinearGradientPaint(x, y, x2, y2,
+                new float[] {0f, 1.0f},
+                new Color[] { new Color(colorSliderModel.getInterpolatedRGB(componentIndex, 0.0f), true),
+                              new Color(colorSliderModel.getInterpolatedRGB(componentIndex, 1.0f))}));
+        gg.fillRect(x, y, width, height);
 	}
 
 	@Override
 	protected void calculateTrackRect() {
-		int centerSpacing = 0; // used to center sliders added using
+		int centerSpacing; // used to center sliders added using
 		// BorderLayout.CENTER (bug 4275631)
 		if (slider.getOrientation() == JSlider.HORIZONTAL) {
 			centerSpacing = thumbRect.height;
@@ -491,44 +486,18 @@ public class ColorSliderUI extends BasicSliderUI implements TransitionAwareUI {
 				// calculateGeometry();
 				slider.repaint();
 			} else if (propertyName.equals("ColorSliderModel")) {
-				if (colorTrackImageProducer != null) {
-					colorTrackImageProducer
-							.setColorSliderModel(((ColorSliderModel) e
-									.getNewValue()));
-					if (colorTrackImageProducer.needsGeneration()) {
-						slider.repaint();
-					}
-				}
+                colorSliderModel = (ColorSliderModel) e.getNewValue();
+                slider.repaint();
 			} else if (propertyName.equals("snapToTicks")) {
-				if (colorTrackImageProducer != null) {
-					colorTrackImageProducer.markAsDirty();
-					slider.repaint();
-				}
+                slider.repaint();
 			} else if (propertyName.equals("ColorComponentIndex")) {
-				if (colorTrackImageProducer != null && e.getNewValue() != null) {
-					colorTrackImageProducer.setColorComponentIndex((Integer) e
-                            .getNewValue());
-					if (colorTrackImageProducer.needsGeneration()) {
-						slider.repaint();
-					}
-				}
+                componentIndex = (Integer) e.getNewValue();
+                slider.repaint();
 			} else if (propertyName.equals("ColorComponentChange")) {
 				Integer value = (Integer) e.getNewValue();
-				if (value != null && colorTrackImageProducer != null) {
-					colorTrackImageProducer.componentChanged(value);
-					if (colorTrackImageProducer.needsGeneration()) {
-						slider.repaint();
-					}
-				}
+                slider.repaint();
 			} else if (propertyName.equals("ColorComponentValue")) {
-				Integer value = (Integer) slider
-						.getClientProperty("ColorComponentChange");
-				if (value != null && colorTrackImageProducer != null) {
-					colorTrackImageProducer.componentChanged(value);
-					if (colorTrackImageProducer.needsGeneration()) {
-						slider.repaint();
-					}
-				}
+                slider.repaint();
 			} else if (propertyName.equals("Orientation")) {
 				if (slider.getOrientation() == JSlider.HORIZONTAL) {
 					slider.setBorder(new VisualMargin(0, 1, -1, 1));
@@ -603,8 +572,6 @@ public class ColorSliderUI extends BasicSliderUI implements TransitionAwareUI {
 	@Override
 	public boolean isInside(MouseEvent me) {
 		Rectangle thumbB = this.thumbRect;
-		if (thumbB == null)
-			return false;
-		return thumbB.contains(me.getX(), me.getY());
-	}
+        return thumbB != null && thumbB.contains(me.getX(), me.getY());
+    }
 }

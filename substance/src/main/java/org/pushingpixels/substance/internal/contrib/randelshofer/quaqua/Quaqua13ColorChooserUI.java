@@ -14,20 +14,26 @@
 
 package org.pushingpixels.substance.internal.contrib.randelshofer.quaqua;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.beans.*;
-import javax.swing.*;
-import javax.swing.colorchooser.*;
-import javax.swing.event.*;
-import javax.swing.plaf.*;
-import javax.swing.plaf.basic.*;
+import org.pushingpixels.substance.internal.contrib.randelshofer.quaqua.colorchooser.ColorChooserMainPanel;
+import org.pushingpixels.substance.internal.contrib.randelshofer.quaqua.colorchooser.QuaquaColorPreviewPanel;
 
-import org.pushingpixels.substance.internal.contrib.randelshofer.quaqua.colorchooser.*;
-
-
-import java.security.*;
-import java.util.*;
+import javax.swing.JColorChooser;
+import javax.swing.JComponent;
+import javax.swing.LookAndFeel;
+import javax.swing.UIManager;
+import javax.swing.colorchooser.AbstractColorChooserPanel;
+import javax.swing.colorchooser.ColorSelectionModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.plaf.ColorChooserUI;
+import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.UIResource;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.security.AccessControlException;
+import java.util.ArrayList;
 /**
  * QuaquaColorChooserUI.
  *
@@ -139,6 +145,10 @@ public class Quaqua13ColorChooserUI extends ColorChooserUI {
         }
         
         previewPanel = chooser.getPreviewPanel();
+        // reject the default preview panel
+        if (previewPanel!= null && "javax.swing.colorchooser.DefaultPreviewPanel".equals(previewPanel.getClass().getName())) {
+            previewPanel = null;
+        }
         if ((previewPanel != null) && (mainPanel != null) && (chooser != null) && (previewPanel.getSize().getHeight()+previewPanel.getSize().getWidth() == 0)) {
             mainPanel.setPreviewPanel(null);
             return;
