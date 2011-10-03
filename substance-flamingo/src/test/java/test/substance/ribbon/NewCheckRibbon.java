@@ -40,6 +40,12 @@ import java.util.*;
 
 import javax.swing.*;
 
+import org.pushingpixels.flamingo.api.common.CommandButtonDisplayState;
+import org.pushingpixels.flamingo.api.common.JCommandButton;
+import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
+import org.pushingpixels.lafwidget.LafWidgetRepository;
+import org.pushingpixels.lafwidget.LafWidgetSupport;
+import org.pushingpixels.substance.api.ComponentState;
 import org.pushingpixels.substance.api.DecorationAreaType;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.SubstanceConstants.SubstanceWidgetType;
@@ -47,6 +53,11 @@ import org.pushingpixels.substance.api.skin.CeruleanSkin;
 import org.pushingpixels.substance.api.skin.OfficeBlack2007Skin;
 import org.pushingpixels.substance.flamingo.ribbon.gallery.oob.SubstanceRibbonTask;
 
+import org.pushingpixels.substance.internal.utils.SubstanceColorSchemeUtilities;
+import org.pushingpixels.substance.internal.utils.SubstanceImageCreator;
+import org.pushingpixels.substance.internal.utils.SubstanceSizeUtils;
+import org.pushingpixels.substance.internal.utils.icon.SubstanceIconFactory;
+import test.common.IconWrapperResizableIcon;
 import test.ribbon.BasicCheckRibbon;
 
 import com.jgoodies.forms.builder.DefaultFormBuilder;
@@ -65,6 +76,29 @@ public class NewCheckRibbon extends BasicCheckRibbon {
 	public void configureRibbon() {
 		super.configureRibbon();
 		this.getRibbon().addTask(SubstanceRibbonTask.getSubstanceRibbonTask());
+
+        LafWidgetSupport lws = LafWidgetRepository.getRepository()
+					.getLafSupport();
+
+
+        final ResizableIcon north = new IconWrapperResizableIcon(lws.getArrowIcon(SwingConstants.NORTH));
+        final ResizableIcon south = new IconWrapperResizableIcon(lws.getArrowIcon(SwingConstants.SOUTH));
+        final JCommandButton toggleButton = new JCommandButton("", north);
+        toggleButton.setDisplayState(CommandButtonDisplayState.SMALL);
+        toggleButton.setCommandButtonKind(JCommandButton.CommandButtonKind.ACTION_ONLY);
+        toggleButton.getActionModel().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean state = !getRibbon().isMinimized();
+                getRibbon().setMinimized(state);
+                toggleButton.setIcon(state?south:north);
+            }
+        });
+
+
+        getRibbon().addHelpPanelComponent(toggleButton);
+
+
 	}
 
 	@Override
@@ -177,11 +211,11 @@ public class NewCheckRibbon extends BasicCheckRibbon {
 				}
 				try {
 					br.close();
-				} catch (IOException ioe) {
+				} catch (IOException ignored) {
 				}
 			}
 			System.out.println();
-		} catch (IOException ioe) {
+		} catch (IOException ignored) {
 		}
 
 		JFrame.setDefaultLookAndFeelDecorated(true);

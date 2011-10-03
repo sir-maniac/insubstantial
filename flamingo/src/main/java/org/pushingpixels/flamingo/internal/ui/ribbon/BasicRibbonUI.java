@@ -72,6 +72,8 @@ public class BasicRibbonUI extends RibbonUI {
 	 */
 	public static final String IS_USING_TITLE_PANE = "ribbon.internal.isUsingTitlePane";
 
+    public static final String HELP_PANEL_COMPONENTS = "HelpPanelComponents";
+
 	private static final String JUST_MINIMIZED = "ribbon.internal.justMinimized";
 
 	/**
@@ -94,6 +96,7 @@ public class BasicRibbonUI extends RibbonUI {
 
 	protected JRibbonApplicationMenuButton applicationMenuButton;
 
+    protected JComponent helpPanel;
 	protected JCommandButton helpButton;
 
 	/**
@@ -414,8 +417,8 @@ public class BasicRibbonUI extends RibbonUI {
 		this.ribbon.remove(this.taskToggleButtonsScrollablePanel);
 
 		this.ribbon.remove(this.applicationMenuButton);
-		if (this.helpButton != null)
-			this.ribbon.remove(this.helpButton);
+		if (this.helpPanel != null)
+			this.ribbon.remove(this.helpPanel);
 
 		this.ribbon.setLayout(null);
 	}
@@ -797,27 +800,27 @@ public class BasicRibbonUI extends RibbonUI {
 			}
 
 			// the help button
-			if (helpButton != null) {
-				Dimension preferred = helpButton.getPreferredSize();
+			if (helpPanel != null) {
+				Dimension preferred = helpPanel.getPreferredSize();
 				if (ltr) {
-					helpButton.setBounds(width - ins.right - preferred.width,
+					helpPanel.setBounds(width - ins.right - preferred.width,
 							y, preferred.width, preferred.height);
 				} else {
-					helpButton.setBounds(ins.left, y, preferred.width,
+					helpPanel.setBounds(ins.left, y, preferred.width,
 							preferred.height);
 				}
 			}
 
 			// task buttons
 			if (ltr) {
-				int taskButtonsWidth = (helpButton != null) ? (helpButton
+				int taskButtonsWidth = (helpPanel != null) ? (helpPanel
 						.getX()
 						- tabButtonGap - x) : (c.getWidth() - ins.right - x);
 				taskToggleButtonsScrollablePanel.setBounds(x, y,
 						taskButtonsWidth, taskToggleButtonHeight);
 			} else {
-				int taskButtonsWidth = (helpButton != null) ? (x - tabButtonGap
-						- helpButton.getX() - helpButton.getWidth())
+				int taskButtonsWidth = (helpPanel != null) ? (x - tabButtonGap
+						- helpPanel.getX() - helpPanel.getWidth())
 						: (x - ins.left);
 				taskToggleButtonsScrollablePanel.setBounds(
 						x - taskButtonsWidth, y, taskButtonsWidth,
@@ -1789,8 +1792,9 @@ public class BasicRibbonUI extends RibbonUI {
 		taskToggleButtonsHostPanel.removeAll();
 
 		// remove the help button
-		if (this.helpButton != null) {
-			this.ribbon.remove(this.helpButton);
+		if (this.helpPanel != null) {
+			this.ribbon.remove(this.helpPanel);
+			this.helpPanel = null;
 			this.helpButton = null;
 		}
 
@@ -2009,12 +2013,26 @@ public class BasicRibbonUI extends RibbonUI {
 		}
 
 		ActionListener helpListener = this.ribbon.getHelpActionListener();
-		if (helpListener != null) {
-			this.helpButton = new JCommandButton("", this.ribbon.getHelpIcon());
-			this.helpButton.setDisplayState(CommandButtonDisplayState.SMALL);
-			this.helpButton.setCommandButtonKind(CommandButtonKind.ACTION_ONLY);
-			this.helpButton.getActionModel().addActionListener(helpListener);
-			this.ribbon.add(this.helpButton);
+        List<Component> helpComponents = (List<Component>) ribbon.getClientProperty(HELP_PANEL_COMPONENTS);
+		if (helpListener != null || helpComponents != null) {
+            helpPanel = Box.createHorizontalBox();
+            if (helpComponents != null) {
+                for (Component comp : helpComponents) {
+                    helpPanel.add(comp);
+                    helpPanel.add(Box.createHorizontalStrut(3)); // FIXME make resolution independent
+                }
+            }
+
+            if (helpListener != null) {
+                this.helpButton = new JCommandButton("", this.ribbon.getHelpIcon());
+                this.helpButton.setDisplayState(CommandButtonDisplayState.SMALL);
+                this.helpButton.setCommandButtonKind(CommandButtonKind.ACTION_ONLY);
+                this.helpButton.getActionModel().addActionListener(helpListener);
+
+                helpPanel.add(helpButton);
+            }
+
+			this.ribbon.add(this.helpPanel);
 		}
 
 		this.ribbon.revalidate();

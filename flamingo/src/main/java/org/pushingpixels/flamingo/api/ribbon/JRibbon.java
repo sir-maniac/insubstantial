@@ -484,6 +484,63 @@ public class JRibbon extends JComponent {
 		return this.helpActionListener;
 	}
 
+    /**
+     * Adds a component to the 'Help Panel.'  This is the area where the
+     * help button lives. and is the far right area of the main tab area.
+     *
+     * Components will be added in left to right fashion,  Also, if a
+     * help listener is specified then the help button will be the rightmost
+     * component on the list.
+     *
+     * Generally speaking this area should not be abused, as any large amount
+     * of components will cause the space available for the task tabs to shrink.
+     *
+     * This is the area where you would add a "collapse" button like found in
+     * Office 2010, or the min/max/close buttons of an integrated desktop area.
+     *
+     * @param comp the component to be added
+     */
+    public void addHelpPanelComponent(Component comp) {
+        if (comp == null) return;
+
+        try {
+            List<Component> existingHelpPanelComponents = (List<Component>) getClientProperty(BasicRibbonUI.HELP_PANEL_COMPONENTS);
+            if (existingHelpPanelComponents != null) {
+                if (!existingHelpPanelComponents.contains(comp)) {
+                    existingHelpPanelComponents.add(comp);
+                }
+            } else {
+                List<Component> helpComps = new ArrayList<Component>();
+                helpComps.add(comp);
+                putClientProperty(BasicRibbonUI.HELP_PANEL_COMPONENTS, helpComps);
+            }
+        } catch (RuntimeException re) {
+            //re-write on any error
+            List<Component> helpComps = new ArrayList<Component>();
+            helpComps.add(comp);
+            putClientProperty(BasicRibbonUI.HELP_PANEL_COMPONENTS, helpComps);
+        }
+        fireStateChanged();
+    }
+
+    /**
+     * Removes a component from the 'Help Panel.'
+     *
+     * @param comp The component to remove.  If the component is not currently
+     *  on the help panel this call will be a no-op.
+     */
+    public void removeHelpPanelComponent(Component comp) {
+        try {
+            List<Component> existingHelpPanelComponents = (List<Component>) getClientProperty(BasicRibbonUI.HELP_PANEL_COMPONENTS);
+            if (existingHelpPanelComponents != null) {
+                if (existingHelpPanelComponents.remove(comp)) {
+                    fireStateChanged();
+                }
+            }
+        } catch (RuntimeException ignore) {
+        }
+    }
+
 	/**
 	 * Adds the specified contextual task group to this ribbon.
 	 * 
