@@ -19,14 +19,6 @@ dependencies {
   compile project(":flamingo")
   testCompile project(":substance").sourceSets.test.classes
   testCompile project(":flamingo").sourceSets.test.classes
-  compile (group:'org.apache.xmlgraphics', name:'batik-swing', version:'1.7')
-  compile (group:'org.apache.xmlgraphics', name:'batik-transcoder', version:'1.7') {
-    exclude group:'xml-apis'
-    exclude group:'xalan'
-    exclude group:'commons-io'
-    exclude group:'commons-logging'
-    exclude group:'org.apache.avalon.framework'
-  }
   testCompile group: 'com.jgoodies', name: 'forms', version: '1.2.0'
   toolsCompile project(":substance")
   toolsCompile group: 'org.easytesting', name: 'fest-swing', version: '1.2.1'
