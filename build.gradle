@@ -23,8 +23,8 @@ subprojects {
   } catch (Exception ignore) {}
 
   group = 'com.github.insubstantial'
-  version = '7.0'
-  versionKey = "7.0-unconquered"
+  version = '7.1-SNAPSHOT'
+  versionKey = "7.1-triumphant"
   release = "internal"
 
   sourceCompatibility = 1.6
