@@ -24,7 +24,7 @@ dependencies {
   compile project(":laf-widget") { transitive = false }
   compile project(":laf-plugin") { transitive = false }
   testCompile group: 'com.jgoodies', name: 'forms', version: '1.2.0'
-  testCompile group: 'org.swinglabs', name: 'swingx', version: '1.6.1'
+  testCompile group: 'org.swinglabs', name: 'swingx-core', version: '1.6.2-2'
   toolsCompile group: 'org.easytesting', name: 'fest-swing', version: '1.2.1'
   toolsCompile group: 'asm', name: 'asm-all', version: '2.2.3'
 }
@@ -217,8 +217,6 @@ private def configurePOM(def pom) {
   pom.whenConfigured {cpom ->
     cpom.dependencies.each {it
       switch (it.artifactId) {
-        case 'laf-widget':
-        case 'laf-plugin':
         case 'jcip-annotations':
           it.scope = 'provided'
           break;
@@ -239,5 +237,14 @@ task jitterbug(type: JavaExec) {
 
 task testCheck(type: JavaExec) {
   main = 'test.Check'
+  debug=true
   classpath = sourceSets.test.runtimeClasspath
+}
+
+task debugCheckX(type: JavaExec) {
+  main = 'org.swingexplorer.Launcher'
+  classpath = sourceSets.test.runtimeClasspath + files('C:\\Users\\danno.ferrin\\Downloads\\swexpl.jar')
+  jvmArgs = ['-javaagent:C:\\Users\\danno.ferrin\\Downloads\\swag.jar', '-Xbootclasspath/a:C:\\Users\\danno.ferrin\\Downloads\\swag.jar']
+  debug=true
+  args = ['test.Check']
 }
