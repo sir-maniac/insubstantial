@@ -524,7 +524,7 @@ public class JRibbon extends JComponent {
     }
 
     /**
-     * Removes a component from the 'Help Panel.'
+     * Removes a component from the 'Help Panel'.
      *
      * @param comp The component to remove.  If the component is not currently
      *  on the help panel this call will be a no-op.
@@ -536,6 +536,20 @@ public class JRibbon extends JComponent {
                 if (existingHelpPanelComponents.remove(comp)) {
                     fireStateChanged();
                 }
+            }
+        } catch (RuntimeException ignore) {
+        }
+    }
+
+    /**
+     * Removes al the  components from the 'Help Panel'.
+     */
+    public void removeAllHelpPanelComponents() {
+        try {
+            List<Component> existingHelpPanelComponents = (List<Component>) getClientProperty(BasicRibbonUI.HELP_PANEL_COMPONENTS);
+            if (existingHelpPanelComponents != null) {
+                existingHelpPanelComponents.clear();
+                fireStateChanged();
             }
         } catch (RuntimeException ignore) {
         }
