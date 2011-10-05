@@ -68,6 +68,10 @@ private def configurePOM(def pom) {
         case 'trident':
           it.classifier = 'swing'
           break
+        case 'ant':
+        case 'asm-all':
+          it.scope = 'provided'
+          break;
       }
     }
   }
