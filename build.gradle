@@ -16,9 +16,10 @@ subprojects {
   try {
     // to upload to sonatype:
     // gradle -Drelease=true -Dsign=true clean build upload -PpgpKeyId=FFFFFFFF
-    def test = pgpKeyId // exception will throw if not set
-    apply plugin: 'sign'
-    apply plugin: de.huxhorn.gradle.pgp.PgpPlugin
+    if (pgpKeyId)  {// exception will throw if not set
+      apply plugin: 'sign'
+      apply plugin: de.huxhorn.gradle.pgp.PgpPlugin
+    }
 
   } catch (Exception ignore) {}
 
@@ -59,7 +60,7 @@ subprojects {
 
   uploadArchives {
     try {
-      def x = [deployUsername, deployPassword]
+      [deployUsername, deployPassword]
     } catch (Exception e) {
       deployUsername = 'unset'
       deployPassword = ''
@@ -112,6 +113,6 @@ subprojects {
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '1.0-milestone-2'
+  gradleVersion = '1.0-milestone-5'
 }
 
