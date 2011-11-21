@@ -1,27 +1,14 @@
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 
-buildscript {
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath 'de.huxhorn.gradle:de.huxhorn.gradle.pgp-plugin:0.0.3'
-	}
-}
+//try {
+//
+//}
 
 subprojects {
   apply plugin: 'java'
   apply plugin: 'maven'
-  try {
-    // to upload to sonatype:
-    // gradle -Drelease=true -Dsign=true clean build upload -PpgpKeyId=FFFFFFFF
-    if (pgpKeyId)  {// exception will throw if not set
-      apply plugin: 'sign'
-      apply plugin: de.huxhorn.gradle.pgp.PgpPlugin
-    }
-
-  } catch (Exception ignore) {}
+  apply plugin: 'signing'
 
   group = 'com.github.insubstantial'
   version = '7.1-SNAPSHOT'
@@ -33,12 +20,17 @@ subprojects {
 
   configurations {
     maven { extendsFrom archives }
+    published { extendsFrom archives, signatutes}
+  }
+
+  signing {
+    sign configurations.archives
   }
 
   repositories {
-    mavenRepo urls: 'https://oss.sonatype.org/content/groups/staging'
+    mavenRepo url: 'https://oss.sonatype.org/content/groups/staging'
     mavenCentral()
-    mavenRepo urls: new File(System.getProperty('user.home'), '.m2/repository').toURI().toString()
+    mavenRepo url: new File(System.getProperty('user.home'), '.m2/repository').toURI().toString()
   }
 
   task sourceJar(type: Jar) {
@@ -58,28 +50,26 @@ subprojects {
     archives javadocJar
   }
 
-  uploadArchives {
-    try {
-      [deployUsername, deployPassword]
-    } catch (Exception e) {
-      deployUsername = 'unset'
-      deployPassword = ''
-    }
-    configuration = configurations.maven
-    repositories {
-      mavenDeployer {
-        snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-          authentication userName: deployUsername, password: deployPassword
-        }
-        repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-          authentication userName: deployUsername, password: deployPassword
+  uploadPublished {
+    doFirst {
+      // configure repositories ina  doFirst so we can late bind the proeprties
+      checkPasswords()
+      repositories {
+        mavenDeployer {
+          snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+            authentication userName: sonatypeUsername, password: sonatypePassword
+          }
+          repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+            authentication userName: sonatypeUsername, password: sonatypePassword
+          }
         }
       }
     }
+    configuration = configurations.published
   }
 
   install {
-    configuration = configurations.maven
+    configuration = configurations.published
   }
 
   configureBasePom = { pom ->
@@ -116,3 +106,22 @@ task wrapper(type: Wrapper) {
   gradleVersion = '1.0-milestone-5'
 }
 
+def checkPasswords() {
+  try {
+    check = [sonatypeUsername, sonatypePassword]
+  } catch (MissingPropertyException e) {
+    Console console = System.console()
+    console.printf "\n\nIn order to upload to Sonatype we need your username and password.\nEnter a blank username or password to skip upload\n\n"
+    sonatypeUsername = console.readLine("Sonatype Username: ")
+    sonatypePassword = new String(console.readPassword("Sonatype Password: "))
+    if (!sonatypePassword || !sonatypeUsername) {
+      console.printf("\n\nSonatype upload aborted")
+      subprojects {
+        uploadPublished {
+          enabled = false
+        }
+      }
+      throw new StopExecutionException()
+    }
+  }
+}

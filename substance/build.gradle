@@ -166,31 +166,6 @@ artifacts {
   archives testJar
 }
 
-uploadArchives {
-  try {
-    def x = [deployUsername, deployPassword]
-    x.toString()
-  } catch (Exception e) {
-    deployUsername = 'unset'
-    deployPassword = ''
-  }
-  repositories {
-    mavenDeployer {
-      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-        authentication userName: deployUsername, password: deployPassword
-      }
-      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-        authentication userName: deployUsername, password: deployPassword
-      }
-      configurePOM(pom)
-    }
-  }
-}
-
-install {
-  configurePOM(repositories.mavenInstaller.pom)
-}
-
 private def configurePOM(def pom) {
   configureBasePom(pom)
   pom.project {
