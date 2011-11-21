@@ -1124,7 +1124,8 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 							.getCustomizer();
 					boolean ltr = commandButton.getComponentOrientation()
 							.isLeftToRight();
-					if (customizer == null) {
+                    Dimension popupPanelPrefSize = popupPanel.getPreferredSize();
+                    if (customizer == null) {
 						switch (((JCommandButton) commandButton)
 								.getPopupOrientationKind()) {
 						case DOWNWARD:
@@ -1133,7 +1134,7 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 							} else {
 								x = commandButton.getLocationOnScreen().x
 										+ commandButton.getWidth()
-										- popupPanel.getPreferredSize().width;
+										- popupPanelPrefSize.width;
 							}
 							y = commandButton.getLocationOnScreen().y
 									+ commandButton.getSize().height;
@@ -1144,7 +1145,7 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 										+ commandButton.getWidth();
 							} else {
 								x = commandButton.getLocationOnScreen().x
-										- popupPanel.getPreferredSize().width;
+										- popupPanelPrefSize.width;
 							}
 							y = commandButton.getLocationOnScreen().y
 									+ getLayoutInfo().popupClickArea.y;
@@ -1160,11 +1161,20 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 					// make sure that the popup stays in bounds
 					Rectangle scrBounds = commandButton
 							.getGraphicsConfiguration().getBounds();
-					int pw = popupPanel.getPreferredSize().width;
-					if ((x + pw) > (scrBounds.x + scrBounds.width)) {
-						x = scrBounds.x + scrBounds.width - pw;
-					}
-					int ph = popupPanel.getPreferredSize().height;
+					int pw = popupPanelPrefSize.width;
+                    int ph = popupPanelPrefSize.height;
+                    if (pw > scrBounds.width || ph > scrBounds.height) {
+                        pw = Math.min(pw, scrBounds.width);
+                        ph = Math.min(ph, scrBounds.height);
+                        popupPanelPrefSize = new Dimension(pw, ph);
+                        popupPanel.setPreferredSize(popupPanelPrefSize);
+                        popupPanel.setSize(popupPanelPrefSize);
+                        popupPanel.doLayout();
+                    }
+
+                    if ((x + pw) > (scrBounds.x + scrBounds.width)) {
+                        x = scrBounds.x + scrBounds.width - pw;
+                    }
 					if ((y + ph) > (scrBounds.y + scrBounds.height)) {
 						y = scrBounds.y + scrBounds.height - ph;
 					}
@@ -1182,7 +1192,6 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 							popup, popupPanel);
 				}
 			});
-			return;
 		}
 	}
 

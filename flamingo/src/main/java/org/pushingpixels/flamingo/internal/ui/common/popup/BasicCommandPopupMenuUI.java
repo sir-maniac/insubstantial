@@ -71,7 +71,7 @@ public class BasicCommandPopupMenuUI extends BasicPopupPanelUI {
 				@Override
 				protected float getIconTextGapFactor() {
 					return 2.0f;
-				};
+				}
 			};
 		}
 	};
@@ -561,11 +561,13 @@ public class BasicCommandPopupMenuUI extends BasicPopupPanelUI {
 			Dimension menuItemsPref = (popupMenu.getMaxVisibleMenuButtons() > 0) ? menuItemsPanel
 					.getPreferredSize()
 					: menuItemsPanel.getView().getPreferredSize();
-			menuItemsPanel.setBounds(ins.left, bottomY - menuItemsPref.height,
+
+            int menuHeight = Math.min(menuItemsPref.height, parent.getHeight());
+			menuItemsPanel.setBounds(ins.left, bottomY - menuHeight,
 					parent.getWidth() - ins.left - ins.right,
-					menuItemsPref.height);
+					menuHeight);
 			menuItemsPanel.doLayout();
-			bottomY -= menuItemsPref.height;
+			bottomY -= menuHeight;
 
 			if (commandButtonPanel != null) {
 				commandButtonPanel.setBounds(ins.left, ins.top, parent

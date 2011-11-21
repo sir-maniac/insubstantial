@@ -132,12 +132,16 @@ public class BasicCheckRibbon extends JRibbonFrame {
 	}
 
 	private class SamplePopupMenu extends JCommandPopupMenu {
-		public SamplePopupMenu() {
+        public SamplePopupMenu() {
+            this(new String[] {"1", "2", "3", null, "4", "5", null, "mm", "mmm", "mmmm", "mmmmm", "mmmmmm"});
+        }
+
+		public SamplePopupMenu(String[] items) {
 			MessageFormat mf = new MessageFormat(resourceBundle
 					.getString("TestMenuItem.text"));
 			mf.setLocale(currLocale);
 
-            for (final String s : new String[] {"1", "2", "3", null, "4", "5", null, "mm", "mmm", "mmmm", "mmmmm", "mmmmmm"}) {
+            for (final String s : items) {
                 if (s == null) {
                     this.addMenuSeparator();
                 } else {
@@ -290,10 +294,28 @@ public class BasicCheckRibbon extends JRibbonFrame {
 		keyboardShortcuts.setPopupKeyTip("H");
 		keyboardShortcuts
 				.setCommandButtonKind(JCommandButton.CommandButtonKind.POPUP_ONLY);
+
+        final String[] popupNames = new String[100];
+        for (int i = 1; i <= 100; i++) {
+            switch (i % 15) {
+                default:
+                    popupNames[i-1] = Integer.toString(i);
+                    break;
+                case 3: case 6: case 9: case 12:
+                    popupNames[i-1] = "Fizz";
+                    break;
+                case 5: case 10:
+                    popupNames[i-1] = "Buzz";
+                    break;
+                case 0:
+                    popupNames[i-1] = "FizzBuzz";
+                    break;
+            }
+        }
 		keyboardShortcuts.setPopupCallback(new PopupPanelCallback() {
 			@Override
 			public JPopupPanel getPopupPanel(JCommandButton commandButton) {
-				return new SamplePopupMenu();
+				return new SamplePopupMenu(popupNames);
 			}
 		});
 		preferencesBand.addCommandButton(keyboardShortcuts,
