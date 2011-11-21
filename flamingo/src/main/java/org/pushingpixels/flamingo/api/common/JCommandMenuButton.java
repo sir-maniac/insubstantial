@@ -61,6 +61,7 @@ public class JCommandMenuButton extends JCommandButton {
 	 */
 	public JCommandMenuButton(String title, ResizableIcon icon) {
 		super(title, icon);
+        setPopupOrientationKind(CommandButtonPopupOrientationKind.SIDEWARD);
 	}
 
 	/**
