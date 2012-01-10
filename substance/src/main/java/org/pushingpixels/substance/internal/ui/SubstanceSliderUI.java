@@ -152,8 +152,11 @@ public class SubstanceSliderUI extends BasicSliderUI implements
 	 * @return The rectangle of track for painting.
 	 */
 	private Rectangle getPaintTrackRect() {
-		int trackLeft = 0, trackRight = 0, trackTop = 0, trackBottom = 0;
-		int trackWidth = this.getTrackWidth();
+		int trackLeft = 0;
+        int trackRight;
+        int trackTop = 0;
+        int trackBottom;
+        int trackWidth = this.getTrackWidth();
 		if (this.slider.getOrientation() == SwingConstants.HORIZONTAL) {
 			trackTop = 3 + this.insetCache.top + 2 * this.focusInsets.top;
 			trackBottom = trackTop + trackWidth - 1;
@@ -212,7 +215,8 @@ public class SubstanceSliderUI extends BasicSliderUI implements
 			// apply rotation / translate transformation on vertical
 			// slider tracks
 			int temp = width;
-			width = height;
+            //noinspection SuspiciousNameCombination
+            width = height;
 			height = temp;
 			AffineTransform at = graphics.getTransform();
 			at.translate(paintRect.x, width + paintRect.y);
@@ -555,10 +559,8 @@ public class SubstanceSliderUI extends BasicSliderUI implements
 	@Override
     public boolean isInside(MouseEvent me) {
 		Rectangle thumbB = this.thumbRect;
-		if (thumbB == null)
-			return false;
-		return thumbB.contains(me.getX(), me.getY());
-	}
+        return thumbB != null && thumbB.contains(me.getX(), me.getY());
+    }
 
 	/*
 	 * (non-Javadoc)
@@ -714,7 +716,7 @@ public class SubstanceSliderUI extends BasicSliderUI implements
 		if (this.slider.getOrientation() == JSlider.HORIZONTAL) {
 			int value = this.slider.getMinimum()
 					+ this.slider.getMinorTickSpacing();
-			int xPos = 0;
+			int xPos;
 
 			if ((this.slider.getMinorTickSpacing() > 0)
 					&& (this.slider.getMajorTickSpacing() > 0)) {
@@ -754,7 +756,7 @@ public class SubstanceSliderUI extends BasicSliderUI implements
 
 			int value = this.slider.getMinimum()
 					+ this.slider.getMinorTickSpacing();
-			int yPos = 0;
+			int yPos;
 
 			boolean ltr = this.slider.getComponentOrientation().isLeftToRight();
 			if (this.slider.getMinorTickSpacing() > 0) {
@@ -848,9 +850,6 @@ public class SubstanceSliderUI extends BasicSliderUI implements
 				&& !this.slider.getPaintTicks()
 				&& this.slider.getComponentOrientation().isLeftToRight()) {
 			this.labelRect.x += 3;
-		}
-		if (this.slider.getOrientation() == JSlider.VERTICAL) {
-			this.labelRect.width = getHeightOfTallestLabel();
 		}
 	}
 
