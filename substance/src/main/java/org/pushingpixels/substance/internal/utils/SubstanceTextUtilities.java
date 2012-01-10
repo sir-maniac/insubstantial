@@ -220,7 +220,7 @@ public class SubstanceTextUtilities {
 		if ((text == null) || (text.length() == 0))
 			return;
 
-		AffineTransform at = null;
+		AffineTransform at;
 
 		if (!isFromBottomToTop) {
 			at = AffineTransform.getTranslateInstance(textRect.x
@@ -379,8 +379,10 @@ public class SubstanceTextUtilities {
 		if (textAlpha < 1.0f) {
 			Color bgFillColor = SubstanceColorUtilities
 					.getBackgroundFillColor(component);
-			fgColor = SubstanceColorUtilities.getInterpolatedColor(fgColor,
-					bgFillColor, textAlpha);
+            if (bgFillColor != null) {
+			    fgColor = SubstanceColorUtilities.getInterpolatedColor(fgColor,
+				    	bgFillColor, textAlpha);
+            }
 		}
 		return fgColor;
 	}
@@ -412,7 +414,7 @@ public class SubstanceTextUtilities {
 				|| Boolean.TRUE.equals(component
 						.getClientProperty(ENFORCE_FG_COLOR));
 
-		Color fgColor = null;
+		Color fgColor;
 		if (toEnforceFgColor) {
 			fgColor = component.getForeground();
 		} else {
