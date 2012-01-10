@@ -249,6 +249,9 @@ public class SliderPanel extends ControllablePanel implements Deferrable {
 		JSlider bigLabels = getSliderWithLongWords(false);
 		horPanel.add(bigLabels);
 
+		JSlider imageLabels = getSliderWithImages(false);
+		horPanel.add(imageLabels);
+
 		mainPanel.add(horPanel, BorderLayout.WEST);
 
 		JPanel verPanel = new JPanel(new FlowLayout());
@@ -364,6 +367,9 @@ public class SliderPanel extends ControllablePanel implements Deferrable {
         bigLabels = getSliderWithLongWords(true);
 		verPanel.add(bigLabels);
 
+        imageLabels = getSliderWithImages(true);
+		verPanel.add(imageLabels);
+
 		FormLayout lm = new FormLayout("fill:pref:grow", "");
 		DefaultFormBuilder builder = new DefaultFormBuilder(lm,
 				new ScrollablePanel());
@@ -475,11 +481,11 @@ public class SliderPanel extends ControllablePanel implements Deferrable {
 	}
 
     private JSlider getSliderWithLongWords(boolean vert) {
-        JSlider bigWorksSlider = new JSlider(vert ? JSlider.VERTICAL : JSlider.HORIZONTAL);
-        bigWorksSlider.setMinimum(0);
-        bigWorksSlider.setMaximum(30);
-        bigWorksSlider.setMajorTickSpacing(1);
-        bigWorksSlider.setPaintLabels(true);
+        JSlider bigWordsSlider = new JSlider(vert ? JSlider.VERTICAL : JSlider.HORIZONTAL);
+        bigWordsSlider.setMinimum(0);
+        bigWordsSlider.setMaximum(30);
+        bigWordsSlider.setMajorTickSpacing(1);
+        bigWordsSlider.setPaintLabels(true);
         Hashtable labels = new Hashtable();
         labels.put(9,  new JLabel("establish"));
         labels.put(12, new JLabel("disestablish"));
@@ -488,8 +494,22 @@ public class SliderPanel extends ControllablePanel implements Deferrable {
         labels.put(23, new JLabel("antidisestablishmentary"));
         labels.put(25, new JLabel("antidisestablishmentarian"));
         labels.put(28, new JLabel("antidisestablishmentarianism"));
-        bigWorksSlider.setLabelTable(labels);
-        return bigWorksSlider;
+        bigWordsSlider.setLabelTable(labels);
+        return bigWordsSlider;
+    }
+
+    private JSlider getSliderWithImages(boolean vert) {
+        JSlider imagesSlider = new JSlider(vert ? JSlider.VERTICAL : JSlider.HORIZONTAL);
+        imagesSlider.setMinimum(0);
+        imagesSlider.setMaximum(2);
+        imagesSlider.setMajorTickSpacing(1);
+        imagesSlider.setPaintLabels(true);
+        Hashtable labels = new Hashtable();
+        labels.put(0, new JLabel(new ImageIcon(getClass().getResource("/test/resource/firefox.png"))));
+        labels.put(1, new JLabel(new ImageIcon(getClass().getResource("/test/resource/start-here.png"))));
+        labels.put(2, new JLabel(new ImageIcon(getClass().getResource("/test/resource/computer.png"))));
+        imagesSlider.setLabelTable(labels);
+        return imagesSlider;
     }
 
 	/**
