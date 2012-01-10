@@ -33,7 +33,6 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.Toolkit;
 import java.awt.geom.GeneralPath;
 import java.awt.image.BufferedImage;
 import java.util.Enumeration;
@@ -41,7 +40,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javax.swing.Icon;
 import javax.swing.UIDefaults;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.DimensionUIResource;
@@ -55,8 +53,6 @@ import org.pushingpixels.substance.api.SubstanceColorScheme;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.SubstanceSkin;
 import org.pushingpixels.substance.api.fonts.FontSet;
-import org.pushingpixels.substance.internal.contrib.randelshofer.quaqua.ButtonStateIcon;
-import org.pushingpixels.substance.internal.contrib.randelshofer.quaqua.util.Images;
 import org.pushingpixels.substance.internal.utils.SubstanceCoreUtilities;
 import org.pushingpixels.substance.internal.utils.SubstanceImageCreator;
 import org.pushingpixels.substance.internal.utils.SubstanceSizeUtils;
@@ -96,16 +92,6 @@ public class BasePlugin implements LafComponentPlugin {
 		} catch (ClassNotFoundException cnfe) {
 			this.hasQuaquaColorChooser = false;
 		}
-	}
-
-	/**
-	 * From Quaqua
-	 */
-	protected Icon createButtonStateIcon(final String location, final int states) {
-		BufferedImage[] images = Images.split(Toolkit.getDefaultToolkit()
-				.getImage(this.getClass().getResource(location)), states, true);
-
-		return new ButtonStateIcon(images);
 	}
 
 	/**
@@ -311,7 +297,7 @@ public class BasePlugin implements LafComponentPlugin {
 
 			};
 
-			Object[] colorDefaults = null;
+			Object[] colorDefaults;
 			FontSet substanceFontSet = SubstanceLookAndFeel.getFontPolicy()
 					.getFontSet("Substance", null);
 			Font controlFont = substanceFontSet.getControlFont();
