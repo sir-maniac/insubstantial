@@ -130,11 +130,13 @@ private def configurePOM(def pom) {
 
 task testSubstanceRibbon(type: JavaExec) {
     main = 'test.substance.ribbon.NewCheckRibbon'
+    debug = Boolean.valueOf(System.getProperty('debug', 'false'))
     classpath = sourceSets.test.runtimeClasspath
 }
 
 task testSubstanceRibbonRTL(type: JavaExec) {
     main = 'test.substance.ribbon.NewCheckRibbon'
+    debug = Boolean.valueOf(System.getProperty('debug', 'false'))
     classpath = sourceSets.test.runtimeClasspath
     systemProperty "user.language", "iw"
 }

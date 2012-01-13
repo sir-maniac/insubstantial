@@ -207,19 +207,12 @@ private def configurePOM(def pom) {
 
 task jitterbug(type: JavaExec) {
     main = 'tools.jitterbug.JitterbugEditor'
+    debug = Boolean.valueOf(System.getProperty('debug', 'false'))
     classpath = sourceSets.tools.compileClasspath + sourceSets.tools.runtimeClasspath
 }
 
 task testCheck(type: JavaExec) {
   main = 'test.Check'
-  debug=true
+  debug = Boolean.valueOf(System.getProperty('debug', 'true'))
   classpath = sourceSets.test.runtimeClasspath
-}
-
-task debugCheckX(type: JavaExec) {
-  main = 'org.swingexplorer.Launcher'
-  classpath = sourceSets.test.runtimeClasspath + files('C:\\Users\\danno.ferrin\\Downloads\\swexpl.jar')
-  jvmArgs = ['-javaagent:C:\\Users\\danno.ferrin\\Downloads\\swag.jar', '-Xbootclasspath/a:C:\\Users\\danno.ferrin\\Downloads\\swag.jar']
-  debug=true
-  args = ['test.Check']
 }
