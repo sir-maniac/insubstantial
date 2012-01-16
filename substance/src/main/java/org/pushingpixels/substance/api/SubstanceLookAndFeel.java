@@ -2058,10 +2058,9 @@ public abstract class SubstanceLookAndFeel extends BasicLookAndFeel {
 			}
 
 			UIDefaults lafDefaults = UIManager.getLookAndFeelDefaults();
-			UIDefaults defaults = lafDefaults;
 			// The table will be null when the skin is set using a custom
 			// LAF
-			if (defaults != null) {
+			if (lafDefaults != null) {
 				initFontDefaults(lafDefaults, SubstanceLookAndFeel
 						.getFontPolicy().getFontSet("Substance", null));
 				newSkin.addCustomEntriesToTable(lafDefaults);
@@ -2070,16 +2069,19 @@ public abstract class SubstanceLookAndFeel extends BasicLookAndFeel {
 			}
 
 			// file chooser strings go to the main UIManager table
-			ResourceBundle substanceBundle = SubstanceLookAndFeel
-					.getLabelBundle();
-			Enumeration<String> keyEn = substanceBundle.getKeys();
-			while (keyEn.hasMoreElements()) {
-				String key = keyEn.nextElement();
-				if (key.indexOf("FileChooser") != -1) {
-					String value = substanceBundle.getString(key);
-					UIManager.put(key, value);
-				}
-			}
+            for (ResourceBundle bundle : new ResourceBundle[] {
+                    ResourceBundle.getBundle("com.sun.swing.internal.plaf.metal.resources.metal"),
+                    SubstanceLookAndFeel.getLabelBundle()
+            }) {
+                Enumeration<String> keyEn = bundle.getKeys();
+                while (keyEn.hasMoreElements()) {
+                    String key = keyEn.nextElement();
+                    if (key.contains("FileChooser")) {
+                        String value = bundle.getString(key);
+                        UIManager.put(key, value);
+                    }
+                }
+            }
 
 			if (isSubstance)
 				LazyResettableHashMap.reset();
