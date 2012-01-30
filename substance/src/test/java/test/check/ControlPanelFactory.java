@@ -137,6 +137,21 @@ public class ControlPanelFactory {
 
 		builder.appendSeparator("Miscellaneous");
 
+        final JCheckBox defaultRoundedCorners = new JCheckBox("by default");
+        defaultRoundedCorners.setOpaque(false);
+        boolean roundable = Boolean.valueOf(System.getProperty(SubstanceLookAndFeel.WINDOW_ROUNDED_CORNERS_PROPERTY, "True")) ;
+        defaultRoundedCorners.setSelected(roundable);
+        defaultRoundedCorners.setEnabled(roundable);
+        defaultRoundedCorners.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UIManager.put(
+                        SubstanceLookAndFeel.WINDOW_ROUNDED_CORNERS,
+                        defaultRoundedCorners.isSelected());
+            }
+        });
+        builder.append("Rounded Windows", defaultRoundedCorners);
+        
 		final JCheckBox useThemedDefaultIconsCheckBox = new JCheckBox(
 				"use themed icons");
         useThemedDefaultIconsCheckBox.setOpaque(false);
@@ -221,7 +236,7 @@ public class ControlPanelFactory {
 			});
 
 			builder.append("Overview kind", overviewKindCombo);
-		} catch (NoClassDefFoundError ncdfe) {
+		} catch (NoClassDefFoundError ignored) {
 		}
 
 		final JComboBox menuGutterFillCombo = new FlexiComboBox<MenuGutterFillKind>(
@@ -536,8 +551,8 @@ public class ControlPanelFactory {
 						dialog.dispose();
 					}
 				});
-			};
-		});
+			}
+        });
 		builder.append("Plain", bop);
 
 		JButton bopi = new JButton("Show", Check
@@ -553,8 +568,8 @@ public class ControlPanelFactory {
 								JOptionPane.INFORMATION_MESSAGE);
 					}
 				});
-			};
-		});
+			}
+        });
 		builder.append("Info", bopi);
 
 		JButton bope = new JButton("Show", Check.getIcon("22/dialog-error"));
@@ -569,8 +584,8 @@ public class ControlPanelFactory {
 								JOptionPane.ERROR_MESSAGE);
 					}
 				});
-			};
-		});
+			}
+        });
 		builder.append("Error", bope);
 
 		JButton bopw = new JButton("Show", Check.getIcon("22/dialog-warning"));
@@ -585,8 +600,8 @@ public class ControlPanelFactory {
 								JOptionPane.WARNING_MESSAGE);
 					}
 				});
-			};
-		});
+			}
+        });
 		builder.append("Warning", bopw);
 
 		JButton bopq = new JButton("Show", Check.getIcon("22/help-browser"));
@@ -601,8 +616,8 @@ public class ControlPanelFactory {
 								JOptionPane.QUESTION_MESSAGE);
 					}
 				});
-			};
-		});
+			}
+        });
 		builder.append("Question", bopq);
 
 		JButton bopc = new JButton("Show");
@@ -617,8 +632,8 @@ public class ControlPanelFactory {
 								JOptionPane.PLAIN_MESSAGE, null, null, null);
 					}
 				});
-			};
-		});
+			}
+        });
 		builder.append("Custom", bopc);
 
 		JButton buttonOptionPaneSimpleInput = new JButton("Show");
@@ -731,8 +746,8 @@ public class ControlPanelFactory {
 						disposableDialog.setVisible(true);
 					}
 				});
-			};
-		});
+			}
+        });
 		builder.append("Disposable dialog", openDisposable);
 
 		JButton launchFrameDialogWithIcon = new JButton("Open");
@@ -763,8 +778,8 @@ public class ControlPanelFactory {
 						sd.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 					}
 				});
-			};
-		});
+			}
+        });
 		builder.append("Dialog with icon", launchFrameDialogWithIcon);
 
 		JButton bd = new JButton("Open");
@@ -782,8 +797,8 @@ public class ControlPanelFactory {
 						simpleDialog = sd;
 					}
 				});
-			};
-		});
+			}
+        });
 		builder.append("Open a dialog", bd);
 
 		JButton bcd = new JButton("Close");
@@ -818,8 +833,8 @@ public class ControlPanelFactory {
 						}
 					}
 				});
-			};
-		});
+			}
+        });
 		builder.append("Close the dialog", bcd);
 
 		JButton buttonDialogCloseOnEsc = new JButton("Show");
@@ -961,8 +976,8 @@ public class ControlPanelFactory {
 						testFrame.setVisible(true);
 					}
 				});
-			};
-		});
+			}
+        });
 		builder.append("Regular frame", btf);
 
 		JButton btfU = new JButton("Show");
@@ -988,8 +1003,8 @@ public class ControlPanelFactory {
 						JDialog.setDefaultLookAndFeelDecorated(true);
 					}
 				});
-			};
-		});
+			}
+        });
 		builder.append("Undecorated frame", btfU);
 
 		JButton bcp = new JButton("Open");
@@ -1054,8 +1069,8 @@ public class ControlPanelFactory {
 						colorFrame.setVisible(true);
 					}
 				});
-			};
-		});
+			}
+        });
 		builder.append("Color panels", bcp);
 
 		JButton paneDialog = new JButton("Open");
@@ -1086,8 +1101,8 @@ public class ControlPanelFactory {
 						dialog.setVisible(true);
 					}
 				});
-			};
-		});
+			}
+        });
 		builder.append("Text pane dialog", paneDialog);
 
 		return builder.getPanel();

@@ -96,11 +96,17 @@ public class SubstanceInternalFrameUI extends BasicInternalFrameUI {
 		return this.titlePane;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.plaf.basic.BasicInternalFrameUI#uninstallComponents()
-	 */
+    @Override
+    protected void installComponents() {
+        frame.setOpaque(false);
+        super.installComponents();
+    }
+
+    /*
+      * (non-Javadoc)
+      *
+      * @see javax.swing.plaf.basic.BasicInternalFrameUI#uninstallComponents()
+      */
 	@Override
 	protected void uninstallComponents() {
 		this.titlePane.uninstall();

@@ -34,6 +34,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.awt.image.VolatileImage;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.net.URL;
 import java.util.*;
 
@@ -41,6 +43,7 @@ import javax.swing.*;
 import javax.swing.plaf.*;
 import javax.swing.text.JTextComponent;
 
+import com.sun.awt.AWTUtilities;
 import org.pushingpixels.lafwidget.LafWidgetUtilities;
 import org.pushingpixels.lafwidget.utils.TrackableThread;
 import org.pushingpixels.substance.api.*;
@@ -465,6 +468,56 @@ public class SubstanceCoreUtilities {
             return false;
         }
     }
+    
+    private static Boolean globalRoundingEnable = null;
+    private static boolean defaultRoundingEnable = true;
+
+    public static boolean isRoundedCorners(Component c) {
+        // first time through, things have yet to be set up
+        if (globalRoundingEnable == null) {
+            //first step, check the system property for kill switch
+            String s = System.getProperty(SubstanceLookAndFeel.WINDOW_ROUNDED_CORNERS_PROPERTY);
+            globalRoundingEnable = s == null || s.length() == 0 || Boolean.valueOf(s);
+            UIManager.getDefaults().addPropertyChangeListener(new PropertyChangeListener() {
+                @Override
+                public void propertyChange(PropertyChangeEvent evt) {
+                    if (SubstanceLookAndFeel.WINDOW_ROUNDED_CORNERS.equals(evt.getPropertyName())) {
+                        defaultRoundingEnable = (!(evt.getNewValue() instanceof Boolean)) || ((Boolean)evt.getNewValue());
+                    }
+                }
+            });
+
+            // next step, check AWTUtilities capabilities
+            if (globalRoundingEnable) {
+                globalRoundingEnable = AWTUtilities.isTranslucencySupported(AWTUtilities.Translucency.PERPIXEL_TRANSPARENT);
+            }
+
+            // finally, add one listener to listen to the UIManager defaults value when the default changes.
+            if (globalRoundingEnable) {
+                Object o = UIManager.get(SubstanceLookAndFeel.WINDOW_ROUNDED_CORNERS);
+                if (o instanceof  Boolean) {
+                    defaultRoundingEnable = (Boolean) o;
+                }
+            }
+        }
+
+        // guard condition, if the kill switch is pressed stop.  Hotspot will optimize this nicely.
+        if (!globalRoundingEnable) {
+            return false;
+        }
+
+        // for real this time.  Start with the "default" from UI defaults.
+        boolean round = defaultRoundingEnable;
+        if (c instanceof JComponent) {
+            // next possibly override this per-window.
+            Object o = ((JComponent)c).getClientProperty(SubstanceLookAndFeel.WINDOW_ROUNDED_CORNERS);
+            if (o instanceof  Boolean) { // Java trivia:  null instanceof <anything> is false.  Free null check
+                round = (Boolean) o;
+            }
+        }
+        
+        return round;
+    }
 
 	/**
 	 * Checks whether the specified tab has a close button.
@@ -607,15 +660,18 @@ public class SubstanceCoreUtilities {
 			if ((width >= 100) || (height >= 100)) {
 				StackTraceElement[] stack = Thread.currentThread()
 						.getStackTrace();
-				StringBuffer sb = new StringBuffer();
+				StringBuilder sb = new StringBuilder();
 				int count = 0;
 				for (StackTraceElement stackEntry : stack) {
 					if (count++ > 8)
 						break;
-					sb.append(stackEntry.getClassName() + ".");
-					sb.append(stackEntry.getMethodName() + " [");
-					sb.append(stackEntry.getLineNumber() + "]");
-					sb.append("\n");
+                    sb.append(stackEntry.getClassName())
+                      .append(".")
+                      .append(stackEntry.getMethodName())
+                      .append(" [")
+                      .append(stackEntry.getLineNumber())
+                      .append("]")
+					  .append("\n");
 				}
 				MemoryAnalyzer.enqueueUsage("Blank " + width + "*" + height
 						+ "\n" + sb.toString());
@@ -646,15 +702,18 @@ public class SubstanceCoreUtilities {
 			if ((width >= 100) || (height >= 100)) {
 				StackTraceElement[] stack = Thread.currentThread()
 						.getStackTrace();
-				StringBuffer sb = new StringBuffer();
+				StringBuilder sb = new StringBuilder();
 				int count = 0;
 				for (StackTraceElement stackEntry : stack) {
 					if (count++ > 8)
 						break;
-					sb.append(stackEntry.getClassName() + ".");
-					sb.append(stackEntry.getMethodName() + " [");
-					sb.append(stackEntry.getLineNumber() + "]");
-					sb.append("\n");
+                    sb.append(stackEntry.getClassName())
+                      .append(".")
+                      .append(stackEntry.getMethodName())
+                      .append(" [")
+                      .append(stackEntry.getLineNumber())
+                      .append("]")
+					  .append("\n");
 				}
 				MemoryAnalyzer.enqueueUsage("Blank " + width + "*" + height
 						+ "\n" + sb.toString());
@@ -2040,87 +2099,86 @@ public class SubstanceCoreUtilities {
 		int bestWidth = 0;
 		int bestHeight = 0;
 		double bestSimilarity = 3; // Impossibly high value
-		for (Iterator<Image> i = imageList.iterator(); i.hasNext();) {
-			// Iterate imageList looking for best matching image.
-			// 'Similarity' measure is defined as good scale factor and small
-			// insets.
-			// best possible similarity is 0 (no scale, no insets).
-			// It's found while the experiments that good-looking result is
-			// achieved
-			// with scale factors x1, x3/4, x2/3, xN, x1/N.
-			Image im = i.next();
-			if (im == null) {
-				continue;
-			}
-			int iw;
-			int ih;
-			try {
-				iw = im.getWidth(null);
-				ih = im.getHeight(null);
-			} catch (Exception e) {
-				continue;
-			}
-			if (iw > 0 && ih > 0) {
-				// Calc scale factor
-				double scaleFactor = Math.min((double) width / (double) iw,
-						(double) height / (double) ih);
-				// Calculate scaled image dimensions
-				// adjusting scale factor to nearest "good" value
-				int adjw;
-				int adjh;
-				double scaleMeasure; // 0 - best (no) scale, 1 - impossibly
-				// bad
-				if (scaleFactor >= 2) {
-					// Need to enlarge image more than twice
-					// Round down scale factor to multiply by integer value
-					scaleFactor = Math.floor(scaleFactor);
-					adjw = iw * (int) scaleFactor;
-					adjh = ih * (int) scaleFactor;
-					scaleMeasure = 1.0 - 0.5 / scaleFactor;
-				} else if (scaleFactor >= 1) {
-					// Don't scale
-					scaleFactor = 1.0;
-					adjw = iw;
-					adjh = ih;
-					scaleMeasure = 0;
-				} else if (scaleFactor >= 0.75) {
-					// Multiply by 3/4
-					scaleFactor = 0.75;
-					adjw = iw * 3 / 4;
-					adjh = ih * 3 / 4;
-					scaleMeasure = 0.3;
-				} else if (scaleFactor >= 0.6666) {
-					// Multiply by 2/3
-					scaleFactor = 0.6666;
-					adjw = iw * 2 / 3;
-					adjh = ih * 2 / 3;
-					scaleMeasure = 0.33;
-				} else {
-					// Multiply size by 1/scaleDivider
-					// where scaleDivider is minimum possible integer
-					// larger than 1/scaleFactor
-					double scaleDivider = Math.ceil(1.0 / scaleFactor);
-					scaleFactor = 1.0 / scaleDivider;
-					adjw = (int) Math.round(iw / scaleDivider);
-					adjh = (int) Math.round(ih / scaleDivider);
-					scaleMeasure = 1.0 - 1.0 / scaleDivider;
-				}
-				double similarity = ((double) width - (double) adjw) / width
-						+ ((double) height - (double) adjh) / height + // Large
-						// padding
-						// is
-						// bad
-						scaleMeasure; // Large rescale is bad
-				if (similarity < bestSimilarity) {
-					bestSimilarity = similarity;
-					bestImage = im;
-					bestWidth = adjw;
-					bestHeight = adjh;
-				}
-				if (similarity == 0)
-					break;
-			}
-		}
+        for (Image im : imageList) {
+            // Iterate imageList looking for best matching image.
+            // 'Similarity' measure is defined as good scale factor and small
+            // insets.
+            // best possible similarity is 0 (no scale, no insets).
+            // It's found while the experiments that good-looking result is
+            // achieved
+            // with scale factors x1, x3/4, x2/3, xN, x1/N.
+            if (im == null) {
+                continue;
+            }
+            int iw;
+            int ih;
+            try {
+                iw = im.getWidth(null);
+                ih = im.getHeight(null);
+            } catch (Exception e) {
+                continue;
+            }
+            if (iw > 0 && ih > 0) {
+                // Calc scale factor
+                double scaleFactor = Math.min((double) width / (double) iw,
+                        (double) height / (double) ih);
+                // Calculate scaled image dimensions
+                // adjusting scale factor to nearest "good" value
+                int adjw;
+                int adjh;
+                double scaleMeasure; // 0 - best (no) scale, 1 - impossibly
+                // bad
+                if (scaleFactor >= 2) {
+                    // Need to enlarge image more than twice
+                    // Round down scale factor to multiply by integer value
+                    scaleFactor = Math.floor(scaleFactor);
+                    adjw = iw * (int) scaleFactor;
+                    adjh = ih * (int) scaleFactor;
+                    scaleMeasure = 1.0 - 0.5 / scaleFactor;
+                } else if (scaleFactor >= 1) {
+                    // Don't scale
+                    //scaleFactor = 1.0;
+                    adjw = iw;
+                    adjh = ih;
+                    scaleMeasure = 0;
+                } else if (scaleFactor >= 0.75) {
+                    // Multiply by 3/4
+                    //scaleF`actor = 0.75;
+                    adjw = iw * 3 / 4;
+                    adjh = ih * 3 / 4;
+                    scaleMeasure = 0.3;
+                } else if (scaleFactor >= 0.6666) {
+                    // Multiply by 2/3
+                    //scaleFactor = 0.6666;
+                    adjw = iw * 2 / 3;
+                    adjh = ih * 2 / 3;
+                    scaleMeasure = 0.33;
+                } else {
+                    // Multiply size by 1/scaleDivider
+                    // where scaleDivider is minimum possible integer
+                    // larger than 1/scaleFactor
+                    double scaleDivider = Math.ceil(1.0 / scaleFactor);
+                    //scaleFactor = 1.0 / scaleDivider;
+                    adjw = (int) Math.round(iw / scaleDivider);
+                    adjh = (int) Math.round(ih / scaleDivider);
+                    scaleMeasure = 1.0 - 1.0 / scaleDivider;
+                }
+                double similarity = ((double) width - (double) adjw) / width
+                        + ((double) height - (double) adjh) / height + // Large
+                        // padding
+                        // is
+                        // bad
+                        scaleMeasure; // Large rescale is bad
+                if (similarity < bestSimilarity) {
+                    bestSimilarity = similarity;
+                    bestImage = im;
+                    bestWidth = adjw;
+                    bestHeight = adjh;
+                }
+                if (similarity == 0)
+                    break;
+            }
+        }
 		if (bestImage == null) {
 			// No images were found, possibly all are broken
 			return null;

@@ -75,10 +75,8 @@ public class CeruleanSkin extends SubstanceSkin {
         SubstanceColorSchemeBundle defaultSchemeBundle = new SubstanceColorSchemeBundle(
                 activeScheme, enabledScheme, disabledScheme);
 
-        //SubstanceColorScheme steelBlue = new SteelBlueColorScheme();
-        CopyMutableColorScheme hoverColor = new CopyMutableColorScheme("Cerulean Hover", new SteelBlueColorScheme().tint(0.4));
-        hoverColor.setForegroundColor(enabledScheme.getForegroundColor());
-        SubstanceColorScheme steelBlue = hoverColor;
+        CopyMutableColorScheme steelBlue= new CopyMutableColorScheme("Cerulean Hover", new SteelBlueColorScheme().tint(0.4));
+        steelBlue.setForegroundColor(enabledScheme.getForegroundColor());
 
         double saturate = 0.1;
         double tint = 0.4;

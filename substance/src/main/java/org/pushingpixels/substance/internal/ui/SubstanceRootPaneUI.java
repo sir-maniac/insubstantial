@@ -59,11 +59,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.awt.geom.RoundRectangle2D;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.security.AccessController;
 import java.security.PrivilegedActionException;
 import java.security.PrivilegedExceptionAction;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -72,6 +74,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JRootPane;
 import javax.swing.LookAndFeel;
+import javax.swing.RootPaneContainer;
 import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
@@ -80,6 +83,7 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.UIResource;
 import javax.swing.plaf.basic.BasicRootPaneUI;
 
+import com.sun.awt.AWTUtilities;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.SubstanceSkin;
 import org.pushingpixels.substance.internal.animation.RootPaneDefaultButtonTracker;
@@ -219,6 +223,9 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 	@Override
 	public void installUI(JComponent c) {
 		super.installUI(c);
+        if (SubstanceCoreUtilities.isRoundedCorners(c)) {
+            c.addHierarchyListener(RESIZE_LOADER);
+        }
 		this.root = (JRootPane) c;
 		int style = this.root.getWindowDecorationStyle();
 		if (style != JRootPane.NONE) {
@@ -448,11 +455,11 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 							// System.out.println(root.hashCode() + ":"
 							// + root.getHierarchyListeners().length);
 							substanceHierarchyListener = null;
-						};
-					});
+						}
+                    });
 				}
 
-				Window currWindow = null;
+				Window currWindow;
 				if (parent instanceof Window) {
 					currWindow = (Window) parent;
 				} else {
@@ -851,8 +858,7 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 				rootPanesWithCustomSkin--;
 			}
 		}
-		return;
-	}
+    }
 
 	/**
 	 * A custom layout manager that is responsible for the layout of
@@ -1325,7 +1331,7 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 					windowPt.x = windowPt.x - this.dragOffsetX;
 					windowPt.y = windowPt.y - this.dragOffsetY;
 					w.setLocation(windowPt);
-				} catch (PrivilegedActionException e) {
+				} catch (PrivilegedActionException ignored) {
 				}
 			} else if (this.dragCursor != 0) {
 				Rectangle r = w.getBounds();
@@ -1410,7 +1416,7 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 		@Override
         public void mouseClicked(MouseEvent ev) {
 			Window w = (Window) ev.getSource();
-			Frame f = null;
+			Frame f;
 
 			if (w instanceof Frame) {
 				f = (Frame) w;
@@ -1442,8 +1448,7 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 							setMaximized();
 							f.setExtendedState(state | Frame.MAXIMIZED_BOTH);
 						}
-						return;
-					}
+                    }
 				}
 			}
 		}
@@ -1593,7 +1598,7 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 
 		@Override
 		public void mouseClicked(MouseEvent ev) {
-			Frame f = null;
+			Frame f;
 
 			if (SubstanceRootPaneUI.this.window instanceof Frame) {
 				f = (Frame) SubstanceRootPaneUI.this.window;
@@ -1619,8 +1624,7 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 							setMaximized();
 							f.setExtendedState(state | Frame.MAXIMIZED_BOTH);
 						}
-						return;
-					}
+                    }
 				}
 			}
 		}
@@ -1651,4 +1655,60 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
 	public static boolean hasCustomSkinOnAtLeastOneRootPane() {
 		return (rootPanesWithCustomSkin > 0);
 	}
+
+    public static ComponentListener WINDOW_ROUNDER = new ComponentAdapter() {
+
+        @Override
+        public void componentResized(ComponentEvent e) {
+            if (e.getComponent() instanceof Window) {
+                Window w = (Window) e.getComponent();
+                if ((w instanceof RootPaneContainer)
+                        && (((RootPaneContainer)w).getRootPane().getWindowDecorationStyle() == JRootPane.NONE))
+                {
+                    // special case, mostly for the splash
+                    return;
+                }
+                try {
+                    // only round the corners if the screen is reasonably sized, as in
+                    // smaller than archival versions of The Godfather, which is at 4096x2160
+                    if (SubstanceCoreUtilities.isRoundedCorners(w) && w.getWidth() * w.getHeight() < (4096*4096)) {
+                        AWTUtilities.setWindowShape(w, new RoundRectangle2D.Double(0, 0, w.getWidth(), w.getHeight(), 12, 12));
+                    } else {
+                        AWTUtilities.setWindowShape(w, null);
+                    }
+                } catch (OutOfMemoryError oome) {
+                    AWTUtilities.setWindowShape(w, null);
+                    //System.out.println("Rounded panel size on OOOME : " + w.getWidth() + "x" + w.getHeight() + " for an area of " + w.getWidth()*w.getHeight() + "px");
+                    //throw oome;
+                }
+            }
+        }
+    };
+
+    // When a JRootPane is created, it hasn't been added to a window yet.
+    // when we are added, set the window to transparent if we are a JDialog or JFrame
+    static HierarchyListener RESIZE_LOADER = new HierarchyListener() {
+        @Override
+        public void hierarchyChanged(HierarchyEvent e) {
+            // if we are not talking about a rootpane being added to a window, quit and never try again
+            if (!((e.getChangedParent() instanceof Dialog) || (e.getChangedParent() instanceof Frame))) {
+                e.getChanged().removeHierarchyListener(this);
+                return;
+            }
+            // if we are something other than a change event, quit
+            if ((e.getID() != HierarchyEvent.HIERARCHY_CHANGED)
+                    || !(e.getChanged() instanceof JRootPane))
+            {
+                return;
+            }
+            Window w = (Window) e.getChangedParent();
+            if (w != null) {
+                if (!Arrays.asList(w.getComponentListeners()).contains(WINDOW_ROUNDER)) {
+                    w.addComponentListener(WINDOW_ROUNDER);
+                }
+                e.getChanged().removeHierarchyListener(this);
+            }
+        }
+    };
+
 }

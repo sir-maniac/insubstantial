@@ -511,6 +511,58 @@ public abstract class SubstanceLookAndFeel extends BasicLookAndFeel {
      */
     public final static String WINDOW_AUTO_DEACTIVATE = "windowAutoDeactivate";
 
+    /**
+     * <p>VM property name for specifying that whether any JRootPane with
+     * Substance window decorations should be drawn with rounded corners in it's
+     * decoration frame.  This property is specified globally in  via a system property.
+     * The value will be parsed by {Boolean.valueOf}, unless it is unset or an empty
+     * string, then it will default to true.  A true value only enables rounded windows,
+     * they can be turned off via the UIManager or client properties.  A false value
+     * disables <i>all</i> rounded corners and is used to remove artifacts from legacy
+     * video cards.  This value is read when the Substance look and feel is initialized,
+     * and is not consulted later.
+     * </p>
+     *
+     * <p>When unset or set to true this property will cause the title pane and borders of
+     * JFrames and JInternal frames to be rounded.
+     *
+     * <p>
+     * <code>
+     * -Dsubstancelaf.windowRoundedCorners=False
+     * </code>
+     * </p>
+     *
+     * @since version 7.1
+     */
+    public final static String WINDOW_ROUNDED_CORNERS_PROPERTY = "substancelaf.windowRoundedCorners";
+
+    /**
+     * <p>Client property name for specifying that whether any JRootPane with
+     * Substance window decorations should be drawn with rounded corners in it's
+     * decoration frame.  This property can be specified per-window or globally in
+     * the UIManager or via client properties.  The value should be
+     * either {@link Boolean#TRUE} or {@link Boolean#FALSE}.  This value is subject
+     * to being globally set to false if the system property is set to false.  When unset
+     * it defauls to true.
+     * </p>
+     *
+     * <p>When unset or set to true this property will cause the title pane and borders of
+     * JFrames and JInternal frames to be rounded.
+     *
+     * <code>
+     * UIManager.put(SubstanceLookAndFeel.WINDOW_ROUNDED_CORNERS, <br>
+     * &nbsp;&nbsp;Boolean.FALSE);<br>
+     * // OR <br/>
+     * someFrameOrDialog.putClientProperty(SubstanceLookAndFeel.WINDOW_ROUNDED_CORNERS, <br>
+     * &nbsp;&nbsp;Boolean.FALSE);<br>
+     * // for specific JInternalFrames, JFrames, or JDialogs
+     *
+     * </code>
+     *
+     * @since version 7.1
+     */
+    public final static String WINDOW_ROUNDED_CORNERS = "windowRoundedCorners";
+
 	/**
 	 * Client property name for adding close buttons on tabs. This property can
 	 * be specified on a single tab component, on a {@link JTabbedPane} itself

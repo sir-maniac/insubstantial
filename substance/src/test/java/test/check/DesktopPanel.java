@@ -130,6 +130,12 @@ public class DesktopPanel extends ControllablePanel {
 		isResizable.setSelected(true);
 		builder.append("", isResizable);
 
+		final JCheckBox isRound = new JCheckBox("Round Corners");
+        boolean roundable = Boolean.valueOf(System.getProperty(SubstanceLookAndFeel.WINDOW_ROUNDED_CORNERS_PROPERTY, "True")) ;
+        isRound.setSelected(roundable);
+        isRound.setEnabled(roundable);
+		builder.append("", isRound);
+
 		JButton bt = new JButton("Add");
 		bt.addActionListener(new ActionListener() {
 			@Override
@@ -222,6 +228,7 @@ public class DesktopPanel extends ControllablePanel {
 				jif.setMaximizable(isMaximizable.isSelected());
 				jif.setIconifiable(isIconifiable.isSelected());
 				jif.setResizable(isResizable.isSelected());
+                jif.putClientProperty(SubstanceLookAndFeel.WINDOW_ROUNDED_CORNERS, isRound.isSelected());
 
 				JPanel buttons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 				final JCheckBox isModified = new JCheckBox("modified");
@@ -325,7 +332,7 @@ public class DesktopPanel extends ControllablePanel {
 				for (JInternalFrame jif : jdp.getAllFrames()) {
 					try {
 						jif.setIcon(true);
-					} catch (PropertyVetoException pve) {
+					} catch (PropertyVetoException ignored) {
 					}
 				}
 			}
@@ -339,7 +346,7 @@ public class DesktopPanel extends ControllablePanel {
 				for (JInternalFrame jif : jdp.getAllFrames()) {
 					try {
 						jif.setClosed(true);
-					} catch (PropertyVetoException pve) {
+					} catch (PropertyVetoException ignored) {
 					}
 				}
 			}

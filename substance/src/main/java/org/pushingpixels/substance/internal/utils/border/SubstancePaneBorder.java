@@ -50,6 +50,7 @@ public class SubstancePaneBorder extends AbstractBorder implements UIResource {
 	 * Default border thickness.
 	 */
 	private static final int BORDER_THICKNESS = 4;
+    private static final int BORDER_ROUNDNESS = 12;
 
 	/**
 	 * Default insets.
@@ -60,19 +61,7 @@ public class SubstancePaneBorder extends AbstractBorder implements UIResource {
 			SubstancePaneBorder.BORDER_THICKNESS,
 			SubstancePaneBorder.BORDER_THICKNESS);
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.border.Border#paintBorder(java.awt.Component,
-	 * java.awt.Graphics, int, int, int, int)
-	 */
-	@Override
-	public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
-		SubstanceSkin skin = SubstanceCoreUtilities.getSkin(c);
-		if (skin == null)
-			return;
-
-
+    public static DecorationAreaType getRootPaneType(Component c) {
         JRootPane rootPane = SwingUtilities.getRootPane(c);
         DecorationAreaType type = SubstanceLookAndFeel.getDecorationType(rootPane);
         if ((type == null) || (type == DecorationAreaType.NONE)) {
@@ -90,8 +79,32 @@ public class SubstancePaneBorder extends AbstractBorder implements UIResource {
                 }
             }
         }
+        return type;
+    }
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see javax.swing.border.Border#paintBorder(java.awt.Component,
+	 * java.awt.Graphics, int, int, int, int)
+	 */
+	@Override
+	public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
+        if (SubstanceCoreUtilities.isRoundedCorners(c)) {
+            paintRoundedBorder(c, g, x, y, w, h);
+        } else {
+            paintSquareBorder(c, g, x, y, w, h);
+        }
+    }
+
+    public void paintSquareBorder(Component c, Graphics g, int x, int y, int w, int h) {
+		SubstanceSkin skin = SubstanceCoreUtilities.getSkin(c);
+		if (skin == null)
+			return;
+
+
 		SubstanceColorScheme scheme = skin
-				.getBackgroundColorScheme(type);
+				.getBackgroundColorScheme(getRootPaneType(c));
 		Component titlePaneComp = SubstanceLookAndFeel
 				.getTitlePaneComponent(SwingUtilities.windowForComponent(c));
 		SubstanceColorScheme borderScheme = skin.getColorScheme(titlePaneComp,
@@ -156,4 +169,101 @@ public class SubstancePaneBorder extends AbstractBorder implements UIResource {
 	public boolean isBorderOpaque() {
 		return false;
 	}
+
+    public void paintRoundedBorder(Component c, Graphics g, int x, int y, int w, int h) {
+        SubstanceColorScheme scheme = getColorScheme(c);
+        if (scheme == null) return;
+        SubstanceColorScheme borderScheme = getBorderColorScheme(c);
+
+        Graphics2D graphics = (Graphics2D) g;
+
+        int xl = x + BORDER_THICKNESS + 2;
+        int xr = x + w - BORDER_THICKNESS - 3;
+        int yt = y + BORDER_THICKNESS + 2;
+        int yb = y + h - BORDER_THICKNESS - 3;
+
+        Object rh = graphics.getRenderingHint(RenderingHints.KEY_ANTIALIASING);
+        graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        // bottom and right in ultra dark
+        graphics.setColor(borderScheme.getUltraDarkColor());
+        graphics.drawLine(xl, y + h - 1, xr, y + h - 1); // bottom
+        graphics.drawLine(x + w - 1, yt, x + w - 1, yb); // right
+        // se
+        graphics.fillOval(x+w- BORDER_ROUNDNESS,y+h- BORDER_ROUNDNESS, BORDER_ROUNDNESS, BORDER_ROUNDNESS);
+
+
+        // top and left
+        graphics.setColor(borderScheme.getDarkColor());
+        graphics.drawLine(xl, y, xr, y);
+        graphics.drawLine(x, yt, x, yb);
+        // nw, ne, sw
+        graphics.fillOval(0        ,0        , BORDER_ROUNDNESS, BORDER_ROUNDNESS);
+        graphics.fillOval(0        ,y+h- BORDER_ROUNDNESS, BORDER_ROUNDNESS, BORDER_ROUNDNESS);
+        graphics.fillOval(x+w- BORDER_ROUNDNESS,0        , BORDER_ROUNDNESS, BORDER_ROUNDNESS);
+
+
+
+        // inner bottom and right
+        graphics.setColor(scheme.getMidColor());
+        graphics.drawLine(xl, y + h - 2, xr, y + h - 2);
+        graphics.drawLine(x + w - 2, yt, x + w - 2, yb);
+        graphics.drawLine(xl, y + 1, xr, y + 1);
+        graphics.drawLine(x + 1, yt, x + 1, yb);
+
+        graphics.fillOval(1,                            1,                            BORDER_ROUNDNESS, BORDER_ROUNDNESS);
+        graphics.fillOval(1,                            y + h - BORDER_ROUNDNESS - 1, BORDER_ROUNDNESS, BORDER_ROUNDNESS);
+        graphics.fillOval(x + w - BORDER_ROUNDNESS - 1, 1,                            BORDER_ROUNDNESS, BORDER_ROUNDNESS);
+        graphics.fillOval(x + w - BORDER_ROUNDNESS - 1, y + h - BORDER_ROUNDNESS - 1, BORDER_ROUNDNESS, BORDER_ROUNDNESS);
+
+
+
+        graphics.setColor(scheme.getLightColor());
+        graphics.drawLine(xl,        y + 2,     xr,        y + 2);
+        graphics.drawLine(x + 2,     yt,        x + 2,     yb);
+        graphics.drawLine(xl,        y + h - 3, xr,        y + h - 3);
+        graphics.drawLine(x + w - 3, yt,        x + w - 3, yb);
+        graphics.drawLine(xl,        y + 3,     xr,        y + 3);
+        graphics.drawLine(x + 3,     yt,        x + 3,     yb);
+        graphics.drawLine(xl,        y + h - 4, xr,        y + h - 4);
+        graphics.drawLine(x + w - 4, yt,        x + w - 4, yb);
+
+        graphics.fillOval(2,                           2,                            BORDER_ROUNDNESS, BORDER_ROUNDNESS);
+        graphics.fillOval(2,                           y + h - BORDER_ROUNDNESS - 2, BORDER_ROUNDNESS, BORDER_ROUNDNESS);
+        graphics.fillOval(x + w - BORDER_ROUNDNESS -2, 2,                            BORDER_ROUNDNESS, BORDER_ROUNDNESS);
+        graphics.fillOval(x + w - BORDER_ROUNDNESS -2, y + h - BORDER_ROUNDNESS - 2, BORDER_ROUNDNESS, BORDER_ROUNDNESS);
+
+
+        graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, rh);
+    }
+
+    private SubstanceColorScheme getColorScheme(Component c) {
+        JRootPane rp = c instanceof JRootPane
+                ? (JRootPane) c
+                : SwingUtilities.getRootPane(c);
+
+        SubstanceSkin skin = SubstanceCoreUtilities.getSkin(c);
+        if (skin == null) return null;
+
+        DecorationAreaType type = getRootPaneType(c);
+        return skin.getBackgroundColorScheme(type);
+    }
+
+    private SubstanceColorScheme getBorderColorScheme(Component c) {
+        JRootPane rp = c instanceof JRootPane
+                ? (JRootPane) c
+                : SwingUtilities.getRootPane(c);
+
+        SubstanceSkin skin = SubstanceCoreUtilities.getSkin(c);
+
+        if (skin == null) return null;
+
+
+        Component titlePaneComp = SubstanceLookAndFeel
+                .getTitlePaneComponent(SwingUtilities.windowForComponent(c));
+
+        return skin.getColorScheme(getRootPaneType(titlePaneComp),
+                ColorSchemeAssociationKind.BORDER, ComponentState.ENABLED);
+    }
+
 }
