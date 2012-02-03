@@ -42,8 +42,6 @@ import org.pushingpixels.substance.api.painter.highlight.ClassicHighlightPainter
 import org.pushingpixels.substance.api.painter.overlay.BottomLineOverlayPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
 
-import javax.swing.UIManager;
-
 /**
  * <code>Office Blue 2007</code> skin. This class is part of officially
  * supported API.
@@ -247,8 +245,6 @@ public class OfficeBlue2007Skin extends SubstanceSkin {
 						ColorSchemeSingleColorQuery.LIGHT });
 
 		this.highlightPainter = new ClassicHighlightPainter();
-
-        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.FALSE);
 	}
 
 	/*

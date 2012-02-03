@@ -46,8 +46,6 @@ import org.pushingpixels.substance.api.painter.overlay.TopBezelOverlayPainter;
 import org.pushingpixels.substance.api.painter.overlay.TopLineOverlayPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
 
-import javax.swing.UIManager;
-
 /**
  * <code>Gemini</code> skin. This class is part of officially supported API.
  * 
@@ -268,7 +266,6 @@ public class GeminiSkin extends SubstanceSkin {
 		this.borderPainter = new CompositeBorderPainter("Gemini",
 				outerBorderPainter, innerBorderPainter);
 		this.highlightBorderPainter = new ClassicBorderPainter();
-        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.FALSE);
 	}
 
 	/**

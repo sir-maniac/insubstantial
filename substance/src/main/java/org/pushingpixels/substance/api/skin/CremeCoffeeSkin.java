@@ -40,8 +40,6 @@ import org.pushingpixels.substance.api.painter.fill.MatteFillPainter;
 import org.pushingpixels.substance.api.painter.highlight.ClassicHighlightPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
 
-import javax.swing.UIManager;
-
 /**
  * <code>Creme Coffee</code> skin. This class is part of officially supported
  * API.
@@ -96,7 +94,6 @@ public class CremeCoffeeSkin extends SubstanceSkin {
 								return scheme.tint(0.8f);
 							}
 						}));
-        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.TRUE);
 	}
 
 	/*

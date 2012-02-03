@@ -41,8 +41,6 @@ import org.pushingpixels.substance.api.painter.overlay.BottomLineOverlayPainter;
 import org.pushingpixels.substance.api.painter.overlay.TopLineOverlayPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
 
-import javax.swing.UIManager;
-
 /**
  * <code>Graphite Glass</code> skin. This class is part of officially supported
  * API.
@@ -195,7 +193,6 @@ public class GraphiteGlassSkin extends SubstanceSkin {
 							}
 						}));
 		this.highlightBorderPainter = new ClassicBorderPainter();
-        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.FALSE);
 	}
 
 	/*

@@ -40,8 +40,6 @@ import org.pushingpixels.substance.api.painter.fill.ClassicFillPainter;
 import org.pushingpixels.substance.api.painter.highlight.ClassicHighlightPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
 
-import javax.swing.UIManager;
-
 /**
  * <code>Sahara</code> skin. This class is part of officially supported API.
  * 
@@ -87,7 +85,6 @@ public class SaharaSkin extends SubstanceSkin {
 		this.borderPainter = new ClassicBorderPainter();
 		this.decorationPainter = new ClassicDecorationPainter();
 		this.highlightPainter = new ClassicHighlightPainter();
-        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.TRUE);
 	}
 
 	/*

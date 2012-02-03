@@ -40,8 +40,6 @@ import org.pushingpixels.substance.api.painter.fill.MatteFillPainter;
 import org.pushingpixels.substance.api.painter.highlight.ClassicHighlightPainter;
 import org.pushingpixels.substance.api.shaper.StandardButtonShaper;
 
-import javax.swing.UIManager;
-
 /**
  * <code>Mist Aqua</code> skin. This class is experimental.
  * 
@@ -90,7 +88,6 @@ public class MistAquaSkin extends SubstanceSkin {
 
 		this.decorationPainter = new MatteDecorationPainter();
 		this.highlightPainter = new ClassicHighlightPainter();
-        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.TRUE);
 	}
 
 	/*

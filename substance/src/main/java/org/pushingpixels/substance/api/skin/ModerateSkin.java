@@ -39,8 +39,6 @@ import org.pushingpixels.substance.api.painter.fill.GlassFillPainter;
 import org.pushingpixels.substance.api.painter.highlight.ClassicHighlightPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
 
-import javax.swing.UIManager;
-
 /**
  * <code>Moderate</code> skin. This class is part of officially supported API.
  * 
@@ -89,7 +87,6 @@ public class ModerateSkin extends SubstanceSkin {
 		this.decorationPainter = new ClassicDecorationPainter();
 		this.borderPainter = new ClassicBorderPainter();
 		this.highlightPainter = new ClassicHighlightPainter();
-        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.TRUE);
 	}
 
 	/*

@@ -40,8 +40,6 @@ import org.pushingpixels.substance.api.painter.fill.ClassicFillPainter;
 import org.pushingpixels.substance.api.painter.highlight.ClassicHighlightPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
 
-import javax.swing.UIManager;
-
 /**
  * <code>Business Blue Steel</code> skin. This class is part of officially
  * supported API.
@@ -113,7 +111,6 @@ public class BusinessBlueSteelSkin extends SubstanceSkin {
 
 		this.highlightPainter = new ClassicHighlightPainter();
 		this.borderPainter = new ClassicBorderPainter();
-        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.FALSE);
 	}
 
 	/*

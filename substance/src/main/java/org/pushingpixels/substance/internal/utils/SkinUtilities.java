@@ -1297,6 +1297,9 @@ public class SkinUtilities {
 
 				"Viewport.foreground", foregroundColor,
 
+                SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE,
+                skin.isRegisteredAsDecorationArea(DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE),
+
 		};
 		table.putDefaults(defaults);
 

@@ -40,8 +40,6 @@ import org.pushingpixels.substance.api.painter.fill.ClassicFillPainter;
 import org.pushingpixels.substance.api.painter.highlight.ClassicHighlightPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
 
-import javax.swing.UIManager;
-
 /**
  * <code>Business</code> skin. This class is part of officially supported API.
  * 
@@ -120,7 +118,6 @@ public class BusinessSkin extends SubstanceSkin {
 		this.decorationPainter = decorationPainter;
 
 		this.highlightPainter = new ClassicHighlightPainter();
-        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.TRUE);
 	}
 
 	/*

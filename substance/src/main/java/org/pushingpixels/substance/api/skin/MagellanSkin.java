@@ -46,8 +46,6 @@ import org.pushingpixels.substance.api.painter.overlay.TopBezelOverlayPainter;
 import org.pushingpixels.substance.api.painter.overlay.TopLineOverlayPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
 
-import javax.swing.UIManager;
-
 /**
  * <code>Magellan</code> skin. This class is part of officially supported API.
  * 
@@ -287,6 +285,5 @@ public class MagellanSkin extends SubstanceSkin {
 		this.highlightPainter = new ClassicHighlightPainter();
 		this.decorationPainter = new MatteDecorationPainter();
 		this.buttonShaper = new ClassicButtonShaper();
-        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.FALSE);
 	}
 }

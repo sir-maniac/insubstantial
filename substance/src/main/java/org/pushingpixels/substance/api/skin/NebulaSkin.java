@@ -41,8 +41,6 @@ import org.pushingpixels.substance.api.painter.overlay.BottomLineOverlayPainter;
 import org.pushingpixels.substance.api.painter.overlay.TopShadowOverlayPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
 
-import javax.swing.UIManager;
-
 /**
  * <code>Nebula</code> skin. This class is part of officially supported API.
  * 
@@ -175,7 +173,6 @@ public class NebulaSkin extends SubstanceSkin {
 
 		this.highlightPainter = new ClassicHighlightPainter();
 		this.borderPainter = new FlatBorderPainter();
-        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.FALSE);
 	}
 
 	/*

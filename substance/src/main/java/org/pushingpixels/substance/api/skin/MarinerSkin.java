@@ -44,8 +44,6 @@ import org.pushingpixels.substance.api.watermark.SubstanceCrosshatchWatermark;
 import org.pushingpixels.substance.api.watermark.SubstanceWatermark;
 import org.pushingpixels.substance.internal.utils.SubstanceCoreUtilities;
 
-import javax.swing.UIManager;
-
 /**
  * <code>Mariner</code> skin. This class is part of officially supported API.
  * 
@@ -268,7 +266,6 @@ public class MarinerSkin extends SubstanceSkin {
 		this.highlightBorderPainter = new ClassicBorderPainter();
 
 		this.watermarkScheme = schemes.get("Mariner Watermark");
-        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.FALSE);
 	}
 
 	/*
@@ -372,18 +369,18 @@ public class MarinerSkin extends SubstanceSkin {
 		private boolean drawWatermarkImage(SubstanceSkin skin,
 				Graphics2D graphics, int x, int y, int width, int height,
 				boolean isPreview) {
-			Color stampColorDark = null;
-			Color stampColorAll = null;
-			Color stampColorLight = null;
+			Color stampColorDark;
+			Color stampColorAll;
+			//Color stampColorLight = null;
 			SubstanceColorScheme scheme = skin.getWatermarkColorScheme();
 			if (isPreview) {
 				stampColorDark = scheme.isDark() ? Color.white : Color.black;
 				stampColorAll = Color.lightGray;
-				stampColorLight = scheme.isDark() ? Color.black : Color.white;
+				//stampColorLight = scheme.isDark() ? Color.black : Color.white;
 			} else {
 				stampColorDark = scheme.getWatermarkDarkColor();
 				stampColorAll = scheme.getWatermarkStampColor();
-				stampColorLight = scheme.getWatermarkLightColor();
+				//stampColorLight = scheme.getWatermarkLightColor();
 			}
 
 			graphics.setColor(stampColorAll);

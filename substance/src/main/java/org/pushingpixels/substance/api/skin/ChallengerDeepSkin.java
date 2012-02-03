@@ -37,8 +37,6 @@ import org.pushingpixels.substance.api.painter.fill.GlassFillPainter;
 import org.pushingpixels.substance.api.painter.highlight.ClassicHighlightPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
 
-import javax.swing.UIManager;
-
 /**
  * <code>Challenger Deep</code> skin. This class is part of officially supported
  * API.
@@ -80,7 +78,6 @@ public class ChallengerDeepSkin extends SubstanceSkin {
 		this.decorationPainter = new ArcDecorationPainter();
 		this.highlightPainter = new ClassicHighlightPainter();
 		this.borderPainter = new GlassBorderPainter();
-        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.FALSE);
 	}
 
 	/*

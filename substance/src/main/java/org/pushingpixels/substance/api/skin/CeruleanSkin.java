@@ -36,7 +36,6 @@ import org.pushingpixels.substance.api.painter.overlay.BottomLineOverlayPainter;
 import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
 import org.pushingpixels.substance.internal.colorscheme.BlendBiColorScheme;
 
-import javax.swing.UIManager;
 import java.awt.Color;
 
 /**
@@ -181,7 +180,6 @@ public class CeruleanSkin extends SubstanceSkin {
 
         this.highlightPainter = new GlassHighlightPainter();
         this.borderPainter = new GlassBorderPainter();
-        UIManager.put(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, Boolean.TRUE);
     }
 
     /*
