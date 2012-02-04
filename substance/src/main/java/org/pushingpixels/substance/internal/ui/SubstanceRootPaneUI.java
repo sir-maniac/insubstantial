@@ -1662,11 +1662,15 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
         public void componentResized(ComponentEvent e) {
             if (e.getComponent() instanceof Window) {
                 Window w = (Window) e.getComponent();
-                if ((w instanceof RootPaneContainer)
-                        && (((RootPaneContainer)w).getRootPane().getWindowDecorationStyle() == JRootPane.NONE))
-                {
-                    // special case, mostly for the splash
-                    return;
+                if (w instanceof RootPaneContainer) {
+                    JRootPane jrp = ((RootPaneContainer)w).getRootPane();
+                    if ((jrp.getWindowDecorationStyle() == JRootPane.NONE)
+                        || (!SubstanceCoreUtilities.isRoundedCorners(jrp)))
+                    {
+                        // special case, for undecorated windows and maximized windows
+                        AWTUtilities.setWindowShape(w, null);
+                        return;
+                    }
                 }
                 try {
                     // only round the corners if the screen is reasonably sized, as in

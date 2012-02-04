@@ -516,6 +516,18 @@ public class SubstanceCoreUtilities {
             }
         }
         
+        // check for maximized windows
+        if (round) {
+            Component p = c.getParent();
+            if (p instanceof Frame) {
+                if ((((Frame)p).getExtendedState() & Frame.MAXIMIZED_BOTH) == Frame.MAXIMIZED_BOTH) {
+                    round = false;
+                }
+            } else if (c instanceof JInternalFrame) {
+                round = !(((JInternalFrame)c).isMaximum());
+            }
+        }
+        
         return round;
     }
 
