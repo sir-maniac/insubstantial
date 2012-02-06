@@ -91,10 +91,7 @@ public class SubstanceInternalFrameTitlePane extends
 	public SubstanceInternalFrameTitlePane(JInternalFrame f) {
 		super(f);
 		this.setToolTipText(f.getTitle());
-		SubstanceLookAndFeel.setDecorationType(this,
-                SubstanceCoreUtilities.isPaintRootPaneActivated(f.getRootPane())
-				    ? DecorationAreaType.SECONDARY_TITLE_PANE
-                    : DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE);
+		SubstanceLookAndFeel.setDecorationType(this,DecorationAreaType.SECONDARY_TITLE_PANE);
 	}
 
 	/*
@@ -216,19 +213,6 @@ public class SubstanceInternalFrameTitlePane extends
      *            if <code>true</code>, the window is in active state.
      */
     public void setActive(boolean isActive) {
-        if (UIManager.getBoolean(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE)) {
-            DecorationAreaType type = SubstanceLookAndFeel.getDecorationType(this);
-            if (isActive) {
-                if (type == DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE) {
-                    type = DecorationAreaType.SECONDARY_TITLE_PANE;
-                }
-            } else {
-                if (type == DecorationAreaType.SECONDARY_TITLE_PANE) {
-                    type = DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE;
-                }
-            }
-            SubstanceLookAndFeel.setDecorationType(this, type);
-        }
         this.getRootPane().repaint();
     }
 
@@ -251,16 +235,18 @@ public class SubstanceInternalFrameTitlePane extends
 	}
 
     public DecorationAreaType getThisDecorationType() {
-        // clamp it to active or inactive
         DecorationAreaType dat = SubstanceLookAndFeel.getDecorationType(this);
-        if ((dat == DecorationAreaType.PRIMARY_TITLE_PANE)
-             || (dat == DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE)
-             || (dat == DecorationAreaType.SECONDARY_TITLE_PANE)
-             || (dat == DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE))
-        {
-            return dat;
+        if (dat == DecorationAreaType.PRIMARY_TITLE_PANE) {
+            return SubstanceCoreUtilities.isPaintRootPaneActivated(frame.getRootPane())
+                    ? DecorationAreaType.PRIMARY_TITLE_PANE
+                    : DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE;
+        } else if (dat == DecorationAreaType.SECONDARY_TITLE_PANE) {
+            return SubstanceCoreUtilities.isPaintRootPaneActivated(frame.getRootPane())
+                    ? DecorationAreaType.SECONDARY_TITLE_PANE
+                    : DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE;
+
         } else {
-            return DecorationAreaType.SECONDARY_TITLE_PANE;
+            return dat;
         }
 
     }
@@ -278,6 +264,9 @@ public class SubstanceInternalFrameTitlePane extends
 		// this.paintPalette(g);
 		// return;
 		// }
+
+        DecorationAreaType decorationType = getThisDecorationType();
+
 		Graphics2D graphics = (Graphics2D) g.create();
 		// Desktop icon is translucent.
 		final float coef = (this.getParent() instanceof JDesktopIcon) ? 0.6f
@@ -292,7 +281,7 @@ public class SubstanceInternalFrameTitlePane extends
 		int height = this.getHeight() + 2;
 
 		SubstanceColorScheme scheme = SubstanceCoreUtilities
-				.getSkin(this.frame).getEnabledColorScheme(getThisDecorationType());
+				.getSkin(this.frame).getEnabledColorScheme(decorationType);
 		JInternalFrame hostFrame = (JInternalFrame) SwingUtilities
 				.getAncestorOfClass(JInternalFrame.class, this);
 		JComponent hostForColorization = hostFrame;
@@ -317,7 +306,7 @@ public class SubstanceInternalFrameTitlePane extends
 		String theTitle = this.frame.getTitle();
 
 		// offset of border
-		int xOffset = 0;
+		int xOffset;
 		int leftEnd;
 		int rightEnd;
 
@@ -413,7 +402,7 @@ public class SubstanceInternalFrameTitlePane extends
 		}
 
 		BackgroundPaintingUtils.update(graphics,
-				SubstanceInternalFrameTitlePane.this, false);
+				SubstanceInternalFrameTitlePane.this, false, decorationType);
 		// DecorationPainterUtils.paintDecorationBackground(graphics,
 		// SubstanceInternalFrameTitlePane.this, false);
 
@@ -727,7 +716,7 @@ public class SubstanceInternalFrameTitlePane extends
 			}
 
 			// Compute height.
-			int height = 0;
+			int height;
 			// if (isPalette) {
 			// height = paletteTitleHeight;
 			// } else {
@@ -753,7 +742,7 @@ public class SubstanceInternalFrameTitlePane extends
 
 			int w = getWidth();
 			int x = leftToRight ? w : 0;
-			int y = 2;
+			int y;
 			int spacing;
 
 			// assumes all buttons have the same dimensions

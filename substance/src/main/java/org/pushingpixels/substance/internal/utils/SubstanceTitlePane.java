@@ -1012,26 +1012,13 @@ public class SubstanceTitlePane extends JComponent {
 		return new TitlePaneLayout();
 	}
 
-	/**
+    /**
 	 * Updates state dependant upon the Window's active state.
 	 *
 	 * @param isActive
 	 *            if <code>true</code>, the window is in active state.
 	 */
 	void setActive(boolean isActive) {
-        if (UIManager.getBoolean(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE)) {
-            DecorationAreaType type = SubstanceLookAndFeel.getDecorationType(this);
-            if (isActive) {
-                if (type == DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE) {
-                    type = DecorationAreaType.PRIMARY_TITLE_PANE;
-                }
-            } else {
-                if (type == DecorationAreaType.PRIMARY_TITLE_PANE) {
-                    type = DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE;
-                }
-            }
-            SubstanceLookAndFeel.setDecorationType(this, type);
-        }
 		this.getRootPane().repaint();
 	}
 
@@ -1221,16 +1208,17 @@ public class SubstanceTitlePane extends JComponent {
 	}
 
     public DecorationAreaType getThisDecorationType() {
-        // clamp it to active or inactive
         DecorationAreaType dat = SubstanceLookAndFeel.getDecorationType(this);
-        if ((dat == DecorationAreaType.PRIMARY_TITLE_PANE)
-             || (dat == DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE)
-             || (dat == DecorationAreaType.SECONDARY_TITLE_PANE)
-             || (dat == DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE))
-        {
-            return dat;
+        if (dat == DecorationAreaType.PRIMARY_TITLE_PANE) {
+            return SubstanceCoreUtilities.isPaintRootPaneActivated(getRootPane())
+                    ? DecorationAreaType.PRIMARY_TITLE_PANE
+                    : DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE;
+        } else if (dat == DecorationAreaType.SECONDARY_TITLE_PANE) {
+                return SubstanceCoreUtilities.isPaintRootPaneActivated(getRootPane())
+                        ? DecorationAreaType.SECONDARY_TITLE_PANE
+                        : DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE;
         } else {
-            return DecorationAreaType.PRIMARY_TITLE_PANE;
+            return dat;
         }
 
     }
@@ -1262,8 +1250,9 @@ public class SubstanceTitlePane extends JComponent {
 					.traceSubstanceApiUsage(this,
 							"Substance delegate used when Substance is not the current LAF");
 		}
+        DecorationAreaType decorationType = getThisDecorationType();
 		SubstanceColorScheme scheme = skin
-				.getEnabledColorScheme(getThisDecorationType());
+				.getEnabledColorScheme(decorationType);
 
 		int xOffset = 0;
 		String theTitle = this.getTitle();
@@ -1294,7 +1283,7 @@ public class SubstanceTitlePane extends JComponent {
 		graphics.setFont(font);
 
 		BackgroundPaintingUtils
-				.update(graphics, SubstanceTitlePane.this, false);
+				.update(graphics, SubstanceTitlePane.this, false, decorationType);
 		// DecorationPainterUtils.paintDecorationBackground(graphics,
 		// SubstanceTitlePane.this, false);
 

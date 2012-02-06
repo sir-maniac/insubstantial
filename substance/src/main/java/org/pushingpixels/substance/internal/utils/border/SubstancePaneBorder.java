@@ -61,8 +61,7 @@ public class SubstancePaneBorder extends AbstractBorder implements UIResource {
 			SubstancePaneBorder.BORDER_THICKNESS,
 			SubstancePaneBorder.BORDER_THICKNESS);
 
-    public static DecorationAreaType getRootPaneType(Component c) {
-        JRootPane rootPane = SwingUtilities.getRootPane(c);
+    public static DecorationAreaType getRootPaneType(JRootPane rootPane) {
         DecorationAreaType type = SubstanceLookAndFeel.getDecorationType(rootPane);
         if ((type == null) || (type == DecorationAreaType.NONE)) {
             if (SubstanceCoreUtilities.isPaintRootPaneActivated(rootPane)) {
@@ -77,6 +76,14 @@ public class SubstancePaneBorder extends AbstractBorder implements UIResource {
                 } else  {
                     type = DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE;
                 }
+            }
+        } else if (type == DecorationAreaType.PRIMARY_TITLE_PANE) {
+            if (!SubstanceCoreUtilities.isPaintRootPaneActivated(rootPane)) {
+                type =DecorationAreaType.PRIMARY_TITLE_PANE_INACTIVE;
+            }
+        } else if (type == DecorationAreaType.SECONDARY_TITLE_PANE) {
+            if (!SubstanceCoreUtilities.isPaintRootPaneActivated(rootPane)) {
+                type =DecorationAreaType.SECONDARY_TITLE_PANE_INACTIVE;
             }
         }
         return type;
@@ -104,7 +111,7 @@ public class SubstancePaneBorder extends AbstractBorder implements UIResource {
 
 
 		SubstanceColorScheme scheme = skin
-				.getBackgroundColorScheme(getRootPaneType(c));
+				.getBackgroundColorScheme(getRootPaneType(SwingUtilities.getRootPane(c)));
 		Component titlePaneComp = SubstanceLookAndFeel
 				.getTitlePaneComponent(SwingUtilities.windowForComponent(c));
 		SubstanceColorScheme borderScheme = skin.getColorScheme(titlePaneComp,
@@ -245,7 +252,7 @@ public class SubstancePaneBorder extends AbstractBorder implements UIResource {
         SubstanceSkin skin = SubstanceCoreUtilities.getSkin(c);
         if (skin == null) return null;
 
-        DecorationAreaType type = getRootPaneType(c);
+        DecorationAreaType type = getRootPaneType(rp);
         return skin.getBackgroundColorScheme(type);
     }
 
@@ -262,7 +269,7 @@ public class SubstancePaneBorder extends AbstractBorder implements UIResource {
         Component titlePaneComp = SubstanceLookAndFeel
                 .getTitlePaneComponent(SwingUtilities.windowForComponent(c));
 
-        return skin.getColorScheme(getRootPaneType(titlePaneComp),
+        return skin.getColorScheme(getRootPaneType(rp),
                 ColorSchemeAssociationKind.BORDER, ComponentState.ENABLED);
     }
 

@@ -50,7 +50,6 @@ import org.pushingpixels.substance.api.SubstanceConstants.TabCloseKind;
 import org.pushingpixels.substance.api.fonts.FontSet;
 import org.pushingpixels.substance.api.skin.SkinChangeListener;
 import org.pushingpixels.substance.api.skin.SubstanceCeruleanLookAndFeel;
-import org.pushingpixels.substance.api.skin.SubstanceModerateLookAndFeel;
 import org.pushingpixels.substance.api.tabbed.*;
 
 import test.check.*;
@@ -156,7 +155,7 @@ public class Check extends JFrame {
 			mainTabPreviewPainter = new MyMainTabPreviewPainter();
 			jtp.putClientProperty(LafWidget.TABBED_PANE_PREVIEW_PAINTER,
 					mainTabPreviewPainter);
-		} catch (Throwable e) {
+		} catch (Throwable ignored) {
 		}
 		jtp.getModel().addChangeListener(new TabSwitchListener());
 
@@ -296,7 +295,7 @@ public class Check extends JFrame {
 			@Override
             public String getCloseButtonTooltip(JTabbedPane tabbedPane,
 					int tabIndex) {
-				StringBuffer result = new StringBuffer();
+				StringBuilder result = new StringBuilder();
 				result.append("<html><body>");
 				result.append("Mouse click closes <b>"
 						+ tabbedPane.getTitleAt(tabIndex) + "</b> tab");
@@ -315,7 +314,7 @@ public class Check extends JFrame {
 					SubstanceLookAndFeel.TABBED_PANE_CLOSE_CALLBACK,
 					closeCallback);
 			jtp.addTab("Tabs", getIcon("JTabbedPaneColor16"), tp);
-		} catch (NoClassDefFoundError ncdfe) {
+		} catch (NoClassDefFoundError ignored) {
 		}
 
 		jtp.addTab("Split", new SplitPanel());
@@ -330,7 +329,7 @@ public class Check extends JFrame {
 
 		try {
 			jtp.addTab("List", getIcon("JListColor16"), new ListPanel());
-		} catch (NoClassDefFoundError ncdfe) {
+		} catch (NoClassDefFoundError ignored) {
 		}
 
 		jtp.addTab("Slider", getIcon("JSliderColor16"), new SliderPanel());
@@ -446,7 +445,7 @@ public class Check extends JFrame {
 			@Override
             public String getCloseButtonTooltip(JTabbedPane tabbedPane,
 					int tabIndex) {
-				StringBuffer result = new StringBuffer();
+				StringBuilder result = new StringBuilder();
 				result.append("<html><body>");
 				result.append("Mouse click closes <b>"
 						+ tabbedPane.getTitleAt(tabIndex) + "</b> tab");
@@ -571,7 +570,7 @@ public class Check extends JFrame {
 				}
 				try {
 					br.close();
-				} catch (IOException ioe) {
+				} catch (IOException ignored) {
 				}
 			}
 			if (substanceVer != null) {
@@ -581,7 +580,7 @@ public class Check extends JFrame {
 				cStatusLabel.setFixedWidth(300);
 				statusBar.add(statusLabel, cStatusLabel);
 			}
-		} catch (IOException ioe) {
+		} catch (IOException ignored) {
 		}
 
 		JXStatusBar.Constraint c2 = new JXStatusBar.Constraint(
@@ -680,6 +679,7 @@ public class Check extends JFrame {
 				// Boolean.TRUE);
 
 				Check c = new Check();
+                c.getRootPane().putClientProperty(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, false);
 				c.addComponentListener(new ComponentAdapter() {
 					@Override
 					public void componentResized(ComponentEvent e) {

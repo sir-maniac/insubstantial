@@ -80,6 +80,31 @@ public class BackgroundPaintingUtils {
 	 *            If <code>true</code>, the painting of background is enforced.
 	 */
 	public static void update(Graphics g, Component c, boolean force) {
+        update(g, c, force, null);
+    }
+        
+    /**
+     * Updates the background of the specified component on the specified
+     * graphic context. The background is not painted when the
+     * <code>force</code> parameter is <code>false</code> and at least one of
+     * the following conditions holds:
+     * <ul>
+     * <li>The component is in a cell renderer.</li>
+     * <li>The component is not showing on the screen.</li>
+     * <li>The component is in the preview mode.</li>
+     * </ul>
+     *
+     * @param g
+     *            Graphic context.
+     * @param c
+     *            Component.
+     * @param force
+     *            If <code>true</code>, the painting of background is enforced.
+     * @param decorationType
+     *            The decoration type to use.  A <code>null</code> value will result in
+     *            the component being asked.
+     */
+	public static void update(Graphics g, Component c, boolean force, DecorationAreaType decorationType) {
 		// failsafe for LAF change
 		if (!SubstanceLookAndFeel.isCurrentLookAndFeel()) {
 			return;
@@ -105,15 +130,17 @@ public class BackgroundPaintingUtils {
 				RenderingHints.VALUE_ANTIALIAS_OFF);
 		graphics.setComposite(LafWidgetUtilities.getAlphaComposite(c, g));
 
-		DecorationAreaType decorationType = SubstanceLookAndFeel
+        if (decorationType == null) {
+		    decorationType = SubstanceLookAndFeel
 				.getDecorationType(c);
+        }
 		SubstanceSkin skin = SubstanceCoreUtilities.getSkin(c);
 		boolean isShowing = c.isShowing();
 		if (isShowing && (decorationType != DecorationAreaType.NONE)
 				&& (skin.isRegisteredAsDecorationArea(decorationType))) {
 			// use the decoration painter
 			DecorationPainterUtils
-					.paintDecorationBackground(graphics, c, force);
+					.paintDecorationBackground(graphics, c, decorationType, force);
 			// and add overlays
 			OverlayPainterUtils
 					.paintOverlays(graphics, c, skin, decorationType);

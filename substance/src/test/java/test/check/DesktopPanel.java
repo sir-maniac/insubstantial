@@ -136,6 +136,10 @@ public class DesktopPanel extends ControllablePanel {
         isRound.setEnabled(roundable);
 		builder.append("", isRound);
 
+		final JCheckBox isAlwaysActive = new JCheckBox("Always Active Caption");
+        isAlwaysActive.setSelected(false);
+		builder.append("", isAlwaysActive);
+
 		JButton bt = new JButton("Add");
 		bt.addActionListener(new ActionListener() {
 			@Override
@@ -229,6 +233,10 @@ public class DesktopPanel extends ControllablePanel {
 				jif.setIconifiable(isIconifiable.isSelected());
 				jif.setResizable(isResizable.isSelected());
                 jif.putClientProperty(SubstanceLookAndFeel.WINDOW_ROUNDED_CORNERS, isRound.isSelected());
+                if (isAlwaysActive.isSelected()) {
+                    jif.getRootPane().putClientProperty(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE, false);
+                }
+                        
 
 				JPanel buttons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 				final JCheckBox isModified = new JCheckBox("modified");

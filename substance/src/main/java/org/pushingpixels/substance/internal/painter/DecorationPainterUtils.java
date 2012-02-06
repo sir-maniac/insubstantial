@@ -172,7 +172,7 @@ public class DecorationPainterUtils {
 	 *            enforced. #see
 	 *            {@link #paintDecorationBackground(Graphics, Component, boolean)}
 	 */
-	private static void paintDecorationBackground(Graphics g, Component c,
+	public static void paintDecorationBackground(Graphics g, Component c,
 			DecorationAreaType decorationType, boolean force) {
 		// System.out.println("Painting " + c.getClass().getSimpleName());
 		boolean isInCellRenderer = (SwingUtilities.getAncestorOfClass(

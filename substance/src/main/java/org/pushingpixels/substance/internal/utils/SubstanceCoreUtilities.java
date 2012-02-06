@@ -443,20 +443,32 @@ public class SubstanceCoreUtilities {
 				.getClientProperty(SubstanceLookAndFeel.WINDOW_MODIFIED));
 	}
 
-    public static boolean isPaintRootPaneActivated(JRootPane rp) {
+    public static boolean isRootPaneAutoDeactivate(JRootPane rp) {
         if (!UIManager.getBoolean(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE)) {
-            return true;
+            return false;
         }
         if (rp == null) {
             return false;
         }
-        Component c = rp.getParent();
-        if (c instanceof JInternalFrame) {
-            return ((JInternalFrame)c).isSelected();
-        } else if (c instanceof Window) {
-            return ((Window)c).isActive();
-        } else {
+        Object paneSpecific = rp.getClientProperty(SubstanceLookAndFeel.WINDOW_AUTO_DEACTIVATE);
+        if (paneSpecific instanceof Boolean && !((Boolean)paneSpecific)) {
             return false;
+        }
+        return true;
+    }
+
+    public static boolean isPaintRootPaneActivated(JRootPane rp) {
+        if (isRootPaneAutoDeactivate(rp)) {
+            Component c = rp.getParent();
+            if (c instanceof JInternalFrame) {
+                return ((JInternalFrame)c).isSelected();
+            } else if (c instanceof Window) {
+                return ((Window)c).isActive();
+            } else {
+                return false;
+            }
+        } else {
+            return true;
         }
     }
 
