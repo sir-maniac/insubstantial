@@ -166,6 +166,18 @@ artifacts {
   archives testJar
 }
 
+uploadPublished {
+  repositories {
+    mavenDeployer {
+      configurePOM(pom)
+    }
+  }
+}
+
+install {
+  configurePOM(repositories.mavenInstaller.pom)
+}
+
 private def configurePOM(def pom) {
   configureBasePom(pom)
   pom.project {
@@ -190,13 +202,13 @@ private def configurePOM(def pom) {
 
   // deal with a gradle bug where transitive=false is not passed into the generated POM
   pom.whenConfigured {cpom ->
-    cpom.dependencies.each {it
-      switch (it.artifactId) {
+    cpom.dependencies.each {dep ->
+      switch (dep.artifactId) {
         case 'jcip-annotations':
-          it.scope = 'provided'
+          dep.scope = 'provided'
           break;
         case 'trident':
-          it.classifier = 'swing'
+          dep.classifier = 'swing'
           break
       }
     }
