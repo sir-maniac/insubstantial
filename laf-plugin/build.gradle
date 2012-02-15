@@ -10,6 +10,18 @@ jar {
   }
 }
 
+uploadPublished {
+  repositories {
+    mavenDeployer {
+      configurePOM(pom)
+    }
+  }
+}
+
+install {
+  configurePOM(repositories.mavenInstaller.pom)
+}
+
 private def configurePOM(def pom) {
   configureBasePom(pom)
   pom.project {
