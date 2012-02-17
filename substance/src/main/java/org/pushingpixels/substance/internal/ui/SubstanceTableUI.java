@@ -1011,8 +1011,10 @@ public class SubstanceTableUI extends BasicTableUI implements
 					column);
 			boolean isSubstanceRendererComponent = isSubstanceDefaultRenderer(rendererComponent);
 			if (isSubstanceRenderer && !isSubstanceRendererComponent) {
-				throw new IllegalArgumentException(
-						"Renderer extends the SubstanceDefaultTableCellRenderer but does not return one in its getTableCellRendererComponent() method");
+                if (!Boolean.getBoolean("insubstantial.looseTableCellRenderers")) {
+                    throw new IllegalArgumentException(
+                            "Renderer extends the SubstanceDefaultTableCellRenderer but does not return one in its getTableCellRendererComponent() method");
+                }
 			}
 
 			if (!isSubstanceRenderer) {
@@ -1776,7 +1778,8 @@ public class SubstanceTableUI extends BasicTableUI implements
 		 */
 		@Override
 		public int hashCode() {
-			return (this.row ^ (this.row >>> 32))
+            //noinspection ShiftOutOfRange
+            return (this.row ^ (this.row >>> 32))
 					& (this.column ^ (this.column >>> 32));
 		}
 
