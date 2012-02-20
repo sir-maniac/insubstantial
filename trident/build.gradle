@@ -124,6 +124,10 @@ artifacts {
   archives androidJar
   archives swingJar
   archives swtJar
+  distro baseJar
+  distro androidJar
+  distro swingJar
+  distro swtJar
 }
 
 
