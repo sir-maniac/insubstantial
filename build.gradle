@@ -56,6 +56,7 @@ subprojects {
       checkPasswords()
       repositories {
         mavenDeployer {
+          beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
           snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
             authentication userName: sonatypeUsername, password: sonatypePassword
           }
@@ -122,6 +123,9 @@ def checkPasswords() {
     if (!sonatypePassword || !sonatypeUsername) {
       console.printf("\n\nSonatype upload aborted")
       subprojects {
+        signing {
+          enabled = false
+        }
         uploadPublished {
           enabled = false
         }

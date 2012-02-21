@@ -21,7 +21,7 @@ dependencies {
   compile group: 'org.swinglabs', name: 'swingx-core', version: swingXVersion
   testCompile project(":substance").sourceSets.test.classes
   testCompile group: 'com.jgoodies', name: 'forms', version: '1.2.0'
-  toolsCompile group: 'com.github.insubstantial', name: 'substance', version: version, ext: 'tools'
+  toolsCompile project(":substance").sourceSets.tools.classes
   toolsCompile group: 'org.easytesting', name: 'fest-swing', version: '1.2.1'
 }
 
