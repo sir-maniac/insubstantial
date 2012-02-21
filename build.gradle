@@ -24,6 +24,7 @@ subprojects {
   }
 
   signing {
+    required = { gradle.taskGraph.hasTask(uploadArchives) && !version.endsWith("SNAPSHOT") }
     sign configurations.archives
   }
 
