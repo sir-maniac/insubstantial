@@ -2,7 +2,7 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 
 group = 'com.github.insubstantial'
-version = '7.1'
+version = '7.2-SNAPSHOT'
 
 subprojects {
   apply plugin: 'java'
@@ -10,8 +10,8 @@ subprojects {
   apply plugin: 'signing'
 
   group = 'com.github.insubstantial'
-  version = '7.1'
-  versionKey = "7.1-triumphant"
+  version = '7.2-SNAPSHOT'
+  versionKey = "7.2-magnificent"
   release = "internal"
 
   sourceCompatibility = 1.6
