@@ -213,7 +213,9 @@ public class SubstanceInternalFrameTitlePane extends
      *            if <code>true</code>, the window is in active state.
      */
     public void setActive(boolean isActive) {
-        this.getRootPane().repaint();
+        if (getRootPane() != null) {
+            this.getRootPane().repaint();
+        }
     }
 
 	/*
