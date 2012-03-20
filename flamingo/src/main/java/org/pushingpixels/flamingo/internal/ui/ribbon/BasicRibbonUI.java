@@ -2025,6 +2025,7 @@ public class BasicRibbonUI extends RibbonUI {
 
             if (helpListener != null) {
                 this.helpButton = new JCommandButton("", this.ribbon.getHelpIcon());
+                this.helpButton.setActionRichTooltip(this.ribbon.getHelpRichTooltip());
                 this.helpButton.setDisplayState(CommandButtonDisplayState.SMALL);
                 this.helpButton.setCommandButtonKind(CommandButtonKind.ACTION_ONLY);
                 this.helpButton.getActionModel().addActionListener(helpListener);
