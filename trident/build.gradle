@@ -21,7 +21,7 @@ jar {
 task testJar(type: Jar) {
   classifier = 'tst'
 
-  from sourceSets.test.classes
+  from sourceSets.test.output
 
   manifest {
     attributes(
@@ -37,7 +37,7 @@ stripper = {part -> {it -> it - part}}
 task baseJar(type: Jar) {
   classifier = 'base'
 
-  from sourceSets.main.classes
+  from sourceSets.main.output
   exclude 'org/pushingpixels/trident/android/**'
   exclude 'org/pushingpixels/trident/swing/**'
   exclude 'org/pushingpixels/trident/swt/**'
@@ -59,7 +59,7 @@ task baseJar(type: Jar) {
 task androidJar(type: Jar) {
   classifier = 'android'
 
-  from sourceSets.main.classes
+  from sourceSets.main.output
   exclude 'org/pushingpixels/trident/swing/**'
   exclude 'org/pushingpixels/trident/swt/**'
   exclude 'META-INF/trident-plugin.properties'
@@ -80,7 +80,7 @@ task androidJar(type: Jar) {
 task swingJar(type: Jar) {
   classifier = 'swing'
 
-  from sourceSets.main.classes
+  from sourceSets.main.output
   exclude 'org/pushingpixels/trident/android/**'
   exclude 'org/pushingpixels/trident/swt/**'
   exclude 'META-INF/trident-plugin.properties'
@@ -101,7 +101,7 @@ task swingJar(type: Jar) {
 task swtJar(type: Jar) {
   classifier = 'swt'
 
-  from sourceSets.main.classes
+  from sourceSets.main.output
   exclude 'org/pushingpixels/trident/android/**'
   exclude 'org/pushingpixels/trident/swing/**'
   exclude 'META-INF/trident-plugin.properties'

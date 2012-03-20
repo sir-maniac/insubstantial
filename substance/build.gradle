@@ -10,7 +10,7 @@ sourceSets {
   main
   test
   tools {
-    compileClasspath = sourceSets.main.classes + sourceSets.test.classes + configurations.toolsCompile + configurations.testCompile
+    compileClasspath = sourceSets.main.output + sourceSets.test.output + configurations.toolsCompile + configurations.testCompile
   }
 }
 
@@ -45,23 +45,23 @@ task augmentation(dependsOn: classes) {
 
     // Delegate augmentation
     ant.'delegate-update-augment'(verbose: verboseAugmentation, pattern: ".*UI\u002Eclass") {
-      classpathset(dir: sourceSets.main.output.classesDir)
+      sourceSets.main.output.addToAntBuilder(ant, 'classpathset', FileCollection.AntType.FileSet)
     }
 
     ant.'delegate-augment'(verbose: verboseAugmentation, pattern: ".*UI\u002Eclass") {
-      classpathset(dir: sourceSets.main.output.classesDir)
+      sourceSets.main.output.addToAntBuilder(ant, 'classpathset', FileCollection.AntType.FileSet)
     }
 
     // Icon ghosting augmentation
     ant.'icon-ghosting-augment'(verbose: verboseAugmentation) {
-      classpathset(dir: sourceSets.main.output.classesDir)
+      sourceSets.main.output.addToAntBuilder(ant, 'classpathset', FileCollection.AntType.FileSet)
       iconghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceButtonUI", methodName: "paintIcon")
       iconghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceToggleButtonUI", methodName: "paintIcon")
     }
 
     // Container ghosting augmentation
     ant.'container-ghosting-augment'(verbose: verboseAugmentation) {
-      classpathset(dir: sourceSets.main.output.classesDir)
+      sourceSets.main.output.addToAntBuilder(ant, 'classpathset', FileCollection.AntType.FileSet)
       containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceDesktopPaneUI", toInjectAfterOriginal: "true")
       containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceMenuBarUI", toInjectAfterOriginal: "true")
       containerghosting(className: "org.pushingpixels.substance.internal.ui.SubstanceMenuUI", toInjectAfterOriginal: "true")
@@ -92,7 +92,7 @@ task liteJar(type: Jar) {
 
   classifier = 'lite'
 
-  from sourceSets.main.classes
+  from sourceSets.main.output
   exclude 'org/pushingpixels/substance/internal/contrib/randelshofer/**'
   exclude 'org/pushingpixels/substance/internal/contrib/xoetrope/**'
   exclude 'org/pushingpixels/substance/internal/ui/SubstanceColorChooserUI*'
@@ -113,7 +113,7 @@ task liteJar(type: Jar) {
 task testJar(type: Jar) {
   classifier = 'tst'
 
-  from sourceSets.test.classes
+  from sourceSets.test.output
 
   manifest {
     attributes(
@@ -126,7 +126,7 @@ task testJar(type: Jar) {
 task testLiteJar(type: Jar) {
   classifier = 'tst-lite'
 
-  from sourceSets.test.classes
+  from sourceSets.test.output
 
   manifest {
     attributes(
@@ -139,7 +139,7 @@ task testLiteJar(type: Jar) {
 
 task toolsJar(type: Jar) {
   classifier = 'tools'
-  from sourceSets.tools.classes
+  from sourceSets.tools.output
   manifest {
     attributes(
         "Substance-Version": version,
