@@ -1262,7 +1262,7 @@ public class SubstanceTitlePane extends JComponent {
 		if (theTitle != null) {
             FontMetrics fm = rootPane.getFontMetrics(g.getFont());
 			Rectangle titleTextRect = this.getTitleTextRectangle(fm.stringWidth(theTitle));
-			int titleWidth = titleTextRect.width - 20;
+			int titleWidth = titleTextRect.width;
 			String clippedTitle = SubstanceCoreUtilities.clipString(fm,
 					titleWidth, theTitle);
 			// show tooltip with full title only if necessary
