@@ -20,9 +20,9 @@ dependencies {
     transitive = false
   }
 
-  compile project(":trident") {classifier = "swing"}
-  compile project(":laf-widget") { transitive = false }
-  compile project(":laf-plugin") { transitive = false }
+  compile project(path: ":trident")
+  compile project(path: ":laf-widget", transitive: false)
+  compile project(path: ":laf-plugin", transitive: false)
   testCompile group: 'com.jgoodies', name: 'forms', version: '1.2.0'
   testCompile group: 'org.swinglabs.swingx', name: 'swingx-core', version: '1.6.3'
   toolsCompile group: 'org.easytesting', name: 'fest-swing', version: '1.2.1'
@@ -33,7 +33,7 @@ task augmentation(dependsOn: classes) {
   description = "Performs code augmentaiton for the laf-plugin and laf-widget libraries on the substance jar classes"
 
   doLast {
-    augmentClassPath = configurations.toolsCompile.asPath
+    def augmentClassPath = configurations.toolsCompile.asPath
 
     ant.taskdef(name: 'delegate-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentTask", classpath: augmentClassPath)
     ant.taskdef(name: 'delegate-update-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentUpdateTask", classpath: augmentClassPath)
@@ -41,7 +41,7 @@ task augmentation(dependsOn: classes) {
     ant.taskdef(name: 'icon-ghosting-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentIconGhostingTask", classpath: augmentClassPath)
     ant.taskdef(name: 'container-ghosting-augment', classname: "org.pushingpixels.lafwidget.ant.AugmentContainerGhostingTask", classpath: augmentClassPath)
 
-    verboseAugmentation = false
+    def verboseAugmentation = false
 
     // Delegate augmentation
     ant.'delegate-update-augment'(verbose: verboseAugmentation, pattern: ".*UI\u002Eclass") {
@@ -97,9 +97,6 @@ task liteJar(type: Jar) {
   exclude 'org/pushingpixels/substance/internal/contrib/xoetrope/**'
   exclude 'org/pushingpixels/substance/internal/ui/SubstanceColorChooserUI*'
   exclude 'org/pushingpixels/lafwidget/ant/**'
-
-  from zipTree('lib/build/laf-plugin.jar')
-  from zipTree('lib/build/laf-widget.jar')
 
   manifest {
     attributes(
@@ -228,5 +225,16 @@ task jitterbug(type: JavaExec) {
 task testCheck(type: JavaExec) {
   main = 'test.Check'
   debug = Boolean.valueOf(System.getProperty('debug', 'true'))
+  classpath = sourceSets.test.runtimeClasspath
+}
+
+task testFoo(type: JavaExec) {
+  main = 'Foo'
+  debug = Boolean.valueOf(System.getProperty('debug', 'false'))
+  classpath = sourceSets.test.runtimeClasspath
+}
+task testTridentLeakSnippet(type: JavaExec) {
+  main = 'TridentLeakSnippet'
+  debug = Boolean.valueOf(System.getProperty('debug', 'false'))
   classpath = sourceSets.test.runtimeClasspath
 }
