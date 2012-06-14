@@ -43,7 +43,6 @@ import javax.swing.*;
 import javax.swing.plaf.*;
 import javax.swing.text.JTextComponent;
 
-import com.sun.awt.AWTUtilities;
 import org.pushingpixels.lafwidget.LafWidgetUtilities;
 import org.pushingpixels.lafwidget.utils.TrackableThread;
 import org.pushingpixels.substance.api.*;
@@ -501,7 +500,7 @@ public class SubstanceCoreUtilities {
 
             // next step, check AWTUtilities capabilities
             if (globalRoundingEnable) {
-                globalRoundingEnable = AWTUtilities.isTranslucencySupported(AWTUtilities.Translucency.PERPIXEL_TRANSPARENT);
+                globalRoundingEnable = WindowOpacityUtilities.isTranslucencySupported(WindowOpacityUtilities.Translucency.PERPIXEL_TRANSPARENT);
             }
 
             // finally, add one listener to listen to the UIManager defaults value when the default changes.
