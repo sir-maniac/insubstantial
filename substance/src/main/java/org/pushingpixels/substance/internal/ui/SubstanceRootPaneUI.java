@@ -83,7 +83,6 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.UIResource;
 import javax.swing.plaf.basic.BasicRootPaneUI;
 
-import com.sun.awt.AWTUtilities;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.SubstanceSkin;
 import org.pushingpixels.substance.internal.animation.RootPaneDefaultButtonTracker;
@@ -92,6 +91,7 @@ import org.pushingpixels.substance.internal.utils.MemoryAnalyzer;
 import org.pushingpixels.substance.internal.utils.SubstanceColorUtilities;
 import org.pushingpixels.substance.internal.utils.SubstanceCoreUtilities;
 import org.pushingpixels.substance.internal.utils.SubstanceTitlePane;
+import org.pushingpixels.substance.internal.utils.WindowOpacityUtilities;
 
 /**
  * UI for root panes in <b>Substance </b> look and feel.
@@ -1668,7 +1668,7 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
                         || (!SubstanceCoreUtilities.isRoundedCorners(jrp)))
                     {
                         // special case, for undecorated windows and maximized windows
-                        AWTUtilities.setWindowShape(w, null);
+                    	WindowOpacityUtilities.setWindowShape(w, null);
                         return;
                     }
                 }
@@ -1676,12 +1676,12 @@ public class SubstanceRootPaneUI extends BasicRootPaneUI {
                     // only round the corners if the screen is reasonably sized, as in
                     // smaller than archival versions of The Godfather, which is at 4096x2160
                     if (SubstanceCoreUtilities.isRoundedCorners(w) && w.getWidth() * w.getHeight() < (4096*4096)) {
-                        AWTUtilities.setWindowShape(w, new RoundRectangle2D.Double(0, 0, w.getWidth(), w.getHeight(), 12, 12));
+                    	WindowOpacityUtilities.setWindowShape(w, new RoundRectangle2D.Double(0, 0, w.getWidth(), w.getHeight(), 12, 12));
                     } else {
-                        AWTUtilities.setWindowShape(w, null);
+                    	WindowOpacityUtilities.setWindowShape(w, null);
                     }
                 } catch (OutOfMemoryError oome) {
-                    AWTUtilities.setWindowShape(w, null);
+                	WindowOpacityUtilities.setWindowShape(w, null);
                     //System.out.println("Rounded panel size on OOOME : " + w.getWidth() + "x" + w.getHeight() + " for an area of " + w.getWidth()*w.getHeight() + "px");
                     //throw oome;
                 }
