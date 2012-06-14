@@ -276,7 +276,8 @@ public class SubstanceColorUtilities {
 		} else {
 			sat = sat + (float) factor * sat;
 		}
-		return new Color(Color.HSBtoRGB(hsbvals[0], sat, hsbvals[2]));
+		return new Color(Color.HSBtoRGB(hsbvals[0], sat, hsbvals[2])
+				+(color.getAlpha()<<24), true);
 	}
 
 	/**
@@ -298,7 +299,8 @@ public class SubstanceColorUtilities {
 			hue += 1.0;
 		if (hue > 1.0)
 			hue -= 1.0;
-		return new Color(Color.HSBtoRGB(hue, hsbvals[1], hsbvals[2]));
+		return new Color(Color.HSBtoRGB(hue, hsbvals[1], hsbvals[2])
+				+(color.getAlpha()<<24), true);
 	}
 
 	/**
@@ -324,9 +326,10 @@ public class SubstanceColorUtilities {
 		float[] hsbvalsBrightnessSrc = new float[3];
 		Color.RGBtoHSB(brightnessSource.getRed(), brightnessSource.getGreen(),
 				brightnessSource.getBlue(), hsbvalsBrightnessSrc);
+		
 		return new Color(Color.HSBtoRGB(hsbvalsOrig[0], hsbvalsOrig[1],
-				(hsbvalsBrightnessSrc[2] + hsbvalsOrig[2]) / 2.0f));
-
+				(hsbvalsBrightnessSrc[2] + hsbvalsOrig[2]) / 2.0f)
+				+(original.getAlpha()<<24), true); 
 	}
 
 	/**
@@ -354,7 +357,7 @@ public class SubstanceColorUtilities {
 		int r = color.getRed() + (int) (diff * (255 - color.getRed()));
 		int g = color.getGreen() + (int) (diff * (255 - color.getGreen()));
 		int b = color.getBlue() + (int) (diff * (255 - color.getBlue()));
-		return new Color(r, g, b);
+		return new Color(r, g, b, color.getAlpha());
 	}
 
 	/**
@@ -371,7 +374,7 @@ public class SubstanceColorUtilities {
 		int r = (int) ((1.0 - diff) * color.getRed());
 		int g = (int) ((1.0 - diff) * color.getGreen());
 		int b = (int) ((1.0 - diff) * color.getBlue());
-		return new Color(r, g, b);
+		return new Color(r, g, b, color.getAlpha());
 	}
 
 	/**
